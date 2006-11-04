@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  MapForce Project File  -->
+<Project Expanded="Yes" Type="Root" language="xslt" OutputDir="C:\_ABN\ORG - Owasp Report Generator\V-Drive\Application (exe)\v0.83\VulnReport_Files\xslt\misc" Title="MapForceMappingsProject" OutputEncoding="UTF-8" Version="6">
+	<Folder FolderName="Mapping Folder" Expanded="Yes" Type="MappingFolder">
+		<File Type="Mapping" FilePath="ProjectXsd___to___GVAExport.mfd"/>
+	</Folder>
+</Project>

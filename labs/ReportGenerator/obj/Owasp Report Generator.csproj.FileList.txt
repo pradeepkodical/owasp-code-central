@@ -1,0 +1,68 @@
+..\Application (exe)\v0.86\Owasp Report Generator.exe.config
+..\Application (exe)\v0.86\Owasp Report Generator.exe
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\Owasp Report Generator.csproj.ResolveComReference.cache
+obj\Release\Owasp.VulnReport.ascxExecutiveSummary.resources
+obj\Release\Owasp.VulnReport.ascxExport.resources
+obj\Release\Owasp.VulnReport.ascxFindings.resources
+obj\Release\Owasp.VulnReport.ascx.ascxIssueTracking.resources
+obj\Release\Owasp.VulnReport.ascx.ascxPlugIns.resources
+obj\Release\Owasp.VulnReport.ascxProjects.resources
+obj\Release\Owasp.VulnReport.ascx.ascxRecommendations.resources
+obj\Release\Owasp.VulnReport.ascx.ascxReportPdf.resources
+obj\Release\Owasp.VulnReport.ascx.ascxReports.resources
+obj\Release\Owasp.VulnReport.ascx.ascxSplashPage.resources
+obj\Release\Owasp.VulnReport.ascx.ascxTargets.resources
+obj\Release\Owasp.VulnReport.ascx.ascxTargetTasks.resources
+obj\Release\Owasp.VulnReport.ascx.ascxViewFindingsBydate.resources
+obj\Release\Owasp.VulnReport.ascx.ascxXsltEditor.resources
+obj\Release\Owasp.VulnReport.frmAuthenticTest.resources
+obj\Release\Owasp.VulnReport.frmCurrentAndArchivedProjects.resources
+obj\Release\Owasp.VulnReport.frmExport.resources
+obj\Release\Owasp.VulnReport.frmIssueTracking.resources
+obj\Release\Owasp.VulnReport.frmRecommendationsDatabase.resources
+obj\Release\Owasp.VulnReport.frmReports.resources
+obj\Release\Owasp.VulnReport.frmReportXsltEditor.resources
+obj\Release\Owasp.VulnReport.frmSplashPage.resources
+obj\Release\Owasp.VulnReport.frmTestPlugIns.resources
+obj\Release\Owasp.VulnReport.frmViewFindingsByDate.resources
+obj\Release\Owasp.VulnReport.PenTest_Reporter.resources
+obj\Release\Owasp Report Generator.csproj.GenerateResource.Cache
+obj\Release\Owasp Report Generator.exe
+..\Application (exe)\v0.83\Owasp Report Generator.exe.config
+..\Application (exe)\v0.83\Owasp Report Generator.exe
+..\Application (exe)\v0.83\Owasp Report Generator.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\Owasp Report Generator.csproj.ResolveComReference.cache
+obj\Debug\Owasp.VulnReport.ascxExecutiveSummary.resources
+obj\Debug\Owasp.VulnReport.ascxExport.resources
+obj\Debug\Owasp.VulnReport.ascxFindings.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxIssueTracking.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxPlugIns.resources
+obj\Debug\Owasp.VulnReport.ascxProjects.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxRecommendations.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxReportPdf.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxReports.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxSplashPage.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxTargets.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxTargetTasks.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxViewFindingsBydate.resources
+obj\Debug\Owasp.VulnReport.ascx.ascxXsltEditor.resources
+obj\Debug\Owasp.VulnReport.frmAuthenticTest.resources
+obj\Debug\Owasp.VulnReport.frmCurrentAndArchivedProjects.resources
+obj\Debug\Owasp.VulnReport.frmExport.resources
+obj\Debug\Owasp.VulnReport.frmIssueTracking.resources
+obj\Debug\Owasp.VulnReport.frmRecommendationsDatabase.resources
+obj\Debug\Owasp.VulnReport.frmReports.resources
+obj\Debug\Owasp.VulnReport.frmReportXsltEditor.resources
+obj\Debug\Owasp.VulnReport.frmSplashPage.resources
+obj\Debug\Owasp.VulnReport.frmTestPlugIns.resources
+obj\Debug\Owasp.VulnReport.frmViewFindingsByDate.resources
+obj\Debug\Owasp.VulnReport.PenTest_Reporter.resources
+obj\Debug\Owasp Report Generator.csproj.GenerateResource.Cache
+obj\Debug\Owasp Report Generator.exe
+obj\Debug\Owasp Report Generator.pdb
+obj\Release\Interop.XMLSPYPLUGINLib.dll
+obj\Release\AxInterop.XMLSPYPLUGINLib.dll
+obj\Debug\Interop.XMLSPYPLUGINLib.dll
+obj\Debug\AxInterop.XMLSPYPLUGINLib.dll

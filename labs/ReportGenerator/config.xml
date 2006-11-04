@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.0 NT beta 1 build Jul 19 2001 (http://www.xmlspy.com) by Clemens Uhlenhut (altova) -->
+<ConfigurationData>
+	<ImageFile>**path**\NewUIImages.bmp</ImageFile>
+	<Modifications>
+		<Modification>
+			<Action>Add</Action>
+			<UIElement type="Menu">
+				<ID>129</ID>
+				<Name>PlugIn Menu</Name>
+				<Place>12</Place>
+			</UIElement>
+		</Modification>
+		<Modification>
+			<Action>Add</Action>
+			<UIElement type="MenuItem">
+				<!--the following element is a local command ID-->
+				<ID>3</ID>
+				<Name>Open file from repository...</Name>
+				<Place>-1</Place>
+				<MenuID>129</MenuID>
+				<Parent>:PlugIn Menu</Parent>
+				<ImageID>0</ImageID>
+			</UIElement>
+		</Modification>
+		<Modification>
+			<Action>Add</Action>
+			<UIElement type="MenuItem">
+				<ID>4</ID>
+				<Name>Save file to repository...</Name>
+				<Place>1</Place>
+				<MenuID>129</MenuID>
+				<Parent>:PlugIn Menu</Parent>
+				<ImageID>1</ImageID>
+			</UIElement>
+		</Modification>
+		<Modification>
+			<Action>Add</Action>
+			<UIElement type="ToolBar">
+				<ID>1</ID>
+				<Name>TestPlugIn</Name>
+			</UIElement>
+		</Modification>
+		<Modification>
+			<Action>Add</Action>
+			<UIElement type="ToolBarItem">
+				<!--don't reuse local IDs even the commands do the same-->
+				<ID>5</ID>
+				<Name>Open file from repository...</Name>
+				<!--set Place to -1 if this is the first button to be inserted-->
+				<Place>-1</Place>
+				<ImageID>0</ImageID>
+				<ToolBarID>1</ToolBarID>
+			</UIElement>
+		</Modification>
+		<Modification>
+			<Action>Add</Action>
+			<UIElement type="ToolBarItem">
+				<ID>6</ID>
+				<Name>Save file to repository...</Name>
+				<!--set Place to -1 if this is the first button to be inserted-->
+				<Place>1</Place>
+				<ImageID>1</ImageID>
+				<ToolBarID>1</ToolBarID>
+			</UIElement>
+		</Modification>
+	</Modifications>
+</ConfigurationData>

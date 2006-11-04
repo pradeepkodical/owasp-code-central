@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlugIns>
+	<PlugIn 
+		name="Test"
+		pathToXmlFiles="xml"
+		pathToSpsFile ="sps/ORG_test_Plug-in.sps"
+		pathToXsdFile ="xsd/ORG_Test_Plug-in.xsd"
+		templateXmlFile=""
+		referenceAssemblies="Owasp Report Generator.exe,System.Xml.Dll">
+		<action>
+		<![CDATA[
+			using System;
+			using System.Windows.Forms;
+			using System.Xml;
+			using System.IO;
+			using Owasp.VulnReport.utils;
+			
+			class ORG_PowerPoint_Plug_in
+			{
+				static string strPathToTemplatePowerpointFile;
+				static string strPathToXmlFileWithData;
+				static XmlNodeList xnlRISO_Report_Pages;
+				
+				
+			    static void Main(string[] args)
+			    {			
+			    	if (args.Length==0)
+			    		MessageBox.Show("The full path to the xml file with data must be provided!");
+			    	else
+					{
+						string strDataFile = args[0];			    			    		
+						MessageBox.Show("Hello TSA World");
+			    		//MessageBox.Show("Processing: " + strDataFile);			    		
+			    		//MessageBox.Show(misc.getGUID());
+			    	}			    	
+			    }
+			    			
+			};
+		]]>
+		</action>
+		
+	</PlugIn>	
+</PlugIns>
