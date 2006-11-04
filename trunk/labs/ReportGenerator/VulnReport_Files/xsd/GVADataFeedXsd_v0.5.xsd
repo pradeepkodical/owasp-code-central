@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Dinis (private) -->
+<xs:schema xmlns="vuln_report" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="vuln_report" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Findings">
+		<xs:annotation>
+			<xs:documentation>Top Level Documentation</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Finding">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element ref="Metadata"/>
+							<xs:element name="Comments">
+								<xs:complexType mixed="true">
+									<xs:choice minOccurs="0" maxOccurs="unbounded">
+										<xs:element ref="newline"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="AffectedItems" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType mixed="true">
+									<xs:choice minOccurs="0" maxOccurs="unbounded">
+										<xs:element ref="img"/>
+										<xs:element ref="newline"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="Recommendation" minOccurs="0"/>
+							<xs:element name="Resolution" minOccurs="0">
+								<xs:complexType mixed="true">
+									<xs:choice minOccurs="0" maxOccurs="unbounded">
+										<xs:element name="Comments" minOccurs="0"/>
+										<xs:element ref="ReTestSla" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element ref="AuditTrailItem" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element ref="SpecialTag" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element ref="TaskItem" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:choice>
+									<xs:attribute name="ClosedBy" type="xs:string"/>
+									<xs:attribute name="ClosedDate" type="xs:date"/>
+									<xs:attribute name="OpenDate" type="xs:date"/>
+									<xs:attribute name="Status" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="Target"/>
+						</xs:choice>
+						<xs:attribute name="Layer" type="xs:string"/>
+						<xs:attribute name="Category" type="xs:string"/>
+						<xs:attribute name="Vulnerability" type="xs:string"/>
+						<xs:attribute name="Impact" type="xs:string" form="unqualified"/>
+						<xs:attribute name="Probability" type="xs:string" form="unqualified"/>
+						<xs:attribute name="Tsa-id" type="xs:string" form="unqualified"/>
+						<xs:attribute name="Owner" type="xs:string" form="unqualified"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Target">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="IP" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="value"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DnsName" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="value"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string"/>
+			<xs:attribute name="type" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Contact">
+		<xs:complexType>
+			<xs:attribute name="givenNames" type="xs:string"/>
+			<xs:attribute name="surname" type="xs:string"/>
+			<xs:attribute name="telephone" type="xs:string"/>
+			<xs:attribute name="mobile" type="xs:string"/>
+			<xs:attribute name="email" type="xs:string"/>
+			<xs:attribute name="pgpPublicKey" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Metadata">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="project_number" type="xs:string"/>
+				<xs:element name="project_name" type="xs:string"/>
+				<xs:element name="contacts" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="project_owner" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="Contact" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dates" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="start_date" type="xs:date"/>
+							<xs:element name="actual_end_date" type="xs:date" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Region" type="xs:string"/>
+				<xs:element name="SubRegion" type="xs:string" minOccurs="0"/>
+				<xs:element name="TestType" type="xs:string"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Recommendation">
+		<xs:complexType>
+			<xs:sequence minOccurs="0">
+				<xs:element name="Comment" type="xs:string"/>
+				<xs:element name="linkToRecommendationDatabase" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rating">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ratingValue" type="xs:string" minOccurs="0"/>
+				<xs:element name="ratingComment" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="img">
+		<xs:complexType>
+			<xs:attribute name="src" type="xs:string" use="required" form="unqualified"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="newline"/>
+	<xs:element name="TaskItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TaskName" type="xs:string" minOccurs="0"/>
+				<xs:element name="CreatedBy" type="xs:string" minOccurs="0"/>
+				<xs:element name="AssignedTo" type="xs:string" minOccurs="0"/>
+				<xs:element name="CompletedDate" type="xs:date" minOccurs="0"/>
+				<xs:element name="MoreDetails" type="xs:string" minOccurs="0"/>
+				<xs:element name="Status" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AuditTrailItem">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element name="ItemName" type="xs:string"/>
+				<xs:element name="CreationDate" type="xs:string"/>
+				<xs:element name="CreatedBy" type="xs:string"/>
+				<xs:element name="AssignedTo" type="xs:string"/>
+				<xs:element name="MoreDetails" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="Status" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SpecialTag">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element name="TagName" type="xs:string"/>
+				<xs:element name="TagValue" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReTestSla">
+		<xs:complexType mixed="true">
+			<xs:attribute name="ReceivedDate" type="xs:date"/>
+			<xs:attribute name="ProcessedDate" type="xs:date"/>
+			<xs:attribute name="Days" type="xs:integer"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ul">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="li" type="xs:string" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="b"/>
+	<xs:element name="level3">
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="img"/>
+				<xs:element ref="newline"/>
+				<xs:element ref="ul"/>
+				<xs:element ref="b"/>
+			</xs:choice>
+			<xs:attribute name="name" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

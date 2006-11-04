@@ -1,0 +1,364 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{32C63E52-2207-4CE7-9A8B-D372C7736D61}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Owasp Report Generator</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Owasp.VulnReport</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\Application %28exe%29\v0.83\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\Application %28exe%29\v0.86\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.PdfLib">
+      <Name>AxInterop.PdfLib</Name>
+      <HintPath>AxInterop.PdfLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.SHDocVw">
+      <Name>AxInterop.SHDocVw</Name>
+      <HintPath>AxInterop.SHDocVw.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor, Version=2.0.0.1710, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility">
+      <Name>Microsoft.VisualBasic.Compatibility</Name>
+    </Reference>
+    <Reference Include="SharpZipLib, Version=0.81.0.1407, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Compile Include="ascx\ascxExecutiveSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxExport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxFindings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxIssueTracking.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxPlugIns.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxProjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxRecommendations.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxReportPdf.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxReports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxSplashPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxTargets.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxTargetTasks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxViewFindingsBydate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxXsltEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="classes\GlobalVariables.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="classes\Project.cs" />
+    <Compile Include="classes\UserProfile.cs" />
+    <Compile Include="classes\VulnReportHelpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="forms\frmAuthenticTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCurrentAndArchivedProjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmGvaExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmIssueTracking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmRecommendationsDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmReportXsltEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmSplashPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmTestPlugIns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmViewFindingsByDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MDI_PenTest_Reporter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="utils\altovaXml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\authentic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\clipboard.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\files.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\FOP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\LocalWindowsHook.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\misc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\processes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\scriptHost.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\webBrowser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\windowsForms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\xml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\zip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="AxInterop.PdfLib.dll" />
+    <Content Include="images\owasp_logo.gif" />
+    <Content Include="images\_owasp_icon.ico" />
+    <Content Include="VulnReport_Development_Notes.txt" />
+    <EmbeddedResource Include="ascx\ascxExecutiveSummary.resx">
+      <DependentUpon>ascxExecutiveSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxExport.resx">
+      <DependentUpon>ascxExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxFindings.resx">
+      <DependentUpon>ascxFindings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxIssueTracking.resx">
+      <DependentUpon>ascxIssueTracking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxPlugIns.resx">
+      <DependentUpon>ascxPlugIns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxProjects.resx">
+      <DependentUpon>ascxProjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxRecommendations.resx">
+      <DependentUpon>ascxRecommendations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxReportPdf.resx">
+      <DependentUpon>ascxReportPdf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxReports.resx">
+      <DependentUpon>ascxReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxSplashPage.resx">
+      <DependentUpon>ascxSplashPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxTargets.resx">
+      <DependentUpon>ascxTargets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxTargetTasks.resx">
+      <DependentUpon>ascxTargetTasks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxViewFindingsBydate.resx">
+      <DependentUpon>ascxViewFindingsBydate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxXsltEditor.resx">
+      <DependentUpon>ascxXsltEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmAuthenticTest.resx">
+      <DependentUpon>frmAuthenticTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCurrentAndArchivedProjects.resx">
+      <DependentUpon>frmCurrentAndArchivedProjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmGvaExport.resx">
+      <DependentUpon>frmGvaExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmIssueTracking.resx">
+      <DependentUpon>frmIssueTracking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmRecommendationsDatabase.resx">
+      <DependentUpon>frmRecommendationsDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmReports.resx">
+      <DependentUpon>frmReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmReportXsltEditor.resx">
+      <DependentUpon>frmReportXsltEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSplashPage.resx">
+      <DependentUpon>frmSplashPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTestPlugIns.resx">
+      <DependentUpon>frmTestPlugIns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmViewFindingsByDate.resx">
+      <DependentUpon>frmViewFindingsByDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDI_PenTest_Reporter.resx">
+      <DependentUpon>MDI_PenTest_Reporter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxXMLSPYPLUGINLib">
+      <Guid>{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="XMLSPYPLUGINLib">
+      <Guid>{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

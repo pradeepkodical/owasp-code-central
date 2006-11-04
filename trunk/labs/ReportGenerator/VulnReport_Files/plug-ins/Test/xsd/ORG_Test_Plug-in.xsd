@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Dinis (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ORG_Test_PlugIn">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="PathToXmlFileWithData" type="xs:string"/>
+				<xs:element name="PathToTemplatePowerpointFile" type="xs:string"/>
+				<xs:element name="RISO_Report_Page">
+					<xs:complexType>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="PathToRISOXsltFile" type="xs:string"/>
+							<xs:element name="Comment" type="xs:string"/>
+						</xs:choice>
+						<xs:attribute name="NumberOfTargets_Tested" type="xs:string"/>
+						<xs:attribute name="NumberOfTargets_ToTest" type="xs:string"/>
+						<xs:attribute name="NumberOfTargets_Total" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="Report_Title" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping version="6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<component name="defaultmap1" blackbox="0" uid="80974952" editable="1">
+		<properties SelectedLanguage="xslt"/>
+		<structure>
+			<children>
+				<component name="document" library="xml" uid="86115080" kind="14">
+					<properties XSLTDefaultOutput="1"/>
+					<view ltx="418" lty="-24" rbx="844" rby="525"/>
+					<data>
+						<root scrollposition="1">
+							<header>
+								<namespaces>
+									<namespace/>
+									<namespace uid="vuln_report"/>
+								</namespaces>
+							</header>
+							<entry name="1:Findings" expanded="1">
+								<entry name="1:Finding" expanded="1">
+									<entry name="0:@Layer" inpkey="79805112"/>
+									<entry name="0:@Category" inpkey="52556984"/>
+									<entry name="0:@Vulnerability" inpkey="56373192"/>
+									<entry name="0:@IncludeInReport" inpkey="56234608"/>
+									<entry name="0:@Impact" inpkey="81146408"/>
+									<entry name="0:@Probability" inpkey="79312248"/>
+									<entry name="0:@Tsa-id" inpkey="80082992"/>
+									<entry name="0:@Owner" inpkey="52556896"/>
+									<entry name="1:Metadata" expanded="1">
+										<entry name="1:project_number" inpkey="86058000"/>
+										<entry name="1:project_name" inpkey="78836272"/>
+									</entry>
+									<entry name="1:Target" expanded="1">
+										<entry name="0:@name" inpkey="56373336"/>
+										<entry name="0:@type" inpkey="79311904"/>
+									</entry>
+								</entry>
+							</entry>
+						</root>
+						<document schema="GVADataFeedXsd_v0.5.xsd" outputinstance="GVADataFeedXsd_v0.5.xml" instanceroot="{vuln_report}Findings"/>
+						<wsdl/>
+					</data>
+				</component>
+				<component name="document" library="xml" uid="85339344" kind="14">
+					<properties/>
+					<view ltx="-10" lty="-18" rbx="293" rby="497"/>
+					<data>
+						<root scrollposition="1">
+							<header>
+								<namespaces>
+									<namespace uid="vuln_report"/>
+									<namespace/>
+								</namespaces>
+							</header>
+							<entry name="0:ConsolidatedProjects" expanded="1">
+								<entry name="0:Project" expanded="1">
+									<entry name="0:Metadata" expanded="1">
+										<entry name="0:project_number" outkey="81493496"/>
+										<entry name="0:project_name" outkey="81493840"/>
+									</entry>
+									<entry name="0:Targets" expanded="1">
+										<entry name="0:Target" expanded="1">
+											<entry name="1:@name" outkey="57180736"/>
+											<entry name="1:@type" outkey="57181336"/>
+											<entry name="0:Findings" expanded="1">
+												<entry name="0:Finding" expanded="1">
+													<entry name="1:@Layer" outkey="41901792"/>
+													<entry name="1:@Category" outkey="41901440"/>
+													<entry name="1:@Vulnerability" outkey="41898312"/>
+													<entry name="1:@IncludeInReport" outkey="41899136"/>
+													<entry name="1:@Impact" outkey="41900088"/>
+													<entry name="1:@Probability" outkey="41898920"/>
+													<entry name="1:@Tsa-id" outkey="41899816"/>
+													<entry name="1:@Owner" outkey="41899272"/>
+												</entry>
+											</entry>
+										</entry>
+									</entry>
+								</entry>
+							</entry>
+						</root>
+						<document schema="projectXsd.xsd" inputinstance="C:\my Temp\_VulnReport_tempFiles\tmp4D3.xml" outputinstance="projectXsd.xml" instanceroot="{vuln_report}ConsolidatedProjects"/>
+						<wsdl/>
+					</data>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges>
+					<edge edgekey="81680576"/>
+					<edge edgekey="81708072"/>
+					<edge edgekey="81708696"/>
+					<edge edgekey="81715136"/>
+					<edge edgekey="81715784"/>
+					<edge edgekey="81721216"/>
+					<edge edgekey="81721696"/>
+					<edge edgekey="81725920"/>
+					<edge edgekey="81726568"/>
+					<edge edgekey="82022488"/>
+					<edge edgekey="82647848"/>
+					<edge edgekey="85952688"/>
+				</edges>
+				<vertices>
+					<vertex vertexkey="41898312">
+						<edges>
+							<edge vertexkey="56373192" edgekey="81708072"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="41898920">
+						<edges>
+							<edge vertexkey="79312248" edgekey="81715784"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="41899136">
+						<edges>
+							<edge vertexkey="56234608" edgekey="81708696"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="41899272">
+						<edges>
+							<edge vertexkey="52556896" edgekey="81721696"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="41899816">
+						<edges>
+							<edge vertexkey="80082992" edgekey="81721216"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="41900088">
+						<edges>
+							<edge vertexkey="81146408" edgekey="81715136"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="41901440">
+						<edges>
+							<edge vertexkey="52556984" edgekey="82647848"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="41901792">
+						<edges>
+							<edge vertexkey="79805112" edgekey="81680576"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="57180736">
+						<edges>
+							<edge vertexkey="56373336" edgekey="81725920"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="57181336">
+						<edges>
+							<edge vertexkey="79311904" edgekey="81726568"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="81493496">
+						<edges>
+							<edge vertexkey="86058000" edgekey="85952688"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="81493840">
+						<edges>
+							<edge vertexkey="78836272" edgekey="82022488"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+</mapping>

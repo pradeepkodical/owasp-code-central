@@ -1,0 +1,67 @@
+--== General Development Notes ==--
+
+[04-Nov-2006]     
+	- This file is now out of date, please see the most recent information here: 
+	  https://www.owasp.org/index.php/ORG_%28Owasp_Report_Generator%29_-_V0.85
+
+[23-Sep-2006]  v0.86.2
+  - Currently the program builds to "../Application (exe).." not the standard areas.  This can be
+    changed in the project options
+    
+[23-Sep-2006]  v0.86.2
+    - Added in the ability to import in a xml output file from nmap scanner.    
+    
+[16-Sep-2006]  v0.86.2
+	- Finished up the basics of the UserProfile class and removed a few global variables. 
+	- Added in the VulnReportHelpers.confirmExistenceOfRequiredFilesAndFolders 
+	  so we can make sure the running environment is stable before executing the program.  
+    
+[13-Sep-2006]  v0.86.1
+	- Worked more on the UserProfile class and cleaning up the rest of the code.     
+    
+[12-Sep-2006]  v0.86.1
+	- Started to work on the UserProfile class. Reason for doing creating a seperate class
+	  was for code cleanliness and everything was getting confusing for loading, projects, etc.. from the 
+	  yucky global variables.
+
+[09-Sep-2006]  v0.86.1
+    - Fixed a few more warnings.  
+    - Changed how the forms where displayed.  This was done so that when a user hit alt+f4 on the splash
+      page the program did not get a null pointer error. 
+
+[07-Sep-2006]  v0.86.1
+    - Upgraded to .NET 2.0 and got all of the compiler errors and most of the warnings cleared out.
+[31-Aug-2006]  v0.86
+	- Added support for AltovaXSlt engine in both report engines
+	- Added Plug-in engine (with example for exporting data into powerpoints)
+	- Added support for bypassing the Splash Screen page (helpefull when in development mode)
+	- Schema updates
+		- Small changes to make it compatible with the current XML files created
+	- This version was added to source control (CVS)
+
+[12-Jul-2006]  v0.83	
+	- new window called 'View Findings by Date" which 
+			- gives a full list of all projects findings (sorted by date) 
+			- allows the editing of the temp xml file (of the current selected finding) so that an external (to ORG) changes can be made to these files (for example to spell check them
+			- on Current projects Report Generation, I modified the main button so that it now says 'Create Report Using ->" and added a dropdown box that allows the choice of engine to use (Current FOP and .NET xslt). For non-fop reports, it is also possible to choose what extension to use
+
+[04-Jul-2006]  v0.82
+
+	- Fixed problem which was causing new projects to show data from previous projects
+	- Added Rename functionality to Targets and Findings
+	- Fixed 'Reload Target List' button in 'Projects Tasks tab' (it was not working before)
+	- Fixed Unhandled exception that happened when a duplicated target was added
+	- Removed the button 'Edit Projects Task' from the tasks tab since it wasn't doing anything
+	- Fixed the bug on the Region and Test Type (the problem was on the schema)
+	- On the Project Metadata editor changed 'Review History' to 'Revision History' so that it matches the PDF 
+	- On Sasha request, I fixed a couple more of these http://www.owasp.org/index.php/Uncaught_exception
+
+		
+
+[11-Jun-2006]
+	- Fixed (I think) the exception that occured sometimes with Authentic objectcool
+	
+[21-Nov-2005]
+- Fixed bug in delete finding
+- added ability to delete targets and to delete projects
+- when creating a new target and a new project the default xml file is automaticaly created
