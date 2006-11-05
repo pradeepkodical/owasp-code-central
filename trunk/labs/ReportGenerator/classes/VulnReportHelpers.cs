@@ -81,7 +81,6 @@ namespace Owasp.VulnReport
                 utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "FOP.zip"), Environment.CurrentDirectory);
                 utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "AuthenticPlugin.zip"), Environment.CurrentDirectory);
             }
-             //  throw new Exception("Base Directory (usually called ORG_CONFIG_FILES) is missing, please re-install");
             if (!Directory.Exists(Path.Combine(GlobalVariables.strBaseDir, "templates"))) 
                 throw new Exception("The template folder is missing, please re-install");
             if (!File.Exists(Path.Combine(GlobalVariables.strBaseDir, "templates\\_templateFile_EmptyProjectXmlFile.xml")))
