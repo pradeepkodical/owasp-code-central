@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SiteGenerator name="SiteName" xmlns:ipo="http://www.altova.com/IPO" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<site>
+		<rootFolder>
+			<folder name="Livedemo">
+				<file mappedTo="htm\HomePage_All_Vulnerabilities.htm" name="b.htm"/>
+			</folder>
+			<folder name="aspx">
+				<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Basic.aspx" name="DataValidation_SqlInjection_Basic.aspx"/>
+				<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Medium.aspx" name="DataValidation_SqlInjection_Medium.aspx"/>
+				<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Advanced.aspx" name="DataValidation_SqlInjection_Advanced.aspx"/>
+				<file mappedTo="Vulnerabilities\UnprotectedSecrets_Viewstate_HiddenField.aspx" name="UnprotectedSecrets_Viewstate_HiddenField.aspx"/>
+				<file mappedTo="Vulnerabilities\Write File On Server.aspx" name="Write File On Server.aspx"/>
+				<file mappedTo="Vulnerabilities\Show Directories.aspx" name="Show Directories.aspx"/>
+				<file mappedTo="Vulnerabilities\Show File Contents.aspx" name="Show File Contents.aspx"/>
+				<file mappedTo="Vulnerabilities\Remote Cmd Shell.aspx" name="Remote Cmd Shell.aspx"/>
+				<file mappedTo="Vulnerabilities\Remote Cmd Shell Advanced.aspx" name="Remote Cmd Shell Advanced.aspx"/>
+				<file mappedTo="Vulnerabilities\Direct Sql Query.aspx" name="Direct Sql Query.aspx"/>
+				<file mappedTo="Vulnerabilities\Weak Password.aspx" name="Weak Password.aspx"/>
+				<file mappedTo="Vulnerabilities\InSession - Login.aspx" name="InSession - Login.aspx"/>
+				<file mappedTo="Vulnerabilities\InSession - SqlInjectionPages.aspx" name="InSession - SqlInjectionPages.aspx"/>
+				<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Basic.aspx" name="ViaSession_DataValidation_SqlInjection_Basic.aspx"/>
+				<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Medium.aspx" name="ViaSession_DataValidation_SqlInjection_Medium.aspx"/>
+				<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Advanced.aspx" name="ViaSession_DataValidation_SqlInjection_Advanced.aspx"/>
+				<file mappedTo="Vulnerabilities\Xss.aspx" name="Xss.aspx"/>
+			</folder>
+			<folder name="images">
+				<file mappedTo="images\leftBanner.png" name="leftBanner.png"/>
+				<file mappedTo="images\topBanner_slice.gif" name="topBanner_slice.gif"/>
+				<file mappedTo="images\owasp_logo.png" name="owasp_logo.png"/>
+				<file mappedTo="images\Foundstone_logo.jpg" name="Foundstone_logo.jpg"/>
+			</folder>
+			<file mappedTo="htm\HomePage_All_Vulnerabilities.htm" name="Default.htm"/>
+			<file mappedTo="css\style.css" name="style.css"/>
+			<file mappedTo="htm\HomePage_All_Vulnerabilities.htm" name="Default2.htm"/>
+			<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Advanced.aspx" name="aspxDataValidation_SqlInjection_Advanced.aspx"/>
+			<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Basic.aspx" name="aspxDataValidation_SqlInjection_Basic.aspx"/>
+			<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Medium.aspx" name="aspxDataValidation_SqlInjection_Medium.aspx"/>
+			<file mappedTo="htm\HomePage_All_Vulnerabilities.htm" name="a.htm"/>
+		</rootFolder>
+	</site>
+</SiteGenerator>

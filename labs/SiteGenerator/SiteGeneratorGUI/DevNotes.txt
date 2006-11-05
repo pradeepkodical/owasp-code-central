@@ -1,0 +1,8 @@
+- regaring the ASP classic problem 'this resource is in use issue' as per http://msmvps.com/blogs/bernard/archive/2005/05/24/48690.aspx  I did this:
+
+	regsvr32 %windir%/system32/JSCRIPT.DLL
+	regsvr32 %windir%/system32/vbscript.dll
+
+but I am not sure that is what did it. A the moment the only way to make it work is to open an .asp page (any page) in the main process, from that it (the virtual mappings) works 
+
+this problem must be related to the loading of the asp.dll since it doesn't get loaded into the w3wp process

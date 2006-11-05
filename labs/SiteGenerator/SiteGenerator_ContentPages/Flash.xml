@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SiteGenerator name="SiteName" xmlns:ipo="http://www.altova.com/IPO" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<site>
+		<rootFolder>
+			<folder name="Flash">
+				<file mappedTo="flash\cromas_xml.htm" name="menu.htm"/>
+				<file mappedTo="flash\cromas_menu.xml" name="cromas_menu.xml"/>
+				<file mappedTo="flash\cromas_xml.swf" name="cromas_xml.swf"/>
+			</folder>
+			<folder name="aspx">
+				<file mappedTo="vulnerabilities\DataValidation_SqlInjection_Basic.aspx" name="DataValidation_SqlInjection_Basic.aspx"/>
+				<file mappedTo="vulnerabilities\Remote Cmd Shell.aspx" name="Remote Cmd Shell.aspx"/>
+			</folder>
+			<file mappedTo="htm\Frameset_Flash.htm" name="Default.htm"/>
+		</rootFolder>
+	</site>
+</SiteGenerator>
