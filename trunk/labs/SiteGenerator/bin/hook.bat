@@ -1,1 +1,0 @@
-withdll /d:_SharedMemoryDll.dll %1 %2
