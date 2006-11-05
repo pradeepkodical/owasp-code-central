@@ -1,0 +1,10 @@
+obj\Release\ResolveAssemblyReference.cache
+..\SiteGenerator_IIS_Website\Bin\SiteGenerator_IIS_HttpModule.dll
+..\SiteGenerator_IIS_Website\Bin\SiteGenerator_IIS_HttpModule.pdb
+obj\Release\SiteGenerator_IIS_HttpModule.dll
+obj\Release\SiteGenerator_IIS_HttpModule.pdb
+bin\Debug\SiteGenerator_IIS_HttpModule.dll
+bin\Debug\SiteGenerator_IIS_HttpModule.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\SiteGenerator_IIS_HttpModule.dll
+obj\Debug\SiteGenerator_IIS_HttpModule.pdb

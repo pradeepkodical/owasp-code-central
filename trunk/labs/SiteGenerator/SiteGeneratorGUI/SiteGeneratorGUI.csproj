@@ -1,0 +1,364 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8533C1B2-0CFE-4D6C-92FA-76C8DC3BC710}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Owasp.SiteGenerator</RootNamespace>
+    <AssemblyName>SiteGenerator</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ascx\ascxAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxAdmin.Designer.cs">
+      <DependentUpon>ascxAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ascx\ascxDynamicWebSites.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxDynamicWebSites.Designer.cs">
+      <DependentUpon>ascxDynamicWebSites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ascx\ascxFileTransformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxFileTransformation.Designer.cs">
+      <DependentUpon>ascxFileTransformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ascx\ascxWebBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\ascxWebBrowser.Designer.cs">
+      <DependentUpon>ascxWebBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ascx\WebsiteCreator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ascx\WebsiteCreator.Designer.cs">
+      <DependentUpon>WebsiteCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\files.cs" />
+    <Compile Include="classes\GUI.cs" />
+    <Compile Include="classes\Listener.cs" />
+    <Compile Include="classes\ReceivedData.cs" />
+    <Compile Include="classes\SiteMapping.cs" />
+    <Compile Include="classes\xml.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="utils\authentic.cs" />
+    <Compile Include="utils\files.cs" />
+    <Compile Include="utils\processes.cs" />
+    <Compile Include="classes\SiteGenerator_Transformers.cs" />
+    <Compile Include="MainGui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainGui.Designer.cs">
+      <DependentUpon>MainGui.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ascx\ascxAdmin.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ascxAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxDynamicWebSites.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ascxDynamicWebSites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxFileTransformation.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ascxFileTransformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\ascxWebBrowser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ascxWebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ascx\WebsiteCreator.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WebsiteCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainGui.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainGui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="SiteGenerator_ContentPages\DynamicWebsites.sps" />
+    <Content Include="SiteGenerator_ContentPages\DynamicWebsites.xsd">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="App.config" />
+    <None Include="SiteGenerator_ContentPages\flash\www.adrianTNT.com.url" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities.sps" />
+    <None Include="SiteGenerator_ContentPages\Vulnerabilities.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\flash_xml_menu\www.adrianTNT.com.url" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="utils\WindowsForms.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxXMLSPYPLUGINLib">
+      <Guid>{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="XMLSPYPLUGINLib">
+      <Guid>{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SiteGenerator_ContentPages\All Vulnerabilities.xml" />
+    <Content Include="SiteGenerator_ContentPages\css\style.css" />
+    <Content Include="SiteGenerator_ContentPages\demo.xml" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Default.htm" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_0_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_0_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_0_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_0_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_10_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_10_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_10_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_10_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_1_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_1_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_1_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_1_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_2_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_2_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_2_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_2_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_3_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_3_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_3_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_3_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_4_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_4_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_4_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_4_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_5_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_5_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_5_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_5_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_6_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_6_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_6_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_6_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_7_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_7_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_7_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_7_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_8_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_8_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_8_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_8_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_9_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_9_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_9_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\Navigation_Level_9_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\Demo2\TopNavigation.htm" />
+    <Content Include="SiteGenerator_ContentPages\Flash.xml" />
+    <Content Include="SiteGenerator_ContentPages\flash\cromas_menu.xml" />
+    <Content Include="SiteGenerator_ContentPages\flash\cromas_xml.htm" />
+    <Content Include="SiteGenerator_ContentPages\flash\cromas_xml.swf" />
+    <Content Include="SiteGenerator_ContentPages\flash\readme.txt" />
+    <Content Include="SiteGenerator_ContentPages\flash\subscribe.swf" />
+    <Content Include="SiteGenerator_ContentPages\gen.html" />
+    <Content Include="SiteGenerator_ContentPages\genhtml.xslt" />
+    <Content Include="SiteGenerator_ContentPages\htm\BottomBanner.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\default.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\Frameset.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\Frameset_Flash.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\Frameset_Html.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\HomePage.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\HomePage_All_Vulnerabilities.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\NormalPage.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\sql.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\TopBanner.htm" />
+    <Content Include="SiteGenerator_ContentPages\htm\Welcome.htm" />
+    <Content Include="SiteGenerator_ContentPages\images\bottomBanner.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\CodeScope_Report.xsl" />
+    <Content Include="SiteGenerator_ContentPages\images\file.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\folder.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\Foundstone_logo.jpg" />
+    <Content Include="SiteGenerator_ContentPages\images\leftBanner.jpg" />
+    <Content Include="SiteGenerator_ContentPages\images\LeftBanner.png" />
+    <Content Include="SiteGenerator_ContentPages\images\leftTab.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\owasp_logo.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\owasp_logo.png" />
+    <Content Include="SiteGenerator_ContentPages\images\rightTab.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\topBanner.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\TopBanner_slice.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\_image1.gif" />
+    <Content Include="SiteGenerator_ContentPages\images\_image2.gif" />
+    <Content Include="SiteGenerator_ContentPages\SiteGenerator_Banner.html" />
+    <Content Include="SiteGenerator_ContentPages\Sql Injection.xml" />
+    <Content Include="SiteGenerator_ContentPages\TestSite.xml" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Default.htm" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_0_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_0_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_0_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_0_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_1_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_1_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_1_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_1_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_2_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_2_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_2_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_2_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_3_SubLevel_0.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_3_SubLevel_1.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_3_SubLevel_2.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\Navigation_Level_3_SubLevel_3.html" />
+    <Content Include="SiteGenerator_ContentPages\TestSite\TopNavigation.htm" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\DataValidation_SqlInjection_Advanced.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\DataValidation_SqlInjection_Basic.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\DataValidation_SqlInjection_Basic.aspx.xml" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\DataValidation_SqlInjection_Medium.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\Direct Sql Query.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\InSession - Login.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\InSession - SqlInjectionPages.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\Remote Cmd Shell Advanced.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\Remote Cmd Shell.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\Show Directories.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\Show File Contents.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\UnprotectedSecrets_Viewstate_HiddenField.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\Weak Password.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\Write File On Server.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\XSS.aspx" />
+    <Content Include="SiteGenerator_ContentPages\Vulnerabilities\XSS_v4.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\aspx\FileDisclosure.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\aspx\FileOpener.aspx.txt" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\aspx\FilePathException.aspx.txt" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\aspx\pages.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\aspx\Session.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\aspx\SqlInjection_Easy.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\aspx\SqlInjection_Hard.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\aspx\XSS.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\BottomBanner.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\default.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\exploits\SqlInjection_exploit.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\exploits\xss_exploit.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\HomePage.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\dinamicDir.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\DirectoryListingDenied.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\exploits\SqlInjection_exploit.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\exploits\xss_exploit.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\flash_xml_menu\cromas_menu.xml" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\flash_xml_menu\cromas_xml.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\flash_xml_menu\cromas_xml.swf" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\flash_xml_menu\readme.txt" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\flash_xml_menu\subscribe.swf" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\Frameset.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\Frameset_Flash.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\Frameset_Html.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\images\image1.gif" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\images\image2.gif" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\images\image3.jpg" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\NormalPage.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\PageNotFound.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\SG\test2.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\SiteA.xml" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\SqlInjection_Demo\Main.asp" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\tesp.asp" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\TopNavigation.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\Welcome.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\XSS.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\dinamicDir.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Aspx_Pages.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Aspx_Pages_.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Exploits.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Exploits_.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Folder1.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Folder2.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Folder3.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_LiveDemo.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_NormalHtmlpages.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Normal_Html_pages.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Normal_Html_pages_.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_SiteA_Folder.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_SiteA_Folder_.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_SiteA_Folder_SiteA_SubFolder.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_SiteA_Images.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_SiteA_Images_.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Site_with_Html_Navigation.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Site_with_Html_Navigation_.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\SiteA\_tempNavigationFiles\_Test.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\TopBanner.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_images\_image1.gif" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_images\_image2.gif" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_images\_image3.jpg" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_tempDynamicPages\test.aspx" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_templates\_DirectoryListingDenied.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_templates\_Frameset.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_templates\_NormalPage.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_templates\_PageNotFound.htm" />
+    <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_templates\_TopNavigation.htm" />
+    <Content Include="SiteGenerator_ContentPages\_templates\_templateSite.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

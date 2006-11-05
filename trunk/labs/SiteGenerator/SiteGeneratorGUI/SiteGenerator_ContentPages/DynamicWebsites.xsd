@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.xmlspy.com/schemas/orgchart" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:ipo="http://www.altova.com/IPO" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="SiteGenerator">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="site" minOccurs="0" maxOccurs="1">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="rootFolder" minOccurs="0" maxOccurs="1"/>							
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="rootFolder">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="folder" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="file" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string"/>
+			<xsd:attribute name="defaultPage" type="xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="folder">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element  ref="folder" minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref="file" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string"/>
+			<xsd:attribute name="defaultPage" type="xsd:string"/>
+			</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="file">
+		<xsd:complexType>
+			<xsd:attribute name="name" type="xsd:string" use="required"/>
+			<xsd:attribute name="mappedTo" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

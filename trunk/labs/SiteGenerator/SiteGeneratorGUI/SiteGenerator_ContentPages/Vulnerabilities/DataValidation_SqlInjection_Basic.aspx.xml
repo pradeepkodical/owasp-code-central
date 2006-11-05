@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SiteGenerator_Vulnerabilites>
+	<vulnerability>
+		<title></title>
+		<comment></comment>
+		<dread damage="0"  reproducibility="0" exploitability="0" affectedUsers="0" discoverability="0" />
+		<risk></risk>
+		<exploitDescription></exploitDescription>
+		<remediation></remediation>
+	</vulnerability>
+</SiteGenerator_Vulnerabilites>

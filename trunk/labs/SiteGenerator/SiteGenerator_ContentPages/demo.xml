@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SiteGenerator name="SiteGenerator Demo" xmlns:ipo="http://www.altova.com/IPO" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<site>
+		<rootFolder>
+			<folder name="htm">
+				<folder name="2nd level">
+					<file mappedTo="vulnerabilities/xss_v4.aspx" name="test.aspx"/>
+				</folder>
+				<file mappedTo="aspx/pages.htm" name="pages.htm"/>
+			</folder>
+			<folder name="aspx">
+				<file mappedTo="aspx/pages.htm" name="pages.htm"/>
+				<file mappedTo="aspx/xss.aspx" name="xss.aspx"/>
+				<file mappedTo="aspx/SqlInjection_Easy.aspx" name="SqlInjection.aspx"/>
+				<file mappedTo="aspx/SqlInjection_Hard.aspx" name="SqlInjection2.aspx"/>
+			</folder>
+			<folder name="flash">
+				<file mappedTo="flash/cromas_xml.swf" name="cromas_xml.swf"/>
+				<file mappedTo="flash/cromas_xml.htm" name="menu.htm"/>
+				<file mappedTo="/flash/cromas_menu.xml" name="cromas_menu.xml"/>
+			</folder>
+			<folder name="livedemo">
+				<file mappedTo="aspx/Session.aspx" name="SessionTest.aspx"/>
+				<file mappedTo="aspx/SqlInjection_Easy.aspx" name="LoggedInInfo.aspx"/>
+			</folder>
+			<file mappedTo="htm/FrameSet.htm" name="Default.htm"/>
+			<file mappedTo="htm/TopBanner.htm" name="TopNavigation.htm"/>
+			<file mappedTo="htm/welcome.htm" name="FirstPage.htm"/>
+			<file mappedTo="htm/Frameset_Flash.htm" name="flash.htm"/>
+			<file mappedTo="htm/welcome.htm" name="liveDemo.htm"/>
+		</rootFolder>
+	</site>
+</SiteGenerator>
