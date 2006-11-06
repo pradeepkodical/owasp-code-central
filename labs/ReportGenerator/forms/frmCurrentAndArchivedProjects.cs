@@ -19,6 +19,7 @@ namespace Owasp.VulnReport
 		private int iCurrentProjectSelectedIndex = 0;
 		private bool bFirstTimeThisFormIsLoaded = true;
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
+        private OrgBasePaths obpCurrentPaths = OrgBasePaths.GetPaths();
 
 		private string strBaseDir = Path.Combine( Application.StartupPath,"ProjectsDatabase");
 		private System.Windows.Forms.TabPage tbProjectMetadata;		
@@ -526,12 +527,12 @@ namespace Owasp.VulnReport
 
 		private void miReloadGlobalVariables_Click(object sender, System.EventArgs e)
 		{
-			GlobalVariables.loadGlobalVariables();
+            obpCurrentPaths.initiatePaths();
 		}
 
 		private void miExit(object sender, System.EventArgs e)
 		{
-			GlobalVariables.deleteTempFilesAndTerminateProcess();
+			VulnReportHelpers.deleteTempFilesAndTerminateProcess();
 		}
 
         /// <summary>

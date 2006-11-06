@@ -20,6 +20,7 @@ namespace Owasp.VulnReport
 		private string strFullPathToCurrentProjectXmlFile;
         private bool unsavedDataExists = false;
         private Project currentProject = Project.GetProject();
+        private OrgBasePaths obpCurrentPaths = OrgBasePaths.GetPaths();
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btSaveProjectMetadata;
@@ -163,8 +164,8 @@ namespace Owasp.VulnReport
 
 			utils.authentic.loadXmlFileInTargetAuthenticView( axAuthentic_Project,
                                                               strFullPathToCurrentProjectXmlFile,
-                                                              GlobalVariables.strPathToProjectSchema,
-                                                              GlobalVariables.strPathToSPS_Projects );
+                                                              obpCurrentPaths.ProjectSchemaPath,
+                                                              obpCurrentPaths.SpsProjectPath );
 			axAuthentic_Project.SetUnmodified();
 			setCurrentProjectsFindingIdValue();
 			setCurrentProjectNumberValue();
@@ -283,7 +284,7 @@ namespace Owasp.VulnReport
 			xdCurrentProject.Load(strFullPathToCurrentProjectXmlFile);
 			XmlNodeList xnlProjectNumber = xdCurrentProject.GetElementsByTagName("project_number");
 			if (xnlProjectNumber.Count > 0)
-				GlobalVariables.strCurrentProjectNumberValue = xnlProjectNumber[0].InnerText;
+				currentProject.ProjectNumber = xnlProjectNumber[0].InnerText;
 		}
 
         /// <summary>

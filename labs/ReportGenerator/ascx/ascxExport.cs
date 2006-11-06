@@ -19,6 +19,7 @@ namespace Owasp.VulnReport
 		private string strXmlWithAllData;
 		private string strDataTransformationXmlFile;
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 		bool bSuccess;
 
 		private System.Windows.Forms.Button btPreviewXmlFileWithAllData;
@@ -430,7 +431,7 @@ namespace Owasp.VulnReport
 		private XmlDocument createXmlFileToStoreXmlFindings(string strTargetXmlFile)
 		{
 			XmlDocument xdXmlDocument = new XmlDocument();			
-			xdXmlDocument.Load(GlobalVariables.strPathToTemplateFile_EmptyConsolidatedProjectXmlFile);									
+			xdXmlDocument.Load(obpPaths.EmptyConsolidatedProjectPath);
 			return xdXmlDocument;
 		}
 
@@ -445,7 +446,7 @@ namespace Owasp.VulnReport
 			string strXmlFileToUse = this.strXmlWithAllData;
 
 			this.strDataTransformationXmlFile = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath, utils.files.returnUniqueFileName(".xml")));			
-			string strXsltDataTransformationFile = Path.GetFullPath(Path.Combine(GlobalVariables.strPathToXslt_Reports,cbDataFilter.Text));
+			string strXsltDataTransformationFile = Path.GetFullPath(Path.Combine(obpPaths.XsltReportsPath, cbDataFilter.Text));
 			string strXsltTransformationErrorMessage = utils.xml.returnXmlXslTransformation(strXmlFileToUse,strXsltDataTransformationFile ,this.strDataTransformationXmlFile );
 			if ("" != strXsltTransformationErrorMessage)
 			{
@@ -517,7 +518,7 @@ namespace Owasp.VulnReport
 
 		private void copyXSDToDirectory(string strTargetDirectory)
 		{
-			string strPathToXsdFile = Path.Combine(GlobalVariables.strPathToXsdFiles,cbXSDtoUseOnExport.Text);
+			string strPathToXsdFile = Path.Combine(obpPaths.XsdFilePath, cbXSDtoUseOnExport.Text);
 			string strPathToDestinationXsdFile = Path.Combine(strTargetDirectory,Path.GetFileName(strPathToXsdFile));
 			File.Copy(strPathToXsdFile,strPathToDestinationXsdFile,true);
 		}

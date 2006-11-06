@@ -17,6 +17,7 @@ namespace Owasp.VulnReport.ascx
 		int iLastFoundPosition;
 		private string strDirectoryWithXsltFiles = "";
 		string strFileToLoad = "";
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
 		private System.Windows.Forms.ListBox lbReportType;
 		private System.Windows.Forms.ListBox lbXsltFiles;
@@ -283,12 +284,12 @@ namespace Owasp.VulnReport.ascx
 
 		public void populateReportTypeListBox()
 		{
-			utils.windowsForms.loadDirectoriesIntoListBox(lbReportType,GlobalVariables.strPathToXslt_Reports,"*");
+			utils.windowsForms.loadDirectoriesIntoListBox(lbReportType, obpPaths.XsltReportsPath, "*");
 		}
 
 		private void populateXsltFilesListBox()
 		{
-			this.strDirectoryWithXsltFiles = Path.GetFullPath(Path.Combine(GlobalVariables.strPathToXslt_Reports,lbReportType.Text));
+			this.strDirectoryWithXsltFiles = Path.GetFullPath(Path.Combine(obpPaths.XsltReportsPath, lbReportType.Text));
 			utils.windowsForms.loadFilesIntoListBox(lbXsltFiles,strDirectoryWithXsltFiles,"*.xslt");
 		}
 
@@ -353,10 +354,7 @@ namespace Owasp.VulnReport.ascx
 				textEditorControl.ActiveTextAreaControl.TextArea.SelectionManager.SetSelection(new DefaultSelection(textEditorControl.Document,
 					textEditorControl.Document.OffsetToPosition(iFoundPos),
 					textEditorControl.Document.OffsetToPosition(iFoundPos + txtTextToFind.Text.Length)));
-				//textEditorControl.ActiveTextAreaControl.ScrollTo(textEditorControl.ActiveTextAreaControl.SelectionManager.SelectionCollection[0].
 				textEditorControl.ActiveTextAreaControl.TextArea.SelectionManager.FireSelectionChanged();
-				//textEditorControl.ActiveTextAreaControl.TextArea.SelectionManager.SelectionCollection[0].StartPosition.
-
 				iLastFoundPosition = iFoundPos + txtTextToFind.Text.Length;
 			}
 			else

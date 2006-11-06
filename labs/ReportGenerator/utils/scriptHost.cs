@@ -342,6 +342,16 @@ namespace Owasp.VulnReport.utils
 				}
 			}
 
+            /// <summary>
+            /// This method compiles the source given to it dynamically for use in plugins, etc...
+            /// 
+            /// --== History of Changes ==--
+            /// 11/05/2006 - Mike : Removed the compiler variable and called the provider method
+            ///                     CompilerAssemblyFromFile directly.  I did this to remove a warning.
+            /// </summary>
+            /// <param name="strFile">The file we wish to compile</param>
+            /// <param name="strReferenceAssembliesToAdd">Assemblies that need to be included in the compile</param>
+            /// <returns>The results of the compile</returns>
 			public System.CodeDom.Compiler.CompilerResults CompileSourceCode(string strFile,string[] strReferenceAssembliesToAdd)	// [DC]
 			{
 				//Currently only csharp scripting is supported
@@ -366,8 +376,6 @@ namespace Owasp.VulnReport.utils
 					default:
 						throw new UnsupportedLanguageExecption(extension);
 				}
-				System.CodeDom.Compiler.ICodeCompiler compiler = provider.CreateCompiler();
-			
 				System.CodeDom.Compiler.CompilerParameters compilerparams = new System.CodeDom.Compiler.CompilerParameters();
 				compilerparams.GenerateInMemory = true;
 				compilerparams.GenerateExecutable = true;
@@ -391,7 +399,7 @@ namespace Owasp.VulnReport.utils
 					if (File.Exists(nrfFile))
 						AddReferencesFromFile(compilerparams, nrfFile);
 				}
-				System.CodeDom.Compiler.CompilerResults crResults = compiler.CompileAssemblyFromFile(compilerparams, strFile);
+				System.CodeDom.Compiler.CompilerResults crResults = provider.CompileAssemblyFromFile(compilerparams, strFile);
 
 				return crResults;
 			}

@@ -23,6 +23,8 @@ namespace Owasp.VulnReport
 		private AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_ExecutiveSummary;
 		private System.Windows.Forms.Button btSaveReportContents;
 		private System.Windows.Forms.Label lblReportContentsSaved;
+        private OrgBasePaths obpCurrentPaths = OrgBasePaths.GetPaths();
+
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -154,7 +156,10 @@ namespace Owasp.VulnReport
 			this.strFullPathToCurrentProject = Path.GetFullPath(Path.Combine(strPathToProjectFiles, strCurrentProject));								
 			this.strFullPathToCurrentProjectXmlFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject , strCurrentProject + "_ReportContents.xml"));
             checkIfReportContentsFileExists();
-			utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_ExecutiveSummary,strFullPathToCurrentProjectXmlFile,GlobalVariables.strPathToProjectSchema,GlobalVariables.strPathToSPS_ExecutiveSummary);
+			utils.authentic.loadXmlFileInTargetAuthenticView( axAuthentic_ExecutiveSummary,
+                                                              strFullPathToCurrentProjectXmlFile,
+                                                              obpCurrentPaths.ProjectSchemaPath,
+                                                              obpCurrentPaths.SpsExecutiveSummaryPath);
 			axAuthentic_ExecutiveSummary.SetUnmodified();
 			lbUnsavedData.Visible = false;
 		}
@@ -224,7 +229,7 @@ namespace Owasp.VulnReport
         {
             if (! File.Exists(this.strFullPathToCurrentProjectXmlFile))
             {
-                File.Copy(GlobalVariables.strPathToTemplateFile_EmptyProjectXmlFile, strFullPathToCurrentProjectXmlFile);
+                File.Copy(obpCurrentPaths.EmptyProjectFilePath, strFullPathToCurrentProjectXmlFile);
             }
         }
 	}

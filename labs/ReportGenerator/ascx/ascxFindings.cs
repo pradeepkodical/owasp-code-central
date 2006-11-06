@@ -27,6 +27,7 @@ namespace Owasp.VulnReport
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
         private utils.authentic authUtils = new utils.authentic();
         private Project currentProject = Project.GetProject();
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
@@ -552,7 +553,7 @@ namespace Owasp.VulnReport
 			string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strSelectedTarget) + ".xml"; 
 			string strPathToXmlFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject,Path.Combine(strSelectedTarget , strXmlFileToLoad)));			
 			string strPathToTempConvertedFile = Path.GetTempFileName().Replace(".tmp",".htm");
-			utils.xml.returnXmlXslTransformation(strPathToXmlFile,GlobalVariables.strPathToXslt_TargetDetail ,strPathToTempConvertedFile);
+			utils.xml.returnXmlXslTransformation(strPathToXmlFile, obpPaths.XsltTargetDetailPath, strPathToTempConvertedFile);
 			utils.webBrowser.openFileInWebBrowser(axWebBrowser_Targets,strPathToTempConvertedFile);	
 			
     		strFullPathToSelectedTarget = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject, lbTargetsInCurrentProject.SelectedItem.ToString()));
@@ -588,7 +589,7 @@ namespace Owasp.VulnReport
                 utils.authentic.strPathToSaveClipboardImage = strPathToImageDirectoryInUnzipedFolder;
                 utils.authentic.strPathToUnzipSelectedFinding = strPathToUnzipSelectedFinding;
 
-                utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_Findings, strPathToXmlFile, GlobalVariables.strPathToProjectSchema, strSpsTemplateToUseToEditFindings);
+                utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_Findings, strPathToXmlFile, obpPaths.ProjectSchemaPath, strSpsTemplateToUseToEditFindings);
                 axAuthentic_Findings.Visible = true;
                 lbUnsavedData.Visible = false;
                 axAuthentic_Findings.SetUnmodified();
@@ -669,13 +670,14 @@ namespace Owasp.VulnReport
 		}
 		private void createNewFindingInSelectedTargetDirectory(string strNewFindingName)
 		{
-				string strPathToUnzipTemplateFindings = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,Path.GetFileNameWithoutExtension(GlobalVariables.strPathToTemplateFile_Findings)));
+				string strPathToUnzipTemplateFindings = Path.GetFullPath(Path.Combine( upCurrentUser.TempDirectoryPath,
+                                                                                       Path.GetFileNameWithoutExtension(obpPaths.FindingsPath)));
 				string strPathToNewFindingsDirectoryWithTemplateDate =  Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strNewFindingName));
 				string strPathToNewFindingInTargetDirectory = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, txtNewFindingName.Text + ".zip"	));	
 
-				utils.zip.unzipFile(GlobalVariables.strPathToTemplateFile_Findings,upCurrentUser.TempDirectoryPath);
+				utils.zip.unzipFile(obpPaths.FindingsPath,upCurrentUser.TempDirectoryPath);
 			
-				string strPathToTemplateXmlFile =  Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings,Path.GetFileNameWithoutExtension(GlobalVariables.strPathToTemplateFile_Findings) + ".xml"));
+				string strPathToTemplateXmlFile =  Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings,Path.GetFileNameWithoutExtension(obpPaths.FindingsPath) + ".xml"));
 				string strPathToNewFindingXmlFile = Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings, strNewFindingName+".xml"));
             try
             {
@@ -725,8 +727,8 @@ namespace Owasp.VulnReport
 
 		public void refreshNextIdToBeAssigned()
 		{
-			if (GlobalVariables.strCurrentProjectNumberValue !=  "")
-				lbNextIdToBeAssigned.Text = GlobalVariables.strCurrentProjectNumberValue + "-" + currentProject.FindingId.ToString();			
+			if (currentProject.ProjectNumber !=  "")
+				lbNextIdToBeAssigned.Text = currentProject.ProjectNumber + "-" + currentProject.FindingId.ToString();			
 			else
 				lbNextIdToBeAssigned.Text = currentProject.FindingId.ToString();			
 		}
@@ -797,13 +799,13 @@ namespace Owasp.VulnReport
 			switch (cbTemplateToUse.Text)
 			{
 				case "Authentic - Simple Mode":
-					strSpsTemplateToUseToEditFindings = GlobalVariables.strPathToSPS_Findings_SimpleMode;
+					strSpsTemplateToUseToEditFindings = obpPaths.SpsSimpleModeFindingsPath;
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = true;
                     loadSelectedFindingInAuthenticView();               // load data
 					break;
                 case "Authentic - All Fields Mode":
-					strSpsTemplateToUseToEditFindings = GlobalVariables.strPathToSPS_Findings;
+					strSpsTemplateToUseToEditFindings = obpPaths.SpsFindingsPath;
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = true;
                     loadSelectedFindingInAuthenticView();               // load data

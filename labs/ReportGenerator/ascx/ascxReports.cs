@@ -20,6 +20,7 @@ namespace Owasp.VulnReport.ascx
 		private string strPathToTempPdfFile ="";
 		private Hashtable htDataFilter_XsltEngineComboBox = new Hashtable();
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
 		private System.Windows.Forms.ListBox lbCurrentIssueTrackingFiles;
 		private System.Windows.Forms.Label label2;
@@ -657,7 +658,7 @@ namespace Owasp.VulnReport.ascx
 				if (false == populateComboBoxes())
 				{
 					MessageBox.Show("The last error was fatal, and the application will terminate now");
-					GlobalVariables.deleteTempFilesAndTerminateProcess();
+					VulnReportHelpers.deleteTempFilesAndTerminateProcess();
 				}
 				if (cbDataFilter.Items.Count>0)
 					cbDataFilter.SelectedIndex = 0;						
@@ -707,7 +708,7 @@ namespace Owasp.VulnReport.ascx
 		private XmlDocument createXmlFileToStoreXmlFindings(string strTargetXmlFile)
 		{
 			XmlDocument xdXmlDocument = new XmlDocument();			
-			xdXmlDocument.Load(GlobalVariables.strPathToTemplateFile_EmptyConsolidatedProjectXmlFile);						
+			xdXmlDocument.Load(obpPaths.EmptyConsolidatedProjectPath);						
 			return xdXmlDocument;
 		}
 
@@ -727,11 +728,13 @@ namespace Owasp.VulnReport.ascx
 		{
 			populateDataFilterXsltEngine();
 			// if one of these fails we abort the application start
-			if (utils.windowsForms.loadFilesIntoComboBox(cbIndividualConsolidatedXmlReports,upCurrentUser.ConsolidatedReportsPath,"*.xml"))
-				if (utils.windowsForms.loadFilesIntoComboBox(cbDataFilter,GlobalVariables.strPathToXslt_Reports_DataFilters,"*.xslt"))
-					if (utils.windowsForms.loadFilesIntoComboBox(cbReportTemplateToUse_Html,GlobalVariables.strPathToXslt_Reports_HtmlReports,"*.xslt"))
-						if (utils.windowsForms.loadFilesIntoComboBox(cbReportTemplateToUse_Pdf,GlobalVariables.strPathToXslt_Reports_PdfReports_IssueTracking,"*.xslt"))
-							return true;
+            if (utils.windowsForms.loadFilesIntoComboBox(cbIndividualConsolidatedXmlReports, upCurrentUser.ConsolidatedReportsPath, "*.xml") &&
+                utils.windowsForms.loadFilesIntoComboBox(cbDataFilter, obpPaths.XsltReportDataFiltersPath, "*.xslt") &&
+                utils.windowsForms.loadFilesIntoComboBox(cbReportTemplateToUse_Html, obpPaths.XsltReportHtmlPath, "*.xslt") &&
+                utils.windowsForms.loadFilesIntoComboBox(cbReportTemplateToUse_Pdf, obpPaths.XsltIssueTrackingReportsPath, "*.xslt"))
+            {
+                return true;
+            }
 			return false;			
 		}
 
@@ -771,7 +774,7 @@ namespace Owasp.VulnReport.ascx
 				return;
 			}
 			this.strDataTransformationXmlFile = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath, utils.files.returnUniqueFileName(".xml")));			
-			string strXsltDataTransformationFile = Path.GetFullPath(Path.Combine(GlobalVariables.strPathToXslt_Reports_DataFilters,cbDataFilter.Text));
+			string strXsltDataTransformationFile = Path.GetFullPath(Path.Combine(obpPaths.XsltReportDataFiltersPath, cbDataFilter.Text));
 			string strXsltTransformationErrorMessage ="";
 			switch ((string)htDataFilter_XsltEngineComboBox[cbDataFilter_XsltEngine.Text])
 			{
@@ -844,7 +847,7 @@ namespace Owasp.VulnReport.ascx
 		private void btGenerateHtmlReport_Click(object sender, System.EventArgs e)
 		{
 			//string strXsltFileToUse=GlobalVariables.strPathToXslt_Reports;
-			string strXsltFileToUse= Path.GetFullPath(Path.Combine(GlobalVariables.strPathToXslt_Reports_HtmlReports,cbReportTemplateToUse_Html.Text));
+			string strXsltFileToUse= Path.GetFullPath(Path.Combine(obpPaths.XsltReportHtmlPath, cbReportTemplateToUse_Html.Text));
 			string strXmlFileWithData = this.strDataTransformationXmlFile;
 			renderReport(strXsltFileToUse,strXmlFileWithData);
 		}
@@ -861,9 +864,9 @@ namespace Owasp.VulnReport.ascx
 			btCancelPdfGeneration.Enabled = false;
 			btSaveGeneratedPdf.Enabled = false;
 			strPathToTempPdfFile = utils.files.returnFullPathToUniqueFileName(upCurrentUser.TempDirectoryPath,".pdf");;
-			string strPathToPDFEngine = Path.Combine(Environment.CurrentDirectory, GlobalVariables.strPathToFopEngine);
+			string strPathToPDFEngine = Path.Combine(Environment.CurrentDirectory, obpPaths.FopEnginePath);
 			string strPathToXMLfile =  this.strDataTransformationXmlFile;
-			string strPathToXSL_FO_file = Path.GetFullPath(Path.Combine(GlobalVariables.strPathToXslt_Reports_PdfReports_IssueTracking,cbReportTemplateToUse_Pdf.Text));
+			string strPathToXSL_FO_file = Path.GetFullPath(Path.Combine(obpPaths.XsltIssueTrackingReportsPath, cbReportTemplateToUse_Pdf.Text));
 			bool boolShowFOPResults = cbShowFopResults.Checked;
 			if (utils.FOP.genereteAndCreatePDF( strPathToTempPdfFile,strPathToPDFEngine,strPathToXMLfile,strPathToXSL_FO_file,boolShowFOPResults, ref bCancelPdfReportGeneration))		
 			{

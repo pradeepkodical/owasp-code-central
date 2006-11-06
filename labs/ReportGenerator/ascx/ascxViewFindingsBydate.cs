@@ -19,6 +19,7 @@ namespace Owasp.VulnReport.ascx
 		string strFullPathToSelectedFinding = "";
 		string strPathToXmlFile = "";
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
+        private OrgBasePaths obpCurrentPaths = OrgBasePaths.GetPaths();
 
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox cbCurrentProjects;
@@ -347,7 +348,10 @@ namespace Owasp.VulnReport.ascx
 					case "Authentic":	
 						axAuthentic_SelectedFinding.Visible = true;
 						txtSelectedFinding.Visible= false;
-						utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_SelectedFinding,strPathToXmlFile,GlobalVariables.strPathToProjectSchema,GlobalVariables.strPathToSPS_Findings);							
+						utils.authentic.loadXmlFileInTargetAuthenticView( axAuthentic_SelectedFinding,
+                                                                          strPathToXmlFile, 
+                                                                          obpCurrentPaths.ProjectSchemaPath,
+                                                                          obpCurrentPaths.SpsFindingsPath );							
 						break;
 					case "Notepad":
 						axAuthentic_SelectedFinding.Visible = false;
@@ -434,7 +438,10 @@ namespace Owasp.VulnReport.ascx
 			switch (cbEditMode.Text)
 			{
 				case "Authentic":	
-					utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_SelectedFinding,strPathToXmlFile,GlobalVariables.strPathToProjectSchema,GlobalVariables.strPathToSPS_Findings);			
+					utils.authentic.loadXmlFileInTargetAuthenticView( axAuthentic_SelectedFinding,
+                                                                      strPathToXmlFile,
+                                                                      obpCurrentPaths.ProjectSchemaPath, 
+                                                                      obpCurrentPaths.SpsFindingsPath);			
 					break;
 				case "Notepad":					
 					txtSelectedFinding.Text =  utils.files.GetFileContents(strPathToXmlFile);

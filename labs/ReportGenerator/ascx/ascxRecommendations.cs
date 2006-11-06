@@ -26,6 +26,7 @@ namespace Owasp.VulnReport.ascx
 		private AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_Recomendations;
 
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
 		/// <summary> 
 		/// Required designer variable.
@@ -217,8 +218,8 @@ namespace Owasp.VulnReport.ascx
 
 			utils.authentic.loadXmlFileInTargetAuthenticView( axAuthentic_Recomendations,
                                                               recommendationsDBPath,
-                                                              GlobalVariables.strPathToRecommendationsXmlSchema,
-                                                              GlobalVariables.strPathToSPS_RecommendationsDatabase);
+                                                              obpPaths.RecommendationSchemaPath, 
+                                                              obpPaths.SpsRecommendationsDbPath);
 			axAuthentic_Recomendations.SetUnmodified();
 			lbUnsavedData.Visible = false;
 		}	

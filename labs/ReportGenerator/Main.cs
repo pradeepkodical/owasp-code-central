@@ -27,10 +27,10 @@ namespace Owasp.VulnReport
             bool bByPassSplashPage = false; // Set this to true to bypass the Splash page (useful when in development mode)
 
             frmSplashPage sp = new frmSplashPage(bByPassSplashPage);
-            if (bByPassSplashPage || (sp.ShowDialog() == DialogResult.OK)) {  
-			    GlobalVariables.loadGlobalVariables();
+            if (bByPassSplashPage || (sp.ShowDialog() == DialogResult.OK)) {
+                OrgBasePaths obp = OrgBasePaths.GetPaths();
+                obp.initiatePaths(); 
                 Application.Run(new PenTest_Reporter());
-               // Application.Run(new frmAuthenticTest());
             }
 		}
 	}
