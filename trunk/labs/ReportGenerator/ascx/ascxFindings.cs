@@ -781,7 +781,7 @@ namespace Owasp.VulnReport
 			currentProject.FindingId += 1;
 			refreshNextIdToBeAssigned();	
 			btSaveFinding_Click(null,null);
-			GlobalVariables.cAscxProjects.updateProjectNextFindingIdValue();
+			frmCurrentAndArchivedProjects.cAscxProjects.updateProjectNextFindingIdValue();
 		}
 
 		private void btReloadTargetsList_Click(object sender, System.EventArgs e)

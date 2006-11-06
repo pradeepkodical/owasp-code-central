@@ -20,6 +20,7 @@ namespace Owasp.VulnReport
 		private bool bFirstTimeThisFormIsLoaded = true;
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
         private OrgBasePaths obpCurrentPaths = OrgBasePaths.GetPaths();
+        public static ascxProjects cAscxProjects;	 
 
 		private string strBaseDir = Path.Combine( Application.StartupPath,"ProjectsDatabase");
 		private System.Windows.Forms.TabPage tbProjectMetadata;		
@@ -57,7 +58,7 @@ namespace Owasp.VulnReport
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();	
-			GlobalVariables.cAscxProjects = ascxProjects;
+			frmCurrentAndArchivedProjects.cAscxProjects = ascxProjects;
 		}
 
 		/// <summary>

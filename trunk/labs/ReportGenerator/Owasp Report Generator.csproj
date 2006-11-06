@@ -165,9 +165,6 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="classes\GlobalVariables.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="classes\OrgBasePaths.cs" />
     <Compile Include="classes\Project.cs" />
     <Compile Include="classes\UserProfile.cs" />
