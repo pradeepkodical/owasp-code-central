@@ -31,7 +31,7 @@
     <OutputPath>..\Application %28exe%29\v0.83\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -54,7 +54,7 @@
     <OutputPath>..\Application %28exe%29\v0.86\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>TRACE</DefineConstants>
@@ -116,6 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <Compile Include="ascx\ascxExecutiveSummary.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -164,6 +168,7 @@
     <Compile Include="classes\GlobalVariables.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="classes\OrgBasePaths.cs" />
     <Compile Include="classes\Project.cs" />
     <Compile Include="classes\UserProfile.cs" />
     <Compile Include="classes\VulnReportHelpers.cs">
@@ -204,6 +209,11 @@
     </Compile>
     <Compile Include="MDI_PenTest_Reporter.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="utils\altovaXml.cs">
       <SubType>Code</SubType>
@@ -350,9 +360,6 @@
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -17,6 +17,7 @@ namespace Owasp.VulnReport.ascx
 		private string strPlugInFileToLoad;
 		private string strPathToLoadedPlugInXmlFolder;
 		private string strPathToCurrentPluginFiles;
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
 		private string strPathToSpsFile;
 		private string strPathToXsdFile;
@@ -408,7 +409,7 @@ namespace Owasp.VulnReport.ascx
 				MessageBox.Show("You must type a name for the new Plug-In");
 				return;
 			}
-			string strFilename =  Path.Combine(GlobalVariables.strPathToPlugIns,txtNewPlugInName.Text+".xml");
+			string strFilename =  Path.Combine(obpPaths.PluginsPath, txtNewPlugInName.Text+".xml");
 			if (false == File.Exists(strFilename))
 			{
 				FileStream fsNewPlugInFile = File.Create(strFilename);
@@ -421,20 +422,20 @@ namespace Owasp.VulnReport.ascx
 
 		private void LoadPlugInsIntoListAndComboBoxes()
 		{
-			if (false == Directory.Exists(GlobalVariables.strPathToPlugIns))
+			if (false == Directory.Exists(obpPaths.PluginsPath))
 			{
-				Directory.CreateDirectory(GlobalVariables.strPathToPlugIns);
+				Directory.CreateDirectory(obpPaths.PluginsPath);
 				return;
 			}
 			strPlugInFileToLoad = "";
-			utils.windowsForms.loadDirectoriesIntoListBox(lbAvailablePlugIns,GlobalVariables.strPathToPlugIns,"*");
-			utils.windowsForms.loadDirectoriesIntoComboBox(cbCurrentPlugIns,GlobalVariables.strPathToPlugIns,"*");
+			utils.windowsForms.loadDirectoriesIntoListBox(lbAvailablePlugIns, obpPaths.PluginsPath, "*");
+			utils.windowsForms.loadDirectoriesIntoComboBox(cbCurrentPlugIns, obpPaths.PluginsPath, "*");
 		}
 
 
 		private void LoadPlugInXmlFiles()
 		{			
-			strPathToCurrentPluginFiles = Path.Combine(GlobalVariables.strPathToPlugIns,cbCurrentPlugIns.Text);			
+			strPathToCurrentPluginFiles = Path.Combine(obpPaths.PluginsPath, cbCurrentPlugIns.Text);			
 			strPathToLoadedPlugInXmlFolder = Path.Combine(strPathToCurrentPluginFiles,strPathToXmlFiles);
 			utils.windowsForms.loadFilesIntoListBox(lbPlugInXmlFiles,strPathToLoadedPlugInXmlFolder ,"*.xml");
 			
@@ -444,7 +445,7 @@ namespace Owasp.VulnReport.ascx
 
 		private void lbAvailablePlugIns_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			strPlugInFileToLoad =  Path.Combine(GlobalVariables.strPathToPlugIns,lbAvailablePlugIns.Text+"\\"+lbAvailablePlugIns.Text+".xml"); // we expect to find the project file as an xml file with the same name as the selected directory
+			strPlugInFileToLoad =  Path.Combine(obpPaths.PluginsPath, lbAvailablePlugIns.Text+"\\"+lbAvailablePlugIns.Text+".xml"); // we expect to find the project file as an xml file with the same name as the selected directory
 		}
 
 		private void btSavePlugIn_Click(object sender, System.EventArgs e)
@@ -492,7 +493,7 @@ namespace Owasp.VulnReport.ascx
 			try
 			{
 				utils.windowsForms.addMessageToTextBox_top(txtDebugMessages,"Loading Xml file and populating internal vars (from"+cbCurrentPlugIns.Text+")");
-				string strFullPathToPlugInXmlFileToLoad = Path.Combine(GlobalVariables.strPathToPlugIns,cbCurrentPlugIns.Text+"\\"+cbCurrentPlugIns.Text+".xml");
+				string strFullPathToPlugInXmlFileToLoad = Path.Combine(obpPaths.PluginsPath, cbCurrentPlugIns.Text+"\\"+cbCurrentPlugIns.Text+".xml");
 				XmlDocument xdPlugInXmlFile = new XmlDocument();
 				xdPlugInXmlFile .Load(strFullPathToPlugInXmlFileToLoad);
 				XmlNodeList xnlPlugIns = xdPlugInXmlFile.GetElementsByTagName("PlugIn");

@@ -96,12 +96,14 @@ namespace  Owasp.VulnReport.utils
             // We use the AppDomain.GetCurrentThreadId instead of System.Threading.Thread.CurrentThread.Manag....
             // because that doesn't give us the actual thread id for the application as a whole.  Since this 
             // is a very low level function we need the actual thread id for the application.
+#pragma warning disable 0618
             m_hhook = SetWindowsHookEx(
                 m_hookType,
                 m_filterFunc,
                 IntPtr.Zero,
                 (int)AppDomain.GetCurrentThreadId());
-		}
+#pragma warning restore 0618
+        }
 		// ************************************************************************
 
 		// ************************************************************************

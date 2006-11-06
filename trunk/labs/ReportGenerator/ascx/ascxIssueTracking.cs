@@ -16,6 +16,8 @@ namespace Owasp.VulnReport.ascx
 		private string strTemplateToUse = "";
 		private bool bRefreshView = true;
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
+
 		private AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_IssueTracking;
 		private System.Windows.Forms.Button btDeleteSelectedIssueTrackingFiles;
 		private System.Windows.Forms.ListBox lbCurrentIssueTrackingFiles;
@@ -211,7 +213,7 @@ namespace Owasp.VulnReport.ascx
 			cbTemplateToUse_SelectedIndexChanged(null,null);	// ensure the value is populated
 			bRefreshView = true;								// reset the Refresh view flag
 			string strPathToXmlFile = Path.Combine(upCurrentUser.ConsolidatedReportsPath , lbCurrentIssueTrackingFiles.Text);						
-			utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_IssueTracking,strPathToXmlFile,GlobalVariables.strPathToProjectSchema,strTemplateToUse);
+			utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_IssueTracking,strPathToXmlFile, obpPaths.ProjectSchemaPath, strTemplateToUse);
 			lbUnsavedData.Visible = false;
 		}
 
@@ -238,22 +240,22 @@ namespace Owasp.VulnReport.ascx
 			switch (cbTemplateToUse.Text)
 			{
 				case "Issue Tracking - Just Items and Status":
-					strTemplateToUse = GlobalVariables.strPathToSPS_IssueTracking_JustItemsAndStatus;
+                    strTemplateToUse = obpPaths.SpsIssueTrackingJustItemsAndStatusPath;
 					break;
 				case "Issue Tracking - With Resolution Info":
-					strTemplateToUse = GlobalVariables.strPathToSPS_IssueTracking_WithResolutionInfo;
+					strTemplateToUse = obpPaths.SpsIssueTrackingWithResolutionPath;
 					break;
 				case "Edit Project Data":
-					strTemplateToUse = GlobalVariables.strPathToSPS_Projects;
+					strTemplateToUse = obpPaths.SpsProjectPath;
 					break;
 				case "Edit Findings Data":
-					strTemplateToUse = GlobalVariables.strPathToSPS_Findings;
+					strTemplateToUse = obpPaths.SpsFindingsPath;
 					break;
 				case "Edit Executive Summary":
-					strTemplateToUse = GlobalVariables.strPathToSPS_ExecutiveSummary;
+					strTemplateToUse = obpPaths.SpsExecutiveSummaryPath;
 					break;
 				case "Edit Targets":
-					strTemplateToUse = GlobalVariables.strPathToSPS_Targets;
+					strTemplateToUse = obpPaths.SpsTargetsPath;
 					break;
 
 			}

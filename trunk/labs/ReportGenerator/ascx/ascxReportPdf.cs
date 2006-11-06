@@ -21,9 +21,10 @@ namespace Owasp.VulnReport.ascx
 		private string strFullPathToCurrentProjectXmlFile;		
 		private Hashtable htReportEngineComboBox = new Hashtable();
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
+        private OrgBasePaths obpCurrentPaths = OrgBasePaths.GetPaths();
 		private string strFullPathToTempReportFolder;
 		private string strFullPathToTempReportXmlFile;
-		private bool bCancelPdfReportGeneration = false;		// this is not used here so this value will always be null
+		private bool bCancelPdfReportGeneration = false; // this is not used here so this value will always be null
 
 		private System.Windows.Forms.CheckBox cbShowFopResults;
 		private System.Windows.Forms.TextBox txtDebugMessages;
@@ -310,7 +311,7 @@ namespace Owasp.VulnReport.ascx
 				string strReportContentsFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject, strCurrentProject + "_ReportContents.xml"));
                 if (!File.Exists(strReportContentsFile))
                 {
-                    File.Copy(GlobalVariables.strPathToTemplateFile_EmptyConsolidatedProjectXmlFile, strReportContentsFile);
+                    File.Copy(obpCurrentPaths.EmptyConsolidatedProjectPath, strReportContentsFile);
                 }
 
                 XmlDocument xdReportContents = new XmlDocument();
@@ -407,7 +408,7 @@ namespace Owasp.VulnReport.ascx
 		{
 			string stringPathToTempFile = utils.files.returnFullPathToUniqueFileName(upCurrentUser.TempDirectoryPath ,cbReportExtension.Text);;
 			string stringPathToXMLfile =  this.strFullPathToTempReportXmlFile;
-			string stringPathToXSLfile = Path.Combine(GlobalVariables.strPathToXslt_Reports_PdfReports_LiveProjects,cbFopXsltToUse.Text); 
+			string stringPathToXSLfile = Path.Combine(obpCurrentPaths.XsltLiveProjectsReportPath, cbFopXsltToUse.Text); 
 		
 			bool boolShowFOPResults = cbShowFopResults.Checked;
 			utils.altovaXml.processFiles(stringPathToTempFile,stringPathToXMLfile,stringPathToXSLfile,boolShowFOPResults,ref bCancelPdfReportGeneration);		
@@ -417,7 +418,7 @@ namespace Owasp.VulnReport.ascx
 		{
 			string stringPathToTempFile = utils.files.returnFullPathToUniqueFileName(upCurrentUser.TempDirectoryPath ,cbReportExtension.Text);;
 			string stringPathToXMLfile =  this.strFullPathToTempReportXmlFile;
-			string stringPathToXSLfile = Path.Combine(GlobalVariables.strPathToXslt_Reports_PdfReports_LiveProjects,cbFopXsltToUse.Text); 
+			string stringPathToXSLfile = Path.Combine(obpCurrentPaths.XsltLiveProjectsReportPath, cbFopXsltToUse.Text); 
 			string strErrorMessage = utils.xml.returnXmlXslTransformation(stringPathToXMLfile,stringPathToXSLfile,stringPathToTempFile);
 			if (strErrorMessage != "")
 				MessageBox.Show(strErrorMessage);
@@ -427,9 +428,9 @@ namespace Owasp.VulnReport.ascx
 		private void useFopToCreatePdf()
 		{
 			string stringPathToTempPdfFile = utils.files.returnFullPathToUniqueFileName(upCurrentUser.TempDirectoryPath ,cbReportExtension.Text);;
-			string stringPathToPDFEngine = Path.Combine(Environment.CurrentDirectory, GlobalVariables.strPathToFopEngine);
+			string stringPathToPDFEngine = Path.Combine(Environment.CurrentDirectory, obpCurrentPaths.FopEnginePath);
 			string stringPathToXMLfile =  this.strFullPathToTempReportXmlFile; 
-			string stringPathToXSL_FO_file = Path.Combine(GlobalVariables.strPathToXslt_Reports_PdfReports_LiveProjects,cbFopXsltToUse.Text); 
+			string stringPathToXSL_FO_file = Path.Combine(obpCurrentPaths.XsltLiveProjectsReportPath, cbFopXsltToUse.Text); 
 			bool boolShowFOPResults = cbShowFopResults.Checked;
 			if (utils.FOP.genereteAndCreatePDF( stringPathToTempPdfFile,stringPathToPDFEngine,stringPathToXMLfile,stringPathToXSL_FO_file,boolShowFOPResults, ref bCancelPdfReportGeneration))					
 				utils.webBrowser.openFileInWebBrowser(axWebBrowser_WithXslResult,stringPathToTempPdfFile);						
@@ -459,7 +460,7 @@ namespace Owasp.VulnReport.ascx
 
 		public void populateComboBoxWithReport()
 		{			
-			utils.windowsForms.loadFilesIntoComboBox(cbFopXsltToUse,GlobalVariables.strPathToXslt_Reports_PdfReports_LiveProjects,"*.xslt");			
+			utils.windowsForms.loadFilesIntoComboBox(cbFopXsltToUse, obpCurrentPaths.XsltLiveProjectsReportPath,"*.xslt");			
 		}
 
 		private void cbReportFileEngine_SelectedIndexChanged(object sender, System.EventArgs e)

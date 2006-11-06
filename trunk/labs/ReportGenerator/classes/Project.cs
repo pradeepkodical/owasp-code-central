@@ -20,6 +20,7 @@ namespace Owasp.VulnReport
         private static readonly Project instance = new Project();
 
         private int currentFindingId = 0;
+        private string currentProjectNumber = "";
 
         #region Private Methods
         // For singletons we need to make sure the Project constructor is private
@@ -39,6 +40,18 @@ namespace Owasp.VulnReport
             set
             {
                 currentFindingId = value;
+            }
+        }
+
+        public string ProjectNumber
+        {
+            get
+            {
+                return currentProjectNumber;
+            }
+            set
+            {
+                currentProjectNumber = value;
             }
         }
         #endregion

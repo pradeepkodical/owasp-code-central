@@ -23,14 +23,15 @@ namespace Owasp.VulnReport
     {
         // Static members are lazily initialized.
         // .NET guarantees thread safety for static initialization
-        private static readonly UserProfile instance =
-          new UserProfile();
+        private static readonly UserProfile instance = new UserProfile();
 
         private string userProfileFolder = "";
         private string userProfileFileName = "";
         private string userPathToProjectFiles = "";
-        private string xsltNameSpace = GlobalVariables.strXsltNamespace;
+        private string xsltNameSpace = ConfigurationManager.AppSettings["xsltNamespace"];
         private XmlDocument xdUserProfile = new XmlDocument();
+        private string configuredTempFileFolder = ConfigurationManager.AppSettings["tempFileFolder"];
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
         const string TempDirectoryNodeName = "tempRootDirectory";
         const string BaseDirectoryNodeName = "baseDirectory";
@@ -135,10 +136,10 @@ namespace Owasp.VulnReport
             get
             {
                 if ("%TEMP%" == TempDirectory.ToUpper())
-                    return Path.GetFullPath(Path.Combine(Path.GetTempPath(),GlobalVariables.strTempFileFolder));
+                    return Path.GetFullPath(Path.Combine(Path.GetTempPath(), configuredTempFileFolder));
                 else
                 {
-                    string TempFileFolderPath = Path.GetFullPath(Path.Combine(TempDirectory, GlobalVariables.strTempFileFolder));
+                    string TempFileFolderPath = Path.GetFullPath(Path.Combine(TempDirectory, configuredTempFileFolder));
                     if (!Directory.Exists(TempFileFolderPath))
                     {
                         Directory.CreateDirectory(TempFileFolderPath);
@@ -161,12 +162,12 @@ namespace Owasp.VulnReport
         {
             get
             {
-                if (!Directory.Exists(Path.Combine(BaseDirectory, GlobalVariables.strConsolidatedReportsFolder)))
+                if (!Directory.Exists(Path.Combine(BaseDirectory, obpPaths.ConsolidatedReportsPath)))
                 {
-                    Directory.CreateDirectory(Path.Combine(BaseDirectory, GlobalVariables.strConsolidatedReportsFolder));
+                    Directory.CreateDirectory(Path.Combine(BaseDirectory, obpPaths.ConsolidatedReportsPath));
                 }
 
-                return Path.Combine(BaseDirectory, GlobalVariables.strConsolidatedReportsFolder);
+                return Path.Combine(BaseDirectory, obpPaths.ConsolidatedReportsPath);
             }
         }
 

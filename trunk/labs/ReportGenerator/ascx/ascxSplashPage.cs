@@ -447,9 +447,7 @@ namespace Owasp.VulnReport.ascx
 
 		private void btCancel_Click(object sender, System.EventArgs e)
 		{
-            // Check: I don't think we need to clean up the temp files since they are only created after this menu
-			//GlobalVariables.deleteTempFilesAndTerminateProcess();
-            GlobalVariables.terminateProcess();
+            VulnReportHelpers.terminateProcess();
 		}
 
 		private void btStartPenTestReporter_Click(object sender, System.EventArgs e)

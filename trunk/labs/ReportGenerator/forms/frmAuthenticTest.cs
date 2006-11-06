@@ -304,11 +304,15 @@ namespace Owasp.VulnReport
 		#endregion
 
 		private void btTest_Click(object sender, System.EventArgs e)
-		{	
+		{
+            OrgBasePaths obp = OrgBasePaths.GetPaths();
+
 			configVariablesForKeyboardHook();
             txtXmlFile.Text = @"Z:\ABN\ORG data\testProject\Target\finding 1.xml";
 			string strPathToXmlFile = txtXmlFile.Text;
-			utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic1,strPathToXmlFile,GlobalVariables.strPathToProjectSchema,GlobalVariables.strPathToSPS_Findings);
+			utils.authentic.loadXmlFileInTargetAuthenticView( axAuthentic1,strPathToXmlFile,
+                                                              obp.ProjectSchemaPath, 
+                                                              obp.SpsFindingsPath);
 			
 		}
 
@@ -322,8 +326,6 @@ namespace Owasp.VulnReport
 
 		private void axAuthentic1_SelectionChanged(object sender, System.EventArgs e)
 		{
-
-            
 			axAuthentic1.Select();
 			AxXMLSPYPLUGINLib.AxAuthentic axAuth = (AxXMLSPYPLUGINLib.AxAuthentic)sender;
 			XMLSPYPLUGINLib.AuthenticEventClass auEvent = (XMLSPYPLUGINLib.AuthenticEventClass)axAuth.@event;
@@ -331,12 +333,6 @@ namespace Owasp.VulnReport
             txtDebugInformation.Text = auEvent.keyCode + txtDebugInformation.Text;
 
             return;
-			if (axAuthentic1.Modified)
-			{			
-				lbTextChanged.Visible = true;						 				 
-			}
-			
-
 		}
 
 		private void AuthenticTest_Load(object sender, System.EventArgs e)

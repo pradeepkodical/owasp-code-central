@@ -14,8 +14,9 @@ namespace Owasp.VulnReport.ascx
 	/// </summary>
 	public class ascxTargetTasks : System.Windows.Forms.UserControl
 	{
-        private string spsTargetTasksPath = Path.GetFullPath(Path.Combine(GlobalVariables.strPathToSpsFiles, 
-                                                             ConfigurationManager.AppSettings["defaultSpsFile_TargetTasks"]));
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
+
+        private string spsTargetTasksPath = "";
 
 		private string strFullPathToSelectedTarget;
 		private string strPathToProjectFiles;
@@ -43,6 +44,9 @@ namespace Owasp.VulnReport.ascx
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
+
+            spsTargetTasksPath = Path.GetFullPath(Path.Combine(obpPaths.PathToSpsFiles,
+                                                               ConfigurationManager.AppSettings["defaultSpsFile_TargetTasks"]));
 		}
 
 		/// <summary> 
@@ -238,7 +242,7 @@ namespace Owasp.VulnReport.ascx
 			string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strSelectedTarget) + ".xml"; 
 			string strPathToXmlFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject,Path.Combine(strSelectedTarget , strXmlFileToLoad)));
 
-            utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_TargetTasks, strPathToXmlFile, GlobalVariables.strPathToProjectSchema, spsTargetTasksPath);						
+            utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_TargetTasks, strPathToXmlFile, obpPaths.ProjectSchemaPath, spsTargetTasksPath);						
 		}
 
 		private void btSaveTasks_Click(object sender, System.EventArgs e)

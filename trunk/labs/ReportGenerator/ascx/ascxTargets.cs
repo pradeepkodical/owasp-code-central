@@ -40,6 +40,8 @@ namespace Owasp.VulnReport.ascx
         private ToolTip targetToolTips = new ToolTip();
         private bool unsavedDataExists = false;
 
+        private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
+
 		public ascxTargets()
 		{
 			// This call is required by the Windows.Forms Form Designer.
@@ -339,7 +341,7 @@ namespace Owasp.VulnReport.ascx
 			string strSelectedTarget = lbTargetsInCurrentProject.SelectedItem.ToString();			
 			string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strSelectedTarget) + ".xml"; 
 			string strPathToXmlFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject,Path.Combine(strSelectedTarget , strXmlFileToLoad)));			
-			utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_Targets,strPathToXmlFile,GlobalVariables.strPathToProjectSchema,GlobalVariables.strPathToSPS_Targets);
+			utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_Targets,strPathToXmlFile, obpPaths.ProjectSchemaPath, obpPaths.SpsTargetsPath);
 			axAuthentic_Targets.SetUnmodified();
 			lbUnsavedData.Visible = false;
             unsavedDataExists = false;
