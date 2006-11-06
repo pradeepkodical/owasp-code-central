@@ -10,7 +10,7 @@ namespace Owasp.VulnReport
 	/// </summary>
 	public class GlobalVariables
 	{        
-		public static ascxProjects cAscxProjects;	  	
+		  	
 	}
 }
 
