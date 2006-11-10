@@ -95,8 +95,6 @@ namespace Owasp.VulnReport.utils
 				if ((int)LocalWindowsHook.HookCode.HC_ACTION == (int)e.HookCode)
 				{                    
 					long iKeyPressedValue = e.lParam.ToInt32() & ~0x7fffffff;	// I use the last bit (31) to mean KeyPressed (note that if the key is pressed continuiously, then we will have multiple events) http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/windowsuserinterface/windowing/hooks/hookreference/hookfunctions/keyboardproc.asp
-                   // Console.WriteLine(iKeyPressedValue.ToString());
-     //               Console.WriteLine("[" + DateTime.Now.ToShortTimeString() + "]" + e.lParam.ToInt32().ToString() + "   :   " + e.wParam.ToInt32().ToString());
                     switch (e.lParam.ToInt32())
                     { 
                         case 2752513:
@@ -108,11 +106,9 @@ namespace Owasp.VulnReport.utils
                         case -1071841279:
                             bLeftCtrlDown = false; Console.WriteLine("bCtrl up"); break;                                                        
                     }
-                    // 
-                    //
+                    
 					if (iKeyPressedValue == 0)
 					{
-                       // Console.WriteLine("[" + DateTime.Now.ToShortTimeString() + "]" + e.lParam.ToInt32().ToString() + "   :   " + e.wParam.ToInt32().ToString());
 						char cKeyPressed = System.Convert.ToChar(e.wParam.ToInt32());										
 						if (ccCurrentAscxControl.ActiveControl.GetType() == axCurrentAuthenticObject.GetType())
 							processAuthenticKeyboardEvent((AxXMLSPYPLUGINLib.AxAuthentic)ccCurrentAscxControl.ActiveControl, cKeyPressed , (utils.LocalWindowsHook)sender);
@@ -135,7 +131,7 @@ namespace Owasp.VulnReport.utils
 					authentic.authentic_InsertNewLine(axCurrentAuthenticObject);					// insert new line before image								
 					authentic.authentic_InsertNewLine(axCurrentAuthenticObject);					// insert new line after image		
 					authentic.authentic_GotoPreviousTag(axCurrentAuthenticObject); 				// goto previews tag (i.e. in between the two new lines)
-					authentic.authentic_InsertImage(axCurrentAuthenticObject,strNewImageRelativePath);	// insert image
+					authentic.authentic_InsertImage(axCurrentAuthenticObject, strNewImageRelativePath);	// insert image
 					authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 					// Moving the cursor forward to the next tag
 					authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 									
 				}
@@ -163,11 +159,9 @@ namespace Owasp.VulnReport.utils
 							utils.authentic.authentic_InsertNewLine(axActiveAuthenticControl);					
 						break;
 					case "AdittionalDetails":
-						if (0x56 == cKeyPressed)			// 0x56 (86) V
+						if (0x56 == cKeyPressed)	// 0x56 (86) V 
 						{
-                            // this doesn't work in the new control
-							// if (axActiveAuthenticControl.@event.ctrlKey == true || axActiveAuthenticControl.@event.ctrlLeft)
-                            if(true == bLeftCtrlDown) // if the left control key is pressed
+                            if(bLeftCtrlDown) // if the left control key is pressed
 							{							
 								if (utils.clipboard.isClipboardDataAnBitmap())
 									insertImageFromClipboard();
@@ -248,7 +242,7 @@ namespace Owasp.VulnReport.utils
 
 		public static void authentic_InsertElementInCurrentSelectionPos(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject,string strElementToInsert)
 		{
-			bool bResult = axTargetAuthenticObject.AuthenticView.Selection.PerformAction(XMLSPYPLUGINLib.SpyAuthenticActions.spyAuthenticInsertAt,strElementToInsert);
+			axTargetAuthenticObject.AuthenticView.Selection.PerformAction(XMLSPYPLUGINLib.SpyAuthenticActions.spyAuthenticInsertAt,strElementToInsert);
 		}
 
 		public static void authentic_InsertNewLine(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject)
@@ -319,7 +313,8 @@ namespace Owasp.VulnReport.utils
 		public static void authentic_InsertImage(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string strPathToImage)
 		{
 			authentic_InsertElementInCurrentSelectionPos(axTargetAuthenticObject,"img");
-            authentic_SelectNextTag(axTargetAuthenticObject);       // it now needs to be SelectNextTag due to changes in the 2007 Altova component
+            authentic_GotoNextTag(axTargetAuthenticObject);
+            //authentic_SelectNextTag(axTargetAuthenticObject);       // it now needs to be SelectNextTag due to changes in the 2007 Altova component
             axTargetAuthenticObject.AuthenticView.Selection.Text = strPathToImage; 
             // BUG: there is a problem with the automatic display of images in the 'Additional details' window which is the fact that the new 2007 control doesn't seem to accept relative paths (where the precious one did)            
 		}

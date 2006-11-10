@@ -746,7 +746,7 @@ namespace Owasp.VulnReport
                 for (int i = 0; i < xdXmlData.CountChildren(); i++)
                 {
                     if ((xdXmlDataAttr != null) && 
-                        (xdXmlDataAttr.Name.ToUpper() != "ISSUE-ID"))
+                        (xdXmlDataAttr.Name.ToUpper() != Project.FindingIDAttributeName.ToUpper()))
                     {
                         xdXmlDataAttr = xdXmlData.GetChildKind(i, XMLSPYPLUGINLib.SPYXMLDataKind.spyXMLDataAttr);
                     }
@@ -757,7 +757,7 @@ namespace Owasp.VulnReport
                 }
 
                 if ((xdXmlDataAttr != null) && 
-                    (xdXmlDataAttr.Name.ToUpper() == "ISSUE-ID") &&
+                    (xdXmlDataAttr.Name.ToUpper() == Project.FindingIDAttributeName.ToUpper()) &&
                     (MessageBox.Show("Alert: This Finding already contains an ID, do you want to overwrite it?",
                                      "btAssignIdToFinding_Click",
                                      MessageBoxButtons.YesNo) == DialogResult.Yes))
@@ -768,7 +768,7 @@ namespace Owasp.VulnReport
                 {
 
                     xdXmlDataAttr = axAuthentic_Findings.CreateChild(XMLSPYPLUGINLib.SPYXMLDataKind.spyXMLDataAttr);
-                    xdXmlDataAttr.Name = "Issue-id";
+                    xdXmlDataAttr.Name = Project.FindingIDAttributeName;
                     xdXmlDataAttr.TextValue = lbNextIdToBeAssigned.Text;
                     xdXmlData.InsertChild(xdXmlDataAttr);
                 }
