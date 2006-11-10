@@ -309,7 +309,6 @@ namespace Owasp.VulnReport.ascx
 			this.groupBox1.Size = new System.Drawing.Size(800, 360);
 			this.groupBox1.TabIndex = 34;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
 			// 
 			// btCancelPdfGeneration
 			// 
@@ -707,8 +706,11 @@ namespace Owasp.VulnReport.ascx
 
 		private XmlDocument createXmlFileToStoreXmlFindings(string strTargetXmlFile)
 		{
-			XmlDocument xdXmlDocument = new XmlDocument();			
-			xdXmlDocument.Load(obpPaths.EmptyConsolidatedProjectPath);						
+			XmlDocument xdXmlDocument = new XmlDocument();
+            if (File.Exists(obpPaths.EmptyConsolidatedProjectPath))
+            {
+                xdXmlDocument.Load(obpPaths.EmptyConsolidatedProjectPath);
+            }
 			return xdXmlDocument;
 		}
 
@@ -885,29 +887,28 @@ namespace Owasp.VulnReport.ascx
 		}
 
 		private string calculateProposedPdfFileNameFromXmlFileOrTempPdfFileName(string strPathToXMLfile,string strPathToTempPdfFile)
-		{	
-			string strProposedPdfFileName="";
+		{
+            string strProposedPdfFileName = Path.GetFileName(strPathToTempPdfFile);
 			XmlDocument xdXmlDocument = new XmlDocument();
-			xdXmlDocument.Load(strPathToXMLfile);
-			XmlNodeList xnlReportTitle = xdXmlDocument.GetElementsByTagName("ReportTitle");
-			XmlNodeList xnlReportMonth = xdXmlDocument.GetElementsByTagName("ReportMonth");
-			XmlNodeList xnlReportVersion = xdXmlDocument.GetElementsByTagName("ReportVersion");
-			if (xnlReportTitle.Count >0 || xnlReportMonth.Count >0 || xnlReportVersion.Count > 0 )
-			{
-				if (xnlReportTitle.Count >0)
-					strProposedPdfFileName += xnlReportTitle.Item(0).InnerText + " -";
-				if (xnlReportMonth.Count >0)
-					strProposedPdfFileName += " " + xnlReportMonth.Item(0).InnerText + " -";
-				if (xnlReportVersion.Count >0)
-					strProposedPdfFileName += " v" + xnlReportVersion.Item(0).InnerText;
-				if (strProposedPdfFileName[strProposedPdfFileName.Length-1]=='-')			// remove end _
-					strProposedPdfFileName = strProposedPdfFileName.Substring(0,strProposedPdfFileName.Length-1);
-				strProposedPdfFileName += ".pdf";
-			}
-			else
-			{
-				strProposedPdfFileName = Path.GetFileName(strPathToTempPdfFile);
-			}
+            if (File.Exists(strPathToXMLfile))
+            {
+                xdXmlDocument.Load(strPathToXMLfile);
+                XmlNodeList xnlReportTitle = xdXmlDocument.GetElementsByTagName("ReportTitle");
+                XmlNodeList xnlReportMonth = xdXmlDocument.GetElementsByTagName("ReportMonth");
+                XmlNodeList xnlReportVersion = xdXmlDocument.GetElementsByTagName("ReportVersion");
+                if (xnlReportTitle.Count > 0 || xnlReportMonth.Count > 0 || xnlReportVersion.Count > 0)
+                {
+                    if (xnlReportTitle.Count > 0)
+                        strProposedPdfFileName += xnlReportTitle.Item(0).InnerText + " -";
+                    if (xnlReportMonth.Count > 0)
+                        strProposedPdfFileName += " " + xnlReportMonth.Item(0).InnerText + " -";
+                    if (xnlReportVersion.Count > 0)
+                        strProposedPdfFileName += " v" + xnlReportVersion.Item(0).InnerText;
+                    if (strProposedPdfFileName[strProposedPdfFileName.Length - 1] == '-')			// remove end _
+                        strProposedPdfFileName = strProposedPdfFileName.Substring(0, strProposedPdfFileName.Length - 1);
+                    strProposedPdfFileName += ".pdf";
+                }
+            }
 			return strProposedPdfFileName;
 		}
 
@@ -919,11 +920,6 @@ namespace Owasp.VulnReport.ascx
 			DialogResult drSavePdfFile = fdPathToSavePdf.ShowDialog();
 			if (drSavePdfFile == DialogResult.OK)
 				File.Copy(this.strPathToTempPdfFile,fdPathToSavePdf.FileName.ToString());
-		}
-
-		private void groupBox1_Enter(object sender, System.EventArgs e)
-		{
-		
 		}
 	}
 }

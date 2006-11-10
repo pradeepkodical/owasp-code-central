@@ -371,7 +371,7 @@ namespace Owasp.VulnReport
 					XMLSPYPLUGINLib.XMLData xdXmlDataAttr = xdXmlData.GetFirstChild(XMLSPYPLUGINLib.SPYXMLDataKind.spyXMLDataAttr);
 					try
 					{
-						while( xdXmlDataAttr.Name != "Issue-id")
+						while( xdXmlDataAttr.Name != Project.FindingIDAttributeName)
 						{					
 							xdXmlDataAttr = xdXmlData.GetNextChild();												
 						}
@@ -381,7 +381,7 @@ namespace Owasp.VulnReport
 					catch 
 					{}					
 					xdXmlDataAttr = axAuthentic1.CreateChild(XMLSPYPLUGINLib.SPYXMLDataKind.spyXMLDataAttr);
-					xdXmlDataAttr.Name = "Issue-id";
+					xdXmlDataAttr.Name = Project.FindingIDAttributeName;
 					xdXmlDataAttr.TextValue = "YYYYY";
 					xdXmlData.AppendChild(xdXmlDataAttr);		
 				}

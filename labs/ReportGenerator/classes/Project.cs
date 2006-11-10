@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Configuration;
 
 namespace Owasp.VulnReport
 {
@@ -21,6 +22,7 @@ namespace Owasp.VulnReport
 
         private int currentFindingId = 0;
         private string currentProjectNumber = "";
+        private static string findingIDAttributeName = ConfigurationManager.AppSettings["FindingIdAttributeName"];
 
         #region Private Methods
         // For singletons we need to make sure the Project constructor is private
@@ -31,6 +33,14 @@ namespace Owasp.VulnReport
         #endregion
 
         #region Properties
+        public static string FindingIDAttributeName
+        {
+            get
+            {
+                return findingIDAttributeName;
+            }
+        }
+
         public int FindingId
         {
             get
