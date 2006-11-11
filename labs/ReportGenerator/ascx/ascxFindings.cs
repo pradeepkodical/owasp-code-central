@@ -608,14 +608,18 @@ namespace Owasp.VulnReport
             try
             {
                 if (axWebBrowser_Targets.Visible == true)
-                    saveCurrentData();            
-			    utils.zip.zipFolder(strPathToUnzipSelectedFinding,strFullPathToSelectedFinding);
-			    lblFindingSaved.Visible = true;
-			    lbUnsavedData.Visible = false;
+                    saveCurrentData();
+
+                if (File.Exists(strPathToUnzipSelectedFinding))
+                {
+                    utils.zip.zipFolder(strPathToUnzipSelectedFinding, strFullPathToSelectedFinding);
+                    lblFindingSaved.Visible = true;
+                    lbUnsavedData.Visible = false;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An issue occured while trying to save findings: {0}", ex.Message);
+                MessageBox.Show("An issue occured while trying to save findings: " + ex.Message);
             }
 		}
 
