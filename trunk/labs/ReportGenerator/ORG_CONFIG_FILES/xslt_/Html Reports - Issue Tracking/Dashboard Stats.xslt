@@ -7,11 +7,11 @@
 					<link rel="stylesheet" type="text/css" href="U:\_AuthenticAndFopFiles\styles.css" />
             </head>
             <body>
-				<h1>TSA Function Dashboard</h1>
+				<h1>Security Assessment Function Dashboard</h1>
 				<h2>Issues Identified / Hosts Tested</h2>
 				<table width="100%">
 					<tr>
-						<th>TSA</th>
+						<th>Issues</th>
 						<th>Total</th>
 					</tr>
 					<tr>
@@ -50,7 +50,7 @@
 				<h2>Issues Still Unresolved</h2>
 				<table width="100%">
 					<tr>
-						<th>TSA</th>
+						<th>Issues</th>
 						<th>Total</th>
 					</tr>
 					<tr>

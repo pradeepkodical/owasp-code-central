@@ -651,7 +651,7 @@
             <fo:table-cell border-style="solid" border-width="1pt"
                            display-align="center" padding="4pt"
                            text-align="start">
-              <fo:block>TSA</fo:block>
+              <fo:block>Issue</fo:block>
             </fo:table-cell>
           </fo:table-row>
 
@@ -666,7 +666,7 @@
             <fo:table-cell border-style="solid" border-width="1pt"
                            display-align="center" number-columns-spanned="2"
                            padding="4pt" text-align="start">
-              <fo:block>TSA Technical Security Assessment</fo:block>
+              <fo:block>Security Assessment</fo:block>
             </fo:table-cell>
 
             <fo:table-cell background-color="#E0E0E0" border-style="solid"
@@ -968,7 +968,7 @@
         <fo:table-cell border-style="solid" padding="2pt">
           <fo:block color="#111111" font-size="8pt" margin-right="2pt"
           wrap-option="wrap"><xsl:apply-templates
-          select="$findingData/@Tsa-id" /></fo:block>
+          select="$findingData/@Issue-id" /></fo:block>
         </fo:table-cell>
         
         <fo:table-cell border-style="solid" padding="2pt">
@@ -1016,7 +1016,7 @@
   <xsl:template name="printTopOfFindingsTable">
     <fo:table-row background-color="#003399" color="#FFFFFF" text-align="left">
       <fo:table-cell border-style="solid" padding="2pt" text-align="left">
-        <fo:block font-size="10pt" font-weight="bold">TSA ID</fo:block>
+        <fo:block font-size="10pt" font-weight="bold">Issue ID</fo:block>
       </fo:table-cell>
 
       <fo:table-cell border-style="solid" padding="2pt" text-align="left">

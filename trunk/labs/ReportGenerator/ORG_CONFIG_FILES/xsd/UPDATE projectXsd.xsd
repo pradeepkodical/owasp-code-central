@@ -81,7 +81,7 @@
 												<xs:attribute name="IncludeInReport" type="xs:boolean" use="optional" default="true"/>
 												<xs:attribute name="Impact" type="xs:string" form="unqualified"/>
 												<xs:attribute name="Probability" type="xs:string" form="unqualified"/>
-												<xs:attribute name="Tsa-id" type="xs:string" form="unqualified"/>
+												<xs:attribute name="Issue-id" type="xs:string" form="unqualified"/>
 												<xs:attribute name="Owner" type="xs:string" form="unqualified"/>
 											</xs:complexType>
 										</xs:element>

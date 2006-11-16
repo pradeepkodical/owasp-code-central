@@ -574,14 +574,14 @@
       <fo:block end-indent="24pt" font-size="14pt" font-weight="bold"
                 last-line-end-indent="-24pt" line-height="20pt"
                 space-after="20pt" text-align-last="justify">
-        <fo:inline keep-with-next.within-line="always"> 2. TSA Function SLA's and KPI's</fo:inline>
+        <fo:inline keep-with-next.within-line="always"> 2. Function SLA's and KPI's</fo:inline>
 
         <fo:inline keep-together.within-line="always">
           <fo:leader keep-with-next.within-line="always"
                      leader-alignment="reference-area" leader-pattern="dots"
                      leader-pattern-width="3pt" />
 
-          <fo:page-number-citation ref-id="TSA Function SLA's and KPI's" />
+          <fo:page-number-citation ref-id="Function SLA's and KPI's" />
         </fo:inline>
 
         <fo:block end-indent="24pt" font-size="11pt" font-weight="normal"
@@ -764,7 +764,7 @@
             <fo:table-cell border-style="solid" border-width="1pt"
                            display-align="center" padding="4pt"
                            text-align="start">
-              <fo:block>TSA</fo:block>
+              <fo:block>Security Assessment</fo:block>
             </fo:table-cell>
           </fo:table-row>
 
@@ -779,7 +779,7 @@
             <fo:table-cell border-style="solid" border-width="1pt"
                            display-align="center" number-columns-spanned="2"
                            padding="4pt" text-align="start">
-              <fo:block>TSA Technical Security Assessment</fo:block>
+              <fo:block>Security Assessment</fo:block>
             </fo:table-cell>
 
             <fo:table-cell background-color="#E0E0E0" border-style="solid"
@@ -1087,7 +1087,7 @@
         <fo:table-cell border-style="solid" padding="2pt">
           <fo:block color="#111111" font-size="8pt" margin-right="2pt"
           wrap-option="wrap"><xsl:apply-templates
-          select="$findingData/@Tsa-id" /></fo:block>
+          select="$findingData/@Issue-id" /></fo:block>
         </fo:table-cell>
         
         <fo:table-cell border-style="solid" padding="2pt">
@@ -1135,7 +1135,7 @@
   <xsl:template name="printTopOfFindingsTable">
     <fo:table-row background-color="#003399" color="#FFFFFF" text-align="left">
       <fo:table-cell border-style="solid" padding="2pt" text-align="left">
-        <fo:block font-size="10pt" font-weight="bold">TSA ID</fo:block>
+        <fo:block font-size="10pt" font-weight="bold">Issue ID</fo:block>
       </fo:table-cell>
 
       <fo:table-cell border-style="solid" padding="2pt" text-align="left">
@@ -1570,7 +1570,7 @@
 <xsl:template name="slaStats">
 
 	<fo:block color="#000000" font-size="16pt" font-weight="bold"
-    	space-before="20pt"><xsl:attribute name="id">TSA Function SLA's and KPI's</xsl:attribute>2.0 TSA Function SLA's and KPI's</fo:block>
+    	space-before="20pt"><xsl:attribute name="id">Function SLA's and KPI's</xsl:attribute>2.0 Function SLA's and KPI's</fo:block>
 
     <fo:block margin-left="0pt">
       	<fo:instream-foreign-object>
@@ -1658,36 +1658,36 @@
 			</fo:table-row>
 			<fo:table-row text-align="left">
 			  <fo:table-cell border-style="solid" padding="2pt" text-align="left">
-		        <fo:block font-size="10pt" font-weight="bold">Request for TSA</fo:block>
+		        <fo:block font-size="10pt" font-weight="bold">Request for Security Assessment</fo:block>
 		      </fo:table-cell>
 		      <fo:table-cell border-style="solid" padding="2pt">
 		        <fo:block font-size="10pt" font-weight="bold">5</fo:block>
 		      </fo:table-cell>
 		      <fo:table-cell border-style="solid" padding="2pt" text-align="left">
-		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/TSARequest/ItemsTotal" /></fo:block>
+		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/Request/ItemsTotal" /></fo:block>
 		      </fo:table-cell>
 		      <fo:table-cell border-style="solid" padding="2pt">
-		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/TSARequest/InSLA"/> (<xsl:value-of select="substring(MonthlyStats/KPI/TSARequest/InSLA div MonthlyStats/KPI/TSARequest/ItemsTotal * 100,0,5)"/>%)</fo:block>
+		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/Request/InSLA"/> (<xsl:value-of select="substring(MonthlyStats/KPI/Request/InSLA div MonthlyStats/KPI/Request/ItemsTotal * 100,0,5)"/>%)</fo:block>
 		      </fo:table-cell>
 		      <fo:table-cell border-style="solid" padding="2pt" text-align="left">
-		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/TSARequest/OutSLA"/> (<xsl:value-of select="substring(MonthlyStats/KPI/TSARequest/OutSLA div MonthlyStats/KPI/TSARequest/ItemsTotal * 100,0,5)"/>%)</fo:block>
+		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/Request/OutSLA"/> (<xsl:value-of select="substring(MonthlyStats/KPI/Request/OutSLA div MonthlyStats/KPI/Request/ItemsTotal * 100,0,5)"/>%)</fo:block>
 		      </fo:table-cell>
 			</fo:table-row>
 			<fo:table-row text-align="left">
 			  <fo:table-cell border-style="solid" padding="2pt" text-align="left">
-		        <fo:block font-size="10pt" font-weight="bold">Issue of TSA Report</fo:block>
+		        <fo:block font-size="10pt" font-weight="bold">Issue of Report</fo:block>
 		      </fo:table-cell>
 		      <fo:table-cell border-style="solid" padding="2pt">
 		        <fo:block font-size="10pt" font-weight="bold">10</fo:block>
 		      </fo:table-cell>
 		      <fo:table-cell border-style="solid" padding="2pt" text-align="left">
-		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/TSAReport/ItemsTotal" /></fo:block>
+		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/Report/ItemsTotal" /></fo:block>
 		      </fo:table-cell>
 		      <fo:table-cell border-style="solid" padding="2pt">
-		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/TSAReport/InSLA"/> (<xsl:value-of select="substring(MonthlyStats/KPI/TSAReport/InSLA div MonthlyStats/KPI/TSAReport/ItemsTotal * 100,0,5)"/>%)</fo:block>
+		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/Report/InSLA"/> (<xsl:value-of select="substring(MonthlyStats/KPI/Report/InSLA div MonthlyStats/KPI/Report/ItemsTotal * 100,0,5)"/>%)</fo:block>
 		      </fo:table-cell>
 		      <fo:table-cell border-style="solid" padding="2pt" text-align="left">
-		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/TSAReport/OutSLA"/> (<xsl:value-of select="substring(MonthlyStats/KPI/TSAReport/OutSLA div MonthlyStats/KPI/TSAReport/ItemsTotal * 100,0,5)"/>%)</fo:block>
+		        <fo:block font-size="10pt"><xsl:value-of select="MonthlyStats/KPI/Report/OutSLA"/> (<xsl:value-of select="substring(MonthlyStats/KPI/Report/OutSLA div MonthlyStats/KPI/Report/ItemsTotal * 100,0,5)"/>%)</fo:block>
 		      </fo:table-cell>
 			</fo:table-row>
 			<fo:table-row text-align="left">

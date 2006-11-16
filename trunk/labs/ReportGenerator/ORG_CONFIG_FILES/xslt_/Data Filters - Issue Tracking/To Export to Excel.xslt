@@ -3,11 +3,11 @@
 	<xsl:output version="1.0" encoding="UTF-8" indent="no" omit-xml-declaration="no" method="xml" />
 	<xsl:template match="/">
 		<MonthlyStats xmlns:n1="vuln_report">
-			<ReportTitle>TSA Remediation</ReportTitle>
+			<ReportTitle>Issue Remediation</ReportTitle>
 			<ReportSubTitle>CISO Global Report</ReportSubTitle>
 			<ReportMonth>2006-03</ReportMonth>
 			<ReportDate>7 April 2006</ReportDate>
-			<ReportAuthor>TSA</ReportAuthor>
+			<ReportAuthor>Security Assessment</ReportAuthor>
 			<ReportReviewer>Robert B Mann</ReportReviewer>
          	<ReportVersion>1.0</ReportVersion>
 			<xsl:variable name="CriticalAndHighIssues" select="/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Targets/n1:Target/n1:Findings/n1:Finding[@Impact='Critical'] | /n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Targets/n1:Target/n1:Findings/n1:Finding[@Impact='High']"/>
@@ -54,7 +54,7 @@
 		<!-- hack to make the word medium sort higher than the word low-->				
 		<xsl:element name="Finding">
 			<xsl:element name="Vulnerability"><xsl:value-of select="../@Vulnerability" /></xsl:element>
-			<xsl:element name="Tsa-id"><xsl:value-of select="../@Tsa-id" /></xsl:element>
+			<xsl:element name="Issue-id"><xsl:value-of select="../@Issue-id" /></xsl:element>
 			<xsl:element name="Impact"><xsl:value-of select="../@Impact" /></xsl:element>
 			<xsl:element name="Probability"><xsl:value-of select="../@Probability" /></xsl:element>
 			<xsl:element name="IP"><xsl:value-of select="../n1:IP" /></xsl:element>

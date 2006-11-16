@@ -49,7 +49,7 @@
 						<xs:attribute name="Vulnerability" type="xs:string"/>
 						<xs:attribute name="Impact" type="xs:string" form="unqualified"/>
 						<xs:attribute name="Probability" type="xs:string" form="unqualified"/>
-						<xs:attribute name="Tsa-id" type="xs:string" form="unqualified"/>
+						<xs:attribute name="Issue-id" type="xs:string" form="unqualified"/>
 						<xs:attribute name="Owner" type="xs:string" form="unqualified"/>
 					</xs:complexType>
 				</xs:element>

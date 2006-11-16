@@ -44,7 +44,7 @@
 				<xsl:sort select="translate(../@Probability, 'MI', 'IZ')"/>
 					<xsl:element name="Finding">
 						<xsl:attribute name="Vulnerability"><xsl:value-of select="../@Vulnerability" /></xsl:attribute>
-						<xsl:attribute name="Tsa-id"><xsl:value-of select="../@Tsa-id" /></xsl:attribute>
+						<xsl:attribute name="Issue-id"><xsl:value-of select="../@Issue-id" /></xsl:attribute>
 						<xsl:attribute name="Impact"><xsl:value-of select="../@Impact" /></xsl:attribute>
 						<xsl:attribute name="Probability"><xsl:value-of select="../@Probability" /></xsl:attribute>
 						<xsl:element name="Resolution">
@@ -60,7 +60,7 @@
 				<xsl:sort select="translate(../@Probability, 'MI', 'IZ')"/>
 					<xsl:element name="Finding_____">
 						<xsl:attribute name="Vulnerability"><xsl:value-of select="../@Vulnerability" /></xsl:attribute>
-						<xsl:attribute name="Tsa-id"><xsl:value-of select="../@Tsa-id" /></xsl:attribute>
+						<xsl:attribute name="Issue-id"><xsl:value-of select="../@Issue-id" /></xsl:attribute>
 						<xsl:attribute name="Impact"><xsl:value-of select="../@Impact" /></xsl:attribute>
 						<xsl:attribute name="Probability"><xsl:value-of select="../@Probability" /></xsl:attribute>
 						<xsl:element name="Resolution_">

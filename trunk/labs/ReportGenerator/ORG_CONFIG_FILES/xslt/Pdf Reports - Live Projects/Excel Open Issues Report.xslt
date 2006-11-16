@@ -49,7 +49,7 @@
 		    <Cell ss:StyleID="s21"><Data ss:Type="String">Finding Details</Data></Cell>
 		   </Row>		   
 		   <Row ss:Index="6" ss:StyleID="s21">
-		    <Cell ss:Index="2"><Data ss:Type="String">Tsa-id</Data></Cell>
+		    <Cell ss:Index="2"><Data ss:Type="String">Issue-id</Data></Cell>
 		    <Cell><Data ss:Type="String">Impact</Data></Cell>
 		    <Cell><Data ss:Type="String">Probability</Data></Cell>
 		    <Cell><Data ss:Type="String">Vulnerability</Data></Cell>

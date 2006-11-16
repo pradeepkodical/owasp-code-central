@@ -4,11 +4,11 @@
 	<xsl:template match="/">
 		<html>
 			<head>
-				<title>Monthly TSA Report</title>
+				<title>Monthly Security Assessment Report</title>
 				<link rel="stylesheet" type="text/css" href="U:\_AuthenticAndFopFiles\styles.css" />
 			</head>
 			<body>
-				<h1>Monthly TSA Report</h1>
+				<h1>Monthly Security Assessment Report</h1>
 				<h2>Summary of Outstanding Issues (all locations)</h2>
 				<table border="1">					
 					<tr>
@@ -70,7 +70,7 @@
 					<h4>Details of Outstanding Issues</h4>
 					<table>
 						<tr>
-							<th>TSA-ID</th>
+							<th>Issue-ID</th>
 							<th>Date Reported</th>
 							<th>Impact</th>
 							<th>Probability</th>
@@ -79,7 +79,7 @@
 						</tr>
 						<xsl:for-each select="OpenIssues/Finding">
 							<tr>
-								<td><xsl:value-of select="@Tsa-id"/></td>
+								<td><xsl:value-of select="@Issue-id"/></td>
 								<td><xsl:value-of select="Resolution/@DateOpened"/></td>
 								<td><xsl:value-of select="@Impact"/></td>
 								<td><xsl:value-of select="@Probability"/></td>
