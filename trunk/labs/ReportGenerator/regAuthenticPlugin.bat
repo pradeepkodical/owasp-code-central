@@ -1,1 +1,1 @@
-regsvr32 AuthenticPlugin.dll
+regsvr32 /s AuthenticPlugin.dll

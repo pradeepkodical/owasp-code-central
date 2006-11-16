@@ -72,6 +72,10 @@ namespace Owasp.VulnReport
         /// - VulnReport_Files\templates
         ///   - _templateFile_ConsolidatedProjectXmlFile.xml
         ///   - _templateFile_EmptyProjectXmlFile.xml
+        /// 
+        /// History: 
+        /// 11/15/2006 - Mike : Added in the execution of the authentic plugin registration batch file
+        ///                     for first time users.  Note there should be a better way to do this.
         /// </summary>
         public static void confirmExistenceOfRequiredFilesAndFolders()
         {
@@ -84,9 +88,19 @@ namespace Owasp.VulnReport
                 fileconfig.CopyTo("ORG_CONFIG_FILES.zip", true);
                 fileFOP.CopyTo("FOP.zip", true);
                 fileAuthenticPlugin.CopyTo("AuthenticPlugin.zip", true);
-                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "ORG_CONFIG_FILES.zip"), Environment.CurrentDirectory);
-                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "FOP.zip"), Environment.CurrentDirectory);
-                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "AuthenticPlugin.zip"), Environment.CurrentDirectory);
+                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "ORG_CONFIG_FILES.zip"), 
+                                    Environment.CurrentDirectory);
+                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "FOP.zip"), 
+                                    Environment.CurrentDirectory);
+                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "AuthenticPlugin.zip"), 
+                                    Environment.CurrentDirectory);
+
+                // Register the Authentic component for first time users
+                if (File.Exists(Path.Combine(Environment.CurrentDirectory, "AuthenticPlugin.dll")) && 
+                    File.Exists(Path.Combine(Environment.CurrentDirectory, "regAuthenticPlugin.bat")))
+                {
+                    System.Diagnostics.Process.Start(Path.Combine(Environment.CurrentDirectory, "regAuthenticPlugin.bat"));
+                }
             }
             if (!Directory.Exists(Path.Combine(OrgBasePaths.BasePath, "templates"))) 
                 throw new Exception("The template folder is missing, please re-install");
