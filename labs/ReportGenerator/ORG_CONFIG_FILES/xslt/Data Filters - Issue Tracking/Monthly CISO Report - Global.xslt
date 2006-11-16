@@ -3,11 +3,11 @@
 	<xsl:output version="1.0" encoding="UTF-8" indent="no" omit-xml-declaration="no" method="xml" />
 	<xsl:template match="/">
 		<MonthlyStats xmlns:n1="vuln_report">
-			<ReportTitle>TSA Remediation</ReportTitle>
+			<ReportTitle>Issue Remediation</ReportTitle>
 			<ReportSubTitle>CISO Global Report</ReportSubTitle>
 			<ReportMonth>2006-05</ReportMonth>
 			<ReportDate>8 June 2006</ReportDate>
-			<ReportAuthor>TSA</ReportAuthor>
+			<ReportAuthor>Issue</ReportAuthor>
 			<ReportReviewer>Robert B Mann</ReportReviewer>
          	<ReportVersion>1.0</ReportVersion>
 			<xsl:variable name="CriticalAndHighIssues" select="/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Targets/n1:Target/n1:Findings/n1:Finding[@Impact='Critical'] | /n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Targets/n1:Target/n1:Findings/n1:Finding[@Impact='High']"/>
@@ -36,16 +36,16 @@
 					<OutSLA><xsl:value-of select="count($ReTestSla[@Days &gt; 4])"/></OutSLA>
 					<ItemsTotal><xsl:value-of select="count($ReTestSla[@Days])"/></ItemsTotal>
 				</IssueRetest>
-				<TSARequest>
+				<Request>
 					<InSLA><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates[n1:daysBetweenReqAndAck &lt;= 5])"/></InSLA>
 					<OutSLA><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates[n1:daysBetweenReqAndAck &gt; 5])"/></OutSLA>
 					<ItemsTotal><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates/n1:daysBetweenReqAndAck)"/></ItemsTotal>
-				</TSARequest>
-				<TSAReport>
+				</Request>
+				<Report>
 					<InSLA><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates[n1:daysBetweenEndAndDelivery &lt;= 10])"/></InSLA>
 					<OutSLA><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates[n1:daysBetweenEndAndDelivery &gt; 10])"/></OutSLA>
 					<ItemsTotal><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates/n1:daysBetweenEndAndDelivery)"/></ItemsTotal>
-				</TSAReport>
+				</Report>
 				<NumberIpops><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006'][contains(n1:Metadata/n1:project_name, 'IPoP')])"/></NumberIpops>
 			</KPI>
 			
@@ -189,7 +189,7 @@
 						<xsl:sort select="translate(../@Probability, 'MI', 'IZ')"/>
 							<xsl:element name="Finding">
 								<xsl:attribute name="Vulnerability"><xsl:value-of select="../@Vulnerability" /></xsl:attribute>
-								<xsl:attribute name="Tsa-id"><xsl:value-of select="../@Tsa-id" /></xsl:attribute>
+								<xsl:attribute name="Issue-id"><xsl:value-of select="../@Issue-id" /></xsl:attribute>
 								<xsl:attribute name="Impact"><xsl:value-of select="../@Impact" /></xsl:attribute>
 								<xsl:attribute name="Probability"><xsl:value-of select="../@Probability" /></xsl:attribute>
 								<xsl:element name="Resolution">
@@ -206,7 +206,7 @@
 						<xsl:sort select="translate(../@Probability, 'MI', 'IZ')"/>
 							<xsl:element name="Finding">
 								<xsl:attribute name="Vulnerability"><xsl:value-of select="../@Vulnerability" /></xsl:attribute>
-								<xsl:attribute name="Tsa-id"><xsl:value-of select="../@Tsa-id" /></xsl:attribute>
+								<xsl:attribute name="Issue-id"><xsl:value-of select="../@Issue-id" /></xsl:attribute>
 								<xsl:attribute name="Impact"><xsl:value-of select="../@Impact" /></xsl:attribute>
 								<xsl:attribute name="Probability"><xsl:value-of select="../@Probability" /></xsl:attribute>
 								<xsl:element name="Resolution">
