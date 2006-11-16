@@ -7,7 +7,7 @@
 					<link rel="stylesheet" type="text/css" href="U:\_AuthenticAndFopFiles\styles.css" />
             </head>
             <body>
-				<h1>TSA Function SLA's and KPI's</h1>
+				<h1>Function SLA's and KPI's</h1>
 				<p>Report from 1st January 2006 to current</p>
 				<h2>KPI</h2>
 				<table width="100%">
@@ -52,20 +52,20 @@
 						<th>Items Outside SLA</th>						
 					</tr>	
 					<tr>
-						<td>Request for TSA</td>						
+						<td>Request for Security Assessment</td>						
 						<td>5</td>						
-						<td><xsl:value-of select="PKIandSLA/PKI/TSARequest/ItemsTotal" /> (100%)</td>						
+						<td><xsl:value-of select="PKIandSLA/PKI/Request/ItemsTotal" /> (100%)</td>						
 						
-						<td class="InSLA"><xsl:value-of select="PKIandSLA/PKI/TSARequest/InSLA"/> (<xsl:value-of select="substring(PKIandSLA/PKI/TSARequest/InSLA div PKIandSLA/PKI/TSARequest/ItemsTotal * 100,0,5)"/>%)</td>
-						<td class="OutsideSLA"><xsl:value-of select="PKIandSLA/PKI/TSARequest/OutSLA"/> (<xsl:value-of select="substring(PKIandSLA/PKI/TSARequest/OutSLA div PKIandSLA/PKI/TSARequest/ItemsTotal * 100,0,5)"/>%)</td>						
+						<td class="InSLA"><xsl:value-of select="PKIandSLA/PKI/Request/InSLA"/> (<xsl:value-of select="substring(PKIandSLA/PKI/Request/InSLA div PKIandSLA/PKI/Request/ItemsTotal * 100,0,5)"/>%)</td>
+						<td class="OutsideSLA"><xsl:value-of select="PKIandSLA/PKI/Request/OutSLA"/> (<xsl:value-of select="substring(PKIandSLA/PKI/Request/OutSLA div PKIandSLA/PKI/Request/ItemsTotal * 100,0,5)"/>%)</td>						
 					</tr>	
 					<tr>
-						<td>Issue of TSA Report</td>						
+						<td>Issue of Report</td>						
 						<td>10</td>						
-						<td><xsl:value-of select="PKIandSLA/PKI/TSAReport/ItemsTotal" /> (100%)</td>						
+						<td><xsl:value-of select="PKIandSLA/PKI/Report/ItemsTotal" /> (100%)</td>						
 						
-						<td class="InSLA"><xsl:value-of select="PKIandSLA/PKI/TSAReport/InSLA"/> (<xsl:value-of select="substring(PKIandSLA/PKI/TSAReport/InSLA div PKIandSLA/PKI/TSAReport/ItemsTotal * 100,0,5)"/>%)</td>
-						<td class="OutsideSLA"><xsl:value-of select="PKIandSLA/PKI/TSAReport/OutSLA"/> (<xsl:value-of select="substring(PKIandSLA/PKI/TSAReport/OutSLA div PKIandSLA/PKI/TSAReport/ItemsTotal * 100,0,5)"/>%)</td>						
+						<td class="InSLA"><xsl:value-of select="PKIandSLA/PKI/Report/InSLA"/> (<xsl:value-of select="substring(PKIandSLA/PKI/Report/InSLA div PKIandSLA/PKI/Report/ItemsTotal * 100,0,5)"/>%)</td>
+						<td class="OutsideSLA"><xsl:value-of select="PKIandSLA/PKI/Report/OutSLA"/> (<xsl:value-of select="substring(PKIandSLA/PKI/Report/OutSLA div PKIandSLA/PKI/Report/ItemsTotal * 100,0,5)"/>%)</td>						
 					</tr>		
 					<tr>
 						<td>Retest of issues managed</td>						

@@ -82,10 +82,10 @@
 		   </Row> 
 		   
 		   <Row ss:Index="20" >
-		    <Cell ss:StyleID="s21"><Data ss:Type="String">Details of Open TSA-IDs</Data></Cell>
+		    <Cell ss:StyleID="s21"><Data ss:Type="String">Details of Open Issue-IDs</Data></Cell>
 		   </Row>		   
 		   <Row ss:Index="22" ss:StyleID="s21">
-		    <Cell ss:Index="2"><Data ss:Type="String">Tsa-id</Data></Cell>
+		    <Cell ss:Index="2"><Data ss:Type="String">Issue-id</Data></Cell>
 		    <Cell><Data ss:Type="String">Impact</Data></Cell>
 		    <Cell><Data ss:Type="String">Probability</Data></Cell>
 		    <Cell><Data ss:Type="String">Vulnerability</Data></Cell>
@@ -96,7 +96,7 @@
 		   </Row>		   			   
 		   <xsl:for-each select="MonthlyStats/Project/OpenIssues/Finding">
 			   <Row>
-			    <Cell ss:Index="2"><Data ss:Type="String"><xsl:value-of select="Tsa-id"/></Data></Cell>
+			    <Cell ss:Index="2"><Data ss:Type="String"><xsl:value-of select="Issue-id"/></Data></Cell>
 			    <Cell><Data ss:Type="String"><xsl:value-of select="Impact"/></Data></Cell>
 			    <Cell><Data ss:Type="String"><xsl:value-of select="Probability"/></Data></Cell>
 			    <Cell><Data ss:Type="String"><xsl:value-of select="Vulnerability"/></Data></Cell>

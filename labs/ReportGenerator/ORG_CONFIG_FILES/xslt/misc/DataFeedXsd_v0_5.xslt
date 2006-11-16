@@ -109,8 +109,8 @@ http://www.altova.com/mapforce
 						<xsl:for-each select="n1:Target">
 							<xsl:for-each select="n1:Findings">
 								<xsl:for-each select="n1:Finding">
-									<xsl:for-each select="@Tsa-id">
-										<xsl:attribute name="Tsa-id">
+									<xsl:for-each select="@Issue-id">
+										<xsl:attribute name="Issue-id">
 											<xsl:value-of select="."/>
 										</xsl:attribute>
 									</xsl:for-each>

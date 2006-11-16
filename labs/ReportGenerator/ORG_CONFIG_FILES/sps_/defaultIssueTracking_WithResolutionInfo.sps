@@ -34,7 +34,7 @@
 																				<styles background-color="black" color="white"/>
 																				<properties width="60"/>
 																				<children>
-																					<text fixtext="tsa-id">
+																					<text fixtext="Issue-id">
 																						<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
 																					</text>
 																				</children>
@@ -114,7 +114,7 @@
 																												<children>
 																													<template>
 																														<editorproperties adding="mandatory" autoaddname="0" editable="0" markupmode="hide"/>
-																														<match match="@Tsa-id"/>
+																														<match match="@Issue-id"/>
 																														<children>
 																															<xpath allchildren="1">
 																																<styles font-family="Verdana" font-size="xx-small" font-weight="bold"/>

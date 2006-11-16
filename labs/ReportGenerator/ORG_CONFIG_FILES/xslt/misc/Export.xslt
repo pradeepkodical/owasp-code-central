@@ -11,7 +11,7 @@
 					<xsl:attribute name = "Vulnerability"><xsl:value-of select="@Vulnerability"/></xsl:attribute>
 					<xsl:attribute name = "Impact"><xsl:value-of select="@Impact"/></xsl:attribute>
 					<xsl:attribute name = "Probability"><xsl:value-of select="@Probability"/></xsl:attribute>
-					<xsl:attribute name = "Tsa-id"><xsl:value-of select="@Tsa-id"/></xsl:attribute>
+					<xsl:attribute name = "Issue-id"><xsl:value-of select="@Issue-id"/></xsl:attribute>
 					<xsl:attribute name = "Owner"><xsl:value-of select="@Owner"/></xsl:attribute>
 					<Metadata>						
 						<project_number><xsl:value-of select="../../../../n1:Metadata/n1:project_number"/></project_number>						

@@ -4,11 +4,11 @@
 	<xsl:template match="/">
 		<html>
 			<head>
-				<title>Outstanding TSA Issues</title>
+				<title>Outstanding Issues</title>
 				<link rel="stylesheet" type="text/css" href="U:\_AuthenticAndFopFiles\styles.css" />
 			</head>
 			<body>
-				<h1>Outstanding TSA Issues</h1>
+				<h1>Outstanding Issues</h1>
 				<h2>Summary</h2>
 				<table>
 					<tr>
@@ -31,7 +31,7 @@
 				<h2>Details</h2>
 				<table>
 					<tr>
-						<th>TSA-ID</th>
+						<th>Issue-ID</th>
 						<th>Date Reported</th>
 						<th>Status</th>
 						<th>Name</th>
@@ -40,7 +40,7 @@
 					</tr>
 					<xsl:for-each select="/Outstanding/Findings/Finding">
 					<tr>
-						<td><xsl:value-of select="@Tsa-id"/></td>
+						<td><xsl:value-of select="@Issue-id"/></td>
 						<td><xsl:value-of select="Resolution/@DateOpened"/></td>
 						<td><xsl:value-of select="Resolution/@Status"/></td>
 						<td><xsl:value-of select="@Vulnerability"/></td>

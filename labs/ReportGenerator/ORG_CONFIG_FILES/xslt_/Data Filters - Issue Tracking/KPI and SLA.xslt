@@ -30,16 +30,16 @@
 					<OutSLA><xsl:value-of select="count($ReTestSla[@Days &gt; 4])"/></OutSLA>
 					<ItemsTotal><xsl:value-of select="count($ReTestSla[@Days])"/></ItemsTotal>
 				</IssueRetest>
-				<TSARequest>
+				<Request>
 					<InSLA><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates[n1:daysBetweenReqAndAck &lt;= 5])"/></InSLA>
 					<OutSLA><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates[n1:daysBetweenReqAndAck &gt; 5])"/></OutSLA>
 					<ItemsTotal><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates/n1:daysBetweenReqAndAck)"/></ItemsTotal>
-				</TSARequest>
-				<TSAReport>
+				</Request>
+				<Report>
 					<InSLA><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates[n1:daysBetweenEndAndDelivery &lt;= 10])"/></InSLA>
 					<OutSLA><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates[n1:daysBetweenEndAndDelivery &gt; 10])"/></OutSLA>
 					<ItemsTotal><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Metadata/n1:dates/n1:daysBetweenEndAndDelivery)"/></ItemsTotal>
-				</TSAReport>
+				</Report>
 				<NumberIpops><xsl:value-of select="count(/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006'][contains(n1:Metadata/n1:project_name, 'IPoP')])"/></NumberIpops>
 			</PKI>
 			<Projects>

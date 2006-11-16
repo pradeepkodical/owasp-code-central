@@ -77,7 +77,7 @@
 																												<styles background-color="#E4E4E4"/>
 																												<properties width="79"/>
 																												<children>
-																													<text fixtext="TSA-ID:">
+																													<text fixtext="Issue-ID:">
 																														<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
 																													</text>
 																												</children>
@@ -86,7 +86,7 @@
 																												<properties width="80"/>
 																												<children>
 																													<template>
-																														<match match="@Tsa-id"/>
+																														<match match="@Issue-id"/>
 																														<children>
 																															<xpath allchildren="1">
 																																<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
