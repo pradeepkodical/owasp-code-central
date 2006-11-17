@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="vuln_report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Metadata next_ID_Number="17">
+		<project_number>123</project_number>
+		<project_name>HacmeBank</project_name>
+		<project_description>This is The Hacme Bank PenTest Reporter file</project_description>
+		<dates>
+			<request_received>2006-05-31</request_received>
+			<request_acknowledged>2006-05-31</request_acknowledged>
+			<daysBetweenReqAndAck></daysBetweenReqAndAck>
+			<start_date>2006-05-31</start_date>
+			<due_date></due_date>
+			<daysProjectDuration></daysProjectDuration>
+			<actual_end_date></actual_end_date>
+			<daysBetweenEndAndDelivery></daysBetweenEndAndDelivery>
+		</dates>
+		<DocumentInformation ApprovedBy="Dinis Cruz" Section="Owasp Pen Test" ConfidencialityRating="Public" IssueDate="25/April/2006" Status="Published" Author="Dinis Cruz">
+			<ReviewDetails>
+				<ReviewDetail version="v1.0" Reviewer="Dinis Cruz" Date="25/April/2006" Detail=""/>
+			</ReviewDetails>
+			<ReviewHistories>
+				<ReviewHistory version="v1.0" Author="Dinis Cruz" Date="25/April/2006" Detail=""/>
+			</ReviewHistories>
+			<RelatedDocuments>
+				<RelatedDocument version="2004" Author="Owasp" Date="" Detail="Owasp Top 10 Web Application Vulnerabilities"/>
+			</RelatedDocuments>
+		</DocumentInformation>
+	</Metadata>
+	<ExecutiveSummary>
+		<title>Pen Test Report</title>
+		<subtitle>Foundstone Hacme Bank</subtitle>
+		<level1 name="Introduction">
+			<level2 name="Executive summary">The PenTest of the Hacme Bank IPoP identified a number of security issues that allows malicious anonymous attackers to gain complete control over the Hacme Bank database. It was also discovered that normal users are able to access confidencial data belonging to other users and to gain access to administrative interfaces.<newline/><newline/>Section 3 of this document identifies the vulnerabilities discovered and section 4 contains recommendation to resolve them</level2>
+			<level2 name="Criticality rating of overall test results"><rating>
+					<ratingValue>Critical</ratingValue>
+					<ratingComment>Serious security issues have been identified that result in disclosure of vulnerability information. Appropriate action should be scheduled as soon as possible.</ratingComment>
+				</rating></level2>
+			<level2 name="Timeline and project scope">The tests where performed during normal business hours (GMT) over the period of 20 April 2005 till 24 April 2006 on the following subnets/servers:<ul>
+					<li>127.0.0.1</li>
+					<li>Localhost</li>
+					<li>a.b.c.d.</li>
+				</ul></level2>
+			<level2 name="Document sensitivity">The contents of this document are highly sensitive, and appropriate controls must be used when using, storing and transmitting this document.<newline/>Strong encryption should be used when storing and transmitting this document. </level2>
+		</level1>
+	</ExecutiveSummary>
+	<Targets>
+		<TargetSubnets>
+			<SubNet>127.0.0.1</SubNet>
+		</TargetSubnets>
+	</Targets>
+</Project>

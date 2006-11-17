@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="vuln_report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Metadata>
+		<project_number>123</project_number>
+		<project_name>HacmeBank</project_name>
+		<project_description>This is teh Hancme Bank VulnReport file</project_description>
+	</Metadata>
+	<ExecutiveSummary>
+		<title>Technical Security Assessment Report</title>
+		<subtitle>Hacme Bank</subtitle>
+		<level1 name="Introduction">
+			<level2 name="Executive summary">The Technical Security Assessment (TSA) of the Hacme Bank IPoP identified a number of security issues. </level2>
+			<level2 name="Criticality rating of overall test results"><rating>
+					<ratingValue>Low</ratingValue>
+					<ratingComment>All of the risks identified carried a low risk. The issues are all relatively easy to address. Appropriate action should be scheduled as soon as possible</ratingComment>
+				</rating></level2>
+		</level1>
+	</ExecutiveSummary>
+	<Targets>
+		<TargetSubnets>
+			<SubNet>127.0.0.1</SubNet>
+		</TargetSubnets>
+		<Target type="webSite" name="hacme bank">
+			<IP value="127.0.0.1"/>
+			<DnsName value="www.hacmebank.com"/>
+			<Findings>
+				<Finding Probability="Medium" Impact="High" Vulnerability="Sql Injection" Category="Input and Data Validation" Layer="Application" IncludeInReport="true">
+					<Comments>          </Comments>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution OpenDate="" Status="Closed"><AuditTrailItem><ItemName></ItemName><CreationDate></CreationDate><CreatedBy></CreatedBy><AssignedTo></AssignedTo><MoreDetails>asdasd</MoreDetails></AuditTrailItem><ReTestSla></ReTestSla><SpecialTag><TagName></TagName><TagValue></TagValue></SpecialTag></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="Low" Vulnerability="Xss issue" Category="Authentication" Layer="Application">
+					<Comments>          </Comments>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+			</Findings>
+		</Target>
+	</Targets>
+</Project>
