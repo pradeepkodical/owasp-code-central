@@ -46,7 +46,6 @@
 													<xs:element name="AffectedItems" minOccurs="0" maxOccurs="unbounded">
 														<xs:complexType mixed="true">
 															<xs:choice maxOccurs="unbounded">
-																<xs:element ref="img" />
 																<xs:element ref="newline" />
 															</xs:choice>
 														</xs:complexType>

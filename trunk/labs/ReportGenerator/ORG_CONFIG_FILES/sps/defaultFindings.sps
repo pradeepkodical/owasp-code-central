@@ -480,13 +480,6 @@
 		<match match="n1:img"/>
 		<children>
 			<newline/>
-			<image>
-				<properties border="0"/>
-				<imagesource>
-					<xpath value="@src"/>
-				</imagesource>
-			</image>
-			<newline/>
 			<text fixtext="[">
 				<styles font-family="verdana" font-size="9"/>
 			</text>
