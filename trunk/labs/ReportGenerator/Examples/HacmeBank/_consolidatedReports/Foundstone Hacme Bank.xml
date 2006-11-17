@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="vuln_report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Metadata next_ID_Number="17">
+		<project_number>123</project_number>
+		<project_name>HacmeBank</project_name>
+		<project_description>This is The Hacme Bank PenTest Reporter file</project_description>
+		<dates>
+			<request_received>2006-05-24</request_received>
+			<request_acknowledged>2006-05-31</request_acknowledged>
+			<daysBetweenReqAndAck></daysBetweenReqAndAck>
+			<start_date>2006-05-31</start_date>
+			<due_date>2006-05-31</due_date>
+			<daysProjectDuration></daysProjectDuration>
+			<report_delivery_date>2006-05-31</report_delivery_date>
+			<daysBetweenEndAndDelivery></daysBetweenEndAndDelivery>
+		</dates>
+		<DocumentInformation ApprovedBy="Dinis Cruz" Section="Owasp Pen Test" ConfidencialityRating="Public" IssueDate="25/April/2006" Status="Published" Author="Dinis Cruz">
+			<ReviewDetails>
+				<ReviewDetail version="v1.0" Reviewer="Dinis Cruz" Date="25/April/2006" Detail=""/>
+			</ReviewDetails>
+			<ReviewHistories>
+				<ReviewHistory version="v1.0" Author="Dinis Cruz" Date="25/April/2006" Detail=""/>
+			</ReviewHistories>
+			<RelatedDocuments>
+				<RelatedDocument version="2004" Author="Owasp" Date="" Detail="Owasp Top 10 Web Application Vulnerabilities"/>
+			</RelatedDocuments>
+		</DocumentInformation>
+	</Metadata>
+	<ExecutiveSummary>
+		<title>Pen Test Report</title>
+		<subtitle>Foundstone Hacme Bank</subtitle>
+		<level1 name="Introduction">
+			<level2 name="Executive summary">The PenTest of the Hacme Bank IPoP identified a number of security issues that allows malicious anonymous attackers to gain complete control over the Hacme Bank database. It was also discovered that normal users are able to access confidencial data belonging to other users and to gain access to administrative interfaces.<newline/><newline/>Section 3 of this document identifies the vulnerabilities discovered and section 4 contains recommendation to resolve them</level2>
+			<level2 name="Criticality rating of overall test results"><rating>
+					<ratingValue>Critical</ratingValue>
+					<ratingComment>Serious security issues have been identified that result in disclosure of vulnerability information. Appropriate action should be scheduled as soon as possible.</ratingComment>
+				</rating></level2>
+			<level2 name="Timeline and project scope">The tests where performed during normal business hours (GMT) over the period of 20 April 2005 till 24 April 2006 on the following subnets/servers:<ul>
+					<li>127.0.0.1</li>
+					<li>Localhost</li>
+					<li>a.b.c.d.</li>
+				</ul></level2>
+			<level2 name="Document sensitivity">The contents of this document are highly sensitive, and appropriate controls must be used when using, storing and transmitting this document.<newline/>Strong encryption should be used when storing and transmitting this document. </level2>
+		</level1>
+	</ExecutiveSummary>
+	<Targets>
+		<TargetSubnets>
+			<SubNet>127.0.0.1</SubNet>
+		</TargetSubnets>
+		<Target type="webSite" name="hacme bank">
+			<IP value="127.0.0.1"/>
+			<DnsName value="hacmebank"/>
+			<Findings>
+				<Finding Probability="Medium" Impact="Medium" Vulnerability="Account Transfer validation for negative values is only performed at the client" Category="Input and Data Validation" Layer="Application" IncludeInReport="true" Tsa-id="123-0">
+					<Comments>Use a proxy (or a browser tamper plugin) to inject a negative number in the Form http://a.b.c.d/aspx/main.aspx?function=AccountTransfer (this will transfer an amount TO the source account FROM the target account (i.e. the opposite of expected behavior)  </Comments>
+					<AffectedItems>http://a.b.c.d/aspx/main.aspx?function=AccountTransfe</AffectedItems>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="Low" Category="Input and Data Validation" Layer="Application" Vulnerability="Maximum number of login attempts is controlled by client-side cookie" IncludeInReport="true" Tsa-id="123-1">
+					<Comments>Use a proxy (or a browser tamper plugin) to change the value of the CookieLoginAttempts (for example to 5000)  <newline/></Comments>
+					<AffectedItems>CookieLoginAttempts</AffectedItems>
+					<Recommendation>
+						<Comment>            </Comment>
+						<linkToRecommendationDatabase>SW3.3</linkToRecommendationDatabase>
+					</Recommendation>
+					<Resolution ClosedBy="Dinis Cruz" ClosedDate="2006-05-31" OpenDate="2006-05-31" Status="Closed"><ReTestSla Days="1" ProcessedDate="2006-05-31" ReceivedDate="2006-05-30"></ReTestSla></Resolution>
+				</Finding>
+				<Finding Probability="Low" Impact="Low" Vulnerability="Directory Listing Enabled" Category="Insecure Configuration" Layer="Application" IncludeInReport="true" Tsa-id="123-2">
+					<Comments>          </Comments>
+					<AffectedItems>http://a.b.c.d/install/  </AffectedItems>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution ClosedBy="Dinis Cruz" ClosedDate="2006-06-01" OpenDate="2006-05-31" Status="Closed"><AuditTrailItem Status="Still Vulnerable"><ItemName>ReTest</ItemName><CreationDate>2006-05-31</CreationDate><CreatedBy>Dinis Cruz</CreatedBy><AssignedTo></AssignedTo><MoreDetails>Ddkajs ljldfj lsdkjg sldfkgj </MoreDetails></AuditTrailItem><ReTestSla Days="1" ProcessedDate="2006-05-31" ReceivedDate="2006-05-30"></ReTestSla></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="Critical" Vulnerability="Admin pages available to normal users" Category="Access Control" Layer="Application" IncludeInReport="true" Tsa-id="123-3">
+					<Comments>After login, a normal user is able to access the affected admin pages.</Comments>
+					<AffectedItems>http://a.b.c.d/aspx/Main.aspx?function=admin\Fetch_Web_Page          </AffectedItems>
+					<AffectedItems>http://a.b.c.d/aspx/Main.aspxfunction=admin\Manage_Accounts          </AffectedItems>
+					<AffectedItems>http://a.b.c.d/aspx/Main.aspxfunction=admin\Manage_Messages          </AffectedItems>
+					<AffectedItems>http://a.b.c.d/aspx/Main.aspx?function=admin\Manage_Users          </AffectedItems>
+					<AffectedItems>http://a.b.c.d/aspx/Main.aspx?function=admin\Sql_Query          </AffectedItems>
+					<AffectedItems>http://a.b.c.d/aspx/Main.aspx?function=admin\Web_Services</AffectedItems>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="Medium" Category="Access Control" Layer="Application" Vulnerability="Users are able to access account details belonging to  other users" IncludeInReport="true" Tsa-id="123-4">
+					<Comments>To test this vulnerability, Log-in as user jv and open the page  http://a.b.c.d./aspx/Main.aspx?function=TransactionDetails&amp;account_no=5204320422040001 . Then replace the 'account_no' GET value with 5204320422040003 (i.e.  http://a.b.c.d./aspx/Main.aspx?function=TransactionDetails&amp;account_no=5204320422040003)  and note that you are now accessing account details belonging to another  user (in this case the user jm)<newline/></Comments>
+					<AffectedItems>http://a.b.c.d./aspx/Main.aspx?function=TransactionDetails&amp;account_no=5204320422040001</AffectedItems>
+					<AffectedItems>http://a.b.c.d./aspx/Main.aspx?function=TransactionDetails&amp;account_no=5204320422040003</AffectedItems>
+					<Recommendation>
+						<Comment>            </Comment>
+						<linkToRecommendationDatabase>SW4.3</linkToRecommendationDatabase>
+					</Recommendation>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Low" Impact="Medium" Category="Access Control" Layer="Application" IncludeInReport="true" Vulnerability="Old Password requirement is not enforced in 'Change  Password' page" Tsa-id="123-5">
+					<Comments>To view this vulnerability follow these steps: Hijack user session (using for example a valid user's  Session Cookie), open the page  http://a.b.c.d./aspx/main.aspx?function=PasswordChange and change  that user's password (without knowledge of that user's current password)</Comments>
+					<AffectedItems>http://a.b.c.d./aspx/main.aspx?function=PasswordChange </AffectedItems>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="Medium" Vulnerability="Session Hijacking via ASP.NET_Session cookie" Category="Authentication" Layer="Application" IncludeInReport="true" Tsa-id="123-6">
+					<Comments>Discover a valid ASP.NET_Session cookie, and hijack that account by changing the cookie on the browser or injecting it via a proxy</Comments>
+					<AffectedItems>User Session</AffectedItems>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution ClosedBy="Dinis Cruz" ClosedDate="2006-05-31" OpenDate="2006-04-30" Status="Closed"></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="High" Category="Authentication" Layer="Application" Vulnerability="Admin site protected with weak cookie" IncludeInReport="true" Tsa-id="123-7">
+					<Comments>Access to the admin site is controlled by a client side cookie called 'admin' (On login, this value is false, and set to true after successful Response to the Challenge posted here http://a.b.c.d/aspx/main.aspx?function=AdminSection). To access the admin area, login as a normal user and change the value of the 'admin' cookie from false to true<newline/></Comments>
+					<AffectedItems>'admin' cookie</AffectedItems>
+					<AffectedItems>http://a.b.c.d/aspx/main.aspx?function=AdminSection</AffectedItems>
+					<Resolution ClosedBy="Dinis Cruz" ClosedDate="2006-06-01" OpenDate="2006-05-31" Status="Closed"></Resolution>
+				</Finding>
+				<Finding Probability="Low" Impact="Medium" Category="Authentication" Layer="Application" Vulnerability="WebServices are accessible by anonymous users:" IncludeInReport="true" Tsa-id="123-8">
+					<Comments>Web Services pages can be directly accessed and invoked. <newline/></Comments>
+					<AffectedItems>http://a.b.c.d/HacmeBank_V2_WS/WebServices/AccountManagement.asmx  </AffectedItems>
+					<AffectedItems>http://a.b.c.d/HacmeBank_V2_WS/WebServices/UserManagement.asmx          </AffectedItems>
+					<AffectedItems>http://a.b.c.d/HacmeBank_V2_WS/WebServices/UsersCommunity.asmx</AffectedItems>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Low" Impact="Medium" Category="Authentication" Layer="Application" Vulnerability="ViewState replay vulnerability" IncludeInReport="true" Tsa-id="123-9">
+					<Comments>The source account on the Transfer Funds page  (http://a.b.c.d./aspx/main.aspx?function=AccountTransfer) is  controlled by ViewState. This means that the attacker cannot change this  value by POST form injection, but means that if the attacker is able to  grab a valid ViewState from another user (via Xss, cached copy of that  page on a Hard Disk or by sniffing the traffic), it can replay that  ViewState and make transfers from that account (to an external account).  <newline/></Comments>
+					<AffectedItems>http://a.b.c.d./aspx/main.aspx?function=AccountTransfer</AffectedItems>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="High" Category="Authorization" Layer="Application" Vulnerability="Web Services Session ID is not enforced" IncludeInReport="true" Tsa-id="123-10">
+					<Comments>Invoke the web services directly without needing a valid  SessionID<newline/></Comments>
+					<AffectedItems>http://a.b.c.d/HacmeBank_V2_WS/WebServices/AccountManagement.asmx  </AffectedItems>
+					<AffectedItems>http://a.b.c.d/HacmeBank_V2_WS/WebServices/UserManagement.asmx          </AffectedItems>
+					<AffectedItems>http://a.b.c.d/HacmeBank_V2_WS/WebServices/UsersCommunity.asmx</AffectedItems>
+					<Recommendation>
+						<Comment>            </Comment>
+						<linkToRecommendationDatabase>The correct resolution of this vulnerability is one where  the Web Services are still publicly available but control to the exposed  Web Services functionality is managed via the SessionID</linkToRecommendationDatabase>
+					</Recommendation>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="Medium" Vulnerability="Cross site Scripting (XSS)" Category="Input and Data Validation" Layer="Application" IncludeInReport="true" Tsa-id="123-11">
+					<Comments>It is possible to Insert XSS payloads on the 'Affected items' pages</Comments>
+					<AffectedItems> Account Transfer 'Comment': field http://a.b.c.d/aspx/main.aspx?function=AccountTransfer</AffectedItems>
+					<AffectedItems>Request a Loan' 'Comment' field: http://a.b.c.d/aspx/main.aspx?function=Loan</AffectedItems>
+					<AffectedItems>Post Message 'Subject' or 'Text' fields: http://a.b.c.d/aspx/main.aspx?function=PostMessageForm</AffectedItems>
+					<Recommendation>
+						<Comment>            </Comment>
+						<linkToRecommendationDatabase>SW1.3</linkToRecommendationDatabase>
+					</Recommendation>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="High" Impact="Critical" Vulnerability="SQL Injection" Category="Parameter Manipulation" Layer="Application" IncludeInReport="true" Tsa-id="123-12">
+					<Comments>It is possible to Insert SQL Injection payloads on the 'Affected items' pages</Comments>
+					<AffectedItems>Login Page 'Username' or 'Password' fields: http://a.b.c.d/aspx/main.aspx?function=PostMessageForm</AffectedItems>
+					<AffectedItems> Transaction Details 'account_no' GET field: http://a.b.c.d/aspx/Main.aspx?function=TransactionDetails&amp;account_no=5204320422040001</AffectedItems>
+					<AffectedItems>Account Transfer 'Comment': field http://a.b.c.d/aspx/main.aspx?function=AccountTransfer</AffectedItems>
+					<AffectedItems>Request a Loan' 'Comment' field: http://a.b.c.d/aspx/main.aspx?function=Loan</AffectedItems>
+					<AffectedItems>Post Message 'Subject' or 'Text' fields: http://a.b.c.d/aspx/main.aspx?function=PostMessageForm</AffectedItems>
+					<Recommendation>
+						<Comment>            </Comment>
+						<linkToRecommendationDatabase>SW1.1</linkToRecommendationDatabase>
+					</Recommendation>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="Medium" Vulnerability="Detailed error messages sent to client" Category="Exception Management" Layer="Application" IncludeInReport="true" Tsa-id="123-13">
+					<Comments>To view the error messages Force SQL errors on the 'Affected Items' pages</Comments>
+					<AffectedItems>Login Page 'Username' or 'Password' fields: http://a.b.c.d/aspx/main.aspx?function=PostMessageForm</AffectedItems>
+					<AffectedItems> Account Transfer 'Comment': field http://a.b.c.d/aspx/main.aspx?function=AccountTransfer</AffectedItems>
+					<AffectedItems>Request a Loan' 'Comment' field: http://a.b.c.d/aspx/main.aspx?function=Loan</AffectedItems>
+					<Recommendation>
+						<Comment>            </Comment>
+						<linkToRecommendationDatabase>SW2</linkToRecommendationDatabase>
+					</Recommendation>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Medium" Impact="Medium" Category="Information Leak" Layer="Service" Vulnerability="'WAF redirect on attack detection' information leak" IncludeInReport="true" Tsa-id="123-14">
+					<Comments>The normal WAF functionality of redirecting attacks  detected to a custom error pages, provides information to attackers that  such type of defense (WAF) is in use, and creates very dangerous 'False  Positive' situations where valid user's input could be wrongly flagged -  something that would severely affect the user experience and business  value (imagine a user filling a 4 page web form being redirected to the  error page on the last page).<newline/></Comments>
+					<Recommendation>
+						<Comment>            </Comment>
+						<linkToRecommendationDatabase>Dynamically 'normalize' potentially malicious input. For  example, on a Form field vulnerable to SQL Injection, rewrite that field  with only the allowed chars (for example letters and numbers) and flag  an attack  </linkToRecommendationDatabase>
+					</Recommendation>
+					<Resolution OpenDate="2006-06-01" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Low" Impact="High" Vulnerability="Asp.Net ViewState contains Challenge's Response" Category="Sensitive Data" Layer="Application" IncludeInReport="true" Tsa-id="123-15">
+					<Comments>To view the Challenge's Response in clear text, follow these steps: 1) Decode the ViewState from the Admin Section login page (http://a.b.c.d/aspx/main.aspx?function=AdminSection), 2) discover the Challenge's Response value in the decoded ViewState, and 3) use that value to login to the admin area (the Challenge's Response value is stored in a Asp.net control which is marked with 'visible=false' (but still stored in the ViewState))</Comments>
+					<AffectedItems>ViewState</AffectedItems>
+					<AdittionalDetails>          </AdittionalDetails>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+				<Finding Probability="Low" Impact="High" Category="Sensitive Data" Layer="Application" Vulnerability="Challenge's Response weak encryption" IncludeInReport="true" Tsa-id="123-16">
+					<AffectedItems>System used to encrypt the Challenge's Response</AffectedItems>
+					<Comments>It is possible to Brute force the Challenge's Response since it is calculated by XORing the Challenge against a simple number<newline/></Comments>
+					<Resolution OpenDate="2006-05-31" Status="Reported"></Resolution>
+				</Finding>
+			</Findings>
+		</Target>
+	</Targets>
+</Project>

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><Project xmlns="vuln_report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">	<Metadata/>	<Targets>		<Target type="webSite" name="hacme bank">			<IP value="127.0.0.1"/>			<DnsName value="hacmebank"/>		</Target>	</Targets></Project>

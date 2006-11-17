@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recommendations xmlns="vuln_report">
+	<Recommendation>
+		<Id>SW1</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Parameter Manipulation</Category>
+		<ShortTermRecommendation>Validate all client input before using it for business logic decisions.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW1.1</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Parameter Manipulation / SQL Injection</Category>
+		<ShortTermRecommendation>Correctly validate user input before using it in database queries.  Use stored procedures wherever possible queries.  Do not use string concatenation to build SQL queries.  Input that is to be used in SQL queries should be carefully vetted for the presence of SQL control characters.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW1.2</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Parameter Manipulation / Directory Traversal</Category>
+		<ShortTermRecommendation>Be sure to correctly validate input from the user that is to be used in constructing file paths.  Particular care should be taken to detect the presence of characters such as ‘/’ and ‘.’</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW1.3</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Parameter Manipulation / Cross Site Scripting</Category>
+		<ShortTermRecommendation>All content to be displayed back to a user should be passed through escape functions, to escape any HTML/XML characters that may be embedded within that content.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW1.4</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Parameter Manipulation / Hidden Fields</Category>
+		<ShortTermRecommendation>Static input should always be held server side.  An example of static data can be found in form-to-email scripts, where the destination e-mail address is to be the same each time, such forms should have the e-mail address handled server side, and not client side, so as to avoid modification of this parameter.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW1.5</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Parameter Manipulation / Includes and Redirects</Category>
+		<ShortTermRecommendation>Where server redirects are used they should either be held server-side or if user interaction is required, validated by the server before redirection (e.g. a user should not be able to be redirected to an external, third party site via a GET request).  Similarly, where files are included on the client side, careful validation should be used to ensure that the client will only include files from the current site.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW2</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Exception Management</Category>
+		<ShortTermRecommendation>Custom error messages should be created in such a way that they do not reveal any information and the web server should be configure to not send detailed error messages to clients.  Do not send error messages to non-admin clients. Handle all errors in a consistent and non-informative way.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data</Category>
+		<ShortTermRecommendation>Where possible, web servers and applications should offer as little system information as possible.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.1</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / Database Credentials</Category>
+		<ShortTermRecommendation>Database credentials should not be stored in a path that is accessible by the web clients.  Database credentials should be encrypted where possible.  Database credentials stored on a web server should be given a file extension that cannot be served by the web server.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.2</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / Source Code</Category>
+		<ShortTermRecommendation>Do not leave backup, old or template files on the web server.  Files with additional extensions (such as index.htm.old can often be downloaded by an attacker, resulting in source-code disclosure).  In general, files that are not required by a production system should not be left on a system.  Access control lists can also be used in the web server configuration to disable downloading files of type .inc, .dwt, .zip, .bak, .old, etc.)</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.3</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / Directory Indexes</Category>
+		<ShortTermRecommendation>Directory indexes should always be disable on all directories accessible via a web server </ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.4</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / Default Pages</Category>
+		<ShortTermRecommendation>All test and sample scripts should be removed from production systems.  Similarly, web server manuals should always be removed from web servers before they are placed into live environments</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.7</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / SSL Certificates</Category>
+		<ShortTermRecommendation>SSL certificates should, where possible, contain only publicly available information, in place of internal identifying information</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.8</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / Comments</Category>
+		<ShortTermRecommendation>Comments that reveal potentially important internal details about an application should be removed in production code</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.9</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / Plain-text Logons</Category>
+		<ShortTermRecommendation>All logons should be conducted over an SSL connection</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.10</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / Password Login Forms</Category>
+		<ShortTermRecommendation>Passwords should not be returned to the browser after an unsuccessful login, or as part of a configuration screen (as these can be seen in the HTML source code)</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.11</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Sensitive Data / Old and Backed Up Data</Category>
+		<ShortTermRecommendation>Old and backed up data can often be removed from production systems to prevent unauthorised access</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW4.1</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Access Control / Test Credentials</Category>
+		<ShortTermRecommendation>Test credentials should be disabled on all live systems</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW4.2</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Access Control / Public Sites</Category>
+		<ShortTermRecommendation>Public sites should contain information that is intended only for public users.  Intranet pages, internal help files, internal documentation and unnecessary web server components should be removed from production web servers</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW4.3</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Access Control / Session Management</Category>
+		<ShortTermRecommendation>Session management should be performed using an authentication system, and a session cookie.  Before accessing elements within a site, it should be confirmed that a user has authorisation to access that element.  Users should not be able to download the data of other users.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW4.4</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Access Control / Credential Storage</Category>
+		<ShortTermRecommendation>Credentials should be stored in an encrypted format.  Credentials should also be created in such a way that they are strong, e.g. through the implementation of a password policy, and through the use of fixed ‘password reminder’ questions.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW4.5</Id>
+		<Layer>	Service - Web Application</Layer>
+		<Category>Access Control / Script Execution</Category>
+		<ShortTermRecommendation>If users can upload files to a directory on a web server, they should not have access to execute the files that they have uploaded.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SS1.1</Id>
+		<Layer>	Service - Web Server</Layer>
+		<Category>Parameter Manipulation / Buffer Overflow</Category>
+		<ShortTermRecommendation>The product (Apache / OpenSSL) should be upgraded to a newer version</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SS4.1</Id>
+		<Layer>	Service - Web Server</Layer>
+		<Category>Access Control / Debug and Trace Methods</Category>
+		<ShortTermRecommendation>Track and trace are not typically required in production sites and should be disabled</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SS4.2</Id>
+		<Layer>	Service - Web Server</Layer>
+		<Category>Access Control / Unused Services</Category>
+		<ShortTermRecommendation>Unused services (like WebDAV) should be disabled</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SN3.1</Id>
+		<Layer>	Service - Name Server</Layer>
+		<Category>Sensitive Data / Recursive DNS</Category>
+		<ShortTermRecommendation>Disable recursive lookups – in BIND 8 configuration file</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SN4.1</Id>
+		<Layer>	Service - Name Server</Layer>
+		<Category>Access Control / Administrative Interface</Category>
+		<ShortTermRecommendation>Wherever possible interfaces should be limited at the network layer to staff who require access.  Password authentication should not be considered sufficiently strong to protect administrative interfaces on important devices.</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>RD4.1</Id>
+		<Layer>	Service - RDP</Layer>
+		<Category>Access Control / Remote Desktop</Category>
+		<ShortTermRecommendation>RDP should be considered a dangerous service to open to the Internet.  Password authentication should not be considered sufficiently strong to protect RDP interfaces on important devices.  RDP should be disabled unless absolutely required</ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SB4.1</Id>
+		<Name></Name>
+		<Layer>Service - BGMP</Layer>
+		<Category>Access Control / BGMP</Category>
+		<ShortTermRecommendation>BGMP is critical to network routing, and should only be exposed to routing peers.  Access control lists should be defined to ensure that this service is not open to the Internet at large<newline/></ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SS4.3</Id>
+		<Name></Name>
+		<Layer>Service - SSH</Layer>
+		<Category>Access Control / SSH</Category>
+		<ShortTermRecommendation>Telnet and SSH do not normally need to be open to Internet as large.  Access control lists should be defined to disable Internet-based network layer access to Telnet and SSH.<newline/></ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SM3.1</Id>
+		<Name></Name>
+		<Layer>Service - Mail Server</Layer>
+		<Category>Sensitive Data / Banners</Category>
+		<ShortTermRecommendation>Consider modifying the banners to mask internal server names and software versions<newline/></ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SN4.2</Id>
+		<Name></Name>
+		<Layer>Service - Name Server</Layer>
+		<Category>Access Control / Zone Transfers</Category>
+		<ShortTermRecommendation>Zone transfers should only be permitted to trusted hosts.  Create an access control list that limits the hosts with which this host will perform zone transfers<newline/></ShortTermRecommendation>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW3.12</Id>
+		<Name></Name>
+		<Layer>Service - Web Server</Layer>
+		<Category>Access Control / Internal IP Addresses</Category>
+		<ShortTermRecommendation>Some versions of Microsoft IIS disclose the internal IP address of the server in the Content-Location header.  See http://support.microsoft.com/kb/q218180/ for remediation information.<newline/></ShortTermRecommendation>
+		<ReferenceLinks>http://support.microsoft.com/kb/q218180/</ReferenceLinks>
+	</Recommendation>
+	<Recommendation>
+		<Id>SW4.6</Id>
+		<Name></Name>
+		<Layer>Service - Web Server</Layer>
+		<Category>Access Control / Unused ISAPI Modules</Category>
+		<ShortTermRecommendation>Unused ISAPI modules should be disabled, as a number of vulnerabilities have been discovered in these modules in the past<newline/></ShortTermRecommendation>
+	</Recommendation>
+</Recommendations>
