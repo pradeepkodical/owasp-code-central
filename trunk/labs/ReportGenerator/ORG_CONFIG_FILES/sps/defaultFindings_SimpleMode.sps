@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<structure version="3" schemafile="C:\_ABN\Owasp - VulnReport\V-Drive\Application (exe)\v0.70\VulnReport_Files\xsd\projectXsd.xsd" workingxmlfile="" templatexmlfile="" xsltversion="2" encodinghtml="UTF-8" encodingrtf="ISO-8859-1" encodingpdf="UTF-8">
+<structure version="3" schemafile="../xsd/projectXsd.xsd" workingxmlfile="" templatexmlfile="" xsltversion="2" encodinghtml="UTF-8" encodingrtf="ISO-8859-1" encodingpdf="UTF-8">
 	<nspair prefix="xs" uri="http://www.w3.org/2001/XMLSchema"/>
 	<nspair prefix="n1" uri="vuln_report"/>
 	<template>
@@ -191,8 +191,11 @@
 			<newline/>
 			<image>
 				<properties border="0"/>
+				<target>
+					<xpath value="resolve-uri(@src, static-base-uri())"/>
+				</target>
 				<imagesource>
-					<xpath value="@src"/>
+					<xpath value="resolve-uri(@src, static-base-uri())"/>
 				</imagesource>
 			</image>
 			<newline/>

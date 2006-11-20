@@ -50,9 +50,8 @@ namespace Owasp.VulnReport
 		private System.Windows.Forms.Label lbUnsavedData;
 		private System.Windows.Forms.Button btAssignIdToFinding;
 		private System.Windows.Forms.Label lbNextIdToBeAssigned;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Button btReloadTargetsList;
-		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label lblAssignIdWarning;
+        private System.Windows.Forms.Button btReloadTargetsList;
 		private System.Windows.Forms.Label lbNextIdLabel;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.ComboBox cbTemplateToUse;
@@ -109,11 +108,10 @@ namespace Owasp.VulnReport
             this.btSaveFinding = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbUnsavedData = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblAssignIdWarning = new System.Windows.Forms.Label();
             this.btAssignIdToFinding = new System.Windows.Forms.Button();
             this.lbNextIdToBeAssigned = new System.Windows.Forms.Label();
             this.lbNextIdLabel = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.lblFindingSaved = new System.Windows.Forms.Label();
             this.btDeleteSelectedFinding = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -152,7 +150,7 @@ namespace Owasp.VulnReport
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 221);
+            this.label2.Location = new System.Drawing.Point(14, 221);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(160, 16);
             this.label2.TabIndex = 0;
@@ -170,7 +168,7 @@ namespace Owasp.VulnReport
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 32);
+            this.label3.Location = new System.Drawing.Point(8, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(160, 16);
             this.label3.TabIndex = 0;
@@ -178,7 +176,7 @@ namespace Owasp.VulnReport
             // 
             // lbTargetsInCurrentProject
             // 
-            this.lbTargetsInCurrentProject.Location = new System.Drawing.Point(24, 80);
+            this.lbTargetsInCurrentProject.Location = new System.Drawing.Point(14, 67);
             this.lbTargetsInCurrentProject.Name = "lbTargetsInCurrentProject";
             this.lbTargetsInCurrentProject.Size = new System.Drawing.Size(160, 56);
             this.lbTargetsInCurrentProject.TabIndex = 1;
@@ -188,7 +186,7 @@ namespace Owasp.VulnReport
             // 
             this.lbFindingsInCurrentTarget.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbFindingsInCurrentTarget.Location = new System.Drawing.Point(24, 244);
+            this.lbFindingsInCurrentTarget.Location = new System.Drawing.Point(14, 244);
             this.lbFindingsInCurrentTarget.Name = "lbFindingsInCurrentTarget";
             this.lbFindingsInCurrentTarget.Size = new System.Drawing.Size(160, 121);
             this.lbFindingsInCurrentTarget.TabIndex = 1;
@@ -200,10 +198,10 @@ namespace Owasp.VulnReport
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.axAuthentic_Findings.Enabled = true;
-            this.axAuthentic_Findings.Location = new System.Drawing.Point(192, 170);
+            this.axAuthentic_Findings.Location = new System.Drawing.Point(182, 170);
             this.axAuthentic_Findings.Name = "axAuthentic_Findings";
             this.axAuthentic_Findings.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_Findings.OcxState")));
-            this.axAuthentic_Findings.Size = new System.Drawing.Size(640, 334);
+            this.axAuthentic_Findings.Size = new System.Drawing.Size(612, 334);
             this.axAuthentic_Findings.TabIndex = 2;
             this.axAuthentic_Findings.Enter += new System.EventHandler(this.axAuthentic1_Enter);
             this.axAuthentic_Findings.SelectionChanged += new System.EventHandler(this.axAuthentic1_SelectionChanged);
@@ -212,9 +210,9 @@ namespace Owasp.VulnReport
             // 
             this.btSaveFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveFinding.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSaveFinding.Location = new System.Drawing.Point(238, 32);
+            this.btSaveFinding.Location = new System.Drawing.Point(712, 10);
             this.btSaveFinding.Name = "btSaveFinding";
-            this.btSaveFinding.Size = new System.Drawing.Size(80, 40);
+            this.btSaveFinding.Size = new System.Drawing.Size(93, 24);
             this.btSaveFinding.TabIndex = 3;
             this.btSaveFinding.Text = "Save Finding";
             this.btSaveFinding.Click += new System.EventHandler(this.btSaveFinding_Click);
@@ -223,17 +221,13 @@ namespace Owasp.VulnReport
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.lbUnsavedData);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.btSaveFinding);
-            this.groupBox1.Controls.Add(this.btAssignIdToFinding);
             this.groupBox1.Controls.Add(this.lbNextIdToBeAssigned);
             this.groupBox1.Controls.Add(this.lbNextIdLabel);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.lblFindingSaved);
-            this.groupBox1.Location = new System.Drawing.Point(509, 50);
+            this.groupBox1.Controls.Add(this.btAssignIdToFinding);
+            this.groupBox1.Controls.Add(this.lblAssignIdWarning);
+            this.groupBox1.Location = new System.Drawing.Point(505, 37);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(328, 80);
+            this.groupBox1.Size = new System.Drawing.Size(294, 86);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
@@ -242,28 +236,28 @@ namespace Owasp.VulnReport
             this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedData.Location = new System.Drawing.Point(488, 24);
+            this.lbUnsavedData.Location = new System.Drawing.Point(650, 4);
             this.lbUnsavedData.Name = "lbUnsavedData";
-            this.lbUnsavedData.Size = new System.Drawing.Size(56, 24);
+            this.lbUnsavedData.Size = new System.Drawing.Size(66, 37);
             this.lbUnsavedData.TabIndex = 6;
             this.lbUnsavedData.Text = "Unsaved Data";
             this.lbUnsavedData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbUnsavedData.Visible = false;
             // 
-            // label5
+            // lblAssignIdWarning
             // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 44);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 24);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "* note: this will automatically save the Finding\'s and the Project\'s View";
+            this.lblAssignIdWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAssignIdWarning.Location = new System.Drawing.Point(7, 63);
+            this.lblAssignIdWarning.Name = "lblAssignIdWarning";
+            this.lblAssignIdWarning.Size = new System.Drawing.Size(155, 15);
+            this.lblAssignIdWarning.TabIndex = 7;
+            this.lblAssignIdWarning.Text = "* Data will be saved when clicked";
             // 
             // btAssignIdToFinding
             // 
-            this.btAssignIdToFinding.Location = new System.Drawing.Point(6, 16);
+            this.btAssignIdToFinding.Location = new System.Drawing.Point(7, 38);
             this.btAssignIdToFinding.Name = "btAssignIdToFinding";
-            this.btAssignIdToFinding.Size = new System.Drawing.Size(144, 24);
+            this.btAssignIdToFinding.Size = new System.Drawing.Size(125, 24);
             this.btAssignIdToFinding.TabIndex = 4;
             this.btAssignIdToFinding.Text = "Assign Id To Finding*";
             this.btAssignIdToFinding.Click += new System.EventHandler(this.btAssignIdToFinding_Click);
@@ -272,7 +266,7 @@ namespace Owasp.VulnReport
             // 
             this.lbNextIdToBeAssigned.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNextIdToBeAssigned.ForeColor = System.Drawing.Color.Black;
-            this.lbNextIdToBeAssigned.Location = new System.Drawing.Point(228, 16);
+            this.lbNextIdToBeAssigned.Location = new System.Drawing.Point(74, 16);
             this.lbNextIdToBeAssigned.Name = "lbNextIdToBeAssigned";
             this.lbNextIdToBeAssigned.Size = new System.Drawing.Size(88, 16);
             this.lbNextIdToBeAssigned.TabIndex = 6;
@@ -283,7 +277,7 @@ namespace Owasp.VulnReport
             // 
             this.lbNextIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNextIdLabel.ForeColor = System.Drawing.Color.Black;
-            this.lbNextIdLabel.Location = new System.Drawing.Point(156, 16);
+            this.lbNextIdLabel.Location = new System.Drawing.Point(6, 16);
             this.lbNextIdLabel.Name = "lbNextIdLabel";
             this.lbNextIdLabel.Size = new System.Drawing.Size(88, 16);
             this.lbNextIdLabel.TabIndex = 6;
@@ -291,23 +285,12 @@ namespace Owasp.VulnReport
             this.lbNextIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbNextIdLabel.Click += new System.EventHandler(this.lbNextIdLabel_Click);
             // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(272, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 16);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "..";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblFindingSaved
             // 
             this.lblFindingSaved.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFindingSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFindingSaved.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblFindingSaved.Location = new System.Drawing.Point(175, 37);
+            this.lblFindingSaved.Location = new System.Drawing.Point(650, 8);
             this.lblFindingSaved.Name = "lblFindingSaved";
             this.lblFindingSaved.Size = new System.Drawing.Size(56, 29);
             this.lblFindingSaved.TabIndex = 6;
@@ -318,7 +301,7 @@ namespace Owasp.VulnReport
             // btDeleteSelectedFinding
             // 
             this.btDeleteSelectedFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btDeleteSelectedFinding.Location = new System.Drawing.Point(24, 488);
+            this.btDeleteSelectedFinding.Location = new System.Drawing.Point(14, 488);
             this.btDeleteSelectedFinding.Name = "btDeleteSelectedFinding";
             this.btDeleteSelectedFinding.Size = new System.Drawing.Size(160, 20);
             this.btDeleteSelectedFinding.TabIndex = 6;
@@ -330,7 +313,7 @@ namespace Owasp.VulnReport
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.btAddNewFinding);
             this.groupBox2.Controls.Add(this.txtNewFindingName);
-            this.groupBox2.Location = new System.Drawing.Point(24, 368);
+            this.groupBox2.Location = new System.Drawing.Point(13, 368);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(160, 40);
             this.groupBox2.TabIndex = 7;
@@ -350,7 +333,7 @@ namespace Owasp.VulnReport
             // txtNewFindingName
             // 
             this.txtNewFindingName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNewFindingName.Location = new System.Drawing.Point(8, 16);
+            this.txtNewFindingName.Location = new System.Drawing.Point(4, 16);
             this.txtNewFindingName.Name = "txtNewFindingName";
             this.txtNewFindingName.Size = new System.Drawing.Size(104, 20);
             this.txtNewFindingName.TabIndex = 0;
@@ -359,7 +342,7 @@ namespace Owasp.VulnReport
             // 
             this.groupBox3.Controls.Add(this.btAddNewTarget);
             this.groupBox3.Controls.Add(this.txtNewTargetName);
-            this.groupBox3.Location = new System.Drawing.Point(24, 142);
+            this.groupBox3.Location = new System.Drawing.Point(14, 127);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(160, 40);
             this.groupBox3.TabIndex = 7;
@@ -386,7 +369,7 @@ namespace Owasp.VulnReport
             // 
             // btDeleteSelectedTarget
             // 
-            this.btDeleteSelectedTarget.Location = new System.Drawing.Point(24, 188);
+            this.btDeleteSelectedTarget.Location = new System.Drawing.Point(14, 172);
             this.btDeleteSelectedTarget.Name = "btDeleteSelectedTarget";
             this.btDeleteSelectedTarget.Size = new System.Drawing.Size(160, 20);
             this.btDeleteSelectedTarget.TabIndex = 16;
@@ -395,14 +378,14 @@ namespace Owasp.VulnReport
             // axWebBrowser_Targets
             // 
             this.axWebBrowser_Targets.Enabled = true;
-            this.axWebBrowser_Targets.Location = new System.Drawing.Point(192, 56);
+            this.axWebBrowser_Targets.Location = new System.Drawing.Point(182, 43);
             this.axWebBrowser_Targets.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser_Targets.OcxState")));
-            this.axWebBrowser_Targets.Size = new System.Drawing.Size(311, 74);
+            this.axWebBrowser_Targets.Size = new System.Drawing.Size(323, 80);
             this.axWebBrowser_Targets.TabIndex = 17;
             // 
             // btReloadTargetsList
             // 
-            this.btReloadTargetsList.Location = new System.Drawing.Point(24, 56);
+            this.btReloadTargetsList.Location = new System.Drawing.Point(14, 43);
             this.btReloadTargetsList.Name = "btReloadTargetsList";
             this.btReloadTargetsList.Size = new System.Drawing.Size(160, 20);
             this.btReloadTargetsList.TabIndex = 16;
@@ -412,9 +395,9 @@ namespace Owasp.VulnReport
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(190, 148);
+            this.label4.Location = new System.Drawing.Point(180, 138);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 16);
+            this.label4.Size = new System.Drawing.Size(150, 16);
             this.label4.TabIndex = 0;
             this.label4.Text = "Editor Template To Use:";
             // 
@@ -425,9 +408,9 @@ namespace Owasp.VulnReport
             "Authentic - Simple Mode",
             "Authentic - All Fields Mode",
             "Windows Explorer"});
-            this.cbTemplateToUse.Location = new System.Drawing.Point(337, 145);
+            this.cbTemplateToUse.Location = new System.Drawing.Point(336, 135);
             this.cbTemplateToUse.Name = "cbTemplateToUse";
-            this.cbTemplateToUse.Size = new System.Drawing.Size(280, 21);
+            this.cbTemplateToUse.Size = new System.Drawing.Size(259, 21);
             this.cbTemplateToUse.TabIndex = 18;
             this.cbTemplateToUse.SelectedIndexChanged += new System.EventHandler(this.cbTemplateToUse_SelectedIndexChanged);
             // 
@@ -436,7 +419,7 @@ namespace Owasp.VulnReport
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox4.Controls.Add(this.btRenameFinding);
             this.groupBox4.Controls.Add(this.txtRenameFinding);
-            this.groupBox4.Location = new System.Drawing.Point(24, 416);
+            this.groupBox4.Location = new System.Drawing.Point(14, 416);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(160, 64);
             this.groupBox4.TabIndex = 19;
@@ -467,15 +450,18 @@ namespace Owasp.VulnReport
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.axWebBrowser_WindowsExplorer.Enabled = true;
-            this.axWebBrowser_WindowsExplorer.Location = new System.Drawing.Point(193, 170);
+            this.axWebBrowser_WindowsExplorer.Location = new System.Drawing.Point(182, 170);
             this.axWebBrowser_WindowsExplorer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser_WindowsExplorer.OcxState")));
-            this.axWebBrowser_WindowsExplorer.Size = new System.Drawing.Size(639, 334);
+            this.axWebBrowser_WindowsExplorer.Size = new System.Drawing.Size(611, 334);
             this.axWebBrowser_WindowsExplorer.TabIndex = 17;
             this.axWebBrowser_WindowsExplorer.Visible = false;
             // 
             // ascxFindings
             // 
+            this.Controls.Add(this.btSaveFinding);
+            this.Controls.Add(this.lbUnsavedData);
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.lblFindingSaved);
             this.Controls.Add(this.cbTemplateToUse);
             this.Controls.Add(this.axWebBrowser_Targets);
             this.Controls.Add(this.btDeleteSelectedTarget);
@@ -494,7 +480,7 @@ namespace Owasp.VulnReport
             this.Controls.Add(this.label4);
             this.Controls.Add(this.axWebBrowser_WindowsExplorer);
             this.Name = "ascxFindings";
-            this.Size = new System.Drawing.Size(840, 512);
+            this.Size = new System.Drawing.Size(812, 512);
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Findings)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -566,16 +552,24 @@ namespace Owasp.VulnReport
 		{
             if (null != strFullPathToSelectedTarget)
             {
+                string pastFindings = strPathToUnzipSelectedFinding;
+
                 // see if there is unsaved data
-                checkForUnsavedData();          
-                // clean up previous finding
-                deleteCurrentFindingsTempFolder();
+                checkForUnsavedData();
+
                 strFullPathToSelectedFinding = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, lbFindingsInCurrentTarget.SelectedItem.ToString()));
                 // unzip new finding into temp folder
                 strPathToUnzipSelectedFinding = strPathToTempFileFolder + "\\" + Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding);
                 utils.zip.unzipFile(strFullPathToSelectedFinding, strPathToTempFileFolder);
+
                 // invoke this drop down to load the correct template
-                cbTemplateToUse_SelectedIndexChanged(null, null);   
+                cbTemplateToUse_SelectedIndexChanged(null, null);
+
+                // clean up previous findings
+                if ((pastFindings != null) && !pastFindings.Equals(strPathToUnzipSelectedFinding))
+                {
+                    deletePastFindingsTempFolder(pastFindings);
+                }
             }
 		}
 
@@ -607,7 +601,7 @@ namespace Owasp.VulnReport
 		{
             try
             {
-                if (axWebBrowser_Targets.Visible == true)
+                if (axWebBrowser_Targets.Visible)
                     saveCurrentData();
 
                 if (File.Exists(strPathToUnzipSelectedFinding))
@@ -632,6 +626,16 @@ namespace Owasp.VulnReport
                 Directory.Delete(strPathToUnzipSelectedFinding, true);
             }
 		}
+
+        private void deletePastFindingsTempFolder(string folderToRemove)
+        {
+            if ((folderToRemove != null) &&
+                (folderToRemove.Trim() != "") &&
+                Directory.Exists(folderToRemove))
+            {
+                Directory.Delete(folderToRemove, true);
+            }
+        }
 
 		private void btDeleteSelectedFinding_Click(object sender, System.EventArgs e)
 		{
@@ -892,6 +896,8 @@ namespace Owasp.VulnReport
             {
                 axAuthentic_Findings.Save();
                 utils.zip.zipFolder(strPathToUnzipSelectedFinding, strFullPathToSelectedFinding);
+                lblFindingSaved.Visible = true;
+                lbUnsavedData.Visible = false;
             }
         }
 

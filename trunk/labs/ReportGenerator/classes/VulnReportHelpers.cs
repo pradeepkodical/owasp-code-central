@@ -131,7 +131,7 @@ namespace Owasp.VulnReport
             }
             catch (IOException eio)
             {
-                MessageBox.Show("Problem removing temporary files: " + eio.Message);
+                // Just swallow the exceptions...We are not worried about them
             }
         }
 	}

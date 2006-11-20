@@ -14,88 +14,94 @@
     <Directory Id='TARGETDIR' Name='SourceDir'>
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
         <Directory Id='OWASP' Name='OWASP'>
-          <Directory Id='INSTALLDIR' Name='ORG' LongName='OWASP Report Generator'>
+          <Directory Id='ORG' Name='ORG' LongName='OWASP Report Generator'>
+            <Directory Id='INSTALLDIR' Name='ORGFiles' LongName='ORG_Files'>
 
-            <Component Id='MainExecutable' Guid='5677BC8D-9170-48ef-8EA5-E95E9DA4F825'>
-              <File Id='ORGEXE' Name='ORG.exe' LongName='Owasp Report Generator.exe' DiskId='1'
-                Source='Owasp Report Generator.exe' Vital='yes'>
-                <Shortcut Id="startmenuORG" Directory="ProgramMenuDir" Name="ORG" 
-                  LongName="OWASP Report Generator" WorkingDirectory='INSTALLDIR' Icon="ORG.exe" IconIndex="0" />
-                <Shortcut Id="desktopORG" Directory="DesktopFolder" Name="ORG"
-                  LongName="OWASP Report Generator" WorkingDirectory='INSTALLDIR' Icon="ORG.exe" IconIndex="0" />
-              </File>
-              <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
-            </Component>
+              <Component Id='MainExecutable' Guid='5677BC8D-9170-48ef-8EA5-E95E9DA4F825'>
+                <File Id='ORGEXE' Name='ORG.exe' LongName='Owasp Report Generator.exe' DiskId='1'
+                  Source='Owasp Report Generator.exe' Vital='yes'>
+                  <Shortcut Id="startmenuORG" Directory="ProgramMenuDir" Name="ORG" 
+                    LongName="OWASP Report Generator" WorkingDirectory='INSTALLDIR' Icon="ORG.exe" IconIndex="0" />
+                  <Shortcut Id="desktopORG" Directory="DesktopFolder" Name="ORG"
+                    LongName="OWASP Report Generator" WorkingDirectory='INSTALLDIR' Icon="ORG.exe" IconIndex="0" />
+                </File>
+                <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+              </Component>
+              
+              <Component Id='AltovaLibrary' Guid='27DFCBDF-8434-411f-8855-801E5745B62E'>
+                <File Id="ApZipTXT" Name="Ap.zip.txt" LongName="AuthenticPlugin.zip.txt" 
+				  DiskId="1" Source="AuthenticPlugin.zip.txt" Vital='yes' />
+			    <RemoveFile Id='UZipA' On='uninstall' Name='Ap.zip' LongName='AuthenticPlugin.zip' />
+			    <RemoveFile Id='ApDll' On='uninstall' Name='AuthPlug.dll' LongName='AuthenticPlugin.dll' />
+              </Component>
             
-            <Component Id='AltovaLibrary' Guid='27DFCBDF-8434-411f-8855-801E5745B62E'>
-              <File Id="ApZipTXT" Name="Ap.zip.txt" LongName="AuthenticPlugin.zip.txt" 
-				DiskId="1" Source="AuthenticPlugin.zip.txt" Vital='yes' />
-			  <RemoveFile Id='UZipA' On='uninstall' Name='Ap.zip' LongName='AuthenticPlugin.zip' />
-			  <RemoveFile Id='ApDll' On='uninstall' Name='AuthPlug.dll' LongName='AuthenticPlugin.dll' />
-            </Component>
+              <Component Id='FOPEngine' Guid='A6EC69AE-6691-4189-99B5-E215FCEFC7B0'>
+			    <File Id='FopZipTXT' Name='FOP.zip.txt' DiskId='1' Source='Fop.zip.txt' Vital='yes' />
+			    <RemoveFile Id='UZipFop' On='uninstall' Name='FOP.zip' LongName='FOP.zip' />
+			    <RemoveFolder Id='FOP' On='uninstall' />
+              </Component>
+              
+              <Component Id='ORGConfig' Guid='1C4981B3-B733-4500-8606-6A187B02633F'>
+                <File Id='OrgConfigZipTxt' Name='OCfg.zip.txt' DiskId='1' LongName='ORG_CONFIG_FILES.zip.txt' 
+                  Source='ORG_CONFIG_FILES.zip.txt' Vital='yes' />
+                <RemoveFile Id='UZipCnf' On='uninstall' Name='OCfg.zip' LongName='ORG_CONFIG_FILES.zip' />
+	  		    <RemoveFolder Id='ORG_CONFIG_FILES' On='uninstall' />
+              </Component>
+              
+              <Component Id='ZipLib' Guid='F92703A4-3170-461b-A919-66A13E61E9AF'>
+                <File Id='ZipLibDll' Name='ZipLib.dll' DiskId='1' LongName='SharpZipLib.dll' Source='SharpZipLib.dll' Vital='yes' />
+              </Component>
+              
+              <Component Id='AxXmlSpy' Guid='EF7706B3-A911-4e2f-B5EB-A952DE7C40C2'>
+                <File Id='AxXmlSpyDll' Name='AxXmlSpy.dll' DiskId='1' LongName='AxInterop.XMLSPYPLUGINLib.dll' 
+                  Source='AxInterop.XMLSPYPLUGINLib.dll' Vital='yes' />
+              </Component>
+              
+              <Component Id='InXmlSpy' Guid='B73101F8-BD1C-4a1c-A652-2C0ACE649FB0'>
+                <File Id='InXmlSpyDll' Name='InXmlSpy.dll' DiskId='1' LongName='Interop.XMLSPYPLUGINLib.dll' 
+                  Source='Interop.XMLSPYPLUGINLib.dll' Vital='yes' />
+              </Component>
+              
+              <Component Id='ICText' Guid='06C88A8F-1209-4080-A00E-18A12F941142'>
+                <File Id='ICTextDll' Name='ICText.dll' DiskId='1' LongName='ICSharpCode.TextEditor.dll' 
+                  Source='ICSharpCode.TextEditor.dll' Vital='yes' />
+              </Component>
+              
+              <Component Id='AxShDoc' Guid='F6919C94-7E50-4eb8-803A-93922C97B7B8'>
+                <File Id='AxShDocDll' Name='AxShDoc.dll' DiskId='1' LongName='AxInterop.SHDocVw.dll' 
+                  Source='AxInterop.SHDocVw.dll' Vital='yes' />
+              </Component>
             
-            <Component Id='FOPEngine' Guid='A6EC69AE-6691-4189-99B5-E215FCEFC7B0'>
-			  <File Id='FopZipTXT' Name='FOP.zip.txt' DiskId='1' Source='Fop.zip.txt' Vital='yes' />
-			  <RemoveFile Id='UZipFop' On='uninstall' Name='FOP.zip' LongName='FOP.zip' />
-			  <RemoveFolder Id='FOP' On='uninstall' />
-            </Component>
+              <Component Id='InShDoc' Guid='2F063852-F2C0-490a-A70A-C11051E88E13'>
+                <File Id='InShDocDll' Name='InShDoc.dll' DiskId='1' LongName='Interop.SHDocVw.dll' 
+                  Source='Interop.SHDocVw.dll' Vital='yes' />
+              </Component>
             
-            <Component Id='ORGConfig' Guid='1C4981B3-B733-4500-8606-6A187B02633F'>
-              <File Id='OrgConfigZipTxt' Name='OCfg.zip.txt' DiskId='1' LongName='ORG_CONFIG_FILES.zip.txt' 
-                Source='ORG_CONFIG_FILES.zip.txt' Vital='yes' />
-              <RemoveFile Id='UZipCnf' On='uninstall' Name='OCfg.zip' LongName='ORG_CONFIG_FILES.zip' />
-			  <RemoveFolder Id='ORG_CONFIG_FILES' On='uninstall' />
-            </Component>
+              <Component Id='OrgCnfg' Guid='6D88E972-D107-45b4-A328-3A4A3A2259E5'>
+                <File Id='OrgCnfgCfg' Name='OrgCnfg.cfg' DiskId='1' LongName='Owasp Report Generator.exe.config'
+                  Source='Owasp Report Generator.exe.config' Vital='yes' />
+              </Component>
             
-            <Component Id='ZipLib' Guid='F92703A4-3170-461b-A919-66A13E61E9AF'>
-              <File Id='ZipLibDll' Name='ZipLib.dll' DiskId='1' LongName='SharpZipLib.dll' Source='SharpZipLib.dll' Vital='yes' />
-            </Component>
+              <Component Id='AxPdf' Guid='6BE40754-E823-47cb-A1B5-2BF80A53EC89'>
+                <File Id='AxPdfDll' Name='AxPdf.dll' DiskId='1' LongName='AxInterop.PdfLib.dll' 
+                  Source='AxInterop.PdfLib.dll' Vital='yes' />
+              </Component>
             
-            <Component Id='AxXmlSpy' Guid='EF7706B3-A911-4e2f-B5EB-A952DE7C40C2'>
-              <File Id='AxXmlSpyDll' Name='AxXmlSpy.dll' DiskId='1' LongName='AxInterop.XMLSPYPLUGINLib.dll' 
-                Source='AxInterop.XMLSPYPLUGINLib.dll' Vital='yes' />
-            </Component>
+              <Component Id='InPdf' Guid='9E6E5C49-115B-4f5f-B4B5-25CDF9DC455A'>
+                <File Id='InPdfDll' Name='InPdf.dll' DiskId='1' LongName='Interop.PdfLib.dll'
+                  Source='Interop.PdfLib.dll' Vital='yes' />
+              </Component>
             
-            <Component Id='InXmlSpy' Guid='B73101F8-BD1C-4a1c-A652-2C0ACE649FB0'>
-              <File Id='InXmlSpyDll' Name='InXmlSpy.dll' DiskId='1' LongName='Interop.XMLSPYPLUGINLib.dll' 
-                Source='Interop.XMLSPYPLUGINLib.dll' Vital='yes' />
-            </Component>
-            
-            <Component Id='ICText' Guid='06C88A8F-1209-4080-A00E-18A12F941142'>
-              <File Id='ICTextDll' Name='ICText.dll' DiskId='1' LongName='ICSharpCode.TextEditor.dll' 
-                Source='ICSharpCode.TextEditor.dll' Vital='yes' />
-            </Component>
-            
-            <Component Id='AxShDoc' Guid='F6919C94-7E50-4eb8-803A-93922C97B7B8'>
-              <File Id='AxShDocDll' Name='AxShDoc.dll' DiskId='1' LongName='AxInterop.SHDocVw.dll' 
-                Source='AxInterop.SHDocVw.dll' Vital='yes' />
-            </Component>
-            
-            <Component Id='InShDoc' Guid='2F063852-F2C0-490a-A70A-C11051E88E13'>
-              <File Id='InShDocDll' Name='InShDoc.dll' DiskId='1' LongName='Interop.SHDocVw.dll' 
-                Source='Interop.SHDocVw.dll' Vital='yes' />
-            </Component>
-            
-            <Component Id='OrgCnfg' Guid='6D88E972-D107-45b4-A328-3A4A3A2259E5'>
-              <File Id='OrgCnfgCfg' Name='OrgCnfg.cfg' DiskId='1' LongName='Owasp Report Generator.exe.config'
-                Source='Owasp Report Generator.exe.config' Vital='yes' />
-            </Component>
-            
-            <Component Id='AxPdf' Guid='6BE40754-E823-47cb-A1B5-2BF80A53EC89'>
-              <File Id='AxPdfDll' Name='AxPdf.dll' DiskId='1' LongName='AxInterop.PdfLib.dll' 
-                Source='AxInterop.PdfLib.dll' Vital='yes' />
-            </Component>
-            
-            <Component Id='InPdf' Guid='9E6E5C49-115B-4f5f-B4B5-25CDF9DC455A'>
-              <File Id='InPdfDll' Name='InPdf.dll' DiskId='1' LongName='Interop.PdfLib.dll'
-                Source='Interop.PdfLib.dll' Vital='yes' />
-            </Component>
-            
-            <Component Id='RegAuth' Guid='66ECDABB-8F83-45ea-AC70-CDEB417805B1'>
-              <File Id='RegAuthBat' Name='RegAuth.bat' DiskId='1' LongName='regAuthenticPlugin.bat' 
-                Source='regAuthenticPlugin.bat' Vital='yes' />
-            </Component>
-            
+              <Component Id='RegAuth' Guid='66ECDABB-8F83-45ea-AC70-CDEB417805B1'>
+                <File Id='RegAuthBat' Name='RegAuth.bat' DiskId='1' LongName='regAuthenticPlugin.bat' 
+                  Source='regAuthenticPlugin.bat' Vital='yes' />
+              </Component>
+              
+              <Component Id='Example' Guid='095ADD36-6AD4-4e2e-9158-4E95B5FFEC7B'>
+                <File Id='ExamplesZip' Name='Examples.zip' DiskId='1' Source='Examples.zip' />
+              </Component>
+              
+            </Directory>  
           </Directory>
         </Directory>
       </Directory>
@@ -125,6 +131,7 @@
           <ComponentRef Id='AxPdf' />
           <ComponentRef Id='InPdf' />
           <ComponentRef Id='RegAuth' />
+          <ComponentRef Id='Example' />
         </Feature>
     </Feature>
 
