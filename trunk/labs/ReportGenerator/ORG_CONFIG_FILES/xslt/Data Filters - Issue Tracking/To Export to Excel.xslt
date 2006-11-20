@@ -4,11 +4,11 @@
 	<xsl:template match="/">
 		<MonthlyStats xmlns:n1="vuln_report">
 			<ReportTitle>Issue Remediation</ReportTitle>
-			<ReportSubTitle>CISO Global Report</ReportSubTitle>
-			<ReportMonth>2006-03</ReportMonth>
-			<ReportDate>7 April 2006</ReportDate>
+			<ReportSubTitle>CIO Global Report</ReportSubTitle>
+			<ReportMonth>2006</ReportMonth>
+			<ReportDate>2006</ReportDate>
 			<ReportAuthor>Issue</ReportAuthor>
-			<ReportReviewer>Robert B Mann</ReportReviewer>
+			<ReportReviewer>John Doe</ReportReviewer>
          	<ReportVersion>1.0</ReportVersion>
 			<xsl:variable name="CriticalAndHighIssues" select="/n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Targets/n1:Target/n1:Findings/n1:Finding[@Impact='Critical'] | /n1:ConsolidatedProjects/n1:Project[substring(n1:Metadata/n1:dates/n1:start_date, 1, 4) =  '2006']/n1:Targets/n1:Target/n1:Findings/n1:Finding[@Impact='High']"/>
 			<xsl:variable name="CriticalAndHighIssues_Closed" select="$CriticalAndHighIssues[n1:Resolution/@Status='Closed']"/>	

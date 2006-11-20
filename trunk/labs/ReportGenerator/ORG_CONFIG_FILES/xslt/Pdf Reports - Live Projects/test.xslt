@@ -238,7 +238,7 @@
 										<xsl:value-of select="document('U:\_recommendationsDatabase\recommendationsDatabase.xml')"/>
 									</xsl:variable>
 									<fo:block font-family="Times">
-										<xsl:attribute name="id">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFindings</xsl:attribute>
+										<xsl:attribute name="id">Findings</xsl:attribute>
 										<fo:block color="#000000" font-size="16pt" font-weight="bold"> 3.
             Findings </fo:block>
 										<fo:block margin-left="0pt">
