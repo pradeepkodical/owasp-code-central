@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvc2", "http://localhost/mvc2/mvc2.csproj", "{CDAB7CBC-2DAF-4B66-A0D9-C1770657FB8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{CDAB7CBC-2DAF-4B66-A0D9-C1770657FB8D}.Debug.ActiveCfg = Debug|.NET
+		{CDAB7CBC-2DAF-4B66-A0D9-C1770657FB8D}.Debug.Build.0 = Debug|.NET
+		{CDAB7CBC-2DAF-4B66-A0D9-C1770657FB8D}.Release.ActiveCfg = Release|.NET
+		{CDAB7CBC-2DAF-4B66-A0D9-C1770657FB8D}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		Item:1 = C:\Documents and Settings\Paul Boal\Desktop\mvc2.vsd
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
