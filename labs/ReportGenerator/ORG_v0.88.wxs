@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
-  <Product Name='OWASP Report Generator v0.85' Id='20EFCF51-C898-4b8d-A499-1097F112F1B2'
+  <Product Name='OWASP Report Generator v0.88' Id='20EFCF51-C898-4b8d-A499-1097F112F1B2'
     UpgradeCode='7FDB600D-3F55-4ed6-8292-A16E656D1E9F' 
-    Language='1033' Codepage='1252' Version='0.85.0' Manufacturer='OWASP'>
+    Language='1033' Codepage='1252' Version='0.88.0' Manufacturer='OWASP'>
 
     <Package Id='????????-????-????-????-????????????' Keywords='Installer'
-      Description="OWASP's Report Generator v0.85 Installer" Manufacturer='OWASP'
-      InstallerVersion='085' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+      Description="OWASP's Report Generator v0.88 Installer" Manufacturer='OWASP'
+      InstallerVersion='088' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
 
 	<Media Id='1' Cabinet='ORG.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
 	<Property Id='DiskPrompt' Value="OWASP Report Generator Installation [1]" />
@@ -110,7 +110,7 @@
       <Directory Id="DesktopFolder" Name="Desktop" />
     </Directory>
 
-    <Feature Id='Complete' Title='OWASP Report Generator v0.85' 
+    <Feature Id='Complete' Title='OWASP Report Generator v0.88' 
       Description='Install for the OWASP Report Generator'
       Display='expand' Level='1' ConfigurableDirectory='INSTALLDIR'>
         <Feature Id='MainProgram' Title='OWASP Report Generator (ORG)' Description='The main components of ORG' Level='1'>
