@@ -1,0 +1,238 @@
+/* background color for the content part of the pages */
+
+
+
+
+INPUT.RadEButton, BUTTON.RadEButton
+{
+ border: 0px; 
+ margin: 3px; 
+ WIDTH: 78px; 
+ FONT-FAMILY: Arial; 
+ HEIGHT: 23px;
+ color: White; 
+BACKGROUND-image: url(./images/button.gif);
+
+
+ background-color: Transparent;
+ TEXT-ALIGN: center; 
+}
+ 
+.FooterNormalBlack
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    font-weight: normal;
+    color: #000000;
+}
+
+
+
+Body
+{
+    margin-top:0px;
+    margin-left:0px;
+    margin-bottom:5px;
+    margin-right:0px;
+    background-color: #ffffff;
+}
+
+/* Normal Text */
+.normal
+{
+    font-family: Arial;
+    font-size:  12px;
+     color: #000000;
+}
+
+.error
+{
+    font-family: Arial;
+    font-size:  10px;
+     color: #ff0000;
+}
+
+.adminTitle
+{
+    font-family: Arial;
+    font-size:  24px;
+     color: #000000;
+}
+
+/* Search panel around data grid */
+
+table.searchPanel
+{
+	
+	
+	background-color: #DBF2BB;
+}
+
+tr.searchPanel
+{
+	
+	
+	background-color: #DBF2BB;
+}
+
+
+/* Normal Text */
+.datagridSearchText
+{
+    font-family: Arial;
+    font-size:  12px;
+    color: #000000;
+}
+
+/* data grid alphabet pager*/
+.datagridAlphabetPager
+{
+    font-family: Arial;
+    font-size:  12px;
+    color: #000000;
+}
+
+A.datagridAlphabetPager:link {
+    text-decoration:    none;
+    color: #000000;
+}
+
+A.datagridAlphabetPager:visited  {
+    text-decoration:    none;
+    color: #000000;
+}
+
+A.datagridAlphabetPager:active   {
+    text-decoration:    none;
+    color: #000000;
+}
+
+A.datagridAlphabetPager:hover    {
+    text-decoration:    none;
+    color: red;
+}
+
+
+/* Hyperlink */
+/* Normal Text */
+.hyperlink
+{
+    font-family: Arial;
+    font-size:  13px;
+    color: #000000;
+}
+
+
+A.hyperlink:link {
+    text-decoration:    none;
+    color: #000000;
+}
+
+A.hyperlink:visited  {
+    text-decoration:    none;
+    color: #000000;
+}
+
+A.hyperlink:active   {
+    text-decoration:    none;
+    color: #000000;
+}
+
+A.hyperlink:hover    {
+    text-decoration:    none;
+    color: red;
+}
+
+
+/* Data Grid */
+TR.DataGrid_SelectedItemStyle
+{
+	font-weight: bold;
+	Color: Navy;
+	background-color: #9CF; 
+}
+
+TR.DataGrid_ItemStyle
+{
+	background-color: #FFFFFF;
+   	font-family:Arial;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+TR.DataGrid_AlternateStyle
+{
+	background-color: #F1FAE4;
+	font-family: Arial;
+    	font-size: 12px;
+    	font-weight: normal;
+}
+
+TR.DataGrid_HeaderStyle
+{
+	color: #ffffff;
+	background-color: #0C5A97;
+	font-family: Arial;
+	font-weight: bold;
+    	font-size: 11px;
+}
+
+TR.DataGrid_FooterStyle
+{
+	color: #FFFFFF;
+	background-color: #0c5a97;
+	font-family: Arial;
+	font-weight: bold;
+    	font-size: 11px;
+}
+
+TR.DataGrid_PagerStyle
+{
+	background-color: #ffffff;
+	font-family: Arial;
+	font-weight: bold;
+    	font-size: 12px;
+	text-align: left;
+	color: #000000;
+}
+
+
+TR.DataGrid_PagerStyle:link {
+    text-decoration:    none;
+    color: #000000;
+}
+
+TR.DataGrid_PagerStyle:visited  {
+    text-decoration:    none;
+    color: #000000;
+}
+
+
+
+.DataGridTable
+{
+    BORDER-RIGHT: #6D99FE 1px solid;
+    BORDER-TOP: #6D99FE 1px solid;
+    BORDER-LEFT: #6D99FE 1px solid;
+    BORDER-BOTTOM: #6D99FE 1px solid;
+}
+
+/* form elements */
+.NormalTextBox
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; PADDING-LEFT: 1px; FONT-SIZE: 10px; PADDING-BOTTOM: 2px; BORDER-LEFT: #999999 1px solid; WIDTH: 95px; COLOR: #000000; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: none*/
+	
+}
+
+.NormalButton
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: normal;
+	BORDER-RIGHT: #d2cac0 1px solid; BORDER-TOP: #d2cac0 1px solid; PADDING-LEFT: 1px; FONT-SIZE: 10px; PADDING-BOTTOM: 1px; BORDER-LEFT: #d2cac0 1px solid; COLOR: #000000; BORDER-BOTTOM: #d2cac0 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff; TEXT-DECORATION: none*/
+
+}
+

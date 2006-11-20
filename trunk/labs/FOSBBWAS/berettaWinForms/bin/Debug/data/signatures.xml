@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+
+<signatures>
+	
+	<item>
+		<id>1</id>
+		<signatureName><![CDATA[XSS Successful]]></signatureName>
+		<signatureValue><![CDATA[test xss attack]]></signatureValue>
+		<signatureOperator><![CDATA[=]]></signatureOperator>
+		<signatureDescription><![CDATA[XSS Attack Successful]]></signatureDescription>
+		<signatureMessage><![CDATA[XSS Attack Successful]]></signatureMessage>
+		<signatureMessageType><![CDATA[2]]></signatureMessageType>
+		<signatureType><![CDATA[0]]></signatureType>
+	</item>
+	
+	<item>
+		<id>2</id>
+		<signatureName><![CDATA[Unclosed quotation mark]]></signatureName>
+		<signatureValue><![CDATA[Unclosed quotation mark]]></signatureValue>
+		<signatureOperator><![CDATA[=]]></signatureOperator>
+		<signatureDescription><![CDATA[Error which could indicate sql injection attack]]></signatureDescription>
+		<signatureMessage><![CDATA[Warning input not validated properly]]></signatureMessage>
+		<signatureMessageType><![CDATA[2]]></signatureMessageType>
+		<signatureType><![CDATA[0]]></signatureType>
+	</item>
+	
+	
+	<item>
+		<id>3</id>
+		<signatureName><![CDATA[Generic Server Error]]></signatureName>
+		<signatureValue><![CDATA[Server Error in]]></signatureValue>
+		<signatureOperator><![CDATA[=]]></signatureOperator>
+		<signatureDescription><![CDATA[Generic Server Error]]></signatureDescription>
+		<signatureMessage><![CDATA[Server Error]]></signatureMessage>
+		<signatureMessageType><![CDATA[0]]></signatureMessageType>
+		<signatureType><![CDATA[0]]></signatureType>
+	</item>
+	
+	
+	<item>
+		<id>4</id>
+		<signatureName><![CDATA[Incorrect Syntax]]></signatureName>
+		<signatureValue><![CDATA[Incorrect syntax ]]></signatureValue>
+		<signatureOperator><![CDATA[=]]></signatureOperator>
+		<signatureDescription><![CDATA[Incorrect Syntax]]></signatureDescription>
+		<signatureMessage><![CDATA[May indicate incorrect error handling]]></signatureMessage>
+		<signatureMessageType><![CDATA[2]]></signatureMessageType>
+		<signatureType><![CDATA[0]]></signatureType>
+	</item>
+	
+	
+	
+	
+
+</signatures>

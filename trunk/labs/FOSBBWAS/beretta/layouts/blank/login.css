@@ -1,0 +1,159 @@
+body {
+  background-color: #fff;
+
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+#welcome {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  height: 35px;
+  width: 456px;
+
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+#horiz {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 1px;
+  width: 100%;
+  overflow: visible:
+  background-color: transparent;
+  border: 0;
+}
+
+#loginbox {
+  position: absolute;
+  padding: 0;
+  left: 50%;
+  top: 1em;
+  margin: -10em;
+  height: 320px;
+  width: 320px;
+  background-color: transparent;
+  border: 0;
+}
+
+#leftbox {
+  float: left;
+  padding: 0;
+  margin: 0;
+  height: 60px;
+  width: 310px;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+#rightbox {
+  float: left;
+  padding: 30px 0px 10px 30px;
+  margin: 0;
+  height: 140px;
+  width: 300px;
+  background-color: #F1F1F1;
+  overflow: visible;
+}
+
+/* TEXT HERE */
+
+p {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Arial, Sans-serif;
+  font-size: 0.7em;
+  line-height: 1.4em; 
+  text-align: left;
+  color: #777;
+}
+
+p.logintext {
+  margin: 2px;
+  padding: 0;
+  font-family: Arial, Sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: left;
+  color: #AEAEAE;
+}
+
+h1 {
+  margin: 2px;
+  padding: 0;
+  font-family: Verdana, Arial, Sans-serif;
+  font-size: 24px;
+  line-height: 40px;
+  text-align: left;
+  color: #E9CE75;
+}
+
+h2 {
+  margin: 2px;
+  padding: 0;
+  font-family: Verdana, Arial, Sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: left;
+  color: #C0C0C0;
+}
+
+h3 {
+  margin: 2px;
+  padding: 0;
+  font-family: Arial, Sans-serif;
+  font-size: 12px;
+  line-height: 25px;
+  text-align: left;
+  color: #777;
+} 
+
+/* TABLES */
+
+#name, #email {
+  width: 150px;
+}
+
+input.button {
+  float: right;
+}
+
+table.login {
+  margin: 0;
+  padding: 0;
+  background-color: #CCC;
+  border: 1px solid #999;
+}
+
+table.login td {
+  padding: 0;
+  background-color: #CCC;
+}
+
+/* INPUT */
+
+input.button {
+  margin: 5px;
+  border: 1px solid #999;
+  background-color: #EEE0AF;
+  color: #B56200;
+  font-family: Verdana, Arial, Sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+
+input.inputbox {
+  border: 1px solid #999;
+  background-color: #EEE0AF;
+  color: #B56200;
+  font-family: Verdana, Arial, Sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+}
