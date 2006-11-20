@@ -1,0 +1,22 @@
+Use ODBC to create a System DSN called "PDSSecurity".
+  This should point to the security.mdb database.
+
+
+To Do:
+* Drag & Drop needs to be fixed for IE6
+* Encrypt password
+* Clean up interface
+* Disable selecting text (see MSDN: HTA selection=no), also see:
+	function disableselect(e){
+		return false
+	}
+	function reEnable(){
+		return true
+	}
+	//if IE4+
+	document.onselectstart=new Function ("return false")
+	//if NS6
+	if (window.target_window_name){
+		document.onmousedown=disableselect
+		document.onclick=reEnable
+	}
