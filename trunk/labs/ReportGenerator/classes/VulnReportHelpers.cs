@@ -129,7 +129,7 @@ namespace Owasp.VulnReport
                 if (Directory.Exists(up.TempDirectoryPath))
                     Directory.Delete(up.TempDirectoryPath, true);
             }
-            catch (IOException eio)
+            catch (IOException)
             {
                 // Just swallow the exceptions...We are not worried about them
             }
