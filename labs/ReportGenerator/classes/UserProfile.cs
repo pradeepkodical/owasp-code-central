@@ -215,8 +215,8 @@ namespace Owasp.VulnReport
             XmlElement xebaseDirectory = xdUserProfile.CreateElement("baseDirectory", xsltNameSpace);
             XmlElement xeTempRootDirectory = xdUserProfile.CreateElement(TempDirectoryNodeName, xsltNameSpace);
 
-            xebaseDirectory.InnerText = "C:";
-            xeTempRootDirectory.InnerText = "%temp%";
+            xebaseDirectory.InnerText = ConfigurationManager.AppSettings["_pathToProjectFiles"];
+            xeTempRootDirectory.InnerText = configuredTempFileFolder;
             xeRootElement.AppendChild(xebaseDirectory);
             xeRootElement.AppendChild(xeTempRootDirectory);
 
