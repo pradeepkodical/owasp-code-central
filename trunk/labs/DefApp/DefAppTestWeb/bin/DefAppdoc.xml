@@ -1,0 +1,1207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DefAppModules</name>
+    </assembly>
+    <members>
+        <member name="T:Owasp.DefApp.Exceptions.InvalidURLEncodingException">
+            <summary>
+            Invalid Urls In The String Throws This Exception
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Exceptions.ValidationException">
+            <summary>
+            The Validation Failures Are Handled Here
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Exceptions.ValidationException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Exceptions.ValidationException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Owasp.DefApp.Exceptions.RuleCreationFailureException">
+            <summary>
+            The Rule Creation Failures Are Handled Here
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Exceptions.FilterCreationException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Filters.Filter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Filters.Filter.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Utils.StreamFilters.MemoryFilter">
+            <summary>
+            Used To Manipulate The ViewState
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Utils.StreamFilters.MemoryFilter.#ctor(System.IO.Stream,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            The Main Constructor Of The Filter
+            </summary>
+            <param name="stream">The Stream To Be Used By The Filter</param>
+            <param name="table">The Changed ViewStates Storage</param>
+        </member>
+        <member name="M:Owasp.DefApp.Utils.StreamFilters.MemoryFilter.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Overrides The Method To Rewrite The ViewState With The Other Type ViewState
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="T:Owasp.DefApp.DefenceModules">
+            <summary>
+            The Main Application HttpModule To Be Used To Declare DefApp To The Web Application
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceModules.#ctor">
+            <summary>
+            The Default Constructor Of The DefenceModule
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceModules.Init(System.Web.HttpApplication)">
+            <summary>
+            Used To Initialize The DefApp reading the values from the web.config sections
+            </summary>
+            <param name="application">The HttpApplication which initializes the module</param>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceModules.parseConfigurations">
+            <summary>
+            Parses The Configurations From The Web.Config File
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceModules.Dispose">
+            <summary>
+            Disposes The Main Application
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Appenders.HttpAppender">
+            <summary>
+            Summary description for HttpAppender.
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Appenders.HttpAppender.#ctor">
+            <summary>
+            The Default Constructor For The HttpAppender Class
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Appenders.HttpAppender.#ctor(System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="arrays"></param>
+        </member>
+        <member name="M:Owasp.DefApp.Appenders.HttpAppender.#ctor(log4net.Layout.ILayout,System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="layout"></param>
+            <param name="arrays"></param>
+        </member>
+        <member name="M:Owasp.DefApp.Appenders.HttpAppender.Append(log4net.spi.LoggingEvent)">
+            <summary>
+            
+            </summary>
+            <param name="loggingEvent"></param>
+        </member>
+        <member name="P:Owasp.DefApp.Appenders.HttpAppender.Results">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.Appenders.HttpAppender.RequiresLayout">
+            <summary>
+            This appender requires a to be set.
+            </summary>
+            <value><c>true</c></value>
+        </member>
+        <member name="T:Owasp.DefApp.Logging.LogRequestData">
+            <summary>
+            Does The Logging For The Foundstone Validation Module
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Logging.LogRequestData.LogScreenOutput">
+            <summary>
+            Sets The ScreenOutput Control
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Logging.LogRequestData.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Logging.LogRequestData.addEntry(System.String)">
+            <summary>
+            Add The Entry To The Application Log
+            </summary>
+            <param name="entryToAdd">The Entry To Be Added</param>
+        </member>
+        <member name="M:Owasp.DefApp.Logging.LogRequestData.outputMessage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.MSValidator.ProcessRequest">
+            <summary>
+            Uses The Process Mechanics Introduced By Dinis Cruz
+            Whole of this module has been implemented by Dinis Cruz! Thx For His Contribution !
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.MSValidator.ProcessRequest.xmlFile_Validator_FormMappings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.MSValidator.ProcessRequest.hashtableWithValidator_FormMappings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.MSValidator.ProcessRequest.hashtableWithValidator_FormRules">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.MSValidator.ProcessRequest.xmlFile_Validator_Rules">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.MSValidator.ProcessRequest.pagesToProcess">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.MSValidator.ProcessRequest.ProcessRequest_Handler(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Owasp.DefApp.Plugins.DefAppPlugin">
+            <summary>
+            Declares The Plugin Interface That Should Be Implemented By The Plugins
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Plugins.DefAppPlugin.PluginName">
+            <summary>
+            The Given Name Of The Plugin
+            </summary>
+            <returns>The Plugin Name</returns>
+        </member>
+        <member name="M:Owasp.DefApp.Plugins.DefAppPlugin.DefinedFilters">
+            <summary>
+            The Given Name Of The Filters
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Plugins.DefAppPlugin.DefinedRules">
+            <summary>
+            Whole Rule Objects Implemented By The Plugin Object
+            </summary>
+            <returns>Whole Rule Objects</returns>
+        </member>
+        <member name="M:Owasp.DefApp.Plugins.DefAppPlugin.GetRuleByName(System.String)">
+            <summary>
+            Returns The Given Rule Named Rule Object
+            </summary>
+            <param name="rulename">Rule Name To Be Used</param>
+            <returns>The Found Rule Object</returns>
+        </member>
+        <member name="M:Owasp.DefApp.Plugins.DefAppPlugin.GetFilterByName(System.String)">
+            <summary>
+            Returns The Given Filter Using The Filter Name
+            </summary>
+            <param name="filtername"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Plugins.DefAppPlugin.XmlToPlugin(System.String,System.Int32,System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="AssemblyName"></param>
+            <param name="maxCount"></param>
+            <param name="ary"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Plugins.DefAppPlugin.XmlToPlugin(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="AssemblyName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.RuleList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.RuleList.ClearRuleList">
+            <summary>
+            Empties The RuleList
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.RuleList.#ctor">
+            <summary>
+            Default Constructor For The RuleList
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.RuleList.AddRule(Owasp.DefApp.Rules.Rule)">
+            <summary>
+            Adds The Given Rule Object To The RuleSet
+            </summary>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.RuleList.RemoveRule(Owasp.DefApp.Rules.Rule)">
+            <summary>
+            Removes The Given Rule Object From RuleSet
+            </summary>
+            <param name="rule">The Rule Object To Be Removed</param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.RuleList.RemoveRule(System.String)">
+            <summary>
+            Removes The Given Rule using RuleName From The List
+            </summary>
+            <param name="RuleName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.RuleList.CheckRule(System.String)">
+            <summary>
+            Checks The Object For The Whole Rule Collection
+            </summary>
+            <param name="requestToCheck"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.RuleList.GetAllRules">
+            <summary>
+            Returns Whole Defined Rules Of The Set
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Owasp.DefApp.Rules.RuleList.Condition">
+            <summary>
+            Returns The Condition Of The Rules List
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.RuleList.Conditions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.RuleList.Conditions.AND">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.RuleList.Conditions.OR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.Rule">
+            <summary>
+            The Default Rule Abstract Class
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Rule.RuleString">
+            <summary>
+            Returns The Rule Type As String
+            </summary>
+            <returns>Rule Type As String</returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Rule.ToString">
+            <summary>
+            Makes The String Representation Of The Object
+            </summary>
+            <returns>The String Representation Of The Object</returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Rule.XmlToRule(System.Xml.XmlNode,System.Collections.ArrayList)">
+            <summary>
+            Converts The Given XmlNode into a Rule
+            </summary>
+            <param name="node">The XmlNode To Be Converted To Rule</param>
+            <param name="ary">The Arraylist to be used to add the created rule</param>
+            <returns></returns>	
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Rule.Check(System.String)">
+            <summary>
+            The Abstract Method which will be implemented by the other classes
+            </summary>
+            <param name="values">The Values To Be Checked According To The Rule</param>
+            <returns>Returns The Result Of The Check</returns>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.log">
+            <summary>
+            The Protected Logger Class For The Abstract Rule Class
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Rule.#ctor(System.String,System.String,Owasp.DefApp.Rules.Rule.RuleTypes,Owasp.DefApp.Rules.Rule.ActionTypes)">
+            <summary>
+            The Protected Constructor Of The Abstract Rule Class
+            </summary>
+            <param name="name">The Name Of The Rule</param>
+            <param name="pattern">The Pattern To Be Used By The Rule</param>
+            <param name="type">The Type Of The Rule according to the Enum</param>
+            <param name="action">The Type Of The Actions according to the Enum</param>
+        </member>
+        <member name="P:Owasp.DefApp.Rules.Rule.Pattern">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.Rules.Rule.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.Rules.Rule.Type">
+            <summary>
+            Returns The Type Of The Rule Object
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.Rule.RuleTypes">
+            <summary>
+            Used For Declaring Rules In The Application
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.RuleTypes.None">
+            <summary>
+            None Rule Defined
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.RuleTypes.Textrule">
+            <summary>
+            Text Check Rule Defined
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.RuleTypes.Regexrule">
+            <summary>
+            Regular Expression Check Rule Defined
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.RuleTypes.NRegexrule">
+            <summary>
+            None Regular Expression Check Rule Defined
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.RuleTypes.IPRule">
+            <summary>
+            If The Request Matches Given Ip Number
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.RuleTypes.NIPRule">
+            <summary>
+            If The Request Do Not Matches Given Ip Number
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.Rule.ActionTypes">
+            <summary>
+            The Actions Enumarator Which Will Be Done When Rule is true
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.ActionTypes.None">
+            <summary>
+            No Action Will Be Taken
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.ActionTypes.Deny">
+            <summary>
+            The Request Will Be Denied
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.ActionTypes.Allow">
+            <summary>
+            The Request Will Be Allowed
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.ActionTypes.Warn">
+            <summary>
+            The Request Will Be Logged As Warning
+            If Warning Threshold Expires The Request Will Be Stopped
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.Rule.ActionTypes.Clean">
+            <summary>
+            The Request Will Be Cleaned From The Given Input Pattern
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.Textrule">
+            <summary>
+            Checks The Given Text in Whole Scopes
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Textrule.#ctor(System.String,System.String,Owasp.DefApp.Rules.Rule.ActionTypes)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="pattern"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Textrule.Check(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.NIPRule">
+            <summary>
+            Gets The Reserve Of The Given IpRule
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.IPRule">
+            <summary>
+            Ip Address Checking Rule which supports wild cat characters
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.IPRule.#ctor(System.String,System.String,Owasp.DefApp.Rules.Rule.ActionTypes)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="pattern"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.IPRule.Check(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.NIPRule.#ctor(System.String,System.String,Owasp.DefApp.Rules.Rule.ActionTypes)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="pattern"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.NIPRule.Check(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.Regexrule">
+            <summary>
+            The Regular Expression Rule
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Regexrule.#ctor(System.String,System.String,Owasp.DefApp.Rules.Rule.ActionTypes)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="pattern"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Regexrule.Check(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.NRegexrule">
+            <summary>
+            Gives Out The Negative Of The Given Regular Expression
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.NRegexrule.#ctor(System.String,System.String,Owasp.DefApp.Rules.Rule.ActionTypes)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="pattern"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.NRegexrule.Check(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.RequestToValidate">
+            <summary>
+            The Handler For Request Validation
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.RequestToValidate.HttpRequestToAnalyse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Rules.RequestToValidate.pageClassName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.RequestToValidate.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.ValidatorFunctions">
+            <summary>
+            Summary description for executeValidatorRuleClass.
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.ValidatorFunctions.RuleClass_RequiredFieldValidator(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="dataToAnalyse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.ValidatorFunctions.RuleClass_RegExValidator(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="dataToAnalyse"></param>
+            <param name="RegExToApply"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.ValidatorFunctions.RuleClass_RangeValidator(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="dataToAnalyse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.ValidatorFunctions.RuleClass_CustomValidator(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="dataToAnalyse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.ValidatorFunctions.RuleClass_ValidationSummary(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="dataToAnalyse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.ValidatorFunctions.RuleClass_SQLInjectionDetector(System.String)">
+            <summary>
+            Automaticaly Detects SqlInjection Attempts
+            </summary>
+            <param name="dataToAnalyse"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Owasp.DefApp.DefenceMainSettingHandler">
+            <summary>
+            Includes The Methods To Handle The Configuration Sections and
+            Create The Necessary Rule and Configuration Objects
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettingHandler.MemoryLogs">
+            <summary>
+            Static ArrayList Which Holds The Reference To The MemoryLogs
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettingHandler.#ctor">
+            <summary>
+            The Default Constructor For The Class
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettingHandler.OldCreate(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Old Version General Parser for Version v0.3
+            </summary>
+            <param name="parent"></param>
+            <param name="configContext"></param>
+            <param name="section"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettingHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Used By The Configuration Parser To Parser The Config Section
+            </summary>
+            <param name="parent"></param>
+            <param name="configContext"></param>
+            <param name="section"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Owasp.DefApp.Defapp">
+            <summary>
+            Used For The Custom NameValueSectionHandler 
+            Will be implemented later
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.DefSingle">
+            <summary>
+            Used For The Custom SingleTagSectionHandler
+            Will be implemented later
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.DefenceMainSettings">
+            <summary>
+            Holds Whole The Filtering and Action Objects. The Main Body of The Program
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettings.FS_HttpModule_XMLRulesDatabase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettings.FS_HttpModule_Validator_FormMappings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettings.FS_HttpModule_Validator_Rules">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettings.CheckValue(System.String,System.String@,Owasp.DefApp.Rules.Rule@)">
+            <summary>
+            Search the value in the denylist and reports the deny status
+            </summary>
+            <param name="values">The Value To Be Checked</param>
+            <param name="lasterror">The Last Occured Error</param>
+            <returns>True or False according to the situation</returns>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettings.IsRegEXEnabled">
+            <summary>
+            Sets The Regular Expression Engine
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettings.#ctor(Owasp.DefApp.SettingProcessor.ViewStateStatus)">
+            <summary>
+            The Default Constructor Of The DefenceApplication
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettings.ContentHandlingSection(System.Object,System.EventArgs)">
+            <summary>
+            Handles The Content Section Before The Output is send to the client
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettings.HeaderHandlingSection(System.Object,System.EventArgs)">
+            <summary>
+            Handles The Header Section Before The Output is send to the client
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettings.MainHandlingSection(System.Object,System.EventArgs)">
+            <summary>
+            The Custom MainHandlingSection, which will be used to handle The PreRequests
+            </summary>
+            <param name="sender">The HttpApplication</param>
+            <param name="e">The Sended Event Arguments</param>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettings.ErrorHandlingSection(System.Object,System.EventArgs)">
+            <summary>
+            The Custom ErrorHandler, which will be used to handle The PreRequests
+            </summary>
+            <param name="sender">The HttpApplication</param>
+            <param name="e">The Sended Event Arguments</param>	
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettings.EndHandlingSection(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Owasp.DefApp.DefenceMainSettings.ToString">
+            <summary>
+            Override For The Default To string Function
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Owasp.DefApp.DefenceMainSettings.DenyList">
+            <summary>
+            Gets and Sets The DenyList Attribute
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.DefenceMainSettings.PluginList">
+            <summary>
+            Gets and Sets The PluginList Attribute
+            </summary>		
+        </member>
+        <member name="P:Owasp.DefApp.DefenceMainSettings.IsFoundStoneActive">
+            <summary>
+            Set The FoundStone Module Activation Status
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.DefenceMainSettings.IsDebug">
+            <summary>
+            Gives If The Application Is In Debug Mode or Not
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.DefenceMainSettings.IsActive">
+            <summary>
+            Gets or Sets The Activation Of The DefApp
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.DefenceMainSettings.HandleForms">
+            <summary>
+            Sets and gets the HandleForms Parameters
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.DefenceMainSettings.HandleQueries">
+            <summary>
+            Sets and gets the HandleQueries Parameters
+            </summary>
+        </member>
+        <member name="P:Owasp.DefApp.DefenceMainSettings.HandleCookies">
+            <summary>
+            Sets and gets the HandleCookies Parameters
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.DefenceMainSettings.HandleEnumerator">
+            <summary>
+            The HandleEnumerator Type
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettings.HandleEnumerator.None">
+            <summary>
+            The Default None For Enumerators
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettings.HandleEnumerator.True">
+            <summary>
+            Enables The Setting Without Debugging
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettings.HandleEnumerator.False">
+            <summary>
+            Disables The Setting
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.DefenceMainSettings.HandleEnumerator.Debug">
+            <summary>
+            Used To Mention Debugging
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Rules.Tools.NormalizationTools">
+            <summary>
+            Normalization Tools which will be used for modsecurity support
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Tools.NormalizationTools.CompressSlashes(System.String)">
+            <summary>
+            Compress Slashes in the given String
+            </summary>
+            <param name="values">The String To Compress</param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Tools.NormalizationTools.ConvertBackSlashes(System.String)">
+            <summary>
+            Converts Slashes To Back Slashes
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Tools.NormalizationTools.RemoveSelfReferences(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Tools.NormalizationTools.ConvertToLowercase(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Tools.NormalizationTools.CompressWhitespace(System.String)">
+            <summary>
+            Compresses The Whitespaces To Single White Space
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Tools.NormalizationTools.DecodeURLEncodedUnicode(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Tools.NormalizationTools.DecodeURLEncoded(System.String)">
+            <summary>
+            Converts URL Encoded Strings To UnUrlEncoded
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Rules.Tools.NormalizationTools.DecodeEscaped(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyBinder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyBinder.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyBinder.BindToField(System.Reflection.BindingFlags,System.Reflection.FieldInfo[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="bindingAttr"></param>
+            <param name="match"></param>
+            <param name="value"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyBinder.BindToMethod(System.Reflection.BindingFlags,System.Reflection.MethodBase[],System.Object[]@,System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[],System.Object@)">
+            <summary>
+            
+            </summary>
+            <param name="bindingAttr"></param>
+            <param name="match"></param>
+            <param name="args"></param>
+            <param name="modifiers"></param>
+            <param name="culture"></param>
+            <param name="names"></param>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyBinder.ChangeType(System.Object,System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="myChangeType"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyBinder.ReorderArgumentArray(System.Object[]@,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:MyBinder.SelectMethod(System.Reflection.BindingFlags,System.Reflection.MethodBase[],System.Type[],System.Reflection.ParameterModifier[])">
+            <summary>
+            
+            </summary>
+            <param name="bindingAttr"></param>
+            <param name="match"></param>
+            <param name="types"></param>
+            <param name="modifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyBinder.SelectProperty(System.Reflection.BindingFlags,System.Reflection.PropertyInfo[],System.Type,System.Type[],System.Reflection.ParameterModifier[])">
+            <summary>
+            
+            </summary>
+            <param name="bindingAttr"></param>
+            <param name="match"></param>
+            <param name="returnType"></param>
+            <param name="indexes"></param>
+            <param name="modifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MyBinder.BinderState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MyClass1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MyClass1.myFieldB">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MyClass1.myFieldA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MyClass1.MyMethod(System.Int64,System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <param name="k"></param>
+        </member>
+        <member name="M:MyClass1.MyMethod(System.Int64,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+        </member>
+        <member name="T:Binder_Example">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Binder_Example.Main">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Convertors.OutputConvertors">
+            <summary>
+            General Purpose Convertors
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Convertors.OutputConvertors.HALFFULLWIDTHCLEAR">
+            <summary>
+            The Constant used to convert HALFFULLWIDTH Characters To Normal Characters
+            Valid Only For The Latin Alphabet
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Convertors.OutputConvertors.HALFFULLWIDTHBEGIN">
+            <summary>
+            The Begin of the HALFFULLWIDTH Characters as Integer Value
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.Convertors.OutputConvertors.HALFFULLWIDTHEND">
+            <summary>
+            The End of the HALFFULLWIDTH Characters as Integer Value
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.GetControl(System.Web.UI.WebControls.WebControl)">
+            <summary>
+            Renders The Given Control Into The String Output
+            </summary>
+            <param name="control">The WebControl To Be Converted</param>
+            <returns>The Rendered Result Of The Given Control</returns>
+            
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.ConvertToExcel(System.Web.HttpResponse,System.Web.UI.WebControls.WebControl)">
+            <summary>
+            Converts The Given ASP.Net Control Into Excel Response
+            </summary>
+            <param name="resp"></param>
+            <param name="control"></param>
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.HexToInt(System.Char)">
+            <summary>
+            Converts The Given Hexadecimal Character To Integer
+            </summary>
+            <param name="h"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.IntToHex(System.Int32)">
+            <summary>
+            Converts The Given Integer To Hexadecimal Representation
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.IsSafe(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.IsSafe(System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="ch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.ClearHalfFullWidth(System.String,System.Boolean)">
+            <summary>
+            Converts The Given String into none HALFFULLWIDTH String
+            </summary>
+            <param name="valueToClear">The Value To Be Cleared From The Input String</param>
+            <param name="isItActive">Tells If The Module Should Be Activated</param>
+            <returns>The Cleared String</returns>
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.ConvertCookiesToHttpOnly(System.Web.HttpCookieCollection)">
+            <summary>
+            Converts The Cookies In The Given Cookie Collection in to HttpCookies
+            </summary>
+            <param name="cookies">The Cookie Collection To Be Converted</param>
+        </member>
+        <member name="M:Owasp.DefApp.Convertors.OutputConvertors.ConvertCookieToHttpOnly(System.Web.HttpCookie)">
+            <summary>
+            Converts The Cookie To A HttpOnly Cookie
+            </summary>
+            <param name="cookie">The Cookie To Be Converted</param>		
+        </member>
+        <member name="T:Owasp.DefApp.Utility.GeneralUtilities">
+            <summary>
+            General Used Functions
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.GeneralUtilities.#ctor">
+            <summary>
+            The Private Constructor To Prevent Initialization
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.GeneralUtilities.makeNormalLog(System.Web.HttpRequest)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.GeneralUtilities.makeHTMLLog(System.Web.HttpRequest)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.GeneralUtilities.IsNull(System.Object)">
+            <summary>
+            Check if the given object is Null or Not Checking With The Parameters
+            </summary>
+            <param name="obj">The Object To Be Tested</param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.GeneralUtilities.CheckNode(System.Xml.XmlNode)">
+            <summary>
+            
+            </summary>
+            <param name="Node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.GeneralUtilities.CheckString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.GeneralUtilities.ToString(System.Object)">
+            <summary>
+            Used To Create A String For The Objects Properties
+            </summary>
+            <param name="Obj"></param>
+        </member>
+        <member name="T:Owasp.DefApp.Utility.ReflectionUtils">
+            <summary>
+            Utilities Used In The Reflection
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.ReflectionUtils.DetectNamespace(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.ReflectionUtils.MakePropertyStringArray(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.ReflectionUtils.makeTheQueryStringDataEditable">
+            <summary>
+            Makes The QueryString Collection Editable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.ReflectionUtils.makeTheRequestFormDataEditable">
+            <summary>
+            Makes The Request Collection Editable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.ReflectionUtils.GetMemberInformation">
+            <summary>
+            Gets The MemberInformation Of The Objects
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.ReflectionUtils.DoReflection">
+            <summary>
+            Does The Reflection
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.ReflectionUtils.IsComAllowed">
+            <summary>
+            Detects If Com Objects can be created
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Owasp.DefApp.Utility.ReflectionUtils.resolvePageClassName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owasp.DefApp.Utility.HttpAccess">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.Utility.ResourceUtilities">
+            <summary>
+            Includes Methods For The Resource File Access and Control
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.DefAppWebAdmin">
+            <summary>
+            Summary description for DefAppWebAdmin.
+            For each new user create a new application object
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefAppWebAdmin.#ctor(System.Web.SessionState.HttpSessionState)">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:Owasp.DefApp.DefAppWebAdmin.CloseDefAppWebAdmin">
+            <summary>
+            Ends The DefApp Session
+            </summary>
+        </member>
+        <member name="T:Owasp.DefApp.SettingProcessor.ViewStateStatus">
+            <summary>
+            Holds The Values For The ViewState Encoding
+            </summary>
+        </member>
+        <member name="F:Owasp.DefApp.SettingProcessor.ViewStateStatus.NVCollection">
+            <summary>
+            Holds The Viewstate Replacements Inside
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ModuleLibraries</name>
+    </assembly>
+    <members>
+        <member name="M:owasp.defapp.rules.Rule.RuleString">
+            <summary>
+            Returns The Rule Type As String
+            </summary>
+            <returns>Rule Type As String</returns>
+        </member>
+        <member name="M:owasp.defapp.rules.Rule.ToString">
+            <summary>
+            Makes The String Representation Of The Object
+            </summary>
+            <returns>The String Representation Of The Object</returns>
+        </member>
+        <member name="M:owasp.defapp.rules.Rule.XmlToRule(System.Xml.XmlNode,System.Collections.ArrayList)">
+            <summary>
+            Converts The Given XmlNode into a Rule
+            </summary>
+            <param name="node">The XmlNode To Be Converted To Rule</param>
+            <param name="ary">The Arraylist to be used to add the created rule</param>
+            <returns></returns>	
+        </member>
+        <member name="M:owasp.defapp.rules.Rule.Check(System.String)">
+            <summary>
+            The Abstract Method which will be implemented by the other classes
+            </summary>
+            <param name="values">The Values To Be Checked According To The Rule</param>
+            <returns>Returns The Result Of The Check</returns>
+        </member>
+        <member name="F:owasp.defapp.rules.Rule.log">
+            <summary>
+            The Protected Logger Class For The Abstract Rule Class
+            </summary>
+        </member>
+        <member name="M:owasp.defapp.rules.Rule.#ctor(System.String,System.String,owasp.defapp.rules.Rule.RuleTypes,owasp.defapp.rules.Rule.ActionTypes)">
+            <summary>
+            The Protected Constructor Of The Abstract Rule Class
+            </summary>
+            <param name="name">The Name Of The Rule</param>
+            <param name="pattern">The Pattern To Be Used By The Rule</param>
+            <param name="type">The Type Of The Rule according to the Enum</param>
+            <param name="action">The Type Of The Actions according to the Enum</param>
+        </member>
+        <member name="T:owasp.defapp.DefenceMainSettingHandler">
+            <summary>
+            The MainSettingHandler Used By The Application
+            </summary>
+        </member>
+        <member name="T:owasp.defapp.Defapp">
+            <summary>
+            Used For The Custom NameValueSectionHandler 
+            Will be implemented later
+            </summary>
+        </member>
+        <member name="T:owasp.defapp.DefSingle">
+            <summary>
+            Used For The Custom SingleTagSectionHandler
+            Will be implemented later
+            </summary>
+        </member>
+        <member name="T:owasp.defapp.DefenceMainSettings">
+            <summary>
+            Used As The Main Filtering Class
+            </summary>
+        </member>
+        <member name="M:owasp.defapp.DefenceMainSettings.CheckValue(System.String,System.String@)">
+            <summary>
+            Search the value in the denylist and reports the finding situation
+            </summary>
+            <param name="values">The Value To Be Checked</param>
+            <returns>True or False according to the situation</returns>
+        </member>
+        <member name="M:owasp.defapp.DefenceMainSettings.application_PreRequestHandlerExecute(System.Object,System.EventArgs)">
+            <summary>
+            The Custom PreRequestHandler, which will be used to handle The PreRequests
+            </summary>
+            <param name="sender">The HttpApplication</param>
+            <param name="e">The Sended Event Arguments</param>
+        </member>
+        <member name="M:owasp.defapp.DefenceMainSettings.application_HandleError(System.Object,System.EventArgs)">
+            <summary>
+            The Custom ErrorHandler, which will be used to handle The PreRequests
+            </summary>
+            <param name="sender">The HttpApplication</param>
+            <param name="e">The Sended Event Arguments</param>	
+        </member>
+        <member name="M:owasp.defapp.DefenceMainSettings.ToString">
+            <summary>
+            Override For The Default To String Function
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:owasp.defapp.DefenceMainSettings.DenyList">
+            <summary>
+            Gets and Sets The DenyList Attribute
+            </summary>
+        </member>
+        <member name="P:owasp.defapp.DefenceMainSettings.IsActive">
+            <summary>
+            Gets or Sets The Activation Of The DefApp
+            </summary>
+        </member>
+        <member name="P:owasp.defapp.DefenceMainSettings.HandleForms">
+            <summary>
+            Sets and gets the HandleForms Parameters
+            </summary>
+        </member>
+        <member name="P:owasp.defapp.DefenceMainSettings.HandleQueries">
+            <summary>
+            Sets and gets the HandleQueries Parameters
+            </summary>
+        </member>
+        <member name="P:owasp.defapp.DefenceMainSettings.HandleCookies">
+            <summary>
+            Sets and gets the HandleCookies Parameters
+            </summary>
+        </member>
+        <member name="M:owasp.defapp.DefenceModules.Init(System.Web.HttpApplication)">
+            <summary>
+            Used To Initialize The DefApp reading the values from the web.config sections
+            </summary>
+            <param name="application">The HttpApplication which initializes the module</param>
+        </member>
+        <member name="M:owasp.defapp.apptools.#ctor">
+            <summary>
+            Private Constructor Prevents The Construction Of The Object
+            </summary>	
+        </member>
+        <member name="M:owasp.defapp.apptools.CheckNode(System.Xml.XmlNode)">
+            <summary>
+            Checks The Given XmlNode For Null
+            </summary>
+            <param name="Node">The XmlNode To Check</param>
+            <returns>The Result of The Node Check</returns>
+        </member>
+        <member name="M:owasp.defapp.apptools.CheckString(System.String)">
+            <summary>
+            Checks The Given String For Null
+            </summary>
+            <param name="values">The String value to check</param>
+            <returns>The Result Of The String Check</returns>
+        </member>
+        <member name="T:owasp.defapp.LogEntry">
+            <summary>
+            Each entry in the Module Libraries Will Be Mapped Here
+            </summary>
+        </member>
+        <member name="T:owasp.defapp.DefAppWebAdmin">
+            <summary>
+            Summary description for DefAppWebAdmin.
+            For each new user create a new application object
+            </summary>
+        </member>
+        <member name="T:owasp.defapp.exceptions.ValidationException">
+            <summary>
+            Summary description for Exceptions.
+            </summary>
+        </member>
+    </members>
+</doc>
