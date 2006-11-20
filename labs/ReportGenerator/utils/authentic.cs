@@ -214,9 +214,10 @@ namespace Owasp.VulnReport.utils
                 // manipulations.
                 XmlDocument xdTmp = new XmlDocument();
                 xdTmp.Load(urlToXml);
-
+                
                 axTargetAuthenticObject.SchemaLoadObject.URL = urlToXsd;
                 axTargetAuthenticObject.DesignDataLoadObject.URL = urlToSps;
+                axTargetAuthenticObject.XMLDataLoadObject.URL = urlToXml;
                 axTargetAuthenticObject.XMLDataLoadObject.String = xdTmp.InnerXml;
                 axTargetAuthenticObject.XMLDataSaveUrl = urlToXml;
                 axTargetAuthenticObject.EntryHelpersEnabled = true;
@@ -313,10 +314,18 @@ namespace Owasp.VulnReport.utils
 		public static void authentic_InsertImage(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string strPathToImage)
 		{
 			authentic_InsertElementInCurrentSelectionPos(axTargetAuthenticObject,"img");
-            authentic_GotoNextTag(axTargetAuthenticObject);
-            //authentic_SelectNextTag(axTargetAuthenticObject);       // it now needs to be SelectNextTag due to changes in the 2007 Altova component
-            axTargetAuthenticObject.AuthenticView.Selection.Text = strPathToImage; 
-            // BUG: there is a problem with the automatic display of images in the 'Additional details' window which is the fact that the new 2007 control doesn't seem to accept relative paths (where the precious one did)            
+            if (axTargetAuthenticObject.AuthenticView.Selection.FirstXMLData.Name == "src")
+            {
+                axTargetAuthenticObject.AuthenticView.Selection.FirstXMLData.TextValue = strPathToImage;
+            }
+            else
+            {
+                authentic_SelectNextTag(axTargetAuthenticObject); // it now needs to be SelectNextTag due to changes in the 2007 Altova component
+                axTargetAuthenticObject.AuthenticView.Selection.Text = strPathToImage;
+            }
+            // BUG: there is a problem with the automatic display of images in the 'Additional details' window 
+            // which is the fact that the new 2007 control doesn't seem to accept relative paths (where the 
+            // precious one did)            
 		}
 
 	}

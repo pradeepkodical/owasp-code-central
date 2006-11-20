@@ -551,6 +551,8 @@ namespace Owasp.VulnReport
             ascxTargets.checkForUnSavedDataAndPromptForSave();
             ascxTargetTasks.checkForUnSavedDataAndPromptForSave();
             ascxFindings.checkForUnsavedData();
+            ascxFindings.axAuthentic_Findings.Dispose();
+            while (ascxFindings.axAuthentic_Findings.Disposing) { }
             ascxExecutiveSummary.checkForUnSavedDataAndPromptForSave();
         }
 
