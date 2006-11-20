@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ConfigCons ProjectFileFormatVersion="1.0">
+  <Project Name="DefAppTestWeb">
+    <Form FormName="GeneralMethods" />
+    <Form FormName="TestForm">
+      <Control ControlClass="System.Web.UI.WebControls.TextBox" ControlId="TextBox1">
+        <ValidationRule name="TestRule" />
+      </Control>
+      <Control ControlClass="System.Web.UI.WebControls.TextBox" ControlId="TextBox2">
+        <ValidationRule name="TestRule" />
+      </Control>
+    </Form>
+    <Form FormName="webuploadform">
+      <Control ControlClass="System.Web.UI.HtmlControls.HtmlInputFile" ControlId="File1" />
+    </Form>
+  </Project>
+</ConfigCons>

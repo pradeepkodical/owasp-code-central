@@ -1,0 +1,329 @@
+<Configuration>
+  <RecentFilesTracker>
+    <RecentFilesTracker>
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\SettingProcessor\DefApp.cs" offset="28636" line="249" column="0" />
+      <TrackedFile location="c:\inetpub\wwwroot\DefAppTestWeb\GeneralMethods.cs" offset="0" line="45" column="0" />
+      <TrackedFile location="c:\inetpub\wwwroot\DefAppTestWeb\AssemblyInfo.cs" offset="0" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\StingerRules\Stinger.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\StingerRules\RuleSet.cs" offset="0" line="451" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\StingerRules\ProblemList.cs" offset="0" line="56" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\StingerRules\ValidationProblem.cs" offset="0" line="145" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\StingerRules\FatalValidationException.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\StingerRules\StingerRule.cs" offset="0" line="484" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Utils\BindingUtils.cs" offset="0" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Utils\Utilities.cs" offset="0" line="76" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Rules\Rule.cs" offset="0" line="272" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\SettingProcessor\ViewStateStatus.cs" offset="0" line="11" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\AssemblyInfo.cs" offset="0" line="17" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\SettingProcessor\DefAppExtensionHandler.cs" offset="0" line="1" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Rules\ValidatorRuleClass.cs" offset="0" line="33" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Rules\RequestToValidate.cs" offset="0" line="174" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Logging\LogRequestData.cs" offset="0" line="-1" column="-1" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Logging\Appenders\HttpAppender.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Exceptions\Exceptions.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Plugins\Plugin.cs" offset="0" line="63" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Filters\StreamFilter.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\WebAdmin\DefAppWebAdmin.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\MSValidator\ProcessRequest.cs" offset="0" line="51" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Utils\Convertors.cs" offset="0" line="107" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\Rules\DefAppRules.cs" offset="0" line="19" column="0" />
+      <TrackedFile location="c:\inetpub\wwwroot\DefAppTestWeb\Web.config" offset="0" line="0" column="0" />
+      <TrackedFile location="C:\Documents and Settings\kkusmezer\Desktop\defapp\HttpModule\DefAppHttpModule.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="c:\inetpub\wwwroot\DefAppTestWeb\testforms.aspx.cs" offset="0" line="4" column="0" />
+    </RecentFilesTracker>
+  </RecentFilesTracker>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean />
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:string">
+      <Item value="Split" priority="0" />
+      <Item value="Equals" priority="0" />
+      <Item value="Substring" priority="0" />
+      <Item value="Replace" priority="2" />
+      <Item value="Length" priority="0" />
+      <Item value="IndexOf" priority="0" />
+      <Item value="StartsWith" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@">
+      <Item value="Domain" priority="1" />
+      <Item value="Close" priority="0" />
+      <Item value="Expires" priority="1" />
+      <Item value="Key" priority="0" />
+      <Item value="Path" priority="1" />
+      <Item value="getMessage" priority="0" />
+      <Item value="ViewStateStorage" priority="0" />
+      <Item value="Value" priority="1" />
+      <Item value="MoveNext" priority="1" />
+      <Item value="Length" priority="1" />
+      <Item value="DenyList" priority="0" />
+      <Item value="Name" priority="0" />
+      <Item value="Values" priority="3" />
+      <Item value="ReadToEnd" priority="1" />
+      <Item value="Secure" priority="1" />
+      <Item value="Replace" priority="1" />
+      <Item value="GetEnumerator" priority="1" />
+      <Item value="HasKeys" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:int">
+      <Item value="ToString" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.Directory">
+      <Item value="GetFiles" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpApplication">
+      <Item value="Response" priority="0" />
+      <Item value="ReleaseRequestState" priority="0" />
+      <Item value="EndRequest" priority="0" />
+      <Item value="PreSendRequestHeaders" priority="1" />
+      <Item value="PreSendRequestContent" priority="0" />
+      <Item value="Request" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.Label">
+      <Item value="Text" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpRequest">
+      <Item value="QueryString" priority="0" />
+      <Item value="Form" priority="0" />
+      <Item value="Cookies" priority="3" />
+      <Item value="Url" priority="0" />
+      <Item value="Filter" priority="0" />
+      <Item value="Headers" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.TextBox">
+      <Item value="Text" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Exception">
+      <Item value="Message" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.TextBox">
+      <Item value="Text" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO">
+      <Item value="Stream" priority="0" />
+      <Item value="StreamReader" priority="0" />
+      <Item value="Directory" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Collections">
+      <Item value="Hashtable" priority="0" />
+      <Item value="IDictionaryEnumerator" priority="0" />
+      <Item value="Specialized" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Resources">
+      <Item value="ResourceReader" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Owasp.DefApp.DefenceMainSettings">
+      <Item value="HeaderHandlingSection" priority="0" />
+      <Item value="Handleheaders" priority="0" />
+      <Item value="ContentHandlingSection" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Owasp.DefApp.Rules.Rule.ActionTypes">
+      <Item value="Clean" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Text.RegularExpressions">
+      <Item value="Regex" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.ICollection">
+      <Item value="GetEnumerator" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.HttpContext.Current">
+      <Item value="Response" priority="0" />
+      <Item value="Handler" priority="0" />
+      <Item value="Application" priority="0" />
+      <Item value="ApplicationInstance" priority="0" />
+      <Item value="Request" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Owasp.DefApp.SettingProcessor.ViewStateStatus">
+      <Item value="Active" priority="0" />
+      <Item value="method" priority="0" />
+      <Item value="ViewStateStorage" priority="1" />
+      <Item value="GetActiveMethod" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:string[]">
+      <Item value="Length" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Net.Cookie[]">
+      <Item value="Length" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Hashtable">
+      <Item value="Values" priority="0" />
+      <Item value="Add" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Owasp.DefApp.Convertors.OutputConvertors">
+      <Item value="DuplicateCookie" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Guid">
+      <Item value="NewGuid" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Owasp.DefApp.SettingProcessor.ViewStateStatus.Method">
+      <Item value="Format" priority="0" />
+      <Item value="GUID" priority="3" />
+      <Item value="MD5" priority="2" />
+      <Item value="SHA1" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataColumnCollection">
+      <Item value="Add" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataTable">
+      <Item value="NewRow" priority="0" />
+      <Item value="Rows" priority="1" />
+      <Item value="Columns" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Owasp.DefApp.SettingProcessor.ViewStateStatus">
+      <Item value="Method" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.HttpUtility">
+      <Item value="UrlDecode" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:log4net.ILog">
+      <Item value="Error" priority="0" />
+      <Item value="Debug" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Text">
+      <Item value="RegularExpressions" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.HttpContext">
+      <Item value="Current" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Owasp.DefApp.DefAppWebAdmin.log">
+      <Item value="Error" priority="0" />
+      <Item value="Info" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpCookie">
+      <Item value="Values" priority="3" />
+      <Item value="Name" priority="3" />
+      <Item value="Value" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.StreamWriter">
+      <Item value="Write" priority="0" />
+      <Item value="Flush" priority="0" />
+      <Item value="Close" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Reflection.Assembly">
+      <Item value="GetExecutingAssembly" priority="2" />
+      <Item value="GetAssembly" priority="1" />
+      <Item value="GetCallingAssembly" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Owasp.DefApp.Rules.Rule">
+      <Item value="CompareTo" priority="0" />
+      <Item value="Type" priority="0" />
+      <Item value="Name" priority="0" />
+      <Item value="Identification" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.XmlElement">
+      <Item value="Attributes" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpPostedFile">
+      <Item value="ContentLength" priority="1" />
+      <Item value="FileName" priority="1" />
+      <Item value="SaveAs" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Owasp.DefApp.DefAppWebAdmin._innerAssembly">
+      <Item value="GetFiles" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.StringBuilder">
+      <Item value="Replace" priority="0" />
+      <Item value="ToString" priority="2" />
+      <Item value="Append" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.ArrayList">
+      <Item value="Contains" priority="0" />
+      <Item value="Add" priority="1" />
+      <Item value="Count" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.XmlNodeList">
+      <Item value="Count" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.Security">
+      <Item value="FormsAuthentication" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpResponse">
+      <Item value="Write" priority="1" />
+      <Item value="Flush" priority="0" />
+      <Item value="Cookies" priority="0" />
+      <Item value="SuppressContent" priority="0" />
+      <Item value="Filter" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Uri">
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Owasp.DefApp.DefenceMainSettings">
+      <Item value="GetDefenceInstance" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.Security.FormsAuthentication">
+      <Item value="HashPasswordForStoringInConfigFile" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web">
+      <Item value="HttpServerUtility" priority="0" />
+      <Item value="IHttpModule" priority="0" />
+      <Item value="Security" priority="2" />
+      <Item value="Util" priority="1" />
+      <Item value="HttpUtility" priority="0" />
+      <Item value="UI" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.StreamReader">
+      <Item value="ReadToEnd" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:object[]">
+      <Item value="SetValue" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Xml.XmlAttributeCollection">
+      <Item value="Count" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.DataGrid">
+      <Item value="DataBind" priority="0" />
+      <Item value="DataSource" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpContext">
+      <Item value="Response" priority="2" />
+      <Item value="Handler" priority="1" />
+      <Item value="Request" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.Stream">
+      <Item value="Close" priority="0" />
+      <Item value="Flush" priority="1" />
+      <Item value="SetLength" priority="0" />
+      <Item value="Write" priority="1" />
+      <Item value="WriteByte" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.HtmlControls.HtmlInputFile">
+      <Item value="PostedFile" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System">
+      <Item value="Web" priority="0" />
+      <Item value="Text" priority="0" />
+      <Item value="Text.RegularExpressions" priority="0" />
+      <Item value="Collections" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.IList">
+      <Item value="Add" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpServerUtility">
+      <Item value="HtmlEncode" priority="0" />
+      <Item value="MapPath" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Collections.Specialized">
+      <Item value="NameValueCollection" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Specialized.NameValueCollection">
+      <Item value="GetEnumerator" priority="0" />
+      <Item value="GetKey" priority="0" />
+      <Item value="Clear" priority="0" />
+      <Item value="Count" priority="0" />
+      <Item value="Add" priority="0" />
+      <Item value="Remove" priority="0" />
+      <Item value="Get" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.IEnumerator">
+      <Item value="MoveNext" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpCookieCollection">
+      <Item value="GetKey" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataRow">
+      <Item value="ItemArray" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>

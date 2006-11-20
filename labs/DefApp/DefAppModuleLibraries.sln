@@ -1,0 +1,49 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefAppModuleLibraries", "DefAppModuleLibraries.csproj", "{0DADAFE5-7D8B-4313-BBF8-7AE51E7A5D7D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefAppTestWeb", "http://localhost/DefAppTestWeb/DefAppTestWeb.csproj", "{C301E128-ECE7-479D-A41F-B890C63B18E0}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsApplication1", "..\WindowsApplication1\WindowsApplication1.csproj", "{564AEC59-CDC2-47F4-AC9C-D3523992CF79}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefAppConfigurator", "..\DefAppConfigurator\DefAppConfigurator.csproj", "{B57FAE07-A9D9-4754-9C5C-FD1B15DCDEA9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{0DADAFE5-7D8B-4313-BBF8-7AE51E7A5D7D}.Debug.ActiveCfg = Debug|.NET
+		{0DADAFE5-7D8B-4313-BBF8-7AE51E7A5D7D}.Debug.Build.0 = Debug|.NET
+		{0DADAFE5-7D8B-4313-BBF8-7AE51E7A5D7D}.Release.ActiveCfg = Release|.NET
+		{0DADAFE5-7D8B-4313-BBF8-7AE51E7A5D7D}.Release.Build.0 = Release|.NET
+		{C301E128-ECE7-479D-A41F-B890C63B18E0}.Debug.ActiveCfg = Debug|.NET
+		{C301E128-ECE7-479D-A41F-B890C63B18E0}.Debug.Build.0 = Debug|.NET
+		{C301E128-ECE7-479D-A41F-B890C63B18E0}.Release.ActiveCfg = Release|.NET
+		{C301E128-ECE7-479D-A41F-B890C63B18E0}.Release.Build.0 = Release|.NET
+		{564AEC59-CDC2-47F4-AC9C-D3523992CF79}.Debug.ActiveCfg = Debug|.NET
+		{564AEC59-CDC2-47F4-AC9C-D3523992CF79}.Debug.Build.0 = Debug|.NET
+		{564AEC59-CDC2-47F4-AC9C-D3523992CF79}.Release.ActiveCfg = Release|.NET
+		{564AEC59-CDC2-47F4-AC9C-D3523992CF79}.Release.Build.0 = Release|.NET
+		{B57FAE07-A9D9-4754-9C5C-FD1B15DCDEA9}.Debug.ActiveCfg = Debug|.NET
+		{B57FAE07-A9D9-4754-9C5C-FD1B15DCDEA9}.Debug.Build.0 = Debug|.NET
+		{B57FAE07-A9D9-4754-9C5C-FD1B15DCDEA9}.Release.ActiveCfg = Release|.NET
+		{B57FAE07-A9D9-4754-9C5C-FD1B15DCDEA9}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
