@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "berettaWinForms", "berettaWinForms.csproj", "{954AFEF6-7AB8-4179-9842-2464A287F4DD}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spider", "thirdparty\spider\spider.csproj", "{118296C1-2BE0-4242-8A7E-88EBB35268A9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{954AFEF6-7AB8-4179-9842-2464A287F4DD}.Debug.ActiveCfg = Debug|.NET
+		{954AFEF6-7AB8-4179-9842-2464A287F4DD}.Debug.Build.0 = Debug|.NET
+		{954AFEF6-7AB8-4179-9842-2464A287F4DD}.Release.ActiveCfg = Release|.NET
+		{954AFEF6-7AB8-4179-9842-2464A287F4DD}.Release.Build.0 = Release|.NET
+		{118296C1-2BE0-4242-8A7E-88EBB35268A9}.Debug.ActiveCfg = Debug|.NET
+		{118296C1-2BE0-4242-8A7E-88EBB35268A9}.Debug.Build.0 = Debug|.NET
+		{118296C1-2BE0-4242-8A7E-88EBB35268A9}.Release.ActiveCfg = Release|.NET
+		{118296C1-2BE0-4242-8A7E-88EBB35268A9}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

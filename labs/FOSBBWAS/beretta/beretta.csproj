@@ -1,0 +1,920 @@
+<VisualStudioProject>
+    <CSHARP
+        ProjectType = "Web"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
+        ProjectGuid = "{72EC6C25-BD03-4112-81F0-67197FC1FC52}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "sourceControl"
+                AssemblyOriginatorKeyFile = ""
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "Library"
+                PreBuildEvent = ""
+                PostBuildEvent = ""
+                RootNamespace = "sourceControl"
+                RunPostBuildEvent = "OnBuildSuccess"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "DEBUG;TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "false"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+                <Config
+                    Name = "Release"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "TRACE"
+                    DocumentationFile = ""
+                    DebugSymbols = "false"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
+                    Optimize = "true"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
+                />
+                <Reference
+                    Name = "System.Web"
+                    AssemblyName = "System.Web"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.dll"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
+                <Reference
+                    Name = "System.Web.Services"
+                    AssemblyName = "System.Web.Services"
+                    HintPath = "..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.Services.dll"
+                />
+                <Reference
+                    Name = "Microsoft.Web.Services2"
+                    AssemblyName = "Microsoft.Web.Services2"
+                    HintPath = "..\..\..\Program Files\Microsoft WSE\v2.0\Microsoft.Web.Services2.dll"
+                    AssemblyFolderKey = "hklm\microsoft wse 2.0"
+                />
+                <Reference
+                    Name = "Microsoft.ApplicationBlocks.Data"
+                    AssemblyName = "Microsoft.ApplicationBlocks.Data"
+                    HintPath = "thirdparty\Microsoft.ApplicationBlocks.Data.dll"
+                />
+                <Reference
+                    Name = "devCafe.framework"
+                    Project = "{2542BB7D-FE4B-48FE-84C4-F1E570EC46A6}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "beretta.support"
+                    Project = "{D75B192E-3347-4AB8-A67A-DD6C3FBDCCE1}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "Microsoft.Web.UI.WebControls"
+                    AssemblyName = "Microsoft.Web.UI.WebControls"
+                    HintPath = "thirdparty\Microsoft.Web.UI.WebControls.dll"
+                />
+                <Reference
+                    Name = "spider"
+                    Project = "{118296C1-2BE0-4242-8A7E-88EBB35268A9}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+            </References>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "AssemblyInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "default.aspx"
+                    SubType = "Form"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "default.aspx.cs"
+                    DependentUpon = "default.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "default.aspx.resx"
+                    DependentUpon = "default.aspx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Global.asax"
+                    SubType = "Component"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Global.asax.cs"
+                    DependentUpon = "Global.asax"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Global.asax.resx"
+                    DependentUpon = "Global.asax.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Web.config"
+                    BuildAction = "Content"
+                />
+                <Folder RelPath = "common\css\" />
+                <File
+                    RelPath = "common\images\checkedOut.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\checkedOut.png"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\checkin.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\checkin.png"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\delete.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\exclusiveCheckOut.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\exclusiveCheckOut.png"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\file.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\file.png"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeDoc.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeGif.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeHTM.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeHTML.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeJpg.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeMp3.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypePDF.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypePNG.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeRpt.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeTxt.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeXls.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\fileTypeZip.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\folder.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\folder.png"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\greenTick.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\loginNav.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\logoffNav.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\map.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\printer.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\redCross.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\smallcube.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\starIcon.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\status0.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\status1.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\status2.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\status4.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\taskTickIcon.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\user.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "common\images\userGroup.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\about.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\about.ascx.cs"
+                    DependentUpon = "about.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\about.ascx.resx"
+                    DependentUpon = "about.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\analyzeForm.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\analyzeForm.ascx.cs"
+                    DependentUpon = "analyzeForm.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\analyzeForm.ascx.resx"
+                    DependentUpon = "analyzeForm.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\displayFormSubmission.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\displayFormSubmission.ascx.cs"
+                    DependentUpon = "displayFormSubmission.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\displayFormSubmission.ascx.resx"
+                    DependentUpon = "displayFormSubmission.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\encoding.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\encoding.ascx.cs"
+                    DependentUpon = "encoding.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\encoding.ascx.resx"
+                    DependentUpon = "encoding.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\ipEncoding.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\ipEncoding.ascx.cs"
+                    DependentUpon = "ipEncoding.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\ipEncoding.ascx.resx"
+                    DependentUpon = "ipEncoding.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\managePasswords.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\managePasswords.ascx.cs"
+                    DependentUpon = "managePasswords.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\managePasswords.ascx.resx"
+                    DependentUpon = "managePasswords.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\managePayloads.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\managePayloads.ascx.cs"
+                    DependentUpon = "managePayloads.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\managePayloads.ascx.resx"
+                    DependentUpon = "managePayloads.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\manageSessions.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\manageSessions.ascx.cs"
+                    DependentUpon = "manageSessions.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\manageSessions.ascx.resx"
+                    DependentUpon = "manageSessions.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\manageSignatures.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\manageSignatures.ascx.cs"
+                    DependentUpon = "manageSignatures.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\manageSignatures.ascx.resx"
+                    DependentUpon = "manageSignatures.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\manageUsernames.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\manageUsernames.ascx.cs"
+                    DependentUpon = "manageUsernames.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\manageUsernames.ascx.resx"
+                    DependentUpon = "manageUsernames.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\recordSession.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\recordSession.ascx.cs"
+                    DependentUpon = "recordSession.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\recordSession.ascx.resx"
+                    DependentUpon = "recordSession.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\selectPage.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\selectPage.ascx.cs"
+                    DependentUpon = "selectPage.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\selectPage.ascx.resx"
+                    DependentUpon = "selectPage.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\beretta\testPayload.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\beretta\testPayload.ascx.cs"
+                    DependentUpon = "testPayload.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\beretta\testPayload.ascx.resx"
+                    DependentUpon = "testPayload.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\changePassword.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\changePassword.ascx.cs"
+                    DependentUpon = "changePassword.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\changePassword.ascx.resx"
+                    DependentUpon = "changePassword.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\listItems.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\listItems.ascx.cs"
+                    DependentUpon = "listItems.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\listItems.ascx.resx"
+                    DependentUpon = "listItems.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\manageConfig.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\manageConfig.ascx.cs"
+                    DependentUpon = "manageConfig.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\manageConfig.ascx.resx"
+                    DependentUpon = "manageConfig.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\manageHosts.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\manageHosts.ascx.cs"
+                    DependentUpon = "manageHosts.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\manageHosts.ascx.resx"
+                    DependentUpon = "manageHosts.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\manageListGroups.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\manageListGroups.ascx.cs"
+                    DependentUpon = "manageListGroups.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\manageListGroups.ascx.resx"
+                    DependentUpon = "manageListGroups.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\manageModules.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\manageModules.ascx.cs"
+                    DependentUpon = "manageModules.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\manageModules.ascx.resx"
+                    DependentUpon = "manageModules.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\manageRoles.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\manageRoles.ascx.cs"
+                    DependentUpon = "manageRoles.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\manageRoles.ascx.resx"
+                    DependentUpon = "manageRoles.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\manageTabs.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\manageTabs.ascx.cs"
+                    DependentUpon = "manageTabs.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\manageTabs.ascx.resx"
+                    DependentUpon = "manageTabs.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\manageUsers.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\manageUsers.ascx.cs"
+                    DependentUpon = "manageUsers.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\manageUsers.ascx.resx"
+                    DependentUpon = "manageUsers.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\myDetails.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\myDetails.ascx.cs"
+                    DependentUpon = "myDetails.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\myDetails.ascx.resx"
+                    DependentUpon = "myDetails.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\noAccess.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\noAccess.ascx.cs"
+                    DependentUpon = "noAccess.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\noAccess.ascx.resx"
+                    DependentUpon = "noAccess.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\signIn.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\signIn.ascx.cs"
+                    DependentUpon = "signIn.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\signIn.ascx.resx"
+                    DependentUpon = "signIn.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\systemEvents.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\systemEvents.ascx.cs"
+                    DependentUpon = "systemEvents.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\systemEvents.ascx.resx"
+                    DependentUpon = "systemEvents.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "controls\framework\userDetail.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "controls\framework\userDetail.ascx.cs"
+                    DependentUpon = "userDetail.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "controls\framework\userDetail.ascx.resx"
+                    DependentUpon = "userDetail.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "docs\credits.txt"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "docs\licence.txt"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "docs\toDo.txt"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\beretta.css"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\layout.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\layout.ascx.cs"
+                    DependentUpon = "layout.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "layouts\beretta\layout.ascx.resx"
+                    DependentUpon = "layout.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\bkgrndfill.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\buttonSB.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\buttonselectedSB.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\hdrbkSB.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\hdrSB.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\leftcolbkgrndSB.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\smalllinkarrowSB.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\Thumbs.db"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "layouts\beretta\images\welcome.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\blank\layout.ascx"
+                    SubType = "UserControl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\blank\layout.ascx.cs"
+                    DependentUpon = "layout.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "layouts\blank\layout.ascx.resx"
+                    DependentUpon = "layout.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "layouts\blank\login.css"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\devcafe.css"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\layout.ascx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\layout.ascx.cs"
+                    DependentUpon = "layout.ascx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "layouts\default\layout.ascx.resx"
+                    DependentUpon = "layout.ascx.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "layouts\default\style.css"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\bkgrndfill.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\button.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\buttonselected.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\contentbkgrnd.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\hdr.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\hdrbk.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\leftcolbk.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\leftcolbkgrnd.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\loginbkgrnd.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\smalllinkarrow.gif"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "layouts\default\images\Untitled-1.psd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "layouts\default\images\welcome.gif"
+                    BuildAction = "Content"
+                />
+                <Folder RelPath = "output\" />
+                <Folder RelPath = "thirdparty\" />
+                <Folder
+                    RelPath = "Web References\"
+                    WebReferences = "TRUE"
+                />
+                <File
+                    RelPath = "xsl\beretta.xsl"
+                    BuildAction = "Content"
+                />
+            </Include>
+        </Files>
+    </CSHARP>
+</VisualStudioProject>
+
