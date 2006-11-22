@@ -28,6 +28,7 @@ namespace Owasp.VulnReport
         private utils.authentic authUtils = new utils.authentic();
         private Project currentProject = Project.GetProject();
         private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
+        private string strFindingsTemplatePluginPath;
 
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
@@ -60,6 +61,10 @@ namespace Owasp.VulnReport
 		private System.Windows.Forms.Button btRenameFinding;
         private System.Windows.Forms.TextBox txtRenameFinding;
         private AxSHDocVw.AxWebBrowser axWebBrowser_WindowsExplorer;
+        private TextBox txtTargetsFilter;
+        private Label label5;
+        private ComboBox cbFindingsTemplates;
+        private Label label6;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>		
@@ -107,11 +112,11 @@ namespace Owasp.VulnReport
             this.axAuthentic_Findings = new AxXMLSPYPLUGINLib.AxAuthentic();
             this.btSaveFinding = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbUnsavedData = new System.Windows.Forms.Label();
-            this.lblAssignIdWarning = new System.Windows.Forms.Label();
-            this.btAssignIdToFinding = new System.Windows.Forms.Button();
             this.lbNextIdToBeAssigned = new System.Windows.Forms.Label();
             this.lbNextIdLabel = new System.Windows.Forms.Label();
+            this.btAssignIdToFinding = new System.Windows.Forms.Button();
+            this.lblAssignIdWarning = new System.Windows.Forms.Label();
+            this.lbUnsavedData = new System.Windows.Forms.Label();
             this.lblFindingSaved = new System.Windows.Forms.Label();
             this.btDeleteSelectedFinding = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -129,6 +134,10 @@ namespace Owasp.VulnReport
             this.btRenameFinding = new System.Windows.Forms.Button();
             this.txtRenameFinding = new System.Windows.Forms.TextBox();
             this.axWebBrowser_WindowsExplorer = new AxSHDocVw.AxWebBrowser();
+            this.txtTargetsFilter = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbFindingsTemplates = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Findings)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -179,6 +188,7 @@ namespace Owasp.VulnReport
             this.lbTargetsInCurrentProject.Location = new System.Drawing.Point(14, 67);
             this.lbTargetsInCurrentProject.Name = "lbTargetsInCurrentProject";
             this.lbTargetsInCurrentProject.Size = new System.Drawing.Size(160, 56);
+            this.lbTargetsInCurrentProject.Sorted = true;
             this.lbTargetsInCurrentProject.TabIndex = 1;
             this.lbTargetsInCurrentProject.SelectedIndexChanged += new System.EventHandler(this.lbTargetsInCurrentProject_SelectedIndexChanged);
             // 
@@ -188,7 +198,7 @@ namespace Owasp.VulnReport
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.lbFindingsInCurrentTarget.Location = new System.Drawing.Point(14, 244);
             this.lbFindingsInCurrentTarget.Name = "lbFindingsInCurrentTarget";
-            this.lbFindingsInCurrentTarget.Size = new System.Drawing.Size(160, 121);
+            this.lbFindingsInCurrentTarget.Size = new System.Drawing.Size(160, 95);
             this.lbFindingsInCurrentTarget.TabIndex = 1;
             this.lbFindingsInCurrentTarget.SelectedIndexChanged += new System.EventHandler(this.lbFindingsInCurrentTarget_SelectedIndexChanged);
             // 
@@ -231,37 +241,6 @@ namespace Owasp.VulnReport
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
-            // lbUnsavedData
-            // 
-            this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedData.Location = new System.Drawing.Point(650, 4);
-            this.lbUnsavedData.Name = "lbUnsavedData";
-            this.lbUnsavedData.Size = new System.Drawing.Size(66, 37);
-            this.lbUnsavedData.TabIndex = 6;
-            this.lbUnsavedData.Text = "Unsaved Data";
-            this.lbUnsavedData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbUnsavedData.Visible = false;
-            // 
-            // lblAssignIdWarning
-            // 
-            this.lblAssignIdWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAssignIdWarning.Location = new System.Drawing.Point(7, 63);
-            this.lblAssignIdWarning.Name = "lblAssignIdWarning";
-            this.lblAssignIdWarning.Size = new System.Drawing.Size(155, 15);
-            this.lblAssignIdWarning.TabIndex = 7;
-            this.lblAssignIdWarning.Text = "* Data will be saved when clicked";
-            // 
-            // btAssignIdToFinding
-            // 
-            this.btAssignIdToFinding.Location = new System.Drawing.Point(7, 38);
-            this.btAssignIdToFinding.Name = "btAssignIdToFinding";
-            this.btAssignIdToFinding.Size = new System.Drawing.Size(125, 24);
-            this.btAssignIdToFinding.TabIndex = 4;
-            this.btAssignIdToFinding.Text = "Assign Id To Finding*";
-            this.btAssignIdToFinding.Click += new System.EventHandler(this.btAssignIdToFinding_Click);
-            // 
             // lbNextIdToBeAssigned
             // 
             this.lbNextIdToBeAssigned.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -284,6 +263,37 @@ namespace Owasp.VulnReport
             this.lbNextIdLabel.Text = "Next ID:";
             this.lbNextIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbNextIdLabel.Click += new System.EventHandler(this.lbNextIdLabel_Click);
+            // 
+            // btAssignIdToFinding
+            // 
+            this.btAssignIdToFinding.Location = new System.Drawing.Point(7, 38);
+            this.btAssignIdToFinding.Name = "btAssignIdToFinding";
+            this.btAssignIdToFinding.Size = new System.Drawing.Size(125, 24);
+            this.btAssignIdToFinding.TabIndex = 4;
+            this.btAssignIdToFinding.Text = "Assign Id To Finding*";
+            this.btAssignIdToFinding.Click += new System.EventHandler(this.btAssignIdToFinding_Click);
+            // 
+            // lblAssignIdWarning
+            // 
+            this.lblAssignIdWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAssignIdWarning.Location = new System.Drawing.Point(7, 63);
+            this.lblAssignIdWarning.Name = "lblAssignIdWarning";
+            this.lblAssignIdWarning.Size = new System.Drawing.Size(155, 15);
+            this.lblAssignIdWarning.TabIndex = 7;
+            this.lblAssignIdWarning.Text = "* Data will be saved when clicked";
+            // 
+            // lbUnsavedData
+            // 
+            this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
+            this.lbUnsavedData.Location = new System.Drawing.Point(650, 4);
+            this.lbUnsavedData.Name = "lbUnsavedData";
+            this.lbUnsavedData.Size = new System.Drawing.Size(66, 37);
+            this.lbUnsavedData.TabIndex = 6;
+            this.lbUnsavedData.Text = "Unsaved Data";
+            this.lbUnsavedData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbUnsavedData.Visible = false;
             // 
             // lblFindingSaved
             // 
@@ -311,11 +321,13 @@ namespace Owasp.VulnReport
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.cbFindingsTemplates);
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.btAddNewFinding);
             this.groupBox2.Controls.Add(this.txtNewFindingName);
-            this.groupBox2.Location = new System.Drawing.Point(13, 368);
+            this.groupBox2.Location = new System.Drawing.Point(13, 345);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(160, 40);
+            this.groupBox2.Size = new System.Drawing.Size(160, 63);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add Finding";
@@ -323,7 +335,7 @@ namespace Owasp.VulnReport
             // btAddNewFinding
             // 
             this.btAddNewFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btAddNewFinding.Location = new System.Drawing.Point(120, 16);
+            this.btAddNewFinding.Location = new System.Drawing.Point(119, 16);
             this.btAddNewFinding.Name = "btAddNewFinding";
             this.btAddNewFinding.Size = new System.Drawing.Size(34, 20);
             this.btAddNewFinding.TabIndex = 1;
@@ -333,7 +345,7 @@ namespace Owasp.VulnReport
             // txtNewFindingName
             // 
             this.txtNewFindingName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNewFindingName.Location = new System.Drawing.Point(4, 16);
+            this.txtNewFindingName.Location = new System.Drawing.Point(6, 16);
             this.txtNewFindingName.Name = "txtNewFindingName";
             this.txtNewFindingName.Size = new System.Drawing.Size(104, 20);
             this.txtNewFindingName.TabIndex = 0;
@@ -380,14 +392,14 @@ namespace Owasp.VulnReport
             this.axWebBrowser_Targets.Enabled = true;
             this.axWebBrowser_Targets.Location = new System.Drawing.Point(182, 43);
             this.axWebBrowser_Targets.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser_Targets.OcxState")));
-            this.axWebBrowser_Targets.Size = new System.Drawing.Size(323, 80);
+            this.axWebBrowser_Targets.Size = new System.Drawing.Size(464, 112);
             this.axWebBrowser_Targets.TabIndex = 17;
             // 
             // btReloadTargetsList
             // 
             this.btReloadTargetsList.Location = new System.Drawing.Point(14, 43);
             this.btReloadTargetsList.Name = "btReloadTargetsList";
-            this.btReloadTargetsList.Size = new System.Drawing.Size(160, 20);
+            this.btReloadTargetsList.Size = new System.Drawing.Size(94, 20);
             this.btReloadTargetsList.TabIndex = 16;
             this.btReloadTargetsList.Text = "Reload Target\'s List";
             this.btReloadTargetsList.Click += new System.EventHandler(this.btReloadTargetsList_Click);
@@ -456,8 +468,46 @@ namespace Owasp.VulnReport
             this.axWebBrowser_WindowsExplorer.TabIndex = 17;
             this.axWebBrowser_WindowsExplorer.Visible = false;
             // 
+            // txtTargetsFilter
+            // 
+            this.txtTargetsFilter.Location = new System.Drawing.Point(136, 43);
+            this.txtTargetsFilter.Name = "txtTargetsFilter";
+            this.txtTargetsFilter.Size = new System.Drawing.Size(37, 20);
+            this.txtTargetsFilter.TabIndex = 20;
+            this.txtTargetsFilter.Text = "*";
+            this.txtTargetsFilter.TextChanged += new System.EventHandler(this.txtTargetsFilter_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(107, 46);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Filter:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(4, 42);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Template:";
+            // 
+            // cbFindingsTemplates
+            // 
+            this.cbFindingsTemplates.FormattingEnabled = true;
+            this.cbFindingsTemplates.Location = new System.Drawing.Point(56, 39);
+            this.cbFindingsTemplates.Name = "cbFindingsTemplates";
+            this.cbFindingsTemplates.Size = new System.Drawing.Size(97, 21);
+            this.cbFindingsTemplates.TabIndex = 3;
+            this.cbFindingsTemplates.SelectedIndexChanged += new System.EventHandler(this.cbFindingsTemplates_SelectedIndexChanged);
+            // 
             // ascxFindings
             // 
+            this.Controls.Add(this.txtTargetsFilter);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btSaveFinding);
             this.Controls.Add(this.lbUnsavedData);
             this.Controls.Add(this.groupBox4);
@@ -492,6 +542,7 @@ namespace Owasp.VulnReport
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser_WindowsExplorer)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 
@@ -518,13 +569,26 @@ namespace Owasp.VulnReport
                 //  patch to solve weird VS bug
                 axWebBrowser_Targets.Width = 311;
                 axWebBrowser_Targets.Height = 70;
+                loadPlugInFindingsTemplates();
 			}
 		}
-		
+
+        private void loadPlugInFindingsTemplates()
+        { 
+            strFindingsTemplatePluginPath = Path.Combine(obpPaths.PluginsPath, "Template_Findings//xml"); // Hardcode this for now
+            if (true == Directory.Exists(strFindingsTemplatePluginPath))
+            {
+                utils.windowsForms.loadFilesIntoComboBox(cbFindingsTemplates, strFindingsTemplatePluginPath, "*.xml");
+                cbFindingsTemplates.Enabled = true;
+            }
+            else
+                cbFindingsTemplates.Enabled = false;
+        }
+
 		private void loadTargetsIntoListBox()
 		{
-			if (!this.DesignMode)
-				utils.windowsForms.loadDirectoriesIntoListBox(lbTargetsInCurrentProject,strFullPathToCurrentProject,"*");
+            if (!this.DesignMode)            
+                utils.windowsForms.loadDirectoriesIntoListBox(lbTargetsInCurrentProject, strFullPathToCurrentProject, txtTargetsFilter.Text);            
 		}
 
 		private void lbTargetsInCurrentProject_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -678,15 +742,15 @@ namespace Owasp.VulnReport
 		}
 		private void createNewFindingInSelectedTargetDirectory(string strNewFindingName)
 		{
-				string strPathToUnzipTemplateFindings = Path.GetFullPath(Path.Combine( upCurrentUser.TempDirectoryPath,
-                                                                                       Path.GetFileNameWithoutExtension(obpPaths.FindingsPath)));
-				string strPathToNewFindingsDirectoryWithTemplateDate =  Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strNewFindingName));
-				string strPathToNewFindingInTargetDirectory = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, txtNewFindingName.Text + ".zip"	));	
+			string strPathToUnzipTemplateFindings = Path.GetFullPath(Path.Combine( upCurrentUser.TempDirectoryPath,
+                                                                                   Path.GetFileNameWithoutExtension(obpPaths.FindingsPath)));
+			string strPathToNewFindingsDirectoryWithTemplateDate =  Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strNewFindingName));
+			string strPathToNewFindingInTargetDirectory = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, txtNewFindingName.Text + ".zip"	));	
 
-				utils.zip.unzipFile(obpPaths.FindingsPath,upCurrentUser.TempDirectoryPath);
-			
-				string strPathToTemplateXmlFile =  Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings,Path.GetFileNameWithoutExtension(obpPaths.FindingsPath) + ".xml"));
-				string strPathToNewFindingXmlFile = Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings, strNewFindingName+".xml"));
+			utils.zip.unzipFile(obpPaths.FindingsPath,upCurrentUser.TempDirectoryPath);
+		
+			string strPathToTemplateXmlFile =  Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings,Path.GetFileNameWithoutExtension(obpPaths.FindingsPath) + ".xml"));
+			string strPathToNewFindingXmlFile = Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings, strNewFindingName+".xml"));
             try
             {
 				File.Move(strPathToTemplateXmlFile,strPathToNewFindingXmlFile);
@@ -696,7 +760,7 @@ namespace Owasp.VulnReport
 			}
 			catch (IOException ex)
 			{
-				MessageBox.Show("An issue occured ttrying to create findings folder {0}", ex.Message);
+				MessageBox.Show(string.Format("An issue occured trying to create findings folder {0}"), ex.Message);
 			}
 		}
 		
@@ -912,6 +976,64 @@ namespace Owasp.VulnReport
             {
                 saveCurrentData();
             }
+        }
+
+        private void txtTargetsFilter_TextChanged(object sender, EventArgs e)
+        {
+            loadTargetsIntoListBox();
+            txtTargetsFilter.Focus();
+        }
+
+        private void cbFindingsTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (0 != cbFindingsTemplates.SelectedIndex)
+            {
+                // do nothing for now
+                createNewFindingFromTemplate(cbFindingsTemplates.Text);
+                lbTargetsInCurrentProject_SelectedIndexChanged(null, null);
+            }
+        }
+
+        private void createNewFindingFromTemplate(string strNewFindingName)
+        {
+            try
+            {
+                string strPathToTemplateXmlFileToUse = Path.Combine(strFindingsTemplatePluginPath, strNewFindingName);
+            //    string strPathToNewFindingsDirectoryWithTemplateName =  Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strNewFindingName));
+                string strPathToNewFindingInTargetDirectory = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, Path.GetFileNameWithoutExtension(strNewFindingName) + ".zip"));	
+                string strPathToNewFindingTempDirectory = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,Path.GetFileNameWithoutExtension(strNewFindingName)));
+                string strPathToNewFindingInTempDirectory = Path.GetFullPath(Path.Combine(strPathToNewFindingTempDirectory ,strNewFindingName));
+                Directory.CreateDirectory(strPathToNewFindingTempDirectory);
+                File.Copy(strPathToTemplateXmlFileToUse,strPathToNewFindingInTempDirectory);
+                utils.zip.zipFolder(strPathToNewFindingTempDirectory, strPathToNewFindingInTargetDirectory);
+                Directory.Delete(strPathToNewFindingTempDirectory, true);
+            }
+            catch (IOException ex)
+			{
+				MessageBox.Show(string.Format("An IOException occured trying to create this Finding: {0}", ex.Message));
+			}
+/*
+	string strPathToUnzipTemplateFindings = Path.GetFullPath(Path.Combine( upCurrentUser.TempDirectoryPath,
+                                                                                   Path.GetFileNameWithoutExtension(obpPaths.FindingsPath)));
+			string strPathToNewFindingsDirectoryWithTemplateDate =  Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strNewFindingName));
+			string strPathToNewFindingInTargetDirectory = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, txtNewFindingName.Text + ".zip"	));	
+
+			utils.zip.unzipFile(obpPaths.FindingsPath,upCurrentUser.TempDirectoryPath);
+		
+			string strPathToTemplateXmlFile =  Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings,Path.GetFileNameWithoutExtension(obpPaths.FindingsPath) + ".xml"));
+			string strPathToNewFindingXmlFile = Path.GetFullPath(Path.Combine(strPathToUnzipTemplateFindings, strNewFindingName+".xml"));
+            try
+            {
+				File.Move(strPathToTemplateXmlFile,strPathToNewFindingXmlFile);
+				Directory.Move(strPathToUnzipTemplateFindings,strPathToNewFindingsDirectoryWithTemplateDate);
+				utils.zip.zipFolder(strPathToNewFindingsDirectoryWithTemplateDate,strPathToNewFindingInTargetDirectory);
+				Directory.Delete(strPathToNewFindingsDirectoryWithTemplateDate,true);
+			}
+			catch (IOException ex)
+			{
+				MessageBox.Show(string.Format("An issue occured trying to create findings folder {0}"), ex.Message);
+			}
+            */
         }
 	}
 }
