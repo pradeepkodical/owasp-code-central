@@ -480,6 +480,15 @@
 		<match match="n1:img"/>
 		<children>
 			<newline/>
+			<image>
+				<properties border="0"/>
+				<target>
+					<xpath value="resolve-uri(@src, static-base-uri())"/>
+				</target>
+				<imagesource>
+					<xpath value="resolve-uri(@src, static-base-uri())"/>
+				</imagesource>
+			</image>
 			<text fixtext="[">
 				<styles font-family="verdana" font-size="9"/>
 			</text>
