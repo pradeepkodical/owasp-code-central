@@ -39,7 +39,7 @@ namespace Owasp.VulnReport.utils
 			{
 				cbToPopulate.Items.Clear();
 				foreach(DirectoryInfo diToProcess in new DirectoryInfo(strPathToDirectoriesToLoad).GetDirectories(strSearchPattern))
-					if (cbToPopulate.Name.Substring(0,1) != "_")						// hide all dirs that start with an _
+                    if (diToProcess.Name.Substring(0, 1) != "_" && diToProcess.Name != "CVS")						// hide all dirs that start with an _ or are CVS
 						cbToPopulate.Items.Add(diToProcess.Name);
 				if (cbToPopulate.Items.Count>0)
 					cbToPopulate.SelectedIndex=0;

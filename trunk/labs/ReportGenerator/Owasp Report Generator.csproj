@@ -28,7 +28,7 @@
     </UpgradeBackupLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\Application %28exe%29\v0.83\</OutputPath>
+    <OutputPath>..\Application %28exe%29\v0.86\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
