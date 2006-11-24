@@ -302,7 +302,9 @@ namespace Owasp.VulnReport.utils
 					writer.WriteLine(errorFormat, error.File, error.Number, error.Text, error.Line, error.Column);				
 				}
 				
-				throw new ApplicationException(writer.ToString());
+				//throw new ApplicationException(writer.ToString());            // We can't crash the app in these cases, we should just show a message to the user with the error that occured
+                // For now do it via Messagebox, but ideally the should go to txtDebugMessages Text Box
+                MessageBox.Show(writer.ToString());
 			}
 			#endregion
 		}

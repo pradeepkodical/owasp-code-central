@@ -39,6 +39,13 @@ namespace Owasp.VulnReport.ascx
         private Button btnTargetImport;
         private ToolTip targetToolTips = new ToolTip();
         private bool unsavedDataExists = false;
+        private WebBrowser axWebBrowserContentsOfProjectFolder;
+        private Label label2;
+        private GroupBox groupBox4;
+        private Label label4;
+        private TextBox txtTargetsSearchResults;
+        private TextBox txtTargetsSearchQuery;
+        private Label label5;
 
         private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
@@ -92,22 +99,29 @@ namespace Owasp.VulnReport.ascx
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btRenameTarget = new System.Windows.Forms.Button();
             this.txtRenameTarget = new System.Windows.Forms.TextBox();
+            this.axWebBrowserContentsOfProjectFolder = new System.Windows.Forms.WebBrowser();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTargetsSearchQuery = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTargetsSearchResults = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Targets)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // axAuthentic_Targets
             // 
-            this.axAuthentic_Targets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            this.axAuthentic_Targets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.axAuthentic_Targets.Enabled = true;
             this.axAuthentic_Targets.Location = new System.Drawing.Point(192, 66);
             this.axAuthentic_Targets.Name = "axAuthentic_Targets";
             this.axAuthentic_Targets.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_Targets.OcxState")));
-            this.axAuthentic_Targets.Size = new System.Drawing.Size(488, 275);
+            this.axAuthentic_Targets.Size = new System.Drawing.Size(488, 176);
             this.axAuthentic_Targets.TabIndex = 12;
             this.axAuthentic_Targets.SelectionChanged += new System.EventHandler(this.axAuthentic_Targets_SelectionChanged);
             // 
@@ -116,6 +130,7 @@ namespace Owasp.VulnReport.ascx
             this.lbTargetsInCurrentProject.Location = new System.Drawing.Point(15, 52);
             this.lbTargetsInCurrentProject.Name = "lbTargetsInCurrentProject";
             this.lbTargetsInCurrentProject.Size = new System.Drawing.Size(160, 147);
+            this.lbTargetsInCurrentProject.Sorted = true;
             this.lbTargetsInCurrentProject.TabIndex = 11;
             this.lbTargetsInCurrentProject.SelectedIndexChanged += new System.EventHandler(this.lbTargetsInCurrentProject_SelectedIndexChanged);
             // 
@@ -275,8 +290,84 @@ namespace Owasp.VulnReport.ascx
             this.txtRenameTarget.Size = new System.Drawing.Size(143, 20);
             this.txtRenameTarget.TabIndex = 0;
             // 
+            // axWebBrowserContentsOfProjectFolder
+            // 
+            this.axWebBrowserContentsOfProjectFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.axWebBrowserContentsOfProjectFolder.Location = new System.Drawing.Point(192, 270);
+            this.axWebBrowserContentsOfProjectFolder.MinimumSize = new System.Drawing.Size(20, 20);
+            this.axWebBrowserContentsOfProjectFolder.Name = "axWebBrowserContentsOfProjectFolder";
+            this.axWebBrowserContentsOfProjectFolder.Size = new System.Drawing.Size(488, 223);
+            this.axWebBrowserContentsOfProjectFolder.TabIndex = 16;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(189, 254);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Contents of Project folder";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox4.Controls.Add(this.txtTargetsSearchResults);
+            this.groupBox4.Controls.Add(this.txtTargetsSearchQuery);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Location = new System.Drawing.Point(16, 348);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(160, 145);
+            this.groupBox4.TabIndex = 18;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Search Targets";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(131, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "DNS name or IP to search";
+            // 
+            // txtTargetsSearchQuery
+            // 
+            this.txtTargetsSearchQuery.Location = new System.Drawing.Point(10, 37);
+            this.txtTargetsSearchQuery.Name = "txtTargetsSearchQuery";
+            this.txtTargetsSearchQuery.Size = new System.Drawing.Size(144, 20);
+            this.txtTargetsSearchQuery.TabIndex = 1;
+            this.txtTargetsSearchQuery.TextChanged += new System.EventHandler(this.txtTargetsSearchQuery_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Results";
+            // 
+            // txtTargetsSearchResults
+            // 
+            this.txtTargetsSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtTargetsSearchResults.Location = new System.Drawing.Point(10, 76);
+            this.txtTargetsSearchResults.Multiline = true;
+            this.txtTargetsSearchResults.Name = "txtTargetsSearchResults";
+            this.txtTargetsSearchResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtTargetsSearchResults.Size = new System.Drawing.Size(144, 63);
+            this.txtTargetsSearchResults.TabIndex = 1;
+            this.txtTargetsSearchResults.WordWrap = false;
+            // 
             // ascxTargets
             // 
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.axWebBrowserContentsOfProjectFolder);
             this.Controls.Add(this.btDeleteSelectedTarget);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.axAuthentic_Targets);
@@ -287,14 +378,17 @@ namespace Owasp.VulnReport.ascx
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Name = "ascxTargets";
-            this.Size = new System.Drawing.Size(688, 349);
+            this.Size = new System.Drawing.Size(688, 500);
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Targets)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		#endregion
@@ -326,6 +420,7 @@ namespace Owasp.VulnReport.ascx
 			strFullPathToCurrentProject = Path.GetFullPath(Path.Combine(strPathToProjectFiles, strCurrentProject));
 			lbCurrentProject.Text = strCurrentProject ;
 			loadTargetsIntoListBox();
+            axWebBrowserContentsOfProjectFolder.Navigate(strFullPathToCurrentProject);
 		}
 
 		private void loadTargetsIntoListBox()
@@ -563,6 +658,29 @@ namespace Owasp.VulnReport.ascx
             {
                 promptUserToSaveData();
             }
+        }
+
+        private void txtTargetsSearchQuery_TextChanged(object sender, EventArgs e)
+        {
+            txtTargetsSearchQuery.Enabled = false;
+            txtTargetsSearchResults.Text = "";
+            foreach (string strDirectory in Directory.GetDirectories(strFullPathToCurrentProject))
+            {
+                if ("_" != strDirectory.Substring(1, 1)) // ignore targets that start with _
+                { 
+                    string strTargetXmlFile = Path.Combine(strDirectory,Path.GetFileName(strDirectory)+".xml");
+                    if (true == File.Exists(strTargetXmlFile))
+                    { 
+                        string strFileContents = utils.files.GetFileContents(strTargetXmlFile);
+                        if (true == strFileContents.Contains(txtTargetsSearchQuery.Text))
+                        {
+                            txtTargetsSearchResults.Text = Path.GetFileName(strDirectory) + Environment.NewLine + txtTargetsSearchResults.Text;
+                        }
+                    }
+                    Application.DoEvents();
+                }
+            }
+            txtTargetsSearchQuery.Enabled = true; ;
         }
 	}
 }
