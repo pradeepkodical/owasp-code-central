@@ -66,4 +66,3 @@ obj\Release\Interop.XMLSPYPLUGINLib.dll
 obj\Release\AxInterop.XMLSPYPLUGINLib.dll
 obj\Debug\Interop.XMLSPYPLUGINLib.dll
 obj\Debug\AxInterop.XMLSPYPLUGINLib.dll
-..\Application (exe)\v0.86\Owasp Report Generator.pdb
