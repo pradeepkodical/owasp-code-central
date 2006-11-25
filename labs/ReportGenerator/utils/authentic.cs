@@ -179,9 +179,8 @@ namespace Owasp.VulnReport.utils
 									// when doing this transformation we also have to clean the clipboard so that we don't get two pastes
 									// we also check to see if the encoding changed anything
 									if (strClipboardString.IndexOf(Environment.NewLine)>-1 || strTransformedClipboardString != strClipboardString)
-									{										
-										strTransformedClipboardString  = strTransformedClipboardString.Replace(Environment.NewLine,"<newline />");
-										utils.authentic.setCurrentSelectedText(axActiveAuthenticControl,strTransformedClipboardString);
+									{
+                                        authentic.setCurrentSelectedText(axActiveAuthenticControl, strTransformedClipboardString);
 										utils.clipboard.SetClipboardData("");
 									}
 									else
@@ -238,7 +237,31 @@ namespace Owasp.VulnReport.utils
 
 		public static void setCurrentSelectedText(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string strTextToSet)
 		{
-			axTargetAuthenticObject.AuthenticView.Selection.Text = strTextToSet;
+            if (strTextToSet.IndexOf(Environment.NewLine) > -1)
+            {
+                string strText = strTextToSet;
+
+                while (strText.IndexOf(Environment.NewLine) > -1)
+                {
+                    int newlinePos = strText.IndexOf(Environment.NewLine);
+                    string tmp = strText.Substring(0, newlinePos);
+
+                    // We need to remove the newline as well from the current string
+                    strText = strText.Remove(0, newlinePos + Environment.NewLine.Length);
+                    setCurrentSelectedText(axTargetAuthenticObject, tmp);
+                    authentic.authentic_InsertNewLine(axTargetAuthenticObject);
+                }
+
+                // Add the last line 
+                if (!strText.Trim().Equals(""))
+                {
+                    setCurrentSelectedText(axTargetAuthenticObject, strText);
+                }
+            }
+            else
+            {
+                axTargetAuthenticObject.AuthenticView.Selection.Text = strTextToSet;
+            }
 		}
 
 		public static void authentic_InsertElementInCurrentSelectionPos(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject,string strElementToInsert)
