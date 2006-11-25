@@ -180,7 +180,7 @@ namespace Owasp.VulnReport.utils
 									// we also check to see if the encoding changed anything
 									if (strClipboardString.IndexOf(Environment.NewLine)>-1 || strTransformedClipboardString != strClipboardString)
 									{										
-										strTransformedClipboardString  = strTransformedClipboardString.Replace(Environment.NewLine,"<newline/>");
+										strTransformedClipboardString  = strTransformedClipboardString.Replace(Environment.NewLine,"<newline />");
 										utils.authentic.setCurrentSelectedText(axActiveAuthenticControl,strTransformedClipboardString);
 										utils.clipboard.SetClipboardData("");
 									}
@@ -246,13 +246,20 @@ namespace Owasp.VulnReport.utils
 			axTargetAuthenticObject.AuthenticView.Selection.PerformAction(XMLSPYPLUGINLib.SpyAuthenticActions.spyAuthenticInsertAt,strElementToInsert);
 		}
 
+        /// <summary>
+        /// Description: This method is used to add a newline into the specified authentic object
+        /// 
+        /// History: 
+        ///   11/25/2006 - Mike : Fixed a bug where the cursor wasn't going to the added newline
+        /// </summary>
+        /// <param name="axTargetAuthenticObject"></param>
 		public static void authentic_InsertNewLine(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject)
-		{			
-			authentic_InsertElementInCurrentSelectionPos(axTargetAuthenticObject,"newline");			
-            // BUG: This is not really working in the new Authentic version since the control lose focus
-            axTargetAuthenticObject.SelectionSet(axTargetAuthenticObject.CurrentSelection.End,0,null,0);                                    
-            //axTargetAuthenticObject.Focus
-
+		{
+            XMLSPYPLUGINLib.AuthenticRange ar = axTargetAuthenticObject.AuthenticView.Selection;
+			authentic_InsertElementInCurrentSelectionPos(axTargetAuthenticObject,"newline");
+            axTargetAuthenticObject.AuthenticView.Selection = ar;
+            axTargetAuthenticObject.AuthenticView.Selection =
+                axTargetAuthenticObject.AuthenticView.Selection.GotoNextCursorPosition();
 		}		
 
 		// This sets the cursor to the beggining on the next Tag
@@ -264,7 +271,7 @@ namespace Owasp.VulnReport.utils
 			axTargetAuthenticObject.SelectionSet(axTargetAuthenticObject.CurrentSelection.Start,0,null,0);
 		}
 
-		// This sets the cursor to the beggining on the previous Tag
+		// This sets the cursor to the begining on the previous Tag
 		public static void authentic_GotoPreviousTag(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject)
 		{
 			if(axTargetAuthenticObject.AuthenticView.Selection.SelectPrevious(XMLSPYPLUGINLib.SPYAuthenticElementKind.spyAuthenticTag) != null) {
@@ -322,10 +329,7 @@ namespace Owasp.VulnReport.utils
             {
                 authentic_SelectNextTag(axTargetAuthenticObject); // it now needs to be SelectNextTag due to changes in the 2007 Altova component
                 axTargetAuthenticObject.AuthenticView.Selection.Text = strPathToImage;
-            }
-            // BUG: there is a problem with the automatic display of images in the 'Additional details' window 
-            // which is the fact that the new 2007 control doesn't seem to accept relative paths (where the 
-            // precious one did)            
+            }          
 		}
 
 	}
