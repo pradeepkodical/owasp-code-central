@@ -237,6 +237,9 @@ namespace Owasp.VulnReport.utils
 
 		public static void setCurrentSelectedText(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string strTextToSet)
 		{
+            // We need to handle the case when the text that is being added 
+            // has newlines in it.  We want to preserve the user's formatting 
+            // when it goes onto the altova control.  
             if (strTextToSet.IndexOf(Environment.NewLine) > -1)
             {
                 string strText = strTextToSet;
@@ -253,8 +256,8 @@ namespace Owasp.VulnReport.utils
                 }
 
                 // Add the last line 
-                if (!strText.Trim().Equals(""))
-                {
+                if (!strText.Trim().Equals("")) 
+                { 
                     setCurrentSelectedText(axTargetAuthenticObject, strText);
                 }
             }
