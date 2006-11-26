@@ -938,7 +938,6 @@ namespace Owasp.VulnReport
             try
             {
                 string strPathToTemplateXmlFileToUse = Path.Combine(strFindingsTemplatePluginPath, strNewFindingName);
-            //    string strPathToNewFindingsDirectoryWithTemplateName =  Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strNewFindingName));
                 string strPathToNewFindingInTargetDirectory = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, Path.GetFileNameWithoutExtension(strNewFindingName) + ".zip"));	
                 string strPathToNewFindingTempDirectory = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,Path.GetFileNameWithoutExtension(strNewFindingName)));
                 string strPathToNewFindingInTempDirectory = Path.GetFullPath(Path.Combine(strPathToNewFindingTempDirectory ,strNewFindingName));
