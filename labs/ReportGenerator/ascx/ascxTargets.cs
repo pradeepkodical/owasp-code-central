@@ -102,10 +102,10 @@ namespace Owasp.VulnReport.ascx
             this.axWebBrowserContentsOfProjectFolder = new System.Windows.Forms.WebBrowser();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.txtTargetsSearchResults = new System.Windows.Forms.TextBox();
             this.txtTargetsSearchQuery = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtTargetsSearchResults = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Targets)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -121,7 +121,7 @@ namespace Owasp.VulnReport.ascx
             this.axAuthentic_Targets.Location = new System.Drawing.Point(192, 66);
             this.axAuthentic_Targets.Name = "axAuthentic_Targets";
             this.axAuthentic_Targets.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_Targets.OcxState")));
-            this.axAuthentic_Targets.Size = new System.Drawing.Size(488, 176);
+            this.axAuthentic_Targets.Size = new System.Drawing.Size(488, 192);
             this.axAuthentic_Targets.TabIndex = 12;
             this.axAuthentic_Targets.SelectionChanged += new System.EventHandler(this.axAuthentic_Targets_SelectionChanged);
             // 
@@ -325,14 +325,17 @@ namespace Owasp.VulnReport.ascx
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Search Targets";
             // 
-            // label4
+            // txtTargetsSearchResults
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "DNS name or IP to search";
+            this.txtTargetsSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtTargetsSearchResults.Location = new System.Drawing.Point(10, 76);
+            this.txtTargetsSearchResults.Multiline = true;
+            this.txtTargetsSearchResults.Name = "txtTargetsSearchResults";
+            this.txtTargetsSearchResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtTargetsSearchResults.Size = new System.Drawing.Size(144, 63);
+            this.txtTargetsSearchResults.TabIndex = 1;
+            this.txtTargetsSearchResults.WordWrap = false;
             // 
             // txtTargetsSearchQuery
             // 
@@ -351,17 +354,14 @@ namespace Owasp.VulnReport.ascx
             this.label5.TabIndex = 0;
             this.label5.Text = "Results";
             // 
-            // txtTargetsSearchResults
+            // label4
             // 
-            this.txtTargetsSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtTargetsSearchResults.Location = new System.Drawing.Point(10, 76);
-            this.txtTargetsSearchResults.Multiline = true;
-            this.txtTargetsSearchResults.Name = "txtTargetsSearchResults";
-            this.txtTargetsSearchResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtTargetsSearchResults.Size = new System.Drawing.Size(144, 63);
-            this.txtTargetsSearchResults.TabIndex = 1;
-            this.txtTargetsSearchResults.WordWrap = false;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(131, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "DNS name or IP to search";
             // 
             // ascxTargets
             // 
