@@ -1,223 +1,328 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<structure version="3" schemafile="C:\_ABN\Owasp - VulnReport\V-Drive\Application (exe)\v0.80\VulnReport_Files\xsd\projectXsd.xsd" workingxmlfile="C:\_ABN\Owasp - VulnReport\U-Drive\AAAA_dinis Test\AAAA_dinis Test.xml" templatexmlfile="" xsltversion="2" encodinghtml="UTF-8" encodingrtf="ISO-8859-1" encodingpdf="UTF-8">
-	<nspair prefix="xs" uri="http://www.w3.org/2001/XMLSchema"/>
-	<nspair prefix="n1" uri="vuln_report"/>
-	<template>
-		<match overwrittenxslmatch="/"/>
+<structure version="4" encodinghtml="UTF-8" encodingrtf="ISO-8859-1" encodingpdf="UTF-8">
+	<schemasources>
+		<namespaces>
+			<nspair prefix="n1" uri="vuln_report"/>
+		</namespaces>
+		<schemasources>
+			<xsdschemasource name="$XML" main="1" schemafile="../xsd/projectXsd.xsd">
+				<xmltablesupport/>
+				<textstateicons/>
+			</xsdschemasource>
+		</schemasources>
+	</schemasources>
+	<parameters/>
+	<scripts>
+		<javascript name="javascript"/>
+	</scripts>
+	<globalstyles/>
+	<parts>
+		<editorproperties/>
+		<properties/>
+		<styles/>
 		<children>
-			<template>
-				<match match="n1:Project"/>
+			<globaltemplate match="/">
+				<editorproperties/>
+				<properties/>
+				<styles/>
 				<children>
-					<template>
-						<match match="n1:ExecutiveSummary"/>
+					<template match="$XML">
+						<editorproperties elementstodisplay="1"/>
+						<properties/>
+						<styles/>
 						<children>
-							<newline/>
-							<table>
-								<properties border="0" width="100%"/>
+							<template match="n1:Project">
+								<editorproperties elementstodisplay="1"/>
+								<properties/>
+								<styles/>
 								<children>
-									<tablebody>
+									<template match="n1:ExecutiveSummary">
+										<editorproperties elementstodisplay="1"/>
+										<properties/>
+										<styles/>
 										<children>
-											<tablerow>
-												<children>
-													<tablecol>
-														<properties width="122"/>
-														<children>
-															<text fixtext="Document Title">
-																<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
-															</text>
-														</children>
-													</tablecol>
-													<tablecol>
-														<styles background-color="#E4E4E4"/>
-														<children>
-															<template>
-																<match match="n1:title"/>
-																<children>
-																	<xpath allchildren="1">
-																		<styles font-family="Verdana" font-size="smaller"/>
-																	</xpath>
-																</children>
-															</template>
-														</children>
-													</tablecol>
-												</children>
-											</tablerow>
-											<tablerow>
-												<children>
-													<tablecol>
-														<properties width="122"/>
-														<children>
-															<text fixtext="Document Subtitle">
-																<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
-															</text>
-														</children>
-													</tablecol>
-													<tablecol>
-														<styles background-color="#E4E4E4"/>
-														<children>
-															<template>
-																<match match="n1:subtitle"/>
-																<children>
-																	<xpath allchildren="1">
-																		<styles font-family="Verdana" font-size="smaller"/>
-																	</xpath>
-																</children>
-															</template>
-														</children>
-													</tablecol>
-												</children>
-											</tablerow>
-										</children>
-									</tablebody>
-								</children>
-							</table>
-							<newline/>
-							<table>
-								<properties border="0" width="100%"/>
-								<children>
-									<tablebody>
-										<children>
-											<tablerow>
-												<children>
-													<tablecol>
-														<children>
-															<template>
-																<match match="n1:level1"/>
-																<children>
-																	<table>
-																		<properties border="0" width="100%"/>
-																		<children>
-																			<tablebody>
-																				<children>
-																					<tablerow>
-																						<children>
-																							<tablecol>
-																								<styles background-color="#E4E4E4"/>
-																								<children>
-																									<template>
-																										<match match="@name"/>
-																										<children>
-																											<xpath allchildren="1">
-																												<styles font-family="Verdana" font-size="larger" font-weight="bold"/>
-																											</xpath>
-																										</children>
-																									</template>
-																								</children>
-																							</tablecol>
-																						</children>
-																					</tablerow>
-																				</children>
-																			</tablebody>
-																		</children>
-																	</table>
-																	<template>
-																		<match match="n1:level2"/>
-																		<children>
-																			<newline/>
-																			<table>
-																				<properties border="0" width="100%"/>
-																				<children>
-																					<tablebody>
-																						<children>
-																							<tablerow>
-																								<children>
-																									<tablecol>
-																										<styles background-color="#E4E4E4"/>
-																										<children>
-																											<template>
-																												<match match="@name"/>
-																												<children>
-																													<xpath allchildren="1">
-																														<styles font-family="Verdana" font-size="small" font-weight="bold"/>
-																													</xpath>
-																												</children>
-																											</template>
-																											<newline/>
-																											<newline/>
-																											<xpath allchildren="1">
-																												<styles font-family="Verdana" font-size="smaller"/>
-																											</xpath>
-																											<newline/>
-																										</children>
-																									</tablecol>
-																								</children>
-																							</tablerow>
-																						</children>
-																					</tablebody>
-																				</children>
-																			</table>
-																		</children>
-																	</template>
-																	<newline/>
-																</children>
-															</template>
-														</children>
-													</tablecol>
-												</children>
-											</tablerow>
-										</children>
-									</tablebody>
-								</children>
-							</table>
-						</children>
-					</template>
-				</children>
-			</template>
-			<newline/>
-			<newline/>
-		</children>
-	</template>
-	<template>
-		<match match="n1:ExecutiveSummary"/>
-		<children>
-			<xpath allchildren="1"/>
-		</children>
-	</template>
-	<template>
-		<match match="n1:b"/>
-		<children>
-			<xpath allchildren="1">
-				<styles font-family="Verdana" font-size="x-small" font-weight="bold"/>
-			</xpath>
-		</children>
-	</template>
-	<template>
-		<match match="n1:level3"/>
-		<children>
-			<table>
-				<properties border="0" cellpadding="10" cellspacing="0" width="100%"/>
-				<children>
-					<tablebody>
-						<children>
-							<tablerow>
-								<children>
-									<tablecol>
-										<children>
+											<newline>
+												<editorproperties/>
+												<properties/>
+												<styles/>
+												<children/>
+											</newline>
 											<table>
-												<properties border="0" cellpadding="0" cellspacing="0" width="100%"/>
+												<editorproperties/>
+												<properties border="0" width="100%"/>
+												<styles/>
 												<children>
 													<tablebody>
+														<editorproperties/>
+														<properties/>
+														<styles/>
 														<children>
 															<tablerow>
+																<editorproperties/>
+																<properties/>
+																<styles/>
 																<children>
-																	<tablecol>
-																		<styles background-color="#F0F0F0"/>
+																	<tablecell>
+																		<editorproperties/>
+																		<properties width="122"/>
+																		<styles/>
 																		<children>
-																			<template>
-																				<match match="@name"/>
-																				<children>
-																					<xpath allchildren="1">
-																						<styles font-family="Verdana" font-size="xx-small" font-weight="bold"/>
-																					</xpath>
-																				</children>
-																			</template>
-																			<newline/>
-																			<xpath allchildren="1">
-																				<styles font-family="Verdana" font-size="xx-small"/>
-																			</xpath>
-																			<newline/>
+																			<text fixtext="Document Title">
+																				<editorproperties/>
+																				<properties/>
+																				<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
+																				<children/>
+																			</text>
 																		</children>
-																	</tablecol>
+																	</tablecell>
+																	<tablecell>
+																		<editorproperties/>
+																		<properties/>
+																		<styles background-color="#E4E4E4"/>
+																		<children>
+																			<template match="n1:title">
+																				<editorproperties elementstodisplay="1"/>
+																				<properties/>
+																				<styles/>
+																				<children>
+																					<content>
+																						<editorproperties/>
+																						<properties/>
+																						<styles font-family="Verdana" font-size="smaller"/>
+																						<children/>
+																						<addvalidations/>
+																						<format datatype="string"/>
+																					</content>
+																				</children>
+																				<addvalidations/>
+																				<sort/>
+																			</template>
+																		</children>
+																	</tablecell>
+																</children>
+															</tablerow>
+															<tablerow>
+																<editorproperties/>
+																<properties/>
+																<styles/>
+																<children>
+																	<tablecell>
+																		<editorproperties/>
+																		<properties width="122"/>
+																		<styles/>
+																		<children>
+																			<text fixtext="Document Subtitle">
+																				<editorproperties/>
+																				<properties/>
+																				<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
+																				<children/>
+																			</text>
+																		</children>
+																	</tablecell>
+																	<tablecell>
+																		<editorproperties/>
+																		<properties/>
+																		<styles background-color="#E4E4E4"/>
+																		<children>
+																			<template match="n1:subtitle">
+																				<editorproperties elementstodisplay="1"/>
+																				<properties/>
+																				<styles/>
+																				<children>
+																					<content>
+																						<editorproperties/>
+																						<properties/>
+																						<styles font-family="Verdana" font-size="smaller"/>
+																						<children/>
+																						<addvalidations/>
+																						<format datatype="string"/>
+																					</content>
+																				</children>
+																				<addvalidations/>
+																				<sort/>
+																			</template>
+																		</children>
+																	</tablecell>
+																</children>
+															</tablerow>
+														</children>
+													</tablebody>
+												</children>
+											</table>
+											<newline>
+												<editorproperties/>
+												<properties/>
+												<styles/>
+												<children/>
+											</newline>
+											<table>
+												<editorproperties/>
+												<properties border="0" width="100%"/>
+												<styles/>
+												<children>
+													<tablebody>
+														<editorproperties/>
+														<properties/>
+														<styles/>
+														<children>
+															<tablerow>
+																<editorproperties/>
+																<properties/>
+																<styles/>
+																<children>
+																	<tablecell>
+																		<editorproperties/>
+																		<properties/>
+																		<styles/>
+																		<children>
+																			<template match="n1:level1">
+																				<editorproperties elementstodisplay="1"/>
+																				<properties/>
+																				<styles/>
+																				<children>
+																					<table>
+																						<editorproperties/>
+																						<properties border="0" width="100%"/>
+																						<styles/>
+																						<children>
+																							<tablebody>
+																								<editorproperties/>
+																								<properties/>
+																								<styles/>
+																								<children>
+																									<tablerow>
+																										<editorproperties/>
+																										<properties/>
+																										<styles/>
+																										<children>
+																											<tablecell>
+																												<editorproperties/>
+																												<properties/>
+																												<styles background-color="#E4E4E4"/>
+																												<children>
+																													<template match="@name">
+																														<editorproperties elementstodisplay="1"/>
+																														<properties/>
+																														<styles/>
+																														<children>
+																															<content>
+																																<editorproperties/>
+																																<properties/>
+																																<styles font-family="Verdana" font-size="larger" font-weight="bold"/>
+																																<children/>
+																																<addvalidations/>
+																																<format datatype="string"/>
+																															</content>
+																														</children>
+																														<addvalidations/>
+																														<sort/>
+																													</template>
+																												</children>
+																											</tablecell>
+																										</children>
+																									</tablerow>
+																								</children>
+																							</tablebody>
+																						</children>
+																					</table>
+																					<template match="n1:level2">
+																						<editorproperties elementstodisplay="1"/>
+																						<properties/>
+																						<styles/>
+																						<children>
+																							<newline>
+																								<editorproperties/>
+																								<properties/>
+																								<styles/>
+																								<children/>
+																							</newline>
+																							<table>
+																								<editorproperties/>
+																								<properties border="0" width="100%"/>
+																								<styles/>
+																								<children>
+																									<tablebody>
+																										<editorproperties/>
+																										<properties/>
+																										<styles/>
+																										<children>
+																											<tablerow>
+																												<editorproperties/>
+																												<properties/>
+																												<styles/>
+																												<children>
+																													<tablecell>
+																														<editorproperties/>
+																														<properties/>
+																														<styles background-color="#E4E4E4"/>
+																														<children>
+																															<template match="@name">
+																																<editorproperties elementstodisplay="1"/>
+																																<properties/>
+																																<styles/>
+																																<children>
+																																	<content>
+																																		<editorproperties/>
+																																		<properties/>
+																																		<styles font-family="Verdana" font-size="small" font-weight="bold"/>
+																																		<children/>
+																																		<addvalidations/>
+																																		<format datatype="string"/>
+																																	</content>
+																																</children>
+																																<addvalidations/>
+																																<sort/>
+																															</template>
+																															<newline>
+																																<editorproperties/>
+																																<properties/>
+																																<styles/>
+																																<children/>
+																															</newline>
+																															<newline>
+																																<editorproperties/>
+																																<properties/>
+																																<styles/>
+																																<children/>
+																															</newline>
+																															<content>
+																																<editorproperties/>
+																																<properties/>
+																																<styles font-family="Verdana" font-size="smaller"/>
+																																<children/>
+																																<addvalidations/>
+																																<format/>
+																															</content>
+																															<newline>
+																																<editorproperties/>
+																																<properties/>
+																																<styles/>
+																																<children/>
+																															</newline>
+																														</children>
+																													</tablecell>
+																												</children>
+																											</tablerow>
+																										</children>
+																									</tablebody>
+																								</children>
+																							</table>
+																						</children>
+																						<addvalidations/>
+																						<sort/>
+																					</template>
+																					<newline>
+																						<editorproperties/>
+																						<properties/>
+																						<styles/>
+																						<children/>
+																					</newline>
+																				</children>
+																				<addvalidations/>
+																				<sort/>
+																			</template>
+																		</children>
+																	</tablecell>
 																</children>
 															</tablerow>
 														</children>
@@ -225,103 +330,402 @@
 												</children>
 											</table>
 										</children>
-									</tablecol>
+										<addvalidations/>
+										<sort/>
+									</template>
 								</children>
-							</tablerow>
+								<addvalidations/>
+								<sort/>
+							</template>
+							<newline>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+							</newline>
+							<newline>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+							</newline>
 						</children>
-					</tablebody>
+						<addvalidations/>
+						<sort/>
+					</template>
 				</children>
-			</table>
-		</children>
-	</template>
-	<template>
-		<match match="n1:newline"/>
-		<children>
-			<xpath allchildren="1"/>
-			<newline/>
-		</children>
-	</template>
-	<template>
-		<match match="n1:rating"/>
-		<children>
-			<newline/>
-			<newline/>
-			<table>
-				<properties border="1" border-collapse="collapse" cellpadding="0" cellspacing="0" width="100%"/>
+			</globaltemplate>
+			<globaltemplate match="n1:ExecutiveSummary">
+				<editorproperties/>
+				<properties/>
+				<styles/>
 				<children>
-					<tablebody>
+					<template match="n1:ExecutiveSummary">
+						<editorproperties elementstodisplay="1"/>
+						<properties/>
+						<styles/>
 						<children>
-							<tablerow>
-								<children>
-									<tablecol>
-										<styles background-color="#E4E4E4"/>
-										<properties width="207"/>
-										<children>
-											<template>
-												<match match="n1:ratingValue"/>
-												<children>
-													<xpath allchildren="1">
-														<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
-													</xpath>
-												</children>
-											</template>
-										</children>
-									</tablecol>
-									<tablecol>
-										<styles background-color="#E4E4E4"/>
-										<properties width="437"/>
-										<children>
-											<template>
-												<match match="n1:ratingComment"/>
-												<children>
-													<xpath allchildren="1">
-														<styles font-family="Verdana" font-size="smaller"/>
-													</xpath>
-												</children>
-											</template>
-										</children>
-									</tablecol>
-								</children>
-							</tablerow>
+							<content>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+								<addvalidations/>
+								<format/>
+							</content>
 						</children>
-					</tablebody>
+						<addvalidations/>
+						<sort/>
+					</template>
 				</children>
-			</table>
-			<newline/>
-		</children>
-	</template>
-	<template>
-		<match match="n1:table_with_3_columns"/>
-		<children>
-			<text fixtext="asdasd"/>
-		</children>
-	</template>
-	<template>
-		<match match="n1:ul"/>
-		<children>
-			<newline/>
-			<template>
-				<match match="n1:li"/>
+			</globaltemplate>
+			<globaltemplate match="n1:b">
+				<editorproperties/>
+				<properties/>
+				<styles/>
 				<children>
-					<list dynamic="1">
-						<styles margin-bottom="0" margin-top="0"/>
-						<properties start="1" type="disc"/>
+					<template match="n1:b">
+						<editorproperties elementstodisplay="1"/>
+						<properties/>
+						<styles/>
 						<children>
-							<listrow>
-								<children>
-									<xpath allchildren="1">
-										<styles font-family="Verdana" font-size="xx-small"/>
-									</xpath>
-								</children>
-							</listrow>
+							<content>
+								<editorproperties/>
+								<properties/>
+								<styles font-family="Verdana" font-size="x-small" font-weight="bold"/>
+								<children/>
+								<addvalidations/>
+								<format datatype="anyType"/>
+							</content>
 						</children>
-					</list>
+						<addvalidations/>
+						<sort/>
+					</template>
 				</children>
-			</template>
-			<newline/>
+			</globaltemplate>
+			<globaltemplate match="n1:level3">
+				<editorproperties/>
+				<properties/>
+				<styles/>
+				<children>
+					<template match="n1:level3">
+						<editorproperties elementstodisplay="1"/>
+						<properties/>
+						<styles/>
+						<children>
+							<table>
+								<editorproperties/>
+								<properties border="0" cellpadding="10" cellspacing="0" width="100%"/>
+								<styles/>
+								<children>
+									<tablebody>
+										<editorproperties/>
+										<properties/>
+										<styles/>
+										<children>
+											<tablerow>
+												<editorproperties/>
+												<properties/>
+												<styles/>
+												<children>
+													<tablecell>
+														<editorproperties/>
+														<properties/>
+														<styles/>
+														<children>
+															<table>
+																<editorproperties/>
+																<properties border="0" cellpadding="0" cellspacing="0" width="100%"/>
+																<styles/>
+																<children>
+																	<tablebody>
+																		<editorproperties/>
+																		<properties/>
+																		<styles/>
+																		<children>
+																			<tablerow>
+																				<editorproperties/>
+																				<properties/>
+																				<styles/>
+																				<children>
+																					<tablecell>
+																						<editorproperties/>
+																						<properties/>
+																						<styles background-color="#F0F0F0"/>
+																						<children>
+																							<template match="@name">
+																								<editorproperties elementstodisplay="1"/>
+																								<properties/>
+																								<styles/>
+																								<children>
+																									<content>
+																										<editorproperties/>
+																										<properties/>
+																										<styles font-family="Verdana" font-size="xx-small" font-weight="bold"/>
+																										<children/>
+																										<addvalidations/>
+																										<format datatype="string"/>
+																									</content>
+																								</children>
+																								<addvalidations/>
+																								<sort/>
+																							</template>
+																							<newline>
+																								<editorproperties/>
+																								<properties/>
+																								<styles/>
+																								<children/>
+																							</newline>
+																							<content>
+																								<editorproperties/>
+																								<properties/>
+																								<styles font-family="Verdana" font-size="xx-small"/>
+																								<children/>
+																								<addvalidations/>
+																								<format/>
+																							</content>
+																							<newline>
+																								<editorproperties/>
+																								<properties/>
+																								<styles/>
+																								<children/>
+																							</newline>
+																						</children>
+																					</tablecell>
+																				</children>
+																			</tablerow>
+																		</children>
+																	</tablebody>
+																</children>
+															</table>
+														</children>
+													</tablecell>
+												</children>
+											</tablerow>
+										</children>
+									</tablebody>
+								</children>
+							</table>
+						</children>
+						<addvalidations/>
+						<sort/>
+					</template>
+				</children>
+			</globaltemplate>
+			<globaltemplate match="n1:newline">
+				<editorproperties/>
+				<properties/>
+				<styles/>
+				<children>
+					<template match="n1:newline">
+						<editorproperties elementstodisplay="1"/>
+						<properties/>
+						<styles/>
+						<children>
+							<content>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+								<addvalidations/>
+								<format datatype="anyType"/>
+							</content>
+							<newline>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+							</newline>
+						</children>
+						<addvalidations/>
+						<sort/>
+					</template>
+				</children>
+			</globaltemplate>
+			<globaltemplate match="n1:rating">
+				<editorproperties/>
+				<properties/>
+				<styles/>
+				<children>
+					<template match="n1:rating">
+						<editorproperties elementstodisplay="1"/>
+						<properties/>
+						<styles/>
+						<children>
+							<newline>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+							</newline>
+							<newline>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+							</newline>
+							<table>
+								<editorproperties/>
+								<properties border="1" border-collapse="collapse" cellpadding="0" cellspacing="0" width="100%"/>
+								<styles/>
+								<children>
+									<tablebody>
+										<editorproperties/>
+										<properties/>
+										<styles/>
+										<children>
+											<tablerow>
+												<editorproperties/>
+												<properties/>
+												<styles/>
+												<children>
+													<tablecell>
+														<editorproperties/>
+														<properties width="207"/>
+														<styles background-color="#E4E4E4"/>
+														<children>
+															<template match="n1:ratingValue">
+																<editorproperties elementstodisplay="1"/>
+																<properties/>
+																<styles/>
+																<children>
+																	<content>
+																		<editorproperties/>
+																		<properties/>
+																		<styles font-family="Verdana" font-size="smaller" font-weight="bold"/>
+																		<children/>
+																		<addvalidations/>
+																		<format datatype="string"/>
+																	</content>
+																</children>
+																<addvalidations/>
+																<sort/>
+															</template>
+														</children>
+													</tablecell>
+													<tablecell>
+														<editorproperties/>
+														<properties width="437"/>
+														<styles background-color="#E4E4E4"/>
+														<children>
+															<template match="n1:ratingComment">
+																<editorproperties elementstodisplay="1"/>
+																<properties/>
+																<styles/>
+																<children>
+																	<content>
+																		<editorproperties/>
+																		<properties/>
+																		<styles font-family="Verdana" font-size="smaller"/>
+																		<children/>
+																		<addvalidations/>
+																		<format datatype="string"/>
+																	</content>
+																</children>
+																<addvalidations/>
+																<sort/>
+															</template>
+														</children>
+													</tablecell>
+												</children>
+											</tablerow>
+										</children>
+									</tablebody>
+								</children>
+							</table>
+							<newline>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+							</newline>
+						</children>
+						<addvalidations/>
+						<sort/>
+					</template>
+				</children>
+			</globaltemplate>
+			<globaltemplate match="n1:table_with_3_columns">
+				<editorproperties/>
+				<properties/>
+				<styles/>
+				<children>
+					<template match="n1:table_with_3_columns">
+						<editorproperties elementstodisplay="1"/>
+						<properties/>
+						<styles/>
+						<children>
+							<text fixtext="asdasd">
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+							</text>
+						</children>
+						<addvalidations/>
+						<sort/>
+					</template>
+				</children>
+			</globaltemplate>
+			<globaltemplate match="n1:ul">
+				<editorproperties/>
+				<properties/>
+				<styles/>
+				<children>
+					<template match="n1:ul">
+						<editorproperties elementstodisplay="1"/>
+						<properties/>
+						<styles/>
+						<children>
+							<newline>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children/>
+							</newline>
+							<list>
+								<editorproperties/>
+								<properties/>
+								<styles/>
+								<children>
+									<template match="n1:li">
+										<editorproperties elementstodisplay="1"/>
+										<properties/>
+										<styles/>
+										<children>
+											<listrow>
+												<editorproperties/>
+												<properties/>
+												<styles/>
+												<children>
+													<content>
+														<editorproperties/>
+														<properties/>
+														<styles/>
+														<children/>
+														<addvalidations/>
+														<format datatype="string"/>
+													</content>
+												</children>
+											</listrow>
+										</children>
+										<addvalidations/>
+										<sort/>
+									</template>
+								</children>
+							</list>
+						</children>
+						<addvalidations/>
+						<sort/>
+					</template>
+				</children>
+			</globaltemplate>
 		</children>
-	</template>
+	</parts>
 	<pagelayout>
+		<editorproperties/>
 		<properties pagemultiplepages="0" pagenumberingformat="1" pagenumberingstartat="1" paperheight="11in" papermarginbottom="0.79in" papermarginleft="0.6in" papermarginright="0.6in" papermargintop="0.79in" paperwidth="8.5in"/>
+		<styles/>
+		<children/>
 	</pagelayout>
 </structure>
