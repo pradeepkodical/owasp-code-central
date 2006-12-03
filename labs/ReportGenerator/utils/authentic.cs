@@ -207,17 +207,10 @@ namespace Owasp.VulnReport.utils
             if (File.Exists(urlToXml) &&
                 File.Exists(urlToXsd) &&
                 File.Exists(urlToSps))
-            {
-                // We load the xml file into a xml document because altova keeps the 
-                // handle open for the xml file causing problems when we try and do other file
-                // manipulations.
-                XmlDocument xdTmp = new XmlDocument();
-                xdTmp.Load(urlToXml);
-                
+            {               
                 axTargetAuthenticObject.SchemaLoadObject.URL = urlToXsd;
                 axTargetAuthenticObject.DesignDataLoadObject.URL = urlToSps;
                 axTargetAuthenticObject.XMLDataLoadObject.URL = urlToXml;
-                axTargetAuthenticObject.XMLDataLoadObject.String = xdTmp.InnerXml;
                 axTargetAuthenticObject.XMLDataSaveUrl = urlToXml;
                 axTargetAuthenticObject.EntryHelpersEnabled = true;
                 axTargetAuthenticObject.AllowDrop = true;
