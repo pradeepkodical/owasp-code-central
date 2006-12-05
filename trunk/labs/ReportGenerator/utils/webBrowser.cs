@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 
 namespace Owasp.VulnReport.utils
 {
@@ -17,5 +18,10 @@ namespace Owasp.VulnReport.utils
 			object ipNull = IntPtr.Zero;
 			axWBtoUse.Navigate(strPathToFileToOpen,ref ipNull,ref ipNull,ref ipNull,ref ipNull);
 		}
+
+        public static void openFileInWebBrowser(WebBrowser wbWBtoUse, string strPathToFileToOpen)
+        {            
+            wbWBtoUse.Navigate(strPathToFileToOpen);
+        }
 	}
 }

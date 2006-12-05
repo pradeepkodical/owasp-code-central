@@ -40,12 +40,16 @@ namespace Owasp.VulnReport.ascx
         private ToolTip targetToolTips = new ToolTip();
         private bool unsavedDataExists = false;
         private WebBrowser axWebBrowserContentsOfProjectFolder;
-        private Label label2;
         private GroupBox groupBox4;
         private Label label4;
         private TextBox txtTargetsSearchResults;
         private TextBox txtTargetsSearchQuery;
         private Label label5;
+        private CheckBox cbIgnoreStatusFlag;
+        private TextBox txtDefaultTargetType;
+        private Label label6;
+        private CheckBox cbShowContentOfProjectFolder;
+        private GroupBox groupBox5;
 
         private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
@@ -91,26 +95,31 @@ namespace Owasp.VulnReport.ascx
             this.btAddNewTarget = new System.Windows.Forms.Button();
             this.txtNewTargetName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnTargetImport = new System.Windows.Forms.Button();
             this.lblTargetsSaved = new System.Windows.Forms.Label();
             this.btSaveTarget = new System.Windows.Forms.Button();
             this.lbUnsavedData = new System.Windows.Forms.Label();
+            this.btnTargetImport = new System.Windows.Forms.Button();
             this.btDeleteSelectedTarget = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btRenameTarget = new System.Windows.Forms.Button();
             this.txtRenameTarget = new System.Windows.Forms.TextBox();
             this.axWebBrowserContentsOfProjectFolder = new System.Windows.Forms.WebBrowser();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtTargetsSearchResults = new System.Windows.Forms.TextBox();
             this.txtTargetsSearchQuery = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.cbIgnoreStatusFlag = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDefaultTargetType = new System.Windows.Forms.TextBox();
+            this.cbShowContentOfProjectFolder = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Targets)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // axAuthentic_Targets
@@ -121,7 +130,7 @@ namespace Owasp.VulnReport.ascx
             this.axAuthentic_Targets.Location = new System.Drawing.Point(192, 66);
             this.axAuthentic_Targets.Name = "axAuthentic_Targets";
             this.axAuthentic_Targets.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_Targets.OcxState")));
-            this.axAuthentic_Targets.Size = new System.Drawing.Size(488, 192);
+            this.axAuthentic_Targets.Size = new System.Drawing.Size(623, 192);
             this.axAuthentic_Targets.TabIndex = 12;
             this.axAuthentic_Targets.SelectionChanged += new System.EventHandler(this.axAuthentic_Targets_SelectionChanged);
             // 
@@ -192,35 +201,22 @@ namespace Owasp.VulnReport.ascx
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnTargetImport);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.lblTargetsSaved);
             this.groupBox1.Controls.Add(this.btSaveTarget);
             this.groupBox1.Controls.Add(this.lbUnsavedData);
-            this.groupBox1.Location = new System.Drawing.Point(192, 19);
+            this.groupBox1.Location = new System.Drawing.Point(632, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(488, 44);
+            this.groupBox1.Size = new System.Drawing.Size(183, 59);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
-            // 
-            // btnTargetImport
-            // 
-            this.btnTargetImport.AccessibleDescription = "Imports in targets from nmap Xml output";
-            this.btnTargetImport.Location = new System.Drawing.Point(7, 14);
-            this.btnTargetImport.Name = "btnTargetImport";
-            this.btnTargetImport.Size = new System.Drawing.Size(97, 23);
-            this.btnTargetImport.TabIndex = 12;
-            this.btnTargetImport.Text = "Import Targets";
-            this.btnTargetImport.UseVisualStyleBackColor = true;
-            this.btnTargetImport.Click += new System.EventHandler(this.btnTargetImport_Click);
             // 
             // lblTargetsSaved
             // 
             this.lblTargetsSaved.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTargetsSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTargetsSaved.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblTargetsSaved.Location = new System.Drawing.Point(272, 13);
+            this.lblTargetsSaved.Location = new System.Drawing.Point(15, 24);
             this.lblTargetsSaved.Name = "lblTargetsSaved";
             this.lblTargetsSaved.Size = new System.Drawing.Size(56, 24);
             this.lblTargetsSaved.TabIndex = 9;
@@ -232,7 +228,7 @@ namespace Owasp.VulnReport.ascx
             // 
             this.btSaveTarget.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveTarget.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSaveTarget.Location = new System.Drawing.Point(382, 14);
+            this.btSaveTarget.Location = new System.Drawing.Point(77, 22);
             this.btSaveTarget.Name = "btSaveTarget";
             this.btSaveTarget.Size = new System.Drawing.Size(98, 21);
             this.btSaveTarget.TabIndex = 3;
@@ -244,13 +240,24 @@ namespace Owasp.VulnReport.ascx
             this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedData.Location = new System.Drawing.Point(266, 12);
+            this.lbUnsavedData.Location = new System.Drawing.Point(9, 20);
             this.lbUnsavedData.Name = "lbUnsavedData";
             this.lbUnsavedData.Size = new System.Drawing.Size(62, 27);
             this.lbUnsavedData.TabIndex = 10;
             this.lbUnsavedData.Text = "Unsaved Data";
             this.lbUnsavedData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbUnsavedData.Visible = false;
+            // 
+            // btnTargetImport
+            // 
+            this.btnTargetImport.AccessibleDescription = "Imports in targets from nmap Xml output";
+            this.btnTargetImport.Location = new System.Drawing.Point(8, 20);
+            this.btnTargetImport.Name = "btnTargetImport";
+            this.btnTargetImport.Size = new System.Drawing.Size(97, 23);
+            this.btnTargetImport.TabIndex = 12;
+            this.btnTargetImport.Text = "Import Targets";
+            this.btnTargetImport.UseVisualStyleBackColor = true;
+            this.btnTargetImport.Click += new System.EventHandler(this.btnTargetImport_Click);
             // 
             // btDeleteSelectedTarget
             // 
@@ -295,20 +302,11 @@ namespace Owasp.VulnReport.ascx
             this.axWebBrowserContentsOfProjectFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.axWebBrowserContentsOfProjectFolder.Location = new System.Drawing.Point(192, 270);
+            this.axWebBrowserContentsOfProjectFolder.Location = new System.Drawing.Point(192, 289);
             this.axWebBrowserContentsOfProjectFolder.MinimumSize = new System.Drawing.Size(20, 20);
             this.axWebBrowserContentsOfProjectFolder.Name = "axWebBrowserContentsOfProjectFolder";
-            this.axWebBrowserContentsOfProjectFolder.Size = new System.Drawing.Size(488, 223);
+            this.axWebBrowserContentsOfProjectFolder.Size = new System.Drawing.Size(623, 204);
             this.axWebBrowserContentsOfProjectFolder.TabIndex = 16;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(189, 254);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 13);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Contents of Project folder";
             // 
             // groupBox4
             // 
@@ -363,10 +361,60 @@ namespace Owasp.VulnReport.ascx
             this.label4.TabIndex = 0;
             this.label4.Text = "DNS name or IP to search";
             // 
+            // cbIgnoreStatusFlag
+            // 
+            this.cbIgnoreStatusFlag.AutoSize = true;
+            this.cbIgnoreStatusFlag.Location = new System.Drawing.Point(124, 24);
+            this.cbIgnoreStatusFlag.Name = "cbIgnoreStatusFlag";
+            this.cbIgnoreStatusFlag.Size = new System.Drawing.Size(104, 17);
+            this.cbIgnoreStatusFlag.TabIndex = 13;
+            this.cbIgnoreStatusFlag.Text = "Ignore state=\'up\'";
+            this.cbIgnoreStatusFlag.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(234, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(102, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Default Target Type";
+            // 
+            // txtDefaultTargetType
+            // 
+            this.txtDefaultTargetType.Location = new System.Drawing.Point(342, 22);
+            this.txtDefaultTargetType.Name = "txtDefaultTargetType";
+            this.txtDefaultTargetType.Size = new System.Drawing.Size(61, 20);
+            this.txtDefaultTargetType.TabIndex = 15;
+            // 
+            // cbShowContentOfProjectFolder
+            // 
+            this.cbShowContentOfProjectFolder.AutoSize = true;
+            this.cbShowContentOfProjectFolder.Location = new System.Drawing.Point(192, 266);
+            this.cbShowContentOfProjectFolder.Name = "cbShowContentOfProjectFolder";
+            this.cbShowContentOfProjectFolder.Size = new System.Drawing.Size(265, 17);
+            this.cbShowContentOfProjectFolder.TabIndex = 19;
+            this.cbShowContentOfProjectFolder.Text = "Show Contents of Project folder (in Explorer format)";
+            this.cbShowContentOfProjectFolder.UseVisualStyleBackColor = true;
+            this.cbShowContentOfProjectFolder.CheckedChanged += new System.EventHandler(this.cbShowContentOfProjectFolder_CheckedChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnTargetImport);
+            this.groupBox5.Controls.Add(this.txtDefaultTargetType);
+            this.groupBox5.Controls.Add(this.cbIgnoreStatusFlag);
+            this.groupBox5.Controls.Add(this.label6);
+            this.groupBox5.Location = new System.Drawing.Point(192, 4);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(420, 59);
+            this.groupBox5.TabIndex = 16;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Target\'s nMap Import Tool";
+            // 
             // ascxTargets
             // 
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.axWebBrowserContentsOfProjectFolder);
             this.Controls.Add(this.btDeleteSelectedTarget);
             this.Controls.Add(this.groupBox1);
@@ -377,8 +425,9 @@ namespace Owasp.VulnReport.ascx
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.cbShowContentOfProjectFolder);
             this.Name = "ascxTargets";
-            this.Size = new System.Drawing.Size(688, 500);
+            this.Size = new System.Drawing.Size(823, 500);
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Targets)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -387,6 +436,8 @@ namespace Owasp.VulnReport.ascx
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -420,8 +471,14 @@ namespace Owasp.VulnReport.ascx
 			strFullPathToCurrentProject = Path.GetFullPath(Path.Combine(strPathToProjectFiles, strCurrentProject));
 			lbCurrentProject.Text = strCurrentProject ;
 			loadTargetsIntoListBox();
-            axWebBrowserContentsOfProjectFolder.Navigate(strFullPathToCurrentProject);
+            updateWebBrowserContentsOfProjectFolder();            
 		}
+
+        public void updateWebBrowserContentsOfProjectFolder()
+        {
+            if (true == cbShowContentOfProjectFolder.Checked)       // only show this window if this checkBox is selected
+                axWebBrowserContentsOfProjectFolder.Navigate(strFullPathToCurrentProject);
+        }
 
 		private void loadTargetsIntoListBox()
 		{
@@ -430,18 +487,21 @@ namespace Owasp.VulnReport.ascx
 
 		private void lbTargetsInCurrentProject_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			axAuthentic_Targets.Visible = true;
-			strFullPathToSelectedTarget = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject,lbTargetsInCurrentProject.SelectedItem.ToString()));
+            if (lbTargetsInCurrentProject.SelectedItem != null)
+            {
+                axAuthentic_Targets.Visible = true;
+                strFullPathToSelectedTarget = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject, lbTargetsInCurrentProject.SelectedItem.ToString()));
 
-			string strSelectedTarget = lbTargetsInCurrentProject.SelectedItem.ToString();			
-			string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strSelectedTarget) + ".xml"; 
-			string strPathToXmlFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject,Path.Combine(strSelectedTarget , strXmlFileToLoad)));			
-			utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_Targets,strPathToXmlFile, obpPaths.ProjectSchemaPath, obpPaths.SpsTargetsPath);
-			axAuthentic_Targets.SetUnmodified();
-			lbUnsavedData.Visible = false;
-            unsavedDataExists = false;
-			txtRenameTarget.Text = strSelectedTarget;
-			btRenameTarget.Enabled = true;
+                string strSelectedTarget = lbTargetsInCurrentProject.SelectedItem.ToString();
+                string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strSelectedTarget) + ".xml";
+                string strPathToXmlFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject, Path.Combine(strSelectedTarget, strXmlFileToLoad)));
+                utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_Targets, strPathToXmlFile, obpPaths.ProjectSchemaPath, obpPaths.SpsTargetsPath);
+                axAuthentic_Targets.SetUnmodified();
+                lbUnsavedData.Visible = false;
+                unsavedDataExists = false;
+                txtRenameTarget.Text = strSelectedTarget;
+                btRenameTarget.Enabled = true;
+            }
 		}
 
 		private void btSaveTarget_Click(object sender, System.EventArgs e)
@@ -543,35 +603,64 @@ namespace Owasp.VulnReport.ascx
         /// <param name="xdToImport"></param>
         private void LoadTargetsFromXml(XmlDocument xdToImport)
         {
+            int iNumberOfTargetsImported = 0;
+            int iNumberOfTargetsIgnored = 0;
+            int iNumberOfDuplicatedTargets = 0;
+            string strNameOfDuplicateFindings = "";
             XmlNode xnHost;
             XmlNodeList xnlHostList;
             xnlHostList = xdToImport.GetElementsByTagName("host");
-            for (int i = 0; i < xnlHostList.Count; i++)
+            if (xnlHostList.Count == 0)
+                MessageBox.Show("Alert: there are no hosts to import in this file");
+            else
             {
-                xnHost = xnlHostList[i];
-                if (xnHost.HasChildNodes)
+                for (int i = 0; i < xnlHostList.Count; i++)
                 {
-                    // Make sure the host was actually up when the scan was ran
-                    if (null != xnHost.SelectSingleNode("status[@state='up']"))
+                    xnHost = xnlHostList[i];
+                    if (xnHost.HasChildNodes)
                     {
-                        XmlNodeList xnlHostNames = xnHost.SelectNodes("hostnames/hostname");
-                        if (xnlHostNames.Count > 0)
+                        // Make sure the host was actually up when the scan was ran
+                        if (null != xnHost.SelectSingleNode("status[@state='up']") || cbIgnoreStatusFlag.Checked == true)
                         {
-                            for (int j = 0; j < xnlHostNames.Count; j++)
+                            XmlNodeList xnlHostNames = xnHost.SelectNodes("hostnames/hostname");
+                            if (xnlHostNames.Count > 0)
                             {
-                                XmlAttribute xaHostName = (XmlAttribute)xnlHostNames[j].Attributes.GetNamedItem("name");
-                                if (xaHostName.Value != "")
+                                for (int j = 0; j < xnlHostNames.Count; j++)
                                 {
-                                    string sanitizedHost = xaHostName.Value.Replace('.', '_');
-                                    VulnReportHelpers.createNewTargetAndAddItToListBox(lbTargetsInCurrentProject,
-                                                                                       sanitizedHost,
-                                                                                       strFullPathToCurrentProject);
-                                    PopulateTargetInformation(xaHostName.Value, sanitizedHost, xnHost);
+                                    XmlAttribute xaHostName = (XmlAttribute)xnlHostNames[j].Attributes.GetNamedItem("name");
+                                    if (xaHostName.Value != "")
+                                    {
+                                        string sanitizedHost = xaHostName.Value.Replace('.', '_');
+                                        if (true == lbTargetsInCurrentProject.Items.Contains(sanitizedHost))
+                                        {
+                                            iNumberOfDuplicatedTargets++;
+                                            strNameOfDuplicateFindings += sanitizedHost + ",";
+                                        }
+                                        else
+                                        {
+                                            VulnReportHelpers.createNewTargetAndAddItToListBox(lbTargetsInCurrentProject,
+                                                                                           sanitizedHost,
+                                                                                           strFullPathToCurrentProject);
+                                            PopulateTargetInformation(xaHostName.Value, sanitizedHost, xnHost);
+                                            iNumberOfTargetsImported++;
+                                        }
+                                    }
                                 }
                             }
                         }
+                        else
+                            iNumberOfTargetsIgnored++;
                     }
                 }
+                string strImportReport ="NMAP Import completed." + Environment.NewLine;
+                if (iNumberOfTargetsImported > 0)
+                    strImportReport += string.Format(Environment.NewLine + "{0} hosts were imported", iNumberOfTargetsImported);
+                if (iNumberOfTargetsIgnored > 0)
+                    strImportReport += string.Format(Environment.NewLine + "{0} hosts were NOT imported because: null== status[@state='up']", iNumberOfTargetsIgnored);
+                if (iNumberOfDuplicatedTargets > 0)
+                    strImportReport += string.Format(Environment.NewLine + "{0} hosts were NOT imported because they were duplicate of existing targets. Here is the list of those items: {1}", iNumberOfDuplicatedTargets, strNameOfDuplicateFindings.Substring(0,strNameOfDuplicateFindings.Length -1));
+
+                MessageBox.Show(strImportReport);
             }
         }
 
@@ -590,10 +679,24 @@ namespace Owasp.VulnReport.ascx
             sTargetXmlPath = Path.Combine(sTargetXmlPath, sanitizedHostName + ".xml");
             XmlDocument xdTarget = new XmlDocument();
             xdTarget.Load(sTargetXmlPath);
+            // Add name
             XmlNode xnTarget = xdTarget.CreateElement("Target", "vuln_report");
             XmlAttribute xaName = xdTarget.CreateAttribute("name");
             xaName.Value = hostName;
             xnTarget.Attributes.Append(xaName);
+            // Add Target type
+            if (txtDefaultTargetType.Text != "")
+            {
+                XmlAttribute xaTestType = xdTarget.CreateAttribute("type");
+                xaTestType.Value = txtDefaultTargetType.Text;
+                xnTarget.Attributes.Append(xaTestType);
+            }
+            // Add the DNS name
+            XmlNode xnDnsName = xdTarget.CreateElement("DnsName", "vuln_report");
+            XmlAttribute xaDnsNameValue = xdTarget.CreateAttribute("value");
+            xaDnsNameValue.Value = hostName;
+            xnDnsName.Attributes.Append(xaDnsNameValue);
+            xnTarget.AppendChild(xnDnsName);
 
             // Get the IP address
             XmlNode xnIpAddress = xnHost.SelectSingleNode("address[@addrtype='ipv4']");
@@ -680,7 +783,13 @@ namespace Owasp.VulnReport.ascx
                     Application.DoEvents();
                 }
             }
-            txtTargetsSearchQuery.Enabled = true; ;
+            txtTargetsSearchQuery.Enabled = true;
+        }
+
+        private void cbShowContentOfProjectFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            axWebBrowserContentsOfProjectFolder.Visible = cbShowContentOfProjectFolder.Checked;
+            updateWebBrowserContentsOfProjectFolder();
         }
 	}
 }
