@@ -60,7 +60,7 @@ namespace Owasp.VulnReport
         private TextBox txtTargetsFilter;
         private Label label5;
         private ComboBox cbFindingsTemplates;
-        private Label label6;
+        private Label lbFindingTemplateLabel;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>		
@@ -117,7 +117,7 @@ namespace Owasp.VulnReport
             this.btDeleteSelectedFinding = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbFindingsTemplates = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lbFindingTemplateLabel = new System.Windows.Forms.Label();
             this.btAddNewFinding = new System.Windows.Forms.Button();
             this.txtNewFindingName = new System.Windows.Forms.TextBox();
             this.axWebBrowser_Targets = new AxSHDocVw.AxWebBrowser();
@@ -211,7 +211,7 @@ namespace Owasp.VulnReport
             // 
             this.btSaveFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveFinding.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSaveFinding.Location = new System.Drawing.Point(712, 10);
+            this.btSaveFinding.Location = new System.Drawing.Point(706, 135);
             this.btSaveFinding.Name = "btSaveFinding";
             this.btSaveFinding.Size = new System.Drawing.Size(93, 24);
             this.btSaveFinding.TabIndex = 3;
@@ -278,7 +278,7 @@ namespace Owasp.VulnReport
             this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedData.Location = new System.Drawing.Point(650, 4);
+            this.lbUnsavedData.Location = new System.Drawing.Point(644, 129);
             this.lbUnsavedData.Name = "lbUnsavedData";
             this.lbUnsavedData.Size = new System.Drawing.Size(66, 37);
             this.lbUnsavedData.TabIndex = 6;
@@ -291,7 +291,7 @@ namespace Owasp.VulnReport
             this.lblFindingSaved.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFindingSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFindingSaved.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblFindingSaved.Location = new System.Drawing.Point(650, 8);
+            this.lblFindingSaved.Location = new System.Drawing.Point(651, 132);
             this.lblFindingSaved.Name = "lblFindingSaved";
             this.lblFindingSaved.Size = new System.Drawing.Size(56, 29);
             this.lblFindingSaved.TabIndex = 6;
@@ -313,7 +313,7 @@ namespace Owasp.VulnReport
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.cbFindingsTemplates);
-            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.lbFindingTemplateLabel);
             this.groupBox2.Controls.Add(this.btAddNewFinding);
             this.groupBox2.Controls.Add(this.txtNewFindingName);
             this.groupBox2.Location = new System.Drawing.Point(13, 345);
@@ -332,14 +332,17 @@ namespace Owasp.VulnReport
             this.cbFindingsTemplates.TabIndex = 3;
             this.cbFindingsTemplates.SelectedIndexChanged += new System.EventHandler(this.cbFindingsTemplates_SelectedIndexChanged);
             // 
-            // label6
+            // lbFindingTemplateLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 42);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Template:";
+            this.lbFindingTemplateLabel.AutoSize = true;
+            this.lbFindingTemplateLabel.Location = new System.Drawing.Point(4, 42);
+            this.lbFindingTemplateLabel.Name = "lbFindingTemplateLabel";
+            this.lbFindingTemplateLabel.Size = new System.Drawing.Size(54, 13);
+            this.lbFindingTemplateLabel.TabIndex = 2;
+            this.lbFindingTemplateLabel.Text = "Template:";
+            this.lbFindingTemplateLabel.MouseLeave += new System.EventHandler(this.lbFindingTemplateLabel_MouseLeave);
+            this.lbFindingTemplateLabel.Click += new System.EventHandler(this.lbFindingTemplateLabel_Click);
+            this.lbFindingTemplateLabel.MouseHover += new System.EventHandler(this.lbFindingTemplateLabel_MouseHover);
             // 
             // btAddNewFinding
             // 
@@ -559,7 +562,8 @@ namespace Owasp.VulnReport
     		strFullPathToSelectedTarget = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject, lbTargetsInCurrentProject.SelectedItem.ToString()));
 			utils.windowsForms.loadFilesIntoListBox(lbFindingsInCurrentTarget,strFullPathToSelectedTarget,"*.zip");		
 			iCurrentTargetSelectedIndex = lbTargetsInCurrentProject.SelectedIndex;
-
+            if (lbFindingsInCurrentTarget.Items.Count == 0)
+                axAuthentic_Findings.Visible = false;
 		}
 
 		private void lbFindingsInCurrentTarget_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -589,7 +593,7 @@ namespace Owasp.VulnReport
 
         private void loadSelectedFindingInAuthenticView()
         {
-            if (null != strFullPathToSelectedFinding)
+            if (null != strFullPathToSelectedFinding && null != lbFindingsInCurrentTarget.SelectedItem)
             {
                 string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
                 string strPathToXmlFile = Path.Combine(strPathToUnzipSelectedFinding, strXmlFileToLoad);
@@ -653,13 +657,20 @@ namespace Owasp.VulnReport
 
 		private void btDeleteSelectedFinding_Click(object sender, System.EventArgs e)
 		{
-			if (DialogResult.Yes ==  MessageBox.Show("Are you sure you want to delete the finding '" + lbFindingsInCurrentTarget.SelectedItem.ToString()+ "'","Delete confirmation Message",MessageBoxButtons.YesNo))
-			{
-				File.Delete(strFullPathToSelectedFinding);
-				deleteCurrentFindingsTempFolder();
-				lbTargetsInCurrentProject_SelectedIndexChanged(null,null);
-				txtRenameFinding.Text= "";
-			}
+            try
+            {
+                if (DialogResult.Yes == MessageBox.Show("Are you sure you want to delete the finding '" + lbFindingsInCurrentTarget.SelectedItem.ToString() + "'", "Delete confirmation Message", MessageBoxButtons.YesNo))
+                {
+                    File.Delete(strFullPathToSelectedFinding);
+                    deleteCurrentFindingsTempFolder();
+                    lbTargetsInCurrentProject_SelectedIndexChanged(null, null);
+                    txtRenameFinding.Text = "";
+                }
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(string.Format("An issue occured while trying to deleted selected finding {0}", ex.Message));
+            }
 			
 		}
 
@@ -941,7 +952,11 @@ namespace Owasp.VulnReport
                 string strPathToNewFindingInTargetDirectory = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, Path.GetFileNameWithoutExtension(strNewFindingName) + ".zip"));	
                 string strPathToNewFindingTempDirectory = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,Path.GetFileNameWithoutExtension(strNewFindingName)));
                 string strPathToNewFindingInTempDirectory = Path.GetFullPath(Path.Combine(strPathToNewFindingTempDirectory ,strNewFindingName));
+                if (Directory.Exists(strPathToNewFindingTempDirectory))
+                    Directory.Delete(strPathToNewFindingTempDirectory,true);
                 Directory.CreateDirectory(strPathToNewFindingTempDirectory);
+                if (File.Exists(strPathToNewFindingInTempDirectory))        // sometimes this file is left behind (if other targetts have a Finding with the same name)
+                    File.Delete(strPathToNewFindingInTempDirectory);
                 File.Copy(strPathToTemplateXmlFileToUse,strPathToNewFindingInTempDirectory);
                 utils.zip.zipFolder(strPathToNewFindingTempDirectory, strPathToNewFindingInTargetDirectory);
                 Directory.Delete(strPathToNewFindingTempDirectory, true);
@@ -951,5 +966,21 @@ namespace Owasp.VulnReport
 				MessageBox.Show(string.Format("An IOException occured trying to create this Finding: {0}", ex.Message));
 			}
         }
+
+        private void lbFindingTemplateLabel_MouseHover(object sender, EventArgs e)
+        {
+            lbFindingTemplateLabel.Text = "Click to reload";
+        }
+
+        private void lbFindingTemplateLabel_MouseLeave(object sender, EventArgs e)
+        {
+            lbFindingTemplateLabel.Text = "Template:";
+        }
+
+        private void lbFindingTemplateLabel_Click(object sender, EventArgs e)
+        {
+            loadPlugInFindingsTemplates();
+        }
+
 	}
 }
