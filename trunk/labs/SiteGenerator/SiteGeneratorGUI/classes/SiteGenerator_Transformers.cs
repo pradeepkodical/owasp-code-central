@@ -36,7 +36,7 @@ namespace Owasp.SiteGenerator
                     {
                         return strFullPathToRootDir;
                     }
-                    XmlNode xnXmlDataToUse = smCurrent.Mapping.DocumentElement.GetElementsByTagName("site")[0];             // I wanted to place this here but this becomes null after a while
+                    XmlNode xnXmlDataToUse = smCurrent.Mapping.DocumentElement.GetElementsByTagName("site")[0];
 
                     bool bMatch = false;
                     if (null != xnXmlDataToUse)
@@ -262,7 +262,7 @@ namespace Owasp.SiteGenerator
                             }
                         }
                     }
-                }                
+                }
             }
             catch (Exception ex)
             {

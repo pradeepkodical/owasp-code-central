@@ -28,6 +28,7 @@ namespace Owasp.SiteGenerator
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGui));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbDynamicWebsites = new System.Windows.Forms.TabPage();
             this.ascxDynamicWebSites1 = new Owasp.SiteGenerator.ascx.ascxDynamicWebSites();
@@ -163,6 +164,7 @@ namespace Owasp.SiteGenerator
             this.ClientSize = new System.Drawing.Size(926, 576);
             this.Controls.Add(this.admin1);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainGui";
             this.Text = "SiteGenerator GUI";
             this.Load += new System.EventHandler(this.MainGui_Load);

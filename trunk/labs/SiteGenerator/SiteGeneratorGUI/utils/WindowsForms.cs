@@ -42,12 +42,5 @@ namespace Owasp.SiteGenerator.utils
             if (cbToPopulate.Items.Count > 0)
                 cbToPopulate.SelectedIndex = 0;
         }
-        /*
-        public static void populateListBoxWithFiles(ListBox lbListBoxToPopulate, string strPathToFiles,string strExtension)
-        { 
-            lbListBoxToPopulate.Items.Clear();
-            foreach (string strFilePath in Directory.GetFiles(strPathToFiles,strExtension))           
-                lbListBoxToPopulate.Items.Add(Path.GetFileName(strFilePath));            
-        }*/
     }
 }

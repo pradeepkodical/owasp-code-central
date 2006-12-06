@@ -77,8 +77,6 @@
     <Compile Include="classes\xml.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="utils\authentic.cs" />
-    <Compile Include="utils\files.cs" />
-    <Compile Include="utils\processes.cs" />
     <Compile Include="classes\SiteGenerator_Transformers.cs" />
     <Compile Include="MainGui.cs">
       <SubType>Form</SubType>
@@ -142,25 +140,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="utils\files.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils\WindowsForms.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="AxXMLSPYPLUGINLib">
-      <Guid>{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>6</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="XMLSPYPLUGINLib">
-      <Guid>{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>6</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="SiteGenerator_ContentPages\All Vulnerabilities.xml" />
@@ -352,6 +335,24 @@
     <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_templates\_PageNotFound.htm" />
     <Content Include="SiteGenerator_ContentPages\_Old_Stuff\_templates\_TopNavigation.htm" />
     <Content Include="SiteGenerator_ContentPages\_templates\_templateSite.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxXMLSPYPLUGINLib">
+      <Guid>{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="XMLSPYPLUGINLib">
+      <Guid>{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
