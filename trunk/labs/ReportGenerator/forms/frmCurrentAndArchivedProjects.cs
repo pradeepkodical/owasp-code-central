@@ -327,6 +327,7 @@ namespace Owasp.VulnReport
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(2, 5);
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -408,7 +409,7 @@ namespace Owasp.VulnReport
 		}
 
 		private void btCreateNewProject_Click(object sender, System.EventArgs e)
-		{
+		{            
 			if (tbNewProjectName.Text == "")
 				MessageBox.Show("You must enter a new project name");
 			else

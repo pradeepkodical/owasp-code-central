@@ -133,6 +133,8 @@ namespace Owasp.VulnReport
             {
                 // Just swallow the exceptions...We are not worried about them
             }
+            catch (UnauthorizedAccessException)
+            { }
         }
 	}
 }

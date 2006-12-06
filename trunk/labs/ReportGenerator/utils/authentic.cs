@@ -196,9 +196,9 @@ namespace Owasp.VulnReport.utils
 						break;
 				}
 			}
-			catch (Exception ex)
+			catch // (Exception ex)
 			{
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);      // this was being thrown during normal ORG usage 
             }
 		}
 

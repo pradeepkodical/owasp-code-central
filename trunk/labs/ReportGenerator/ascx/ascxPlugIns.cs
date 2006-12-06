@@ -532,7 +532,8 @@ namespace Owasp.VulnReport.ascx
 		{
 			if (DialogResult.Yes ==  MessageBox.Show("Are you sure you want to delete the Plug-In '"+lbAvailablePlugIns.Text+"' ?","",MessageBoxButtons.YesNo))
 			{
-				File.Delete(strPlugInFileToLoad);
+                string asd = Path.GetDirectoryName(strPlugInFileToLoad);
+                Directory.Delete(Path.GetDirectoryName(strPlugInFileToLoad),true);				
 				LoadPlugInsIntoListAndComboBoxes();
 			}
 		}
