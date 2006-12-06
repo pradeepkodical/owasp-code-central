@@ -1,9 +1,6 @@
 bin\Debug\Interop.XMLSPYPLUGINLib.dll
 bin\Debug\AxInterop.XMLSPYPLUGINLib.dll
 obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\Interop.XMLSPYPLUGINLib.dll
-obj\Debug\AxInterop.XMLSPYPLUGINLib.dll
-obj\Debug\SiteGeneratorGUI.csproj.ResolveComReference.cache
 obj\Debug\Owasp.SiteGenerator.ascx.ascxAdmin.resources
 obj\Debug\Owasp.SiteGenerator.ascx.ascxDynamicWebSites.resources
 obj\Debug\Owasp.SiteGenerator.ascx.ascxFileTransformation.resources
@@ -13,7 +10,6 @@ obj\Debug\Owasp.SiteGenerator.Properties.Resources.resources
 obj\Debug\SiteGeneratorGUI.csproj.GenerateResource.Cache
 obj\Debug\Owasp.SiteGenerator.ascx.WebsiteCreator.resources
 obj\Release\ResolveAssemblyReference.cache
-obj\Release\SiteGeneratorGUI.csproj.ResolveComReference.cache
 obj\Release\Owasp.SiteGenerator.ascx.ascxAdmin.resources
 obj\Release\Owasp.SiteGenerator.ascx.ascxDynamicWebSites.resources
 obj\Release\Owasp.SiteGenerator.ascx.ascxFileTransformation.resources
@@ -24,8 +20,6 @@ obj\Release\Owasp.SiteGenerator.Properties.Resources.resources
 obj\Release\SiteGeneratorGUI.csproj.GenerateResource.Cache
 ..\bin\SiteGenerator.exe
 ..\bin\SiteGenerator.pdb
-obj\Release\Interop.XMLSPYPLUGINLib.dll
-obj\Release\AxInterop.XMLSPYPLUGINLib.dll
 obj\Release\SiteGenerator.exe
 obj\Release\SiteGenerator.pdb
 bin\Debug\SiteGenerator.exe
@@ -34,3 +28,9 @@ obj\Debug\SiteGenerator.exe
 obj\Debug\SiteGenerator.pdb
 ..\bin\SiteGenerator.exe.config
 bin\Debug\SiteGenerator.exe.config
+obj\Release\Interop.XMLSPYPLUGINLib.dll
+obj\Release\SiteGeneratorGUI.csproj.ResolveComReference.cache
+obj\Debug\Interop.XMLSPYPLUGINLib.dll
+obj\Debug\SiteGeneratorGUI.csproj.ResolveComReference.cache
+obj\Debug\AxInterop.XMLSPYPLUGINLib.dll
+obj\Release\AxInterop.XMLSPYPLUGINLib.dll

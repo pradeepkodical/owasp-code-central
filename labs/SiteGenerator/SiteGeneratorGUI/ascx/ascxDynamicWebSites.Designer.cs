@@ -35,7 +35,6 @@ namespace Owasp.SiteGenerator.ascx
             this.btCreateDynamicWebsite = new System.Windows.Forms.Button();
             this.txtNewDynamicWebsiteName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.axAuthentic_DynamicWebsites = new AxXMLSPYPLUGINLib.AxAuthentic();
             this.btLoadXmlFileIntoSiteGenerator = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lbCurrentXmlFileLoaded = new System.Windows.Forms.Label();
@@ -46,12 +45,13 @@ namespace Owasp.SiteGenerator.ascx
             this.txtDynamicWebsitesTextXmlView = new System.Windows.Forms.TextBox();
             this.lbFileSaved = new System.Windows.Forms.Label();
             this.btnDelCurrentSite = new System.Windows.Forms.Button();
+            this.axAuthentic_DynamicWebsites = new AxXMLSPYPLUGINLib.AxAuthentic();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_DynamicWebsites)).BeginInit();
             this.tbDynamicWebsiteViews.SuspendLayout();
             this.tbAuthenticView.SuspendLayout();
             this.tbTextXmlView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_DynamicWebsites)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -111,19 +111,6 @@ namespace Owasp.SiteGenerator.ascx
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "New Dynamic Website";
-            // 
-            // axAuthentic_DynamicWebsites
-            // 
-            this.axAuthentic_DynamicWebsites.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.axAuthentic_DynamicWebsites.Enabled = true;
-            this.axAuthentic_DynamicWebsites.Location = new System.Drawing.Point(3, 3);
-            this.axAuthentic_DynamicWebsites.Name = "axAuthentic_DynamicWebsites";
-            this.axAuthentic_DynamicWebsites.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_DynamicWebsites.OcxState")));
-            this.axAuthentic_DynamicWebsites.Size = new System.Drawing.Size(649, 277);
-            this.axAuthentic_DynamicWebsites.TabIndex = 2;
-            this.axAuthentic_DynamicWebsites.SelectionChanged += new System.EventHandler(this.axAuthentic_DynamicWebsites_SelectionChanged);
             // 
             // btLoadXmlFileIntoSiteGenerator
             // 
@@ -196,7 +183,7 @@ namespace Owasp.SiteGenerator.ascx
             this.tbTextXmlView.Location = new System.Drawing.Point(4, 22);
             this.tbTextXmlView.Name = "tbTextXmlView";
             this.tbTextXmlView.Padding = new System.Windows.Forms.Padding(3);
-            this.tbTextXmlView.Size = new System.Drawing.Size(671, 276);
+            this.tbTextXmlView.Size = new System.Drawing.Size(655, 283);
             this.tbTextXmlView.TabIndex = 1;
             this.tbTextXmlView.Text = "Text Xml View";
             this.tbTextXmlView.UseVisualStyleBackColor = true;
@@ -236,6 +223,18 @@ namespace Owasp.SiteGenerator.ascx
             this.btnDelCurrentSite.UseVisualStyleBackColor = true;
             this.btnDelCurrentSite.Click += new System.EventHandler(this.btnDelCurrentSite_Click);
             // 
+            // axAuthentic_DynamicWebsites
+            // 
+            this.axAuthentic_DynamicWebsites.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.axAuthentic_DynamicWebsites.Enabled = true;
+            this.axAuthentic_DynamicWebsites.Location = new System.Drawing.Point(0, 0);
+            this.axAuthentic_DynamicWebsites.Name = "axAuthentic_DynamicWebsites";
+            this.axAuthentic_DynamicWebsites.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_DynamicWebsites.OcxState")));
+            this.axAuthentic_DynamicWebsites.Size = new System.Drawing.Size(652, 283);
+            this.axAuthentic_DynamicWebsites.TabIndex = 0;
+            // 
             // ascxDynamicWebSites
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,11 +256,11 @@ namespace Owasp.SiteGenerator.ascx
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_DynamicWebsites)).EndInit();
             this.tbDynamicWebsiteViews.ResumeLayout(false);
             this.tbAuthenticView.ResumeLayout(false);
             this.tbTextXmlView.ResumeLayout(false);
             this.tbTextXmlView.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_DynamicWebsites)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,7 +274,6 @@ namespace Owasp.SiteGenerator.ascx
         private System.Windows.Forms.TextBox txtNewDynamicWebsiteName;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbDynamicWebsites;
-        private AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_DynamicWebsites;
         private System.Windows.Forms.Button btLoadXmlFileIntoSiteGenerator;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbCurrentXmlFileLoaded;
@@ -286,5 +284,6 @@ namespace Owasp.SiteGenerator.ascx
         private System.Windows.Forms.TextBox txtDynamicWebsitesTextXmlView;
         private System.Windows.Forms.Label lbFileSaved;
         private System.Windows.Forms.Button btnDelCurrentSite;
+        private AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_DynamicWebsites;
     }
 }

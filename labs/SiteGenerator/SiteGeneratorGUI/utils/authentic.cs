@@ -1,5 +1,7 @@
 using System;
 using System.Windows.Forms;
+using System.Xml;
+using System.IO;
 
 namespace Owasp.SiteGenerator.utils
 {
@@ -19,19 +21,28 @@ namespace Owasp.SiteGenerator.utils
         {
             try
             {
-                axTargetAuthenticObject.SchemaLoadObject.URL = urlToXsd;
-                axTargetAuthenticObject.DesignDataLoadObject.URL = urlToSps;
-                axTargetAuthenticObject.XMLDataLoadObject.URL = urlToXml;
-                axTargetAuthenticObject.XMLDataSaveUrl = urlToXml;
-                axTargetAuthenticObject.EntryHelpersEnabled = true;
-                axTargetAuthenticObject.AllowDrop = true;
-                axTargetAuthenticObject.StartEditing();
-                axTargetAuthenticObject.Visible = true;
+                if (File.Exists(urlToXsd) &&
+                   File.Exists(urlToXml) &&
+                   File.Exists(urlToSps))
+                {
+                    axTargetAuthenticObject.SchemaLoadObject.URL = urlToXsd;
+                    axTargetAuthenticObject.DesignDataLoadObject.URL = urlToSps;
+                    axTargetAuthenticObject.XMLDataLoadObject.URL = urlToXml;
+                    axTargetAuthenticObject.XMLDataSaveUrl = urlToXml;
+                    axTargetAuthenticObject.EntryHelpersEnabled = true;
+                    axTargetAuthenticObject.AllowDrop = true;
+                    axTargetAuthenticObject.StartEditing();
+                    axTargetAuthenticObject.Visible = true;
+                }
+                else
+                {
+                    axTargetAuthenticObject.Visible = false;
+                }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 axTargetAuthenticObject.Visible = false;
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error in loadXmlFileInTargetAuthenticView: " + e.Message);
             }
         }
 

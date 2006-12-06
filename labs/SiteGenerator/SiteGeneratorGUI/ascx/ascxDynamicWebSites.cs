@@ -14,6 +14,11 @@ namespace Owasp.SiteGenerator.ascx
     public partial class ascxDynamicWebSites : UserControl
     {
         private string ContentPagesPath = ConfigurationManager.AppSettings["ContentPagesRoot"];
+        private string currentWebsite = "";
+        private string dynamicWebsiteSPSPath = "";
+        private string strXmlFileToLoad = "";
+        private string dynamicWebsiteXSDPath = "";
+
 
         public ascxDynamicWebSites()
         {
@@ -35,10 +40,14 @@ namespace Owasp.SiteGenerator.ascx
 
         private void lbDynamicWebsites_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string dynamicWebsiteSPSPath = Path.GetFullPath(Path.Combine(ContentPagesPath, "DynamicWebsites.sps"));
-            string strXmlFileToLoad = Path.GetFullPath(Path.Combine(ContentPagesPath, lbDynamicWebsites.Text));
-            string dynamicWebsiteXSDPath = Path.GetFullPath(Path.Combine(ContentPagesPath, "DynamicWebsites.xsd"));
-            utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_DynamicWebsites, strXmlFileToLoad, dynamicWebsiteXSDPath, dynamicWebsiteSPSPath);
+            this.dynamicWebsiteSPSPath = Path.GetFullPath(Path.Combine(ContentPagesPath, "DynamicWebsites.sps"));
+            this.strXmlFileToLoad = Path.GetFullPath(Path.Combine(ContentPagesPath, lbDynamicWebsites.Text));
+            this.dynamicWebsiteXSDPath = Path.GetFullPath(Path.Combine(ContentPagesPath, "DynamicWebsites.xsd"));
+
+            utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_DynamicWebsites, 
+                                                             strXmlFileToLoad, 
+                                                             dynamicWebsiteXSDPath, 
+                                                             dynamicWebsiteSPSPath);
             txtDynamicWebsitesTextXmlView.Text = utils.files.GetFileContent(strXmlFileToLoad);
             btLoadXmlFileIntoSiteGenerator_Click(null, null);
         }
@@ -47,6 +56,7 @@ namespace Owasp.SiteGenerator.ascx
         {
             string strXmlFileToLoad = Path.GetFullPath(Path.Combine(ContentPagesPath, lbDynamicWebsites.Text));
             SiteMapping sm = SiteMapping.GetSiteMapping();
+            currentWebsite = lbDynamicWebsites.Text; 
 
             sm.LoadNewMapping(strXmlFileToLoad);
 
@@ -56,10 +66,7 @@ namespace Owasp.SiteGenerator.ascx
         private void btSaveAndReloadXmlFile_Click(object sender, EventArgs e)
         {
             string strXmlFileToSave = Path.GetFullPath(Path.Combine(ContentPagesPath, lbDynamicWebsites.Text));
-            if (tbDynamicWebsiteViews.SelectedIndex==0)
-                axAuthentic_DynamicWebsites.Save();
-            if (tbDynamicWebsiteViews.SelectedIndex == 1)
-                utils.files.WriteFileContent(strXmlFileToSave, txtDynamicWebsitesTextXmlView.Text);
+            SaveSpecifiedWebsite(strXmlFileToSave);
             lbDynamicWebsites_SelectedIndexChanged(null, null);
             lbFileSaved.Visible = true;
         }
@@ -117,6 +124,18 @@ namespace Owasp.SiteGenerator.ascx
 
                 lbDynamicWebsites.Items.RemoveAt(lbDynamicWebsites.SelectedIndex);
             }
+        }
+
+        /// <summary>
+        /// This method saves the website that is currently selected in the list box.
+        /// </summary>
+        /// <param name="WebSite">The website we wish to save</param>
+        private void SaveSpecifiedWebsite(string WebSite)
+        {
+            if (tbDynamicWebsiteViews.SelectedIndex == 0)
+                axAuthentic_DynamicWebsites.Save();
+            if (tbDynamicWebsiteViews.SelectedIndex == 1)
+                utils.files.WriteFileContent(WebSite, txtDynamicWebsitesTextXmlView.Text);
         }
     }
 }
