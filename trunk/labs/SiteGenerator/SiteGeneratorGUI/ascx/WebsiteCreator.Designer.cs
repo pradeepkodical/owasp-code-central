@@ -122,11 +122,11 @@ namespace Owasp.SiteGenerator.ascx
             // btCreateDinamicWebsite
             // 
             this.btCreateDinamicWebsite.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCreateDinamicWebsite.Location = new System.Drawing.Point(599, 30);
+            this.btCreateDinamicWebsite.Location = new System.Drawing.Point(586, 30);
             this.btCreateDinamicWebsite.Name = "btCreateDinamicWebsite";
-            this.btCreateDinamicWebsite.Size = new System.Drawing.Size(200, 160);
+            this.btCreateDinamicWebsite.Size = new System.Drawing.Size(188, 36);
             this.btCreateDinamicWebsite.TabIndex = 2;
-            this.btCreateDinamicWebsite.Text = "Create Dynamic Website";
+            this.btCreateDinamicWebsite.Text = "Create Website";
             this.btCreateDinamicWebsite.UseVisualStyleBackColor = true;
             this.btCreateDinamicWebsite.Click += new System.EventHandler(this.btCreateDinamicWebsite_Click);
             // 

@@ -216,6 +216,15 @@ namespace Owasp.SiteGenerator
             utils.files.WriteFileContent(strTargetFileName, strFileHtmlContents.ToString());            
         }
 
+        /// <summary>
+        /// History:
+        /// 
+        /// 12/9/2006 - Mike : Had to add a check for the attribute count when checking directories because
+        ///                    of the new altova hack.
+        /// </summary>
+        /// <param name="strVirtualPathToProcess"></param>
+        /// <param name="bMatch"></param>
+        /// <returns></returns>
         public static string resolveNameAndFolder(string strVirtualPathToProcess, ref bool bMatch)
         {
             try
@@ -240,7 +249,8 @@ namespace Owasp.SiteGenerator
                         bMatch = false;
                         foreach (XmlNode xnDirectories in xnXmlDataToUse.ChildNodes)
                         {
-                            if (xnDirectories.Attributes.GetNamedItem("name").Value.ToUpper() == strDirToProcess.ToUpper())  // .ToUpper() will make it case insensitive
+                            if ((xnDirectories.Attributes.Count > 0) && 
+                                (xnDirectories.Attributes.GetNamedItem("name").Value.ToUpper() == strDirToProcess.ToUpper()))  
                             {
                                 xnXmlDataToUse = xnDirectories;
                                 bMatch = true;
