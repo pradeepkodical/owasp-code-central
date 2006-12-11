@@ -18,7 +18,8 @@ namespace Owasp.SiteGenerator
             if (context.Request.QueryString != null)
                 pathTranslated = getPathTranslatedFromSiteGeneratorGUI(url, pathTranslated);
             // check if it is an .aspx page
-            if (".aspx" == Path.GetExtension(pathTranslated))
+            if (".aspx" == Path.GetExtension(pathTranslated) || 
+                (".asmx" == Path.GetExtension(pathTranslated)))
             {
                 context.RewritePath(url, url, context.Request.QueryString.ToString());
                 IHttpHandler appHandler = PageParser.GetCompiledPageInstance(url, pathTranslated, context);
