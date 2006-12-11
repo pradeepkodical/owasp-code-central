@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SiteGenerator name="Hacme Bank" xmlns:ipo="http://www.altova.com/IPO" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<site>
+		<rootFolder defaultPage="Default.htm">
+			<file mappedTo="HacmeBank_v2_Website\aspx\login.aspx" name="login.aspx"/>
+			<file mappedTo="HacmeBank_v2_Website\aspx\main.aspx" name="Default.htm"/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<folder name="Images">
+				<folder name="login">
+					<file mappedTo="HacmeBank_v2_Website\aspx\images\login\bottom.gif" name="bottom.gif"/>
+					<file mappedTo="HacmeBank_v2_Website\aspx\images\login\topbg.gif" name="topbg.gif"/>
+					<file mappedTo="HacmeBank_v2_Website\aspx\images\login\top.gif" name="top.gif"/>
+				</folder>
+				<file mappedTo="HacmeBank_v2_Website\aspx\images\onlinebanking.jpg" name="onlinebanking.jpg"/>
+				<file mappedTo="HacmeBank_v2_Website\aspx\images\hacme_header.jpg" name="hacme_header.jpg"/>
+				<file mappedTo="HacmeBank_v2_Website\aspx\images\blueheader_bg.gif" name="blueheader_bg.gif"/>
+				<file mappedTo="HacmeBank_v2_Website\aspx\mages\hacme_header.jpg" name="hacme_header.jpg"/>
+				<file mappedTo="HacmeBank_v2_Website\aspx\images\top_blue_menu.jpg" name="top_blue_menu.jpg"/>
+				<file mappedTo="HacmeBank_v2_Website\aspx\images\blueheaderblank.jpg" name="blueheaderblank.jpg"/>
+			</folder>
+			<folder name="css">
+				<folder name="images">
+					<file mappedTo="HacmeBank_v2_Website\css\images\shadow_txtbox.gif" name="shadow_txtbox.gif"/>
+				</folder>
+				<file mappedTo="HacmeBank_v2_Website\css\FoundStoneBank.css" name="FoundStoneBank.css"/>
+			</folder>
+			<folder name="HacmeBank_v2_WS">
+				<folder name="WebServices">
+					<file mappedTo="HacmeBank_v2_WS\webServices\UserManagement.asmx" name="UserManagement.asmx" />
+					<file mappedTo="HacmeBank_v2_WS\webServices\UsersCommunity.asmx" name="UsersCommunity.asmx" />
+					<file mappedTo="HacmeBank_v2_WS\webServices\AccountManagement.asmx" name="AccountManagement.asmx" />
+				</folder>
+			</folder>
+		</rootFolder>
+	</site>
+</SiteGenerator>
