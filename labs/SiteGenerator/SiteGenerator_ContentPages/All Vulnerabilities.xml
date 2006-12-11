@@ -41,36 +41,37 @@
 			<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Basic.aspx" name="aspxDataValidation_SqlInjection_Basic.aspx"/>
 			<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Medium.aspx" name="aspxDataValidation_SqlInjection_Medium.aspx"/>
 			<file mappedTo="htm\HomePage_All_Vulnerabilities.htm" name="a.htm"/>
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
+			<file mappedTo="HacmeBank_v2_Website\aspx\main.aspx" name="hacme.htm"/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
 		</rootFolder>
 	</site>
 </SiteGenerator>

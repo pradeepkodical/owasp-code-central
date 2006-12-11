@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://192.168.1.10/HacmeBank_v2_WS/WebServices/UserManagement.asmx?wsdl" docRef="http://192.168.1.10/HacmeBank_v2_WS/WebServices/UserManagement.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://192.168.1.10/HacmeBank_v2_WS/WebServices/UserManagement.asmx" xmlns:q1="http://tempuri.org/" binding="q1:WS_UserManagementSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

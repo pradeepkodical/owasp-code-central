@@ -1,0 +1,1 @@
+<%@ Application Inherits="HacmeBank_v2_WS.Global" Language="C#"%>

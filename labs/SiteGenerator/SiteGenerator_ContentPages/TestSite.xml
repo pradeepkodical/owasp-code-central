@@ -1,87 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SiteGenerator name="Test Site Yo" xmlns:ipo="http://www.altova.com/IPO" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SiteGenerator name="SiteName" xmlns:ipo="http://www.altova.com/IPO" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<site>
-		<rootFolder>
-			<file name="Default.htm" mappedTo="TestSite/Default.htm"/>
-			<file name="SiteGenerator_Banner.html" mappedTo="SiteGenerator_Banner.html"/>
-			<folder name="images">
-				<file name="topBanner_slice.gif" mappedTo="images/topBanner_slice.gif"/>
-				<file name="leftBanner.png" mappedTo="images/leftBanner.png"/>
-				<file name="owasp_logo.png" mappedTo="images/owasp_logo.png"/>
-				<file name="leftBanner.png" mappedTo="images/leftBanner.png"/>
-				<file name="Foundstone_logo.jpg" mappedTo="images/Foundstone_logo.jpg"/>
-			</folder>
-			<file name="Navigation_Level_0_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_0_SubLevel_0.html"/>
-			<file name="Navigation_Level_0_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_0_SubLevel_1.html"/>
-			<file name="Navigation_Level_0_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_0_SubLevel_2.html"/>
-			<file name="1_DataValidation_SqlInjection_Advanced.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Advanced.aspx"/>
-			<file name="2_DataValidation_SqlInjection_Basic.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Basic.aspx"/>
-			<file name="3_DataValidation_SqlInjection_Medium.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Medium.aspx"/>
-			<file name="TopNavigation.htm" mappedTo="TestSite/TopNavigation.htm"/>
-			<file name="NormalPage.htm" mappedTo="htm/NormalPage.htm"/>
-			<file name="Navigation_Level_1_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_0.html"/>
-			<file name="Navigation_Level_1_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_1.html"/>
-			<file name="Navigation_Level_1_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_2.html"/>
-			<file name="4_Direct Sql Query.aspx" mappedTo="Vulnerabilities\Direct Sql Query.aspx"/>
-			<file name="5_InSession - Login.aspx" mappedTo="Vulnerabilities\InSession - Login.aspx"/>
-			<file name="6_InSession - SqlInjectionPages.aspx" mappedTo="Vulnerabilities\InSession - SqlInjectionPages.aspx"/>
-			<file name="Navigation_Level_1_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_0.html"/>
-			<file name="Navigation_Level_1_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_1.html"/>
-			<file name="Navigation_Level_1_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_2.html"/>
-			<file name="7_Remote Cmd Shell Advanced.aspx" mappedTo="Vulnerabilities\Remote Cmd Shell Advanced.aspx"/>
-			<file name="8_Remote Cmd Shell.aspx" mappedTo="Vulnerabilities\Remote Cmd Shell.aspx"/>
-			<file name="9_Show Directories.aspx" mappedTo="Vulnerabilities\Show Directories.aspx"/>
-			<file name="Navigation_Level_1_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_0.html"/>
-			<file name="Navigation_Level_1_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_1.html"/>
-			<file name="Navigation_Level_1_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_1_SubLevel_2.html"/>
-			<file name="10_Show File Contents.aspx" mappedTo="Vulnerabilities\Show File Contents.aspx"/>
-			<file name="11_UnprotectedSecrets_Viewstate_HiddenField.aspx" mappedTo="Vulnerabilities\UnprotectedSecrets_Viewstate_HiddenField.aspx"/>
-			<file name="12_Weak Password.aspx" mappedTo="Vulnerabilities\Weak Password.aspx"/>
-			<file name="Navigation_Level_2_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_0.html"/>
-			<file name="Navigation_Level_2_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_1.html"/>
-			<file name="Navigation_Level_2_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_2.html"/>
-			<file name="13_Write File On Server.aspx" mappedTo="Vulnerabilities\Write File On Server.aspx"/>
-			<file name="14_XSS.aspx" mappedTo="Vulnerabilities\XSS.aspx"/>
-			<file name="15_XSS_v4.aspx" mappedTo="Vulnerabilities\XSS_v4.aspx"/>
-			<file name="Navigation_Level_2_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_0.html"/>
-			<file name="Navigation_Level_2_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_1.html"/>
-			<file name="Navigation_Level_2_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_2.html"/>
-			<file name="16_DataValidation_SqlInjection_Advanced.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Advanced.aspx"/>
-			<file name="17_DataValidation_SqlInjection_Basic.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Basic.aspx"/>
-			<file name="18_DataValidation_SqlInjection_Medium.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Medium.aspx"/>
-			<file name="Navigation_Level_2_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_0.html"/>
-			<file name="Navigation_Level_2_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_1.html"/>
-			<file name="Navigation_Level_2_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_2_SubLevel_2.html"/>
-			<file name="19_Direct Sql Query.aspx" mappedTo="Vulnerabilities\Direct Sql Query.aspx"/>
-			<file name="20_InSession - Login.aspx" mappedTo="Vulnerabilities\InSession - Login.aspx"/>
-			<file name="21_InSession - SqlInjectionPages.aspx" mappedTo="Vulnerabilities\InSession - SqlInjectionPages.aspx"/>
-			<file name="Navigation_Level_3_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_0.html"/>
-			<file name="Navigation_Level_3_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_1.html"/>
-			<file name="Navigation_Level_3_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_2.html"/>
-			<file name="22_Remote Cmd Shell Advanced.aspx" mappedTo="Vulnerabilities\Remote Cmd Shell Advanced.aspx"/>
-			<file name="23_Remote Cmd Shell.aspx" mappedTo="Vulnerabilities\Remote Cmd Shell.aspx"/>
-			<file name="24_Show Directories.aspx" mappedTo="Vulnerabilities\Show Directories.aspx"/>
-			<file name="Navigation_Level_3_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_0.html"/>
-			<file name="Navigation_Level_3_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_1.html"/>
-			<file name="Navigation_Level_3_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_2.html"/>
-			<file name="25_Show File Contents.aspx" mappedTo="Vulnerabilities\Show File Contents.aspx"/>
-			<file name="26_UnprotectedSecrets_Viewstate_HiddenField.aspx" mappedTo="Vulnerabilities\UnprotectedSecrets_Viewstate_HiddenField.aspx"/>
-			<file name="27_Weak Password.aspx" mappedTo="Vulnerabilities\Weak Password.aspx"/>
-			<file name="Navigation_Level_3_SubLevel_0.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_0.html"/>
-			<file name="Navigation_Level_3_SubLevel_1.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_1.html"/>
-			<file name="Navigation_Level_3_SubLevel_2.html" mappedTo="TestSite\Navigation_Level_3_SubLevel_2.html"/>
-			<file name="28_Write File On Server.aspx" mappedTo="Vulnerabilities\Write File On Server.aspx"/>
-			<file name="29_XSS.aspx" mappedTo="Vulnerabilities\XSS.aspx"/>
-			<file name="30_XSS_v4.aspx" mappedTo="Vulnerabilities\XSS_v4.aspx"/>
-			<file name="31_DataValidation_SqlInjection_Advanced.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Advanced.aspx"/>
-			<file name="32_DataValidation_SqlInjection_Basic.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Basic.aspx"/>
-			<file name="33_DataValidation_SqlInjection_Medium.aspx" mappedTo="Vulnerabilities\DataValidation_SqlInjection_Medium.aspx"/>
-			<file name="34_Direct Sql Query.aspx" mappedTo="Vulnerabilities\Direct Sql Query.aspx"/>
-			<file name="35_InSession - Login.aspx" mappedTo="Vulnerabilities\InSession - Login.aspx"/>
-			<file name="36_InSession - SqlInjectionPages.aspx" mappedTo="Vulnerabilities\InSession - SqlInjectionPages.aspx"/>
-			<file name="37_Remote Cmd Shell Advanced.aspx" mappedTo="Vulnerabilities\Remote Cmd Shell Advanced.aspx"/>
-			<file name="38_Remote Cmd Shell.aspx" mappedTo="Vulnerabilities\Remote Cmd Shell.aspx"/>
-			<file name="39_Show Directories.aspx" mappedTo="Vulnerabilities\Show Directories.aspx"/>
-		</rootFolder>
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
+		<altovaHack />
 	</site>
 </SiteGenerator>
