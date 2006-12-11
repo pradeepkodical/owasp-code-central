@@ -10,12 +10,7 @@ namespace Owasp.SiteGenerator.utils
     /// </summary>
     public class authentic
     {
-        public authentic()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
+        public authentic(){ }
 
         public static void loadXmlFileInTargetAuthenticView(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string urlToXml, string urlToXsd, string urlToSps)
         {

@@ -175,6 +175,7 @@ namespace Owasp.SiteGenerator
 
         public static void generateDirectoryNavigation_html(XmlNode xnSelectedDirectory, string strBaseDir, string strTargetFileName, bool showFiles, bool verticalMenu)
         {
+            // TODO: refactor it smells like a marathon runners socks
             StringBuilder strFileHtmlContents = new StringBuilder("<html><body>");
             if ((strBaseDir.Length > 1) && (strBaseDir[strBaseDir.Length - 1] == '/'))
                 strBaseDir = strBaseDir.Substring(0,strBaseDir.Length - 1);
@@ -227,6 +228,7 @@ namespace Owasp.SiteGenerator
         /// <returns></returns>
         public static string resolveNameAndFolder(string strVirtualPathToProcess, ref bool bMatch)
         {
+            //TODO: refactor this, it smellz!
             try
             {
                 string strDirectoryPath = Path.GetDirectoryName(strVirtualPathToProcess);
