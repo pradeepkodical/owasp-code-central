@@ -36,21 +36,26 @@ namespace Owasp.VulnReport.utils
 		}
 
 
-		public static string compileSourceCode(string strSourceCodeToExecute,string[] strReferenceAssembliesToAdd)
-		{
-			string strTempFileName = Path.GetTempFileName();
+		public static string compileSourceCode(string strSourceCodeToExecute,string[] strReferenceAssembliesToAdd, string strPathToTempCompiledFile)
+		{            			
+            if ("" == strPathToTempCompiledFile)
+                strPathToTempCompiledFile = Path.GetTempFileName();
+            else
+                strPathToTempCompiledFile = Path.Combine(strPathToTempCompiledFile, files.returnUniqueFileName(".tmp.cs"));
 			if (strSourceCodeToExecute.Length==0)			
 				return "Error: Code to compile cannot be empty";			
 			else
-			{	
-							
-				utils.files.SaveFileWithStringContents(strTempFileName,strSourceCodeToExecute);				
-				string strCompilationResult= new WindowsApp().Compile(strTempFileName,strReferenceAssembliesToAdd);		
-				if ("" == strCompilationResult) 
-					return "Compilation OK";
-				else
-					return strCompilationResult	;
-			}
+			{                
+                utils.files.SaveFileWithStringContents(strPathToTempCompiledFile, strSourceCodeToExecute);
+                string strCompilationResult = new WindowsApp().Compile(strPathToTempCompiledFile, strReferenceAssembliesToAdd);
+                if ("" == strCompilationResult)
+                {
+                    File.Delete(strPathToTempCompiledFile);
+                    return "Compilation OK";
+                }
+                else
+                    return strCompilationResult;
+			}            
 		}
 
 		public static void compileAndExecuteFile(string strFileToExecute,string[] strReferenceAssembliesToAdd)
@@ -320,8 +325,10 @@ namespace Owasp.VulnReport.utils
 				using(StreamReader reader = new StreamReader(nrfFile))
 				{
 					string line;;
-					while((line  = reader.ReadLine()) != null)
-						compilerParams.ReferencedAssemblies.Add(line);
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        compilerParams.ReferencedAssemblies.Add(line);
+                    }
 				}
 			}
 
@@ -385,9 +392,10 @@ namespace Owasp.VulnReport.utils
 				// manually add references (since he nfr bellow system will need to be implemented a diferent way)
 				compilerparams.ReferencedAssemblies.Add("System.dll");
 				compilerparams.ReferencedAssemblies.Add("System.Windows.Forms.Dll");
-				foreach(string strReferenceAssemblyToAdd in strReferenceAssembliesToAdd)
-					compilerparams.ReferencedAssemblies.Add(strReferenceAssemblyToAdd);		
-
+                foreach (string strReferenceAssemblyToAdd in strReferenceAssembliesToAdd)                
+                    compilerparams.ReferencedAssemblies.Add(strReferenceAssemblyToAdd);                
+                // we don't use this (since the extra references are retrieved from the Xml file
+                /*
 				//Add assembly references from nscript.nrf or <file>.nrf
 				string nrfFile = Path.ChangeExtension(strFile, "nrf");
 
@@ -401,6 +409,7 @@ namespace Owasp.VulnReport.utils
 					if (File.Exists(nrfFile))
 						AddReferencesFromFile(compilerparams, nrfFile);
 				}
+                 * */
 				System.CodeDom.Compiler.CompilerResults crResults = provider.CompileAssemblyFromFile(compilerparams, strFile);
 
 				return crResults;

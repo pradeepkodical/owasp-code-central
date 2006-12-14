@@ -6,6 +6,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace Owasp.VulnReport.ascx
 {
@@ -576,9 +577,13 @@ namespace Owasp.VulnReport.ascx
                     txtNewPlugInFileName.Enabled = false;
                     btCreatePlugInFile.Enabled = false;
                 }
+                //resolve reference assemblies
+                strReferenceAssemblies = getStringArrayOfReferenceAssembliesToLoad(Path.GetDirectoryName(strFullPathToPlugInXmlFileToLoad), xnPlugIn.Attributes.GetNamedItem("referenceAssemblies"), xnPlugIn.Attributes.GetNamedItem("referencePlugInAssemblies"));
+/*
 				XmlNode xnReferenceAssemblies = xnPlugIn.Attributes.GetNamedItem("referenceAssemblies");
 				if (null != xnReferenceAssemblies)
 					strReferenceAssemblies = xnReferenceAssemblies.InnerText.Split(',');
+ * */
 				if (xnPlugIn.ChildNodes.Count>0)
 					strActionSourceCode = xnPlugIn.ChildNodes[0].InnerText;
 				else
@@ -593,7 +598,7 @@ namespace Owasp.VulnReport.ascx
 		private void getSourceCodeFromXmlFile(string strXmlFileToProcess, ref string strSourceCode, ref string[] strReferenceAssemblies)
 		{
 			try
-			{
+			{                         
 				XmlDocument xdPlugInXmlFile = new XmlDocument();
 				xdPlugInXmlFile .Load(strXmlFileToProcess);
 				XmlNodeList xnlPlugIns = xdPlugInXmlFile.GetElementsByTagName("PlugIn");
@@ -604,12 +609,11 @@ namespace Owasp.VulnReport.ascx
 					MessageBox.Show("There are NO (i.e. zero) Plug-In in this Plug-ins File");
 					return;
 				}	
-				XmlNode xnPlugIn = xnlPlugIns[0];	
-				XmlNode xnReferenceAssemblies = xnPlugIn.Attributes.GetNamedItem("referenceAssemblies");
-				if (null != xnReferenceAssemblies)
-					strReferenceAssemblies = xnReferenceAssemblies.InnerText.Split(',');
-			
-				// ADD BIT OF GETTING REFERENCE ASSEMBLIES FROM XML FILE			
+				XmlNode xnPlugIn = xnlPlugIns[0];
+                
+                //resolve reference assemblies
+                strReferenceAssemblies = getStringArrayOfReferenceAssembliesToLoad(Path.GetDirectoryName(strPlugInFileToLoad),xnPlugIn.Attributes.GetNamedItem("referenceAssemblies"), xnPlugIn.Attributes.GetNamedItem("referencePlugInAssemblies"));
+                                    
 				if (xnPlugIn.ChildNodes.Count>0)
 					strSourceCode = xnPlugIn.ChildNodes[0].InnerText;
 				else			
@@ -620,7 +624,7 @@ namespace Owasp.VulnReport.ascx
 				MessageBox.Show("Error in getSourceCodeFromXmlFile:"+ ex.Message);
 			}
 		}
-
+      
 		private void lbPlugInXmlFiles_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			utils.windowsForms.addMessageToTextBox_top(txtDebugMessages,"Loading Plug-in: " + lbPlugInXmlFiles.Text);
@@ -629,6 +633,8 @@ namespace Owasp.VulnReport.ascx
 			string strFullPathToXsdFile = Path.Combine(strPathToCurrentPluginFiles,strPathToXsdFile);
 			utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_Plugin,strFullPathToXmlFile,strFullPathToXsdFile,strFullPathToSPSFile);
 			txtPlugInArguments.Text = strFullPathToXmlFile;
+            if (false == axAuthentic_Plugin.Visible) // which will only happen if the
+                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, string.Format("Could not file files to load. Make sure that the SPS, XML and XSD are all there"));
 		}
 
 		private void btExecuteAction_Click(object sender, System.EventArgs e)
@@ -667,7 +673,7 @@ namespace Owasp.VulnReport.ascx
 			string[] strReferenceAssembliesToAdd = new string[0];
 			string strPlugInSourceCode = "";
 			getSourceCodeFromXmlFile(strPlugInFileToLoad, ref strPlugInSourceCode, ref strReferenceAssembliesToAdd);
-			utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, utils.scriptHost.compileSourceCode(strPlugInSourceCode ,strReferenceAssembliesToAdd));
+			utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, utils.scriptHost.compileSourceCode(strPlugInSourceCode ,strReferenceAssembliesToAdd, strPathToCurrentPluginFiles));
 		}
 
         private void btCreatePlugInFile_Click(object sender, EventArgs e)
@@ -699,7 +705,37 @@ namespace Owasp.VulnReport.ascx
                 LoadPlugInXmlFiles();
             }
         }
-		
+
+        /// <summary>
+        /// Resolve list of assemblies to load as references
+        /// </summary>
+        /// <param name="xnReferenceAssemblies">These assemblies will be loaded from the local Plug-in Directory; </param>
+        /// <param name="xnReferencePluginAssemblies">These assemblys will be loaded from the current .Net Framework folder or from the GAC</param>
+        /// <returns></returns>       
+        private string[] getStringArrayOfReferenceAssembliesToLoad(string strLocalPluginDirectory, XmlNode xnReferenceAssemblies, XmlNode xnReferencePluginAssemblies)
+        {
+            List<string> lstrTmpListOfReferenceAssemblies = new List<string>();
+            if (null != xnReferenceAssemblies)
+                lstrTmpListOfReferenceAssemblies.AddRange(xnReferenceAssemblies.InnerText.Split(','));
+
+            if (null != xnReferencePluginAssemblies)
+            {
+                string[] strTmpReferencesPlugInAssemblies = xnReferencePluginAssemblies.InnerText.Split(',');
+                foreach (string strTmpReferencePlugInAssembly in strTmpReferencesPlugInAssemblies)
+                {
+                    string strPathToReferencePlugInAssemblyToLoad = Path.Combine(strLocalPluginDirectory, strTmpReferencePlugInAssembly);
+                    if (true == File.Exists(strPathToReferencePlugInAssemblyToLoad))
+                    {
+                        lstrTmpListOfReferenceAssemblies.Add(strPathToReferencePlugInAssemblyToLoad);
+                    }
+                    else
+                        utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, string.Format("Could not load Internal Plug-in Reference: {0}", strPathToReferencePlugInAssemblyToLoad));
+
+                }
+            }
+            return lstrTmpListOfReferenceAssemblies.ToArray(); // return the generic string List converted to a String array 
+        }
+
 
 	}
 
