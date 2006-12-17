@@ -64,7 +64,7 @@ namespace HacmeBank_v2_Website.ascx
 		{
 			txtChallenge.Text = new Random().Next().ToString();			
 			// the response is the Challenge XORed with the AdminSectionKey				
-			lblResponseValue.Text = (Int64.Parse(txtChallenge.Text) ^ Int64.Parse(ConfigurationSettings.AppSettings.Get("AdminSectionKey"))).ToString();
+			lblResponseValue.Text = (Int64.Parse(txtChallenge.Text) ^ Int64.Parse(ConfigurationManager.AppSettings.Get("AdminSectionKey"))).ToString();
 			Response.Write("<div style=\"COLOR: #f0f0f0;LEFT: 1px; POSITION: absolute; TOP: 1px\">"+lblResponseValue.Text+ "</div>");
 		}
 

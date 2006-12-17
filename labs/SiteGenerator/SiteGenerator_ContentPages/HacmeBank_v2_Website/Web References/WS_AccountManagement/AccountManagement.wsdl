@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://tempuri.org/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://tempuri.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetUserAccounts_using_UserID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserAccounts_using_UserIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserAccounts_using_UserIDResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAccountDetails_using_AccountID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountDetails_using_AccountIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountDetails_using_AccountIDResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountTransactions_using_AccountID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountTransactions_using_AccountIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountTransactions_using_AccountIDResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountTransactionDetails_using_TransactionID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountTransactionDetails_using_TransactionIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountTransactionDetails_using_TransactionIDResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransferFunds">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceAccount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="destinationAccount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransferFundsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransferFundsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoanRates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoanRatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLoanRatesResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestALoan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="destinationAccount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="loanPeriod" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="loanInterestRate" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestALoanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RequestALoanResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MakePayment_Using_CreditCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceAccount_CCNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sourceAccount_CCExpiryDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="destinationAccount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MakePayment_Using_CreditCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MakePayment_Using_CreditCardResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountCurrency" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountBranch" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountInitalBalance" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateAccountResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="recalculateAllAccountBalances">
+        <s:complexType />
+      </s:element>
+      <s:element name="recalculateAllAccountBalancesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recalculateAllAccountBalancesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteSqlQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sqlQueryToExecute" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteSqlQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExecuteSqlQueryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="GetUserAccounts_using_UserIDSoapIn">
+    <part name="parameters" element="s0:GetUserAccounts_using_UserID" />
+  </message>
+  <message name="GetUserAccounts_using_UserIDSoapOut">
+    <part name="parameters" element="s0:GetUserAccounts_using_UserIDResponse" />
+  </message>
+  <message name="GetAccountDetails_using_AccountIDSoapIn">
+    <part name="parameters" element="s0:GetAccountDetails_using_AccountID" />
+  </message>
+  <message name="GetAccountDetails_using_AccountIDSoapOut">
+    <part name="parameters" element="s0:GetAccountDetails_using_AccountIDResponse" />
+  </message>
+  <message name="GetAccountTransactions_using_AccountIDSoapIn">
+    <part name="parameters" element="s0:GetAccountTransactions_using_AccountID" />
+  </message>
+  <message name="GetAccountTransactions_using_AccountIDSoapOut">
+    <part name="parameters" element="s0:GetAccountTransactions_using_AccountIDResponse" />
+  </message>
+  <message name="GetAccountTransactionDetails_using_TransactionIDSoapIn">
+    <part name="parameters" element="s0:GetAccountTransactionDetails_using_TransactionID" />
+  </message>
+  <message name="GetAccountTransactionDetails_using_TransactionIDSoapOut">
+    <part name="parameters" element="s0:GetAccountTransactionDetails_using_TransactionIDResponse" />
+  </message>
+  <message name="TransferFundsSoapIn">
+    <part name="parameters" element="s0:TransferFunds" />
+  </message>
+  <message name="TransferFundsSoapOut">
+    <part name="parameters" element="s0:TransferFundsResponse" />
+  </message>
+  <message name="GetLoanRatesSoapIn">
+    <part name="parameters" element="s0:GetLoanRates" />
+  </message>
+  <message name="GetLoanRatesSoapOut">
+    <part name="parameters" element="s0:GetLoanRatesResponse" />
+  </message>
+  <message name="RequestALoanSoapIn">
+    <part name="parameters" element="s0:RequestALoan" />
+  </message>
+  <message name="RequestALoanSoapOut">
+    <part name="parameters" element="s0:RequestALoanResponse" />
+  </message>
+  <message name="MakePayment_Using_CreditCardSoapIn">
+    <part name="parameters" element="s0:MakePayment_Using_CreditCard" />
+  </message>
+  <message name="MakePayment_Using_CreditCardSoapOut">
+    <part name="parameters" element="s0:MakePayment_Using_CreditCardResponse" />
+  </message>
+  <message name="CreateAccountSoapIn">
+    <part name="parameters" element="s0:CreateAccount" />
+  </message>
+  <message name="CreateAccountSoapOut">
+    <part name="parameters" element="s0:CreateAccountResponse" />
+  </message>
+  <message name="recalculateAllAccountBalancesSoapIn">
+    <part name="parameters" element="s0:recalculateAllAccountBalances" />
+  </message>
+  <message name="recalculateAllAccountBalancesSoapOut">
+    <part name="parameters" element="s0:recalculateAllAccountBalancesResponse" />
+  </message>
+  <message name="ExecuteSqlQuerySoapIn">
+    <part name="parameters" element="s0:ExecuteSqlQuery" />
+  </message>
+  <message name="ExecuteSqlQuerySoapOut">
+    <part name="parameters" element="s0:ExecuteSqlQueryResponse" />
+  </message>
+  <portType name="WS_AccountManagementSoap">
+    <operation name="GetUserAccounts_using_UserID">
+      <input message="s0:GetUserAccounts_using_UserIDSoapIn" />
+      <output message="s0:GetUserAccounts_using_UserIDSoapOut" />
+    </operation>
+    <operation name="GetAccountDetails_using_AccountID">
+      <input message="s0:GetAccountDetails_using_AccountIDSoapIn" />
+      <output message="s0:GetAccountDetails_using_AccountIDSoapOut" />
+    </operation>
+    <operation name="GetAccountTransactions_using_AccountID">
+      <input message="s0:GetAccountTransactions_using_AccountIDSoapIn" />
+      <output message="s0:GetAccountTransactions_using_AccountIDSoapOut" />
+    </operation>
+    <operation name="GetAccountTransactionDetails_using_TransactionID">
+      <input message="s0:GetAccountTransactionDetails_using_TransactionIDSoapIn" />
+      <output message="s0:GetAccountTransactionDetails_using_TransactionIDSoapOut" />
+    </operation>
+    <operation name="TransferFunds">
+      <input message="s0:TransferFundsSoapIn" />
+      <output message="s0:TransferFundsSoapOut" />
+    </operation>
+    <operation name="GetLoanRates">
+      <input message="s0:GetLoanRatesSoapIn" />
+      <output message="s0:GetLoanRatesSoapOut" />
+    </operation>
+    <operation name="RequestALoan">
+      <input message="s0:RequestALoanSoapIn" />
+      <output message="s0:RequestALoanSoapOut" />
+    </operation>
+    <operation name="MakePayment_Using_CreditCard">
+      <input message="s0:MakePayment_Using_CreditCardSoapIn" />
+      <output message="s0:MakePayment_Using_CreditCardSoapOut" />
+    </operation>
+    <operation name="CreateAccount">
+      <input message="s0:CreateAccountSoapIn" />
+      <output message="s0:CreateAccountSoapOut" />
+    </operation>
+    <operation name="recalculateAllAccountBalances">
+      <input message="s0:recalculateAllAccountBalancesSoapIn" />
+      <output message="s0:recalculateAllAccountBalancesSoapOut" />
+    </operation>
+    <operation name="ExecuteSqlQuery">
+      <input message="s0:ExecuteSqlQuerySoapIn" />
+      <output message="s0:ExecuteSqlQuerySoapOut" />
+    </operation>
+  </portType>
+  <binding name="WS_AccountManagementSoap" type="s0:WS_AccountManagementSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetUserAccounts_using_UserID">
+      <soap:operation soapAction="http://tempuri.org/GetUserAccounts_using_UserID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetAccountDetails_using_AccountID">
+      <soap:operation soapAction="http://tempuri.org/GetAccountDetails_using_AccountID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetAccountTransactions_using_AccountID">
+      <soap:operation soapAction="http://tempuri.org/GetAccountTransactions_using_AccountID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetAccountTransactionDetails_using_TransactionID">
+      <soap:operation soapAction="http://tempuri.org/GetAccountTransactionDetails_using_TransactionID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="TransferFunds">
+      <soap:operation soapAction="http://tempuri.org/TransferFunds" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetLoanRates">
+      <soap:operation soapAction="http://tempuri.org/GetLoanRates" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RequestALoan">
+      <soap:operation soapAction="http://tempuri.org/RequestALoan" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="MakePayment_Using_CreditCard">
+      <soap:operation soapAction="http://tempuri.org/MakePayment_Using_CreditCard" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="CreateAccount">
+      <soap:operation soapAction="http://tempuri.org/CreateAccount" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="recalculateAllAccountBalances">
+      <soap:operation soapAction="http://tempuri.org/recalculateAllAccountBalances" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ExecuteSqlQuery">
+      <soap:operation soapAction="http://tempuri.org/ExecuteSqlQuery" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="WS_AccountManagement">
+    <port name="WS_AccountManagementSoap" binding="s0:WS_AccountManagementSoap">
+      <soap:address location="http://192.168.1.10/HacmeBank_v2_WS/WebServices/AccountManagement.asmx" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://tempuri.org/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://tempuri.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListCurrentUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListCurrentUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListCurrentUsersResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserDetail_using_userName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetail_using_userNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDetail_using_userNameResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetail_using_userID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetail_using_userIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDetail_using_userIDResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetail_using_loginID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetail_using_loginIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDetail_using_loginIDResult" type="s0:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateUserDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserDetailsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeUserPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPasswordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="LoginSoapIn">
+    <part name="parameters" element="s0:Login" />
+  </message>
+  <message name="LoginSoapOut">
+    <part name="parameters" element="s0:LoginResponse" />
+  </message>
+  <message name="ListCurrentUsersSoapIn">
+    <part name="parameters" element="s0:ListCurrentUsers" />
+  </message>
+  <message name="ListCurrentUsersSoapOut">
+    <part name="parameters" element="s0:ListCurrentUsersResponse" />
+  </message>
+  <message name="GetUserDetail_using_userNameSoapIn">
+    <part name="parameters" element="s0:GetUserDetail_using_userName" />
+  </message>
+  <message name="GetUserDetail_using_userNameSoapOut">
+    <part name="parameters" element="s0:GetUserDetail_using_userNameResponse" />
+  </message>
+  <message name="GetUserDetail_using_userIDSoapIn">
+    <part name="parameters" element="s0:GetUserDetail_using_userID" />
+  </message>
+  <message name="GetUserDetail_using_userIDSoapOut">
+    <part name="parameters" element="s0:GetUserDetail_using_userIDResponse" />
+  </message>
+  <message name="GetUserDetail_using_loginIDSoapIn">
+    <part name="parameters" element="s0:GetUserDetail_using_loginID" />
+  </message>
+  <message name="GetUserDetail_using_loginIDSoapOut">
+    <part name="parameters" element="s0:GetUserDetail_using_loginIDResponse" />
+  </message>
+  <message name="CreateUserSoapIn">
+    <part name="parameters" element="s0:CreateUser" />
+  </message>
+  <message name="CreateUserSoapOut">
+    <part name="parameters" element="s0:CreateUserResponse" />
+  </message>
+  <message name="UpdateUserDetailsSoapIn">
+    <part name="parameters" element="s0:UpdateUserDetails" />
+  </message>
+  <message name="UpdateUserDetailsSoapOut">
+    <part name="parameters" element="s0:UpdateUserDetailsResponse" />
+  </message>
+  <message name="ChangeUserPasswordSoapIn">
+    <part name="parameters" element="s0:ChangeUserPassword" />
+  </message>
+  <message name="ChangeUserPasswordSoapOut">
+    <part name="parameters" element="s0:ChangeUserPasswordResponse" />
+  </message>
+  <message name="DeleteUserSoapIn">
+    <part name="parameters" element="s0:DeleteUser" />
+  </message>
+  <message name="DeleteUserSoapOut">
+    <part name="parameters" element="s0:DeleteUserResponse" />
+  </message>
+  <portType name="WS_UserManagementSoap">
+    <operation name="Login">
+      <input message="s0:LoginSoapIn" />
+      <output message="s0:LoginSoapOut" />
+    </operation>
+    <operation name="ListCurrentUsers">
+      <input message="s0:ListCurrentUsersSoapIn" />
+      <output message="s0:ListCurrentUsersSoapOut" />
+    </operation>
+    <operation name="GetUserDetail_using_userName">
+      <input message="s0:GetUserDetail_using_userNameSoapIn" />
+      <output message="s0:GetUserDetail_using_userNameSoapOut" />
+    </operation>
+    <operation name="GetUserDetail_using_userID">
+      <input message="s0:GetUserDetail_using_userIDSoapIn" />
+      <output message="s0:GetUserDetail_using_userIDSoapOut" />
+    </operation>
+    <operation name="GetUserDetail_using_loginID">
+      <input message="s0:GetUserDetail_using_loginIDSoapIn" />
+      <output message="s0:GetUserDetail_using_loginIDSoapOut" />
+    </operation>
+    <operation name="CreateUser">
+      <input message="s0:CreateUserSoapIn" />
+      <output message="s0:CreateUserSoapOut" />
+    </operation>
+    <operation name="UpdateUserDetails">
+      <input message="s0:UpdateUserDetailsSoapIn" />
+      <output message="s0:UpdateUserDetailsSoapOut" />
+    </operation>
+    <operation name="ChangeUserPassword">
+      <input message="s0:ChangeUserPasswordSoapIn" />
+      <output message="s0:ChangeUserPasswordSoapOut" />
+    </operation>
+    <operation name="DeleteUser">
+      <input message="s0:DeleteUserSoapIn" />
+      <output message="s0:DeleteUserSoapOut" />
+    </operation>
+  </portType>
+  <binding name="WS_UserManagementSoap" type="s0:WS_UserManagementSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/Login" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ListCurrentUsers">
+      <soap:operation soapAction="http://tempuri.org/ListCurrentUsers" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUserDetail_using_userName">
+      <soap:operation soapAction="http://tempuri.org/GetUserDetail_using_userName" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUserDetail_using_userID">
+      <soap:operation soapAction="http://tempuri.org/GetUserDetail_using_userID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUserDetail_using_loginID">
+      <soap:operation soapAction="http://tempuri.org/GetUserDetail_using_loginID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="CreateUser">
+      <soap:operation soapAction="http://tempuri.org/CreateUser" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateUserDetails">
+      <soap:operation soapAction="http://tempuri.org/UpdateUserDetails" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ChangeUserPassword">
+      <soap:operation soapAction="http://tempuri.org/ChangeUserPassword" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/DeleteUser" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="WS_UserManagement">
+    <port name="WS_UserManagementSoap" binding="s0:WS_UserManagementSoap">
+      <soap:address location="http://192.168.1.10/HacmeBank_v2_WS/WebServices/UserManagement.asmx" />
+    </port>
+  </service>
+</definitions>

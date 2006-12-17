@@ -1,4 +1,4 @@
-<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.admin.Manage_Accounts" CodeFile="Manage_Accounts.ascx.cs" %>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.admin.Manage_Accounts" Codebehind="Manage_Accounts.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1" width="485">
 	<tr bgcolor="#d2dae4">
 		<td colspan="2"><b>Manage Accounts</b> <br>[NOTE: in this version only the Add New Account funcionality is completed</td>

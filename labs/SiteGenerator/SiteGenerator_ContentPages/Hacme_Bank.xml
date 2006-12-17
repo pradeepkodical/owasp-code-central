@@ -4,6 +4,8 @@
 		<rootFolder defaultPage="Default.htm">
 			<file mappedTo="HacmeBank_v2_Website\aspx\login.aspx" name="login.aspx"/>
 			<file mappedTo="HacmeBank_v2_Website\aspx\main.aspx" name="Default.htm"/>
+			<file mappedTo="HacmeBank_v2_Website\Global.asax" name="Global.asax"/>
+			<file mappedTo="HacmeBank_v2_Website\aspx\main.aspx" name="main.aspx"/>
 			<altovaHack/>
 			<altovaHack/>
 			<altovaHack/>
@@ -103,6 +105,9 @@
 				<file mappedTo="HacmeBank_v2_Website\aspx\mages\hacme_header.jpg" name="hacme_header.jpg"/>
 				<file mappedTo="HacmeBank_v2_Website\aspx\images\top_blue_menu.jpg" name="top_blue_menu.jpg"/>
 				<file mappedTo="HacmeBank_v2_Website\aspx\images\blueheaderblank.jpg" name="blueheaderblank.jpg"/>
+				<file mappedTo="HacmeBank_v2_Website\aspx\images\red_arrows.gif" name="red_arrows.gif"/>
+				<file mappedTo="HacmeBank_v2_Website\aspx\images\nav_arrows.gif" name="nav_arrows.gif"/>
+				<file mappedTo="HacmeBank_v2_Website\aspx\images\clear.gif" name="clear.gif"/>
 			</folder>
 			<folder name="css">
 				<folder name="images">
@@ -112,10 +117,13 @@
 			</folder>
 			<folder name="HacmeBank_v2_WS">
 				<folder name="WebServices">
-					<file mappedTo="HacmeBank_v2_WS\webServices\UserManagement.asmx" name="UserManagement.asmx" />
-					<file mappedTo="HacmeBank_v2_WS\webServices\UsersCommunity.asmx" name="UsersCommunity.asmx" />
-					<file mappedTo="HacmeBank_v2_WS\webServices\AccountManagement.asmx" name="AccountManagement.asmx" />
+					<file mappedTo="HacmeBank_v2_WS\webServices\UserManagement.asmx" name="UserManagement.asmx"/>
+					<file mappedTo="HacmeBank_v2_WS\webServices\UsersCommunity.asmx" name="UsersCommunity.asmx"/>
+					<file mappedTo="HacmeBank_v2_WS\webServices\AccountManagement.asmx" name="AccountManagement.asmx"/>
 				</folder>
+			</folder>
+			<folder name="xsl">
+				<file mappedTo="HacmeBank_v2_Website\xsl\info.xsl" name="info.xsl"/>
 			</folder>
 		</rootFolder>
 	</site>

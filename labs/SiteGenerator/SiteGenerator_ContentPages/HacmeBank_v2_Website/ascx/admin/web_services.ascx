@@ -1,4 +1,4 @@
-<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.WebServices" CodeFile="Web_Services.ascx.cs" %>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.WebServices" Codebehind="Web_Services.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1" width="485" height=400>
 	<tr bgcolor="#d2dae4" height=10>
 		<td colspan=3><b>Web Services</b></td>

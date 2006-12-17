@@ -1,5 +1,5 @@
 <%@ Reference Page="~/aspx/main.aspx" %>
-<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx._AdminLeftMenu" CodeFile="_AdminLeftMenu.ascx.cs" %>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx._AdminLeftMenu" Codebehind="_AdminLeftMenu.ascx.cs" %>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr class="menu_light">
 		<td><img src="images\clear.gif" width="1" height="1"></td>
