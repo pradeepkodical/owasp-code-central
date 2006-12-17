@@ -1,4 +1,4 @@
-<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.Loan" CodeFile="Loan.ascx.cs" %>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.Loan" Codebehind="Loan.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1">
 	<tr bgcolor="#d2dae4">
 		<td><b>Request a Loan

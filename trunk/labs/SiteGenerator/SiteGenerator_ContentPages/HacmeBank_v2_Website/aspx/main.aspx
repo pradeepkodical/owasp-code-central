@@ -1,4 +1,4 @@
-<%@ Page language="c#" Inherits="HacmeBank_v2_Website.Main" validateRequest=false CodeFile="Main.aspx.cs" %>
+<%@ Page language="c#" Inherits="HacmeBank_v2_Website.Main" validateRequest=false Codebehind="Main.aspx.cs" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <HTML>
 	<HEAD>
@@ -15,20 +15,20 @@
 				<tr>
 					<td><table border="0" cellpadding="0" cellspacing="0">
 							<tr>
-								<td><img src="images\hacme_header.jpg" width="664" height="32"></td>
+								<td><img src="images/hacme_header.jpg" width="664" height="32"></td>
 							</tr>
 							<tr>
-								<td background="images\blueheader_bg.gif" width="664" height="19">
+								<td background="images/blueheader_bg.gif" width="664" height="19">
 									<asp:PlaceHolder id="ascxPlaceHolder_TopMenu" runat="server"></asp:PlaceHolder>
 								</td>
 							</tr>
 							<tr>
 								<td><table width="664" border="0" cellspacing="0" cellpadding="0">
 										<tr>
-											<td bgcolor="#46678e" width="154" valign="top"><p><img src="images\top_blue_menu.jpg" width="154" height="31">
+											<td bgcolor="#46678e" width="154" valign="top"><p><img src="images/top_blue_menu.jpg" width="154" height="31">
 													<asp:PlaceHolder id="ascxPlaceHolder_LeftMenu" runat="server"></asp:PlaceHolder></p>
 											</td>
-											<td width="1"><img src="images\clear.gif" width="1" height="31"></td>
+											<td width="1"><img src="images/clear.gif" width="1" height="31"></td>
 											<td valign="top"><img src="images/onlinebanking.jpg" width="508" height="93">
 												<table border="0" cellspacing="5" cellpadding="5">
 													<tr>

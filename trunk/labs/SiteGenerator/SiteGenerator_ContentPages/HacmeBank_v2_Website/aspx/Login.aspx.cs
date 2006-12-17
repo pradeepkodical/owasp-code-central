@@ -100,7 +100,7 @@ namespace HacmeBank_v2_Website
 			string strSourceInformation = ""; 
 			try
 			{
-				string strTest = Session["FoundstoneMaketingMaterial"].ToString();
+                string strTest = Session["FoundstoneMaketingMaterial"].ToString();
 				if (Session["FoundstoneMaketingMaterial"].ToString()=="")
 				{
 					// return;	// comment here to disable this test
@@ -131,7 +131,7 @@ namespace HacmeBank_v2_Website
 					msXslTrans.Flush();
 					msXslTrans.Position= 0;
 					// after store the transformation in a session variable so that we don't have to do this everytime
-					Session["FoundstoneMaketingMaterial"] =  (new StreamReader(msXslTrans)).ReadToEnd();												
+					Session["FoundstoneMaketingMaterial"] =  (new StreamReader(msXslTrans)).ReadToEnd();
 				}
 				lbXmlInformation.Text = strSourceInformation + Session["FoundstoneMaketingMaterial"].ToString();
 			}

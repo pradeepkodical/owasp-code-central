@@ -1,4 +1,4 @@
-<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.Manage_Users" CodeFile="Manage_Users.ascx.cs" %>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.Manage_Users" Codebehind="Manage_Users.ascx.cs" %>
 <table borderColor="#899db1" cellSpacing="0" cellPadding="4" width="485" border="1">
 	<tr bgColor="#d2dae4">
 		<td><b><asp:label id="lblPageTitle" Runat="server"></asp:label></b></td>

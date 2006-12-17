@@ -1,4 +1,4 @@
-<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.admin.Sql_Query" CodeFile="Sql_Query.ascx.cs" %>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.admin.Sql_Query" Codebehind="Sql_Query.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1" width="485">
 	<tr bgcolor="#d2dae4">
 		<td colspan="2"><b>Sql Query</b></td>

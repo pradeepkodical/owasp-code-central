@@ -1,5 +1,5 @@
-<%@ Register TagPrefix="HacmeBank" TagName="Footer" Src="../ascx/_Footer.ascx" %>
-<%@ Page language="c#" EnableViewState="false" Inherits="HacmeBank_v2_Website.Login" CodeFile="Login.aspx.cs" %>
+<%@ Register TagPrefix="HacmeBank" TagName="Footer" Src="/ascx/_Footer.ascx" %>
+<%@ Page language="c#" EnableViewState="false" Inherits="HacmeBank_v2_Website.Login" Codebehind="Login.aspx.cs" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <HTML>
@@ -81,7 +81,7 @@
 					</td>
 				</tr>
 			</table>
-			<HacmeBank:Footer runat="server" ID="Footer" />
+			<!--<HacmeBank:Footer runat="server" ID="Footer" />-->
 		</form>
 	</body>
 </HTML>
