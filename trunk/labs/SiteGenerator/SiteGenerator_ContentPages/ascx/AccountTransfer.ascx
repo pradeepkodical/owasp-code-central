@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="AccountTransfer.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.AccountTransfer" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.AccountTransfer" Codebehind="AccountTransfer.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1" width="485">
 	<tr bgcolor="#d2dae4">
 		<td><b>Transfer Funds</b></td>
@@ -64,7 +64,7 @@
 					<td>&nbsp;</td>
 					<td>
 						<asp:button id="btnTransfer" tabIndex="5" runat="server" CssClass="butnstyle2" Width="106px"
-							Text="Transfer" Height="20px"></asp:button>
+							Text="Transfer" Height="20px" onclick="btnTransfer_Click"></asp:button>
 					</td>
 				</tr>
 			</table>

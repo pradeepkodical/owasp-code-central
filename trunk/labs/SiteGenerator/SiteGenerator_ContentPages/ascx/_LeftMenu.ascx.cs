@@ -10,14 +10,10 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for LeftMenu.
 	/// </summary>
-	public class LeftMenu : System.Web.UI.UserControl
+	public partial class LeftMenu : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.LinkButton lnkBtnFundsTransfer;
-		protected System.Web.UI.WebControls.LinkButton lnkBtnPostMessage;
-		protected System.Web.UI.WebControls.LinkButton lnkBtnLoans;	
-		protected System.Web.UI.WebControls.LinkButton lnkBtnAdminSection;		
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			// Put user code to initialize the page here
 		}
@@ -38,7 +34,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion

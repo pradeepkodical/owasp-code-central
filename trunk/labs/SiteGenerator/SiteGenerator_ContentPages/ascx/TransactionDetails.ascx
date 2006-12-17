@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="TransactionDetails.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.TransactionDetails" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.TransactionDetails" Codebehind="TransactionDetails.ascx.cs" %>
 <table borderColor="#899db1" cellSpacing="0" cellPadding="4" border="1">
 	<tr bgColor="#d2dae4">
 		<td><b><asp:label id="lblHeading1" BorderStyle="None" CssClass="" Runat="server" Width="">Transaction Details</asp:label></b></td>

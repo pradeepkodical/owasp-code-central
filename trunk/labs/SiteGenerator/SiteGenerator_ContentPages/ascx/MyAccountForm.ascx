@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="MyAccountForm.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.MyAccountForm" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.MyAccountForm" Codebehind="MyAccountForm.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1">
 	<tr bgcolor="#d2dae4">
 		<td><b>

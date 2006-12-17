@@ -10,16 +10,11 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for MyAccountForm.
 	/// </summary>
-	public class MyAccountForm : System.Web.UI.UserControl
+	public partial class MyAccountForm : System.Web.UI.UserControl
 	{
 
-		protected System.Web.UI.WebControls.DataGrid dgAccountDetails;
-		protected System.Web.UI.WebControls.Label lblHeading1;
-		protected System.Web.UI.WebControls.Label lblContactNo;
-		protected System.Web.UI.WebControls.Label lblHeading2;
-		protected System.Web.UI.WebControls.Label lblErrorMessage;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			GetAccounts();
 		}
@@ -73,7 +68,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion

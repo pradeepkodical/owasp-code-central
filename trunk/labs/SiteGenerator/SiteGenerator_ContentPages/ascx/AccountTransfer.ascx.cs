@@ -10,22 +10,10 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for AccountTransfer.
 	/// </summary>
-	public class AccountTransfer : System.Web.UI.UserControl
+	public partial class AccountTransfer : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.RangeValidator rvfCheckAmount;
-		protected System.Web.UI.WebControls.TextBox txtAmt;
-		protected System.Web.UI.WebControls.Button btnTransfer;
-		protected System.Web.UI.WebControls.Label lblMessage;
-		protected System.Web.UI.WebControls.DropDownList drpdwnSourceAcc;
-		protected System.Web.UI.WebControls.DropDownList drpdwnDestinationAcc;
-		protected System.Web.UI.WebControls.RadioButton rbInternalPayment;
-		protected System.Web.UI.WebControls.RadioButton rbExternalPayment;
-		protected System.Web.UI.WebControls.RangeValidator Rangevalidator1;
-		protected System.Web.UI.WebControls.TextBox txtComment;
-		protected System.Web.UI.WebControls.TextBox txtExternalPaymentAccount;
-		protected System.Web.UI.WebControls.Label lblErrorMessage;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{	
 			lblErrorMessage.Text = "";
 			lblMessage.Text = "";
@@ -38,7 +26,7 @@ namespace HacmeBank_v2_Website.ascx
 		}
 	
 
-		private void btnTransfer_Click(object sender, System.EventArgs e)
+		protected void btnTransfer_Click(object sender, System.EventArgs e)
 		{
 			if (drpdwnSourceAcc.SelectedItem.Text==drpdwnDestinationAcc.SelectedItem.Text && rbInternalPayment.Checked)			
 				lblErrorMessage.Text="Source and Destination Account cannot be the same. <br/>";							
@@ -92,8 +80,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion

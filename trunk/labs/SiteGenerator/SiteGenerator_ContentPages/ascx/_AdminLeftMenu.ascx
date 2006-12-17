@@ -1,4 +1,5 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="_AdminLeftMenu.ascx.cs" Inherits="HacmeBank_v2_Website.ascx._AdminLeftMenu" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Reference Page="/main.aspx" %>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx._AdminLeftMenu" Codebehind="_AdminLeftMenu.ascx.cs" %>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr class="menu_light">
 		<td><img src="images\clear.gif" width="1" height="1"></td>
@@ -15,7 +16,7 @@
 		</td>
 	</tr>
 	<tr class="menu_light">
-		<td><img src="images\clear.gif" width="1" height="1"></td>
+		<td><img src="images/clear.gif" width="1" height="1"></td>
 	</tr>
 	<tr class="menu_dark">
 		<td><table border="0" cellspacing="3" cellpadding="3">
@@ -29,7 +30,7 @@
 		</td>
 	</tr>
 	<tr class="menu_light">
-		<td><img src="images\clear.gif" width="1" height="1"></td>
+		<td><img src="images/clear.gif" width="1" height="1"></td>
 	</tr>
 	<tr class="menu_dark">
 		<td><table border="0" cellspacing="3" cellpadding="3">
@@ -43,7 +44,7 @@
 		</td>
 	</tr>
 	<tr class="menu_light">
-		<td><img src="images\clear.gif" width="1" height="1"></td>
+		<td><img src="images/clear.gif" width="1" height="1"></td>
 	</tr>
 </table>
 <p align="center">
@@ -57,6 +58,6 @@
 	<asp:Label id="ascxLabel_AdminLeftMenu" runat="server"></asp:Label>
 	
 	<tr class="menu_light">
-		<td><img src="images\clear.gif" width="1" height="1"></td>
+		<td><img src="images/clear.gif" width="1" height="1"></td>
 	</tr>
 </table>

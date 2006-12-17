@@ -10,13 +10,10 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for Header.
 	/// </summary>
-	public class Header : System.Web.UI.UserControl
+	public partial class Header : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.LinkButton lnkBtnChangePassword;
-		protected System.Web.UI.WebControls.LinkButton lnkBtnMyAccount;
-		protected System.Web.UI.WebControls.LinkButton lnkBtnLogOut;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			// Put user code to initialize the page here
 		}
@@ -37,7 +34,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion

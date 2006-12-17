@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="PasswordChange.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.PasswordChange" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.PasswordChange" Codebehind="PasswordChange.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1" width="485">
 	<tr bgcolor="#d2dae4">
 		<td><b>Change Password</b></td>
@@ -36,7 +36,7 @@
 					<td>&nbsp;</td>
 					<td>
 						<asp:button id="btnSubmit" tabIndex="2" runat="server" CssClass="butnstyle2" Width="106px" Height="20px"
-							Text="Submit"></asp:button>
+							Text="Submit" onclick="btnSubmit_Click"></asp:button>
 					</td>
 				</tr>
 			</table>

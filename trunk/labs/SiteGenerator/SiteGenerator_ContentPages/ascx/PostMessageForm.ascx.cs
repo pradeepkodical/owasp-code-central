@@ -10,20 +10,10 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for PostMessageForm.
 	/// </summary>
-	public class PostMessageForm : System.Web.UI.UserControl
+	public partial class PostMessageForm : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.Label lblMessage;
-		protected System.Web.UI.WebControls.Label Label1;
-		protected System.Web.UI.WebControls.TextBox txtSubject;
-		protected System.Web.UI.WebControls.Label Label2;
-		protected System.Web.UI.WebControls.TextBox txtText;
-		protected System.Web.UI.WebControls.Label lblError;
-		protected System.Web.UI.WebControls.Button btnPostMessage;
-		protected System.Web.UI.WebControls.Label lblPostedMessages;
-		protected System.Web.UI.WebControls.Button btnNewMessage;
-		protected System.Web.UI.WebControls.Label lblErrorMessage;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			lblErrorMessage.Text = "";
 			// Put user code to initialize the page here
@@ -51,7 +41,7 @@ namespace HacmeBank_v2_Website.ascx
 			}						
 		}
 
-		private void btnPostMessage_Click(object sender, System.EventArgs e)
+		protected void btnPostMessage_Click(object sender, System.EventArgs e)
 		{
 			if ("" == txtSubject.Text)			
 				lblErrorMessage.Text=  "Error : You have to enter a Message Subject<br/>";				
@@ -83,8 +73,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnPostMessage.Click += new System.EventHandler(this.btnPostMessage_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
 		}
 		#endregion
 	}

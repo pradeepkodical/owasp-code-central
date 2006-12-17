@@ -10,20 +10,11 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for PostMessageForm.
 	/// </summary>
-	public class Manage_Users : System.Web.UI.UserControl
+	public partial class Manage_Users : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.DataGrid dgUsersDetails;				
-		protected System.Web.UI.WebControls.Label lblPageTitle;
-		protected System.Web.UI.WebControls.Label lblErrorMessage;
-		protected System.Web.UI.WebControls.Table tblUserDetailsForm;
-		protected System.Web.UI.WebControls.Button btnSubmitUserDetails;
-		protected System.Web.UI.WebControls.Button btnAddNewUser;
 		protected System.Web.UI.WebControls.Table buttonSubmitUserDetails;	
-		protected System.Web.UI.WebControls.TextBox txtUsername;			
-		protected System.Web.UI.WebControls.TextBox txtLoginID;	
-		protected System.Web.UI.WebControls.TextBox txtUserPassword;			
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{			
 			// Put user code to initialize the page here
 			if (!IsPostBack)
@@ -125,14 +116,11 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{			
-			this.btnSubmitUserDetails.Click += new System.EventHandler(this.btnSubmitUserDetails_Click);
-			this.btnAddNewUser.Click += new System.EventHandler(this.btnAddNewUser_Click);			
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion
 
-		private void btnAddNewUser_Click(object sender, System.EventArgs e)
+		protected void btnAddNewUser_Click(object sender, System.EventArgs e)
 		{
 			lblPageTitle.Text = "Add new User";
 			dgUsersDetails.Visible = false;
@@ -140,7 +128,7 @@ namespace HacmeBank_v2_Website.ascx
 			btnAddNewUser.Visible=false;
 		}
 
-		private void btnSubmitUserDetails_Click(object sender, System.EventArgs e)
+		protected void btnSubmitUserDetails_Click(object sender, System.EventArgs e)
 		{
 			Global.objUserManagement.WS_CreateUser("",txtUsername.Text,txtLoginID.Text,txtUserPassword.Text);
 			LoadUsersDetails();

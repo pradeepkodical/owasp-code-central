@@ -10,9 +10,8 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for PostMessageForm.
 	/// </summary>
-	public class AdminManageMessages : System.Web.UI.UserControl
+	public partial class AdminManageMessages : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.DataGrid dgPostedMessages;
 		protected System.Web.UI.WebControls.Label lblMessage;
 		protected System.Web.UI.WebControls.Label Label1;
 		protected System.Web.UI.WebControls.TextBox txtSubject;
@@ -20,11 +19,9 @@ namespace HacmeBank_v2_Website.ascx
 		protected System.Web.UI.WebControls.TextBox txtText;
 		protected System.Web.UI.WebControls.Label lblError;
 		protected System.Web.UI.WebControls.Button btnPostMessage;
-		protected System.Web.UI.WebControls.Label lblPostedMessages;
 		protected System.Web.UI.WebControls.Button btnNewMessage;
-		protected System.Web.UI.WebControls.Label lblErrorMessage;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{			
 			// Put user code to initialize the page here
 			if (!IsPostBack)
@@ -93,7 +90,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{			
-			this.Load += new System.EventHandler(this.Page_Load);
 		}
 		#endregion
 	}

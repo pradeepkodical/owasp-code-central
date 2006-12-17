@@ -10,19 +10,10 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for PasswordChange.
 	/// </summary>
-	public class PasswordChange : System.Web.UI.UserControl
+	public partial class PasswordChange : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.TextBox txtOldPassword;
-		protected System.Web.UI.WebControls.TextBox txtNewPassword;
-		protected System.Web.UI.WebControls.TextBox txtConfirmPassword;
-		protected System.Web.UI.WebControls.Button btnSubmit;
-		protected System.Web.UI.WebControls.Label lblErrorMessage;
-		protected System.Web.UI.WebControls.Label lblOldPassword;
-		protected System.Web.UI.WebControls.Label lblNewPassword;
-		protected System.Web.UI.WebControls.Label lblConformPassword;
-		protected System.Web.UI.WebControls.Label lblMessage;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			// Put user code to initialize the page here
 		}
@@ -32,7 +23,7 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void btnSubmit_Click(object sender, System.EventArgs e)
+		protected void btnSubmit_Click(object sender, System.EventArgs e)
 		{			
 			lblErrorMessage.Text = "";
 			if (txtOldPassword.Text.ToString() == "")
@@ -71,8 +62,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
 		}
 		#endregion
 	}

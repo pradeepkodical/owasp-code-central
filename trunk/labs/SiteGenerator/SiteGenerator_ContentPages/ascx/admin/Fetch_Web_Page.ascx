@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="Fetch_Web_Page.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.admin.Fetch_Web_Page" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.admin.Fetch_Web_Page" Codebehind="Fetch_Web_Page.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1" width="485">
 	<tr bgcolor="#d2dae4">
 		<td colspan="2"><b>Fetch Web Page</b></td>
@@ -8,7 +8,7 @@
 			<asp:TextBox id="txtWebPageUrlToFetch" runat="server" Width="408px">http://127.0.0.1/HacmeBank_v2_WS/WebServices/</asp:TextBox>
 		</td>
 		<td>
-			<asp:Button id="btFetchWebPage" runat="server" Text="Fetch"></asp:Button>
+			<asp:Button id="btFetchWebPage" runat="server" Text="Fetch" onclick="btFetchWebPage_Click"></asp:Button>
 		</td>
 	</tr>
 	<tr>
