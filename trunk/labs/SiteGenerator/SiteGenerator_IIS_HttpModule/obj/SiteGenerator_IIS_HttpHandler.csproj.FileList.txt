@@ -8,3 +8,5 @@ obj\Debug\SiteGenerator_IIS_HttpModule.pdb
 obj\Release\ResolveAssemblyReference.cache
 obj\Release\SiteGenerator_IIS_HttpModule.dll
 obj\Release\SiteGenerator_IIS_HttpModule.pdb
+..\SiteGenerator_ContentPages\Bin\SiteGenerator_IIS_HttpModule.dll
+..\SiteGenerator_ContentPages\Bin\SiteGenerator_IIS_HttpModule.pdb
