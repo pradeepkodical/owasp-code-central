@@ -12,15 +12,10 @@ namespace HacmeBank_v2_Website.ascx.admin
 	/// <summary>
 	///		Summary description for Sql_Query.
 	/// </summary>
-	public class Sql_Query : System.Web.UI.UserControl
+	public partial class Sql_Query : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.Button btExecuteQuery;				
-		protected System.Web.UI.WebControls.TextBox txtSqlQueryToExecute;
-		protected System.Web.UI.WebControls.DropDownList ddlSampleQueries;			
-		protected System.Web.UI.WebControls.DataGrid dgQueryResult;
-		protected System.Web.UI.WebControls.Label lblErrorMessage;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			// Put user code to initialize the page here
 		}
@@ -41,19 +36,16 @@ namespace HacmeBank_v2_Website.ascx.admin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.ddlSampleQueries.SelectedIndexChanged += new System.EventHandler(this.ddlSampleQueries_SelectedIndexChanged);
-			this.btExecuteQuery.Click += new System.EventHandler(this.btExecuteQuery_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion
 
-		private void btExecuteQuery_Click(object sender, System.EventArgs e)
+		protected void btExecuteQuery_Click(object sender, System.EventArgs e)
 		{
 			populateDataGridWithSqlQueryResults();
 		}		
 
-		private void ddlSampleQueries_SelectedIndexChanged(object sender, System.EventArgs e)
+		protected void ddlSampleQueries_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			//txtSqlQueryToExecute.Text = Server.HtmlDecode(ddlSampleQueries.SelectedItem.Text).Replace("&#160;","_").Replace("&quot;;","\"__");			
 			txtSqlQueryToExecute.Text = ddlSampleQueries.SelectedItem.Text;

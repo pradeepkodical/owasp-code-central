@@ -11,16 +11,12 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for _AdminLeftMenu.
 	/// </summary>
-	public class _AdminLeftMenu : System.Web.UI.UserControl
+	public partial class _AdminLeftMenu : System.Web.UI.UserControl
 	{
 
-		protected System.Web.UI.WebControls.LinkButton lnkBtnFundsTransfer;
-		protected System.Web.UI.WebControls.LinkButton lnkBtnLoans;				
-		protected System.Web.UI.WebControls.LinkButton lnkBtnPostMessage;		
 
-		protected System.Web.UI.WebControls.Label ascxLabel_AdminLeftMenu;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			// Put user code to initialize the page here
 			buildMenuDynamicalyFromFilesOnAscxFolder();
@@ -79,7 +75,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{			
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion

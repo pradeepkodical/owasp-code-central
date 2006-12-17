@@ -11,18 +11,11 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for AdminSection.
 	/// </summary>
-	public class AdminSection : System.Web.UI.UserControl
+	public partial class AdminSection : System.Web.UI.UserControl
 	{
 
-		protected System.Web.UI.WebControls.TextBox txtChallenge;
-		protected System.Web.UI.WebControls.TextBox txtResponse;
-		protected System.Web.UI.WebControls.Button btnLoginAdminSection;
-		protected System.Web.UI.WebControls.Label lblChallenge;
-		protected System.Web.UI.WebControls.Label lblResponse;
-		protected System.Web.UI.WebControls.Label lblResponseValue;
-		protected System.Web.UI.WebControls.Label lblErrorMessage;		
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 
 			// Put user code to initialize the page here
@@ -48,7 +41,6 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion
@@ -72,7 +64,7 @@ namespace HacmeBank_v2_Website.ascx
 		{
 			txtChallenge.Text = new Random().Next().ToString();			
 			// the response is the Challenge XORed with the AdminSectionKey				
-			lblResponseValue.Text = (Int64.Parse(txtChallenge.Text) ^ Int64.Parse(ConfigurationSettings.AppSettings.Get("AdminSectionKey"))).ToString();
+			lblResponseValue.Text = (Int64.Parse(txtChallenge.Text) ^ Int64.Parse(ConfigurationManager.AppSettings.Get("AdminSectionKey"))).ToString();
 			Response.Write("<div style=\"COLOR: #f0f0f0;LEFT: 1px; POSITION: absolute; TOP: 1px\">"+lblResponseValue.Text+ "</div>");
 		}
 

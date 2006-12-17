@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="Loan.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.Loan" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.Loan" Codebehind="Loan.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1">
 	<tr bgcolor="#d2dae4">
 		<td><b>Request a Loan
@@ -32,7 +32,7 @@
 				<tr>
 					<td style="WIDTH: 161px"><asp:label id="lblLoanPeriod" runat="server" Height="24px" Width="135px">Loan Period</asp:label></td>
 					<td colSpan="3"><asp:dropdownlist id="drpdwnLoanPeriodAndInterestRate" tabIndex="4" runat="server" Height="24px" Width="67px"
-							CssClass="drpDown2" AutoPostBack="True"></asp:dropdownlist>
+							CssClass="drpDown2" AutoPostBack="True" onselectedindexchanged="drpdwnLoanPeriodAndInterestRate_SelectedIndexChanged"></asp:dropdownlist>
 						<asp:label id="lblYears" runat="server">Yrs.</asp:label></td>
 				</tr>
 				<tr>
@@ -50,7 +50,7 @@
 					<td style="WIDTH: 161px">&nbsp;</td>
 					<td colSpan="3">
 						<asp:button id="btnSubmit" tabIndex="5" runat="server" Height="20px" Width="106px" CssClass="butnstyle2"
-							Text="Submit"></asp:button>
+							Text="Submit" onclick="btnSubmit_Click"></asp:button>
 						<INPUT id="hlblCreditAccNo" type="hidden" size="8" name="hlblCreditAccNo" runat="server">
 						<INPUT id="hlblDebitAccNo" type="hidden" size="6" name="hlblDeditAccNo" runat="server">
 						<INPUT id="hlblRate_Of_Interest" type="hidden" size="8" name="hlblRate_Of_Interest" runat="server">

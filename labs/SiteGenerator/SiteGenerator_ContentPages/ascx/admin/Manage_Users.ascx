@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="Manage_Users.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.Manage_Users" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.Manage_Users" Codebehind="Manage_Users.ascx.cs" %>
 <table borderColor="#899db1" cellSpacing="0" cellPadding="4" width="485" border="1">
 	<tr bgColor="#d2dae4">
 		<td><b><asp:label id="lblPageTitle" Runat="server"></asp:label></b></td>
@@ -43,12 +43,12 @@
 				</asp:TableRow>
 				<asp:TableRow>
 					<asp:TableCell ColumnSpan="2" HorizontalAlign="Right">
-						<asp:Button Runat="server" ID="btnSubmitUserDetails" Text="Submit" />
+						<asp:Button Runat="server" ID="btnSubmitUserDetails" Text="Submit" onclick="btnSubmitUserDetails_Click" />
 					</asp:TableCell>
 				</asp:TableRow>
 			</asp:Table>
 			<br>
-			<asp:Button Runat="server" ID="btnAddNewUser" Text="Add New User" visible="True" />
+			<asp:Button Runat="server" ID="btnAddNewUser" Text="Add New User" visible="True" onclick="btnAddNewUser_Click" />
 		</td>
 	</tr>
 </table>

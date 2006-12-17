@@ -10,30 +10,10 @@ namespace HacmeBank_v2_Website.ascx
 	/// <summary>
 	///		Summary description for Loan.
 	/// </summary>
-	public class Loan : System.Web.UI.UserControl
+	public partial class Loan : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.Label lblMessg;
-		protected System.Web.UI.WebControls.Button btnSubmit;
-		protected System.Web.UI.WebControls.TextBox txtAmount;
-		protected System.Web.UI.WebControls.RangeValidator RangeValidator1;
-		protected System.Web.UI.WebControls.DropDownList drpdwnCreditAccNo;					
-		protected System.Web.UI.WebControls.DropDownList drpdwnLoanPeriodAndInterestRate;
-		protected System.Web.UI.WebControls.Label lblHeading;
-		protected System.Web.UI.WebControls.Label lblCreditAccNo;
-		protected System.Web.UI.WebControls.Label lblLoanAmount;
-		protected System.Web.UI.WebControls.Label lblUSD;
-		protected System.Web.UI.WebControls.Label lblLoanPeriod;
-		protected System.Web.UI.WebControls.Label lblYears;
-		protected System.Web.UI.WebControls.Label lblRateofInterest;
-		protected System.Web.UI.WebControls.Label lblPercentage;
-		protected System.Web.UI.WebControls.Label lblConfirmMessage;
-		protected System.Web.UI.HtmlControls.HtmlInputHidden hlblCreditAccNo;
-		protected System.Web.UI.HtmlControls.HtmlInputHidden hlblDebitAccNo;
-		protected System.Web.UI.HtmlControls.HtmlInputHidden hlblRate_Of_Interest;
-		protected System.Web.UI.WebControls.TextBox txtComment;		
-		protected System.Web.UI.WebControls.Label lblRate_Of_Interest;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			// Put user code to initialize the page here
 			lblMessg.Text = "";
@@ -46,7 +26,7 @@ namespace HacmeBank_v2_Website.ascx
 			}	
 		}
 
-		private void btnSubmit_Click(object sender, System.EventArgs e)
+		protected void btnSubmit_Click(object sender, System.EventArgs e)
 		{
 			try
 			{
@@ -96,14 +76,11 @@ namespace HacmeBank_v2_Website.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.drpdwnLoanPeriodAndInterestRate.SelectedIndexChanged += new System.EventHandler(this.drpdwnLoanPeriodAndInterestRate_SelectedIndexChanged);
-			this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion
 
-		private void drpdwnLoanPeriodAndInterestRate_SelectedIndexChanged(object sender, System.EventArgs e)
+		protected void drpdwnLoanPeriodAndInterestRate_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			lblRate_Of_Interest.Text = drpdwnLoanPeriodAndInterestRate.SelectedValue;			
 		}

@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="PostMessageForm.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.PostMessageForm" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.PostMessageForm" Codebehind="PostMessageForm.ascx.cs" %>
 
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1" width="485">
 	<tr bgcolor="#d2dae4">
@@ -46,7 +46,7 @@
 					<td>&nbsp;</td>
 					<td>
 						<asp:button id="btnPostMessage" tabIndex="3" runat="server" CssClass="butnStyle2" Text="Post Message"
-							Width="117px"></asp:button>
+							Width="117px" onclick="btnPostMessage_Click"></asp:button>
 						<asp:button id="btnNewMessage" tabIndex="4" runat="server" CssClass="butnStyle2" Text="Clear"
 							Width="117px"></asp:button>
 					</td>

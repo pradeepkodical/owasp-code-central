@@ -1,4 +1,4 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="Sql_Query.ascx.cs" Inherits="HacmeBank_v2_Website.ascx.admin.Sql_Query" TargetSchema="http://schemas.microsoft.com/intellisense/ie5"%>
+<%@ Control Language="c#" Inherits="HacmeBank_v2_Website.ascx.admin.Sql_Query" Codebehind="Sql_Query.ascx.cs" %>
 <table border="1" cellspacing="0" cellpadding="4" bordercolor="#899db1" width="485">
 	<tr bgcolor="#d2dae4">
 		<td colspan="2"><b>Sql Query</b></td>
@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<td style="WIDTH: 405px">
-			<asp:DropDownList id="ddlSampleQueries" runat="server" Width="360px" AutoPostBack="True">
+			<asp:DropDownList id="ddlSampleQueries" runat="server" Width="360px" AutoPostBack="True" onselectedindexchanged="ddlSampleQueries_SelectedIndexChanged">
 				<asp:ListItem Value="Select * from FoundStone_Bank..fsb_accounts">Select * from FoundStone_Bank..fsb_accounts</asp:ListItem>
 				<asp:ListItem Value="Select * from FoundStone_Bank..fsb_fund_transfers">Select * from FoundStone_Bank..fsb_fund_transfers</asp:ListItem>
 				<asp:ListItem Value="Select * from FoundStone_Bank..fsb_loan_rates">Select * from FoundStone_Bank..fsb_loan_rates</asp:ListItem>
@@ -30,7 +30,7 @@
 			<asp:TextBox id="txtSqlQueryToExecute" runat="server" Width="360px" Height="75px" TextMode="MultiLine">Select * from FoundStone_Bank..fsb_accounts</asp:TextBox>
 		</td>
 		<td>
-			<asp:Button id="btExecuteQuery" runat="server" Text="Execute Query" Height="96px" Width="99px"></asp:Button>
+			<asp:Button id="btExecuteQuery" runat="server" Text="Execute Query" Height="96px" Width="99px" onclick="btExecuteQuery_Click"></asp:Button>
 		</td>
 	</tr>
 	<tr>

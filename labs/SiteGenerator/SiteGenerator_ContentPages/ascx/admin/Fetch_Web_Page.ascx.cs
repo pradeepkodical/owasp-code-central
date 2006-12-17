@@ -10,13 +10,10 @@ namespace HacmeBank_v2_Website.ascx.admin
 	/// <summary>
 	///		Summary description for Fetch_Web_Page.
 	/// </summary>
-	public class Fetch_Web_Page : System.Web.UI.UserControl
+	public partial class Fetch_Web_Page : System.Web.UI.UserControl
 	{
-		protected System.Web.UI.WebControls.TextBox txtWebPageUrlToFetch;
-		protected System.Web.UI.WebControls.Button btFetchWebPage;
-		protected System.Web.UI.WebControls.Label lbWebPageContents;
 
-		private void Page_Load(object sender, System.EventArgs e)
+		protected void Page_Load(object sender, System.EventArgs e)
 		{
 			// Put user code to initialize the page here
 		}
@@ -37,13 +34,11 @@ namespace HacmeBank_v2_Website.ascx.admin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btFetchWebPage.Click += new System.EventHandler(this.btFetchWebPage_Click);
-			this.Load += new System.EventHandler(this.Page_Load);
 
 		}
 		#endregion
 
-		private void btFetchWebPage_Click(object sender, System.EventArgs e)
+		protected void btFetchWebPage_Click(object sender, System.EventArgs e)
 		{
 			lbWebPageContents.Text = AdminFunctions.fetchWebPage(txtWebPageUrlToFetch.Text);			
 		}
