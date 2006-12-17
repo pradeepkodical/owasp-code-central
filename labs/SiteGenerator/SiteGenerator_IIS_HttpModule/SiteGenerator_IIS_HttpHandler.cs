@@ -3,6 +3,9 @@ using System.Web;
 using System.Web.UI;
 using System.Text;
 using System.IO;
+using System.Web.Services.Protocols;
+using WSConfig = System.Web.Services.Configuration.WebServicesSection;
+using WSProtocol = System.Web.Services.Configuration.WebServiceProtocols;
 
 namespace Owasp.SiteGenerator
 {
@@ -15,23 +18,28 @@ namespace Owasp.SiteGenerator
         {    }
         IHttpHandler IHttpHandlerFactory.GetHandler(HttpContext context, string requestType, string url, string pathTranslated)
         {
+            IHttpHandler handler = null;
+
             if (context.Request.QueryString != null)
                 pathTranslated = getPathTranslatedFromSiteGeneratorGUI(url, pathTranslated);
             // check if it is an .aspx page
-            if (".aspx" == Path.GetExtension(pathTranslated) || 
-                (".asmx" == Path.GetExtension(pathTranslated)))
+            if (".aspx" == Path.GetExtension(pathTranslated))
             {
                 context.RewritePath(url, url, context.Request.QueryString.ToString());
-                IHttpHandler appHandler = PageParser.GetCompiledPageInstance(url, pathTranslated, context);
-                return appHandler;
+                handler = PageParser.GetCompiledPageInstance(url, pathTranslated, context);
             }
-            else             
+            else if (".asmx" == Path.GetExtension(pathTranslated).ToLower())
+            {
+                WebServiceHandlerFactory wshf = new WebServiceHandlerFactory();
+                handler = wshf.GetHandler(context, requestType, url, pathTranslated);                
+            }
+            else
             {
                 ProcessStaticContent(pathTranslated);      // Process page and 
                 HttpContext.Current.Response.End();     //  end here
-                return null;
             }
-            
+
+            return handler;
         }
 
         void IHttpHandlerFactory.ReleaseHandler(IHttpHandler handler)
@@ -160,6 +168,12 @@ namespace Owasp.SiteGenerator
                         HttpContext.Current.Response.Write(utils.files.GetFileContent(strStaticContentToProcess));// use this to show the file's contents
                         break;
                     }
+                case ".asmx":
+                    {
+                        HttpContext.Current.Response.AddHeader("Content-Type", "text/xml; charset=iso-8859-1");
+                        HttpContext.Current.Response.Write(utils.files.GetFileContent(strStaticContentToProcess));// use this to show the file's contents
+                        break;
+                    }
                 case ".htm":
                 case ".html":
                 case ".xml":
@@ -175,6 +189,32 @@ namespace Owasp.SiteGenerator
                         HttpContext.Current.Response.Write("Extension '" + Path.GetExtension(strStaticContentToProcess) + "' is currently not Handled by SiteGenerator  <hr> ");
                         break;
                     }
+            }
+        }
+
+        /// <summary>
+        /// As the name implies tries to guess the protocol for the web service request.  
+        /// 
+        /// Pulled from http://www.koders.com/csharp/fid311872F519ECB44D593C9AF71C1FFEC56CC77802.aspx
+        /// </summary>
+        /// <param name="context">Context of the request</param>
+        /// <param name="verb">Action for the request</param>
+        /// <returns></returns>
+        private static WSProtocol GuessProtocol(HttpContext context, string verb)
+        {
+            if (context.Request.PathInfo == null || context.Request.PathInfo == "")
+            {
+                if (context.Request.RequestType == "GET")
+                    return WSProtocol.Documentation;
+                else
+                    return WSProtocol.HttpSoap;
+            }
+            else
+            {
+                if (context.Request.RequestType == "GET")
+                    return WSProtocol.HttpGet;
+                else
+                    return WSProtocol.HttpPost;
             }
         }
     }

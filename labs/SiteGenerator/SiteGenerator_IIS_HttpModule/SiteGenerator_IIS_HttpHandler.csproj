@@ -22,7 +22,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\SiteGenerator_IIS_Website\Bin\</OutputPath>
+    <OutputPath>..\SiteGenerator_ContentPages\Bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,12 +31,15 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SiteGenerator_IIS_HttpHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="utils\cassini.cs" />
+    <Compile Include="utils\cassini.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils\Communicator.cs" />
     <Compile Include="utils\files.cs" />
   </ItemGroup>
