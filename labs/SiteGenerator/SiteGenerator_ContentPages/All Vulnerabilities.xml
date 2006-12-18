@@ -27,6 +27,8 @@
 				<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Medium.aspx" name="ViaSession_DataValidation_SqlInjection_Medium.aspx"/>
 				<file mappedTo="Vulnerabilities\DataValidation_SqlInjection_Advanced.aspx" name="ViaSession_DataValidation_SqlInjection_Advanced.aspx"/>
 				<file mappedTo="Vulnerabilities\Xss.aspx" name="Xss.aspx"/>
+				<file mappedTo="Vulnerabilities\Leaked_Data_Through_Error_Messages.aspx" name="LeakedThruErrors.aspx"/>
+				<file mappedTo="Vulnerabilities\Hardcoded_Password.aspx" name="HardCodedPassword.aspx"/>
 			</folder>
 			<folder name="images">
 				<file mappedTo="images\leftBanner.png" name="leftBanner.png"/>
