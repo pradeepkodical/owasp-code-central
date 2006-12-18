@@ -65,6 +65,7 @@ namespace Owasp.VulnReport
         private SplitContainer splitContainer3;
         private GroupBox groupBox3;
         private Button btAddFindingUsingTemplate;
+        private RichTextBox rtbSelectedFinding;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>		
@@ -138,6 +139,7 @@ namespace Owasp.VulnReport
             this.axWebBrowser_Targets = new System.Windows.Forms.WebBrowser();
             this.axWebBrowser_WindowsExplorer = new System.Windows.Forms.WebBrowser();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.rtbSelectedFinding = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Findings)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -398,7 +400,8 @@ namespace Owasp.VulnReport
             this.cbTemplateToUse.Items.AddRange(new object[] {
             "Authentic - Simple Mode",
             "Authentic - All Fields Mode",
-            "Windows Explorer"});
+            "Windows Explorer",
+            "Text Editor (i.e. Notepad)"});
             this.cbTemplateToUse.Location = new System.Drawing.Point(159, 17);
             this.cbTemplateToUse.Name = "cbTemplateToUse";
             this.cbTemplateToUse.Size = new System.Drawing.Size(259, 21);
@@ -528,6 +531,7 @@ namespace Owasp.VulnReport
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.rtbSelectedFinding);
             this.splitContainer2.Panel2.Controls.Add(this.axWebBrowser_WindowsExplorer);
             this.splitContainer2.Panel2.Controls.Add(this.label4);
             this.splitContainer2.Panel2.Controls.Add(this.lblFindingSaved);
@@ -583,6 +587,18 @@ namespace Owasp.VulnReport
             this.splitContainer3.SplitterDistance = 185;
             this.splitContainer3.TabIndex = 24;
             // 
+            // rtbSelectedFinding
+            // 
+            this.rtbSelectedFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbSelectedFinding.Location = new System.Drawing.Point(10, 42);
+            this.rtbSelectedFinding.Name = "rtbSelectedFinding";
+            this.rtbSelectedFinding.Size = new System.Drawing.Size(594, 341);
+            this.rtbSelectedFinding.TabIndex = 20;
+            this.rtbSelectedFinding.Text = "";
+            this.rtbSelectedFinding.TextChanged += new System.EventHandler(this.rtbSelectedFinding_TextChanged);
+            // 
             // ascxFindings
             // 
             this.Controls.Add(this.lbCurrentProject);
@@ -624,11 +640,10 @@ namespace Owasp.VulnReport
 				btDeleteSelectedFinding.Enabled = false;
 				txtRenameFinding.Text = "";
 				cbTemplateToUse.SelectedIndex = 0;
-				this.strPathToProjectFiles  = upCurrentUser.ProjectFilesPath;
-				this.strPathToTempFileFolder = upCurrentUser.TempDirectoryPath;
+				this.strPathToProjectFiles  = upCurrentUser.ProjectFilesPath;             
 				this.strCurrentProject = strProjectToLoad;
 				strFullPathToCurrentProject = Path.GetFullPath(Path.Combine(strPathToProjectFiles, strCurrentProject));
-				lbCurrentProject.Text = strCurrentProject ;
+				lbCurrentProject.Text = strCurrentProject;
                 lbFindingsInCurrentTarget.Items.Clear();
 				loadTargetsIntoListBox();
                 //  patch to solve weird VS bug
@@ -658,6 +673,9 @@ namespace Owasp.VulnReport
 
 		private void lbTargetsInCurrentProject_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
+            lbTargetsInCurrentProject.Enabled = false;  // disable it so that the user doesn't click on it before this method is full processed
+            Application.DoEvents();                     // this will allow the redraw of the disabled list box (better user experience)
+
             checkForUnsavedData();
 
 			axWebBrowser_Targets.Visible = true;
@@ -676,31 +694,46 @@ namespace Owasp.VulnReport
 			iCurrentTargetSelectedIndex = lbTargetsInCurrentProject.SelectedIndex;
             if (lbFindingsInCurrentTarget.Items.Count == 0)
                 axAuthentic_Findings.Visible = false;
+
+            lbTargetsInCurrentProject.Enabled = true;  // Now the user can select another Target
 		}
 
 		private void lbFindingsInCurrentTarget_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-            if (null != strFullPathToSelectedTarget)
-            {
-                string pastFindings = strPathToUnzipSelectedFinding;
-
-                // see if there is unsaved data
-                checkForUnsavedData();
-
-                strFullPathToSelectedFinding = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, lbFindingsInCurrentTarget.SelectedItem.ToString()));
-                // unzip new finding into temp folder
-                strPathToUnzipSelectedFinding = strPathToTempFileFolder + "\\" + Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding);
-                utils.zip.unzipFile(strFullPathToSelectedFinding, strPathToTempFileFolder);
-
-                // invoke this drop down to load the correct template
-                cbTemplateToUse_SelectedIndexChanged(null, null);
-
-                // clean up previous findings
-                if ((pastFindings != null) && !pastFindings.Equals(strPathToUnzipSelectedFinding))
+            lbFindingsInCurrentTarget.Enabled = false;  // disable it so that the user doesn't click on it before this method is full processed
+            Application.DoEvents();                     // this will allow the redraw of the disabled list box (better user experience)
+            try
+            {                
+                if (null != strFullPathToSelectedTarget)
                 {
-                    deletePastFindingsTempFolder(pastFindings);
+                    //string pastFindings = strPathToUnzipSelectedFinding;
+                    string pastFindings = strPathToTempFileFolder;
+                   
+                    checkForUnsavedData();
+
+                    lbUnsavedData.Visible = false; // clean these flags
+                    lblFindingSaved.Visible = false; // clean these flags
+                    this.strFullPathToSelectedFinding = Path.GetFullPath(Path.Combine(strFullPathToSelectedTarget, lbFindingsInCurrentTarget.SelectedItem.ToString()));
+                    // unzip new finding into temp folder
+                    strPathToTempFileFolder = Path.Combine(upCurrentUser.TempDirectoryPath, utils.misc.getGUID());
+                    this.strPathToUnzipSelectedFinding = Path.Combine(strPathToTempFileFolder,Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding));
+                    utils.zip.unzipFile(strFullPathToSelectedFinding, strPathToTempFileFolder);
+
+                    // invoke this drop down to load the correct template
+                    cbTemplateToUse_SelectedIndexChanged(null, null);
+
+                    // clean up previous findings
+                    if ((pastFindings != null) && !pastFindings.Equals(strPathToUnzipSelectedFinding))
+                    {
+                        deletePastFindingsTempFolder(pastFindings);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An issue occured while trying to load current Finding: " + ex.Message);
+            }
+            lbFindingsInCurrentTarget.Enabled = true;  // Now the user can select another Finding
 		}
 
         private void loadSelectedFindingInAuthenticView()
@@ -720,10 +753,7 @@ namespace Owasp.VulnReport
 
                 iCurrentFindingsSelectedIndex = lbFindingsInCurrentTarget.SelectedIndex;
 
-                refreshNextIdToBeAssigned();
-                btRenameFinding.Enabled = true;
-                btDeleteSelectedFinding.Enabled = true;
-                txtRenameFinding.Text = lbFindingsInCurrentTarget.SelectedItem.ToString();
+                refreshNextIdToBeAssigned();                
             }
         }
 
@@ -731,15 +761,17 @@ namespace Owasp.VulnReport
 		{
             try
             {
-                if (axWebBrowser_Targets.Visible)
-                    saveCurrentData();
-
+                saveCurrentData();
+                //lblFindingSaved.Visible = true;
+                //lbUnsavedData.Visible = false;
+             /*
                 if (File.Exists(strPathToUnzipSelectedFinding))
                 {
                     utils.zip.zipFolder(strPathToUnzipSelectedFinding, strFullPathToSelectedFinding);
                     lblFindingSaved.Visible = true;
                     lbUnsavedData.Visible = false;
                 }
+              */
             }
             catch (Exception ex)
             {
@@ -775,8 +807,8 @@ namespace Owasp.VulnReport
                 {
                     File.Delete(strFullPathToSelectedFinding);
                     deleteCurrentFindingsTempFolder();
-                    lbTargetsInCurrentProject_SelectedIndexChanged(null, null);
                     txtRenameFinding.Text = "";
+                    lbTargetsInCurrentProject_SelectedIndexChanged(null, null);                    
                 }
             }
             catch (IOException ex)
@@ -835,7 +867,7 @@ namespace Owasp.VulnReport
 			}
 			catch (IOException ex)
 			{
-				MessageBox.Show(string.Format("An issue occured trying to create findings folder {0}"), ex.Message);
+				MessageBox.Show(string.Format("An issue occured trying to create findings folder {0}", ex.Message));
 			}
 		}
 		
@@ -931,30 +963,47 @@ namespace Owasp.VulnReport
 		}
 
 		private void cbTemplateToUse_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
+		{            
+            checkForUnsavedData();
 			switch (cbTemplateToUse.Text)
 			{
 				case "Authentic - Simple Mode":
 					strSpsTemplateToUseToEditFindings = obpPaths.SpsSimpleModeFindingsPath;
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = true;
+                    rtbSelectedFinding.Visible = false;
                     loadSelectedFindingInAuthenticView();               // load data
 					break;
                 case "Authentic - All Fields Mode":
 					strSpsTemplateToUseToEditFindings = obpPaths.SpsFindingsPath;
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = true;
+                    rtbSelectedFinding.Visible = false;
                     loadSelectedFindingInAuthenticView();               // load data
 					break;
-                case "Windows Explorer":
-                    axWebBrowser_WindowsExplorer.Visible = true;
+                case "Windows Explorer":                    
+                    axWebBrowser_WindowsExplorer.Visible = true;                                        
                     axAuthentic_Findings.Visible = false;
+                    rtbSelectedFinding.Visible = false;
                     axWebBrowser_WindowsExplorer.Navigate(strPathToUnzipSelectedFinding);                                        
+                    break;
+                case "Text Editor (i.e. Notepad)":
+                    axWebBrowser_WindowsExplorer.Visible = false;
+                    axAuthentic_Findings.Visible = false;
+                    rtbSelectedFinding.Visible = true;
+                    string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
+                    string strPathToXmlFile = Path.Combine(strPathToUnzipSelectedFinding, strXmlFileToLoad);
+                    rtbSelectedFinding.Text = utils.files.GetFileContents(strPathToXmlFile);                    
+                    lbUnsavedData.Visible = false;
                     break;
                 default:
                     MessageBox.Show("Un-recognized drop-down menu item");
                     break;
-			}             
+			}
+            btRenameFinding.Enabled = true;
+            btDeleteSelectedFinding.Enabled = true;
+            if (null != lbFindingsInCurrentTarget.SelectedItem)
+                txtRenameFinding.Text = lbFindingsInCurrentTarget.SelectedItem.ToString();
 		}
 
 		private void btRenameFinding_Click(object sender, System.EventArgs e)
@@ -1011,11 +1060,23 @@ namespace Owasp.VulnReport
         /// is prompted and asked if they want to save the data or not.
         /// </summary>
 		public void checkForUnsavedData()
-		{
-			if (axAuthentic_Findings.Modified)
-			{
+		{            
+            if (true == axAuthentic_Findings.Visible)               
+            {
+                if (axAuthentic_Findings.Modified)      
+                {
+                    promptUserToSaveData();
+                    lbUnsavedData.Visible = false;
+                }                
+            }
+            if (lbUnsavedData.Visible == true)      // also check the use the lbUnsavedData since axAuthentic_Findings.Modified is not very reliable even when the Authentic control is visible (this also covers the Notepad view)
+            {
                 promptUserToSaveData();
-			}		
+                lbUnsavedData.Visible = false;
+            }
+            // to-do add unsaved data check for 'Windows Explorer View'
+
+            loadDummyXmlFileInAuthenticControl(axAuthentic_Findings);   // now that there user as saved or not the data, we can use this 'trick' to clean the authentic control and release the handle to the Finding xml file currently loaded
 		}
 
         /// <summary>
@@ -1023,10 +1084,24 @@ namespace Owasp.VulnReport
         /// </summary>
         private void saveCurrentData()
         {
-            if ( (axAuthentic_Findings != null) && 
-                 (axAuthentic_Findings.Modified) )
+            // I can't use the switch statement here since by now the cbTemplateToUse.Text has already changed to the new value
+            if (true == axAuthentic_Findings.Visible)    // when the authentic controls are visible save the xml on the control
             {
-                axAuthentic_Findings.Save();
+               if ((axAuthentic_Findings != null))     // force save since the axAuthentic_Findings.Modified cannot be trusted 100% //  && (axAuthentic_Findings.Modified) )            
+                    if (axAuthentic_Findings.Visible)   // only save what is on the Authentic control if we are in this view 
+                        axAuthentic_Findings.Save();             
+            }
+            else if (true == axWebBrowser_WindowsExplorer.Visible)  // On the Windows Explorer view there is nothing to do since we will zip the directory below
+            {}  
+            else if (true == rtbSelectedFinding.Visible)            // On the Notepad view, save the RichText box
+            {    
+                    string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
+                    string strPathToXmlFile = Path.Combine(strPathToUnzipSelectedFinding, strXmlFileToLoad);
+                    utils.files.SaveFileWithStringContents(strPathToXmlFile, rtbSelectedFinding.Text);      // Save xml file in Temp directory                    
+            }
+            
+            if (true == Directory.Exists(strPathToUnzipSelectedFinding))
+            {
                 utils.zip.zipFolder(strPathToUnzipSelectedFinding, strFullPathToSelectedFinding);
                 lblFindingSaved.Visible = true;
                 lbUnsavedData.Visible = false;
@@ -1100,6 +1175,23 @@ namespace Owasp.VulnReport
             }
         }
 
+        /// <summary>
+        /// Method to load a Dummy xml file in the an Authentic object due to several race conditions with this control which cause an handle to be locked by the authentic control
+        /// Ideally we should tell the Authentic control to unload the XML file, but the current version doesn't seem to have that funcionality
+        /// </summary>
+        /// <param name="axAuthentic_ToProcess"></param>
+        private void loadDummyXmlFileInAuthenticControl(AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_ToProcess)
+        {
+            utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_ToProcess, obpPaths.EmptyProjectFilePath, obpPaths.ProjectSchemaPath, strSpsTemplateToUseToEditFindings);
+            lbUnsavedData.Visible = false;
+            axAuthentic_Findings.SetUnmodified();
+        }
+
+        private void rtbSelectedFinding_TextChanged(object sender, EventArgs e)
+        {
+            lblFindingSaved.Visible = false;
+            lbUnsavedData.Visible = true;
+        }
  
 
 	}

@@ -426,7 +426,7 @@ namespace Owasp.VulnReport
 		}
 
 		private void lbCurrentProjects_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
+		{            
             if (bFirstTimeThisFormIsLoaded == true)
             {
                 lbCurrentProjects.SelectedIndex = -1;			// don't make any selection, this will make loading faster			
@@ -442,6 +442,7 @@ namespace Owasp.VulnReport
                         bProjectSelectedIndexChanged = false;
                         return;
                     }
+                    // We might want to change this question for usability purposes since the user is usually used to answer Yes to the 'Unsaved data' question)
                     if (MessageBox.Show("Current Findings contains unsaved data!" + Environment.NewLine + Environment.NewLine +
                         "are you sure you to continue?", "Confirmation Message", MessageBoxButtons.YesNo) == DialogResult.No)
                     {
@@ -454,6 +455,8 @@ namespace Owasp.VulnReport
                         ascxFindings.axAuthentic_Findings.SetUnmodified();
                     }
                 }
+                lbCurrentProjects.Enabled = false;          // disable it so that the user doesn't click on it before this method is full processed
+                Application.DoEvents();                     // this will allow the redraw of the disabled list box (better user experience)
                 // comment the following lines to disable autoloading of autentic pages
                 ascxProjects.loadProjectData(lbCurrentProjects.Text);
                 ascxTargets.loadProjectData(lbCurrentProjects.Text);
@@ -462,6 +465,7 @@ namespace Owasp.VulnReport
                 ascxExecutiveSummary.loadProjectData(lbCurrentProjects.Text);
                 ascxReportPdf.loadProjectData(lbCurrentProjects.Text);
                 iCurrentProjectSelectedIndex = lbCurrentProjects.SelectedIndex;
+                lbCurrentProjects.Enabled = true;  // Now the user can select another Target
             }
 		}
 

@@ -24,6 +24,7 @@ namespace Owasp.VulnReport
 		{
             VulnReportHelpers.setBaseDirBasedOnExecutionEnvironment();
             VulnReportHelpers.confirmExistenceOfRequiredFilesAndFolders();
+            VulnReportHelpers.loadCustomORGdata();
             bool bByPassSplashPage = false; // Set this to true to bypass the Splash page (useful when in development mode)
 
             frmSplashPage sp = new frmSplashPage(bByPassSplashPage);

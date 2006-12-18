@@ -39,6 +39,11 @@ namespace Owasp.VulnReport
             {
                 return findingIDAttributeName;
             }
+
+            set
+            {
+                findingIDAttributeName = value;
+            }
         }
 
         public int FindingId
