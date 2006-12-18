@@ -446,6 +446,11 @@ namespace Owasp.VulnReport.ascx
 
 		private void btAddNewTarget_Click(object sender, System.EventArgs e)
 		{
+            if (null == strFullPathToCurrentProject || "" == strFullPathToCurrentProject)
+            {
+                MessageBox.Show("There is no project selected!");
+                return;
+            }
 			if ("" == txtNewTargetName.Text) 
 				MessageBox.Show("New Target name cannot be empty!");
 			else

@@ -40,6 +40,8 @@ namespace Owasp.VulnReport.ascx
 		private AxSHDocVw.AxWebBrowser axWebBrowser_WithXslResult;
 		private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cbReportExtension;
+        private Button btCreateAndShowConsolidatedXmlFile;
+        private Label label3;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -102,6 +104,8 @@ namespace Owasp.VulnReport.ascx
             this.cbReportFileEngine = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cbReportExtension = new System.Windows.Forms.ComboBox();
+            this.btCreateAndShowConsolidatedXmlFile = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser_WithXslResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,7 +180,7 @@ namespace Owasp.VulnReport.ascx
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 8);
+            this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(224, 16);
             this.label1.TabIndex = 21;
@@ -187,17 +191,17 @@ namespace Owasp.VulnReport.ascx
             this.cbFopXsltToUse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFopXsltToUse.Location = new System.Drawing.Point(8, 24);
             this.cbFopXsltToUse.Name = "cbFopXsltToUse";
-            this.cbFopXsltToUse.Size = new System.Drawing.Size(216, 21);
+            this.cbFopXsltToUse.Size = new System.Drawing.Size(309, 21);
             this.cbFopXsltToUse.TabIndex = 22;
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(264, 8);
+            this.label2.Location = new System.Drawing.Point(322, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 16);
+            this.label2.Size = new System.Drawing.Size(56, 18);
             this.label2.TabIndex = 21;
-            this.label2.Text = "Step 2) Click here -->";
+            this.label2.Text = "Step 2)";
             // 
             // axWebBrowser_WithXslResult
             // 
@@ -240,8 +244,31 @@ namespace Owasp.VulnReport.ascx
             this.cbReportExtension.Size = new System.Drawing.Size(64, 21);
             this.cbReportExtension.TabIndex = 26;
             // 
+            // btCreateAndShowConsolidatedXmlFile
+            // 
+            this.btCreateAndShowConsolidatedXmlFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btCreateAndShowConsolidatedXmlFile.Location = new System.Drawing.Point(255, 244);
+            this.btCreateAndShowConsolidatedXmlFile.Name = "btCreateAndShowConsolidatedXmlFile";
+            this.btCreateAndShowConsolidatedXmlFile.Size = new System.Drawing.Size(123, 36);
+            this.btCreateAndShowConsolidatedXmlFile.TabIndex = 27;
+            this.btCreateAndShowConsolidatedXmlFile.Text = "Create and show consolidated XML file";
+            this.btCreateAndShowConsolidatedXmlFile.UseVisualStyleBackColor = true;
+            this.btCreateAndShowConsolidatedXmlFile.Click += new System.EventHandler(this.btCreateAndShowConsolidatedXmlFile_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(259, 285);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(268, 13);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "This is the file that is used by the selected XSLT engine";
+            // 
             // ascxReportPdf
             // 
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btCreateAndShowConsolidatedXmlFile);
             this.Controls.Add(this.cbReportExtension);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbReportFileEngine);
@@ -292,6 +319,7 @@ namespace Owasp.VulnReport.ascx
 			try
 			{
 				this.strFullPathToTempReportFolder = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strCurrentProject+"_report"));
+                string strFullPathToXmlReportTempUnZipFolder = Path.Combine(upCurrentUser.TempDirectoryPath, "_XmlFileForReport");	// [DC] I added the "_XmlFileForReport" because there was an race-condition that would occur if the user had open in the Findings Tab a Finding that was used in the report
 				if (Directory.Exists(strFullPathToTempReportFolder))
 					Directory.Delete(strFullPathToTempReportFolder,true);
 				if (false == Directory.Exists(strFullPathToTempReportFolder))
@@ -353,29 +381,49 @@ namespace Owasp.VulnReport.ascx
 										try
 										{
 											//Handling Findings Xml content
-											utils.zip.unzipFile(fiTarget.FullName, upCurrentUser.TempDirectoryPath);										
+                                            utils.zip.unzipFile(fiTarget.FullName, strFullPathToXmlReportTempUnZipFolder);
 											string strFindingName = Path.GetFileNameWithoutExtension(fiTarget.FullName);
-											string strPathToUnzipFindingsInTempFolder = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strFindingName));
-											string StrPathToFindingstXmlFileInTempFolder =  Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strFindingName + "\\" + strFindingName + ".xml"));
+											string strPathToUnzipFindingsInTempFolder = Path.GetFullPath(
+                                                Path.Combine(strFullPathToXmlReportTempUnZipFolder, strFindingName));
+                                            string StrPathToFindingstXmlFileInTempFolder = Path.GetFullPath(Path.Combine(strFullPathToXmlReportTempUnZipFolder, strFindingName + "\\" + strFindingName + ".xml"));
 																					
 											XmlDocument xdFindings = new XmlDocument();
 											if (File.Exists(StrPathToFindingstXmlFileInTempFolder))
 											{
+                                               // string strFindingFileContents = utils.files.GetFileContents(StrPathToFindingstXmlFileInTempFolder);
+
+                                                /* */
+
 												xdFindings.Load(StrPathToFindingstXmlFileInTempFolder);
 												foreach (XmlNode xnlFinding in xdFindings.GetElementsByTagName("Finding"))
 													xnFindings.InnerXml += xnlFinding.OuterXml;							
 												//Handling Images
-												string strPathToFindingsImageDirectory = Path.GetFullPath(Path.Combine(upCurrentUser.TempDirectoryPath,strFindingName  + "//" + strFindingName ));
+                                                string strPathToFindingsImageDirectory = Path.GetFullPath(Path.Combine(strFullPathToXmlReportTempUnZipFolder, strFindingName + "//" + strFindingName));
 												string strPathToImagesFolderInTempReportFolder = Path.GetFullPath(Path.Combine(strFullPathToTempReportFolder,strFindingName ));
 												if (Directory.Exists(strPathToFindingsImageDirectory))
-													Directory.Move(strPathToFindingsImageDirectory,strPathToImagesFolderInTempReportFolder);													
-											}
+                                                {
+                                                    if (false == Directory.Exists(strPathToImagesFolderInTempReportFolder))
+                                                        Directory.CreateDirectory(strPathToImagesFolderInTempReportFolder);
+                                                    foreach (string strFile in Directory.GetFiles(strPathToFindingsImageDirectory))
+                                                    {
+                                                        string strTargetFileName = Path.Combine(strPathToImagesFolderInTempReportFolder, Path.GetFileName(strFile));
+                                                        if (false == File.Exists(strTargetFileName))                                                            
+                                                            File.Copy(strFile, strTargetFileName);
+                                                       // at the moment the following check is thowing a lot of false positives (since they occour if one copy and paste a finding). 
+                                                       // the correct way to do this is to implement a image checksum check which makes sure that the images are the same
+                                                       // else
+                                                       //     addMessageToDebugWindow("Error: Image  '" + strTargetFileName.Replace(strFullPathToTempReportFolder, "") + "' already exists, skiping current file");                                                                                                                    
+                                                    }   
+                                                  
+                                                }
+                                               /* */
+                                            }
 											Directory.Delete(strPathToUnzipFindingsInTempFolder,true);
 										}
 										catch (Exception ex)
 										{
 											//MessageBox.Show
-											addMessageToDebugWindow("Error in file '"+fiTarget.Name+"':" + ex.Message);
+											addMessageToDebugWindow("Error in file '"+ Path.Combine( diTargets.Name, fiTarget.Name) + "':" + ex.Message);
 										}
 									}
 								}	
@@ -389,7 +437,8 @@ namespace Owasp.VulnReport.ascx
 						}
 					}
 				}						
-				xdReport.Save(this.strFullPathToTempReportXmlFile);			
+				xdReport.Save(this.strFullPathToTempReportXmlFile);
+                Directory.Delete(strFullPathToXmlReportTempUnZipFolder);
 			}
 			catch (Exception ex)
 			{
@@ -493,6 +542,13 @@ namespace Owasp.VulnReport.ascx
 				cbReportFileEngine.Items.Add(strKey);
 			cbReportFileEngine.SelectedIndex = 0;
 		}
+
+        private void btCreateAndShowConsolidatedXmlFile_Click(object sender, EventArgs e)
+        {
+            createReportXmlFile();
+            axWebBrowser_WithXslResult.Navigate(strFullPathToTempReportXmlFile);
+            axWebBrowser_WithXslResult.Visible = true;
+        }
 
 	}
 }

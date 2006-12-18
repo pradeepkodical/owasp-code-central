@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
 
 namespace Owasp.VulnReport
 {
@@ -16,6 +17,25 @@ namespace Owasp.VulnReport
 		{
 		}
 
+        public static void loadCustomORGdata()
+        {
+            string strPathToCustomORGFile = Path.Combine( OrgBasePaths.BasePath ,"CustomORG.xml");
+            if (true == File.Exists(strPathToCustomORGFile))
+            {
+                // main report Xml document
+                XmlDocument xdReport = new XmlDocument();
+                xdReport.Load(strPathToCustomORGFile);
+                XmlElement xeRootNote = xdReport.DocumentElement;
+                if (null != xeRootNote)
+                {
+                    XmlElement xeFindingIdAttributeName = xeRootNote["FindingIdAttributeName"];
+                    if (null != xeFindingIdAttributeName)
+                        Project.FindingIDAttributeName = xeFindingIdAttributeName.InnerText;
+                    //CustomORG    
+                }
+                
+            }
+        }
         public static void setBaseDirBasedOnExecutionEnvironment()
         {
             string strFullPathToSpecialFile = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, strSpecialFile));
