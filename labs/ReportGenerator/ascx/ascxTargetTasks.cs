@@ -16,7 +16,7 @@ namespace Owasp.VulnReport.ascx
 	{
         private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
 
-        private string spsTargetTasksPath = "";
+        private string strSpsTargetTasksPath = "";
 
 		private string strFullPathToSelectedTarget;
 		private string strPathToProjectFiles;
@@ -45,8 +45,10 @@ namespace Owasp.VulnReport.ascx
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-            spsTargetTasksPath = Path.GetFullPath(Path.Combine(obpPaths.PathToSpsFiles,
-                                                               ConfigurationManager.AppSettings["defaultSpsFile_TargetTasks"]));
+            // loading this here this was crashing VS2005 when we opened a form that contained this ascx           
+            //spsTargetTasksPath = Path.GetFullPath(Path.Combine(obpPaths.PathToSpsFiles,
+            //                                               ConfigurationManager.AppSettings["defaultSpsFile_TargetTasks"]));                
+            //}
 		}
 
 		/// <summary> 
@@ -222,6 +224,7 @@ namespace Owasp.VulnReport.ascx
 			this.strPathToTempFileFolder = up.TempDirectoryPath;
 			this.strCurrentProject = strProjectToLoad;
 			this.strFullPathToCurrentProject = Path.GetFullPath(Path.Combine(strPathToProjectFiles, strCurrentProject));
+            this.strSpsTargetTasksPath = obpPaths.SpsTargetTasksPath;
 			lbCurrentProject.Text = strCurrentProject ;			
 			loadTargetsIntoListBox();
             unsavedDataExists = false;
@@ -242,7 +245,7 @@ namespace Owasp.VulnReport.ascx
 			string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strSelectedTarget) + ".xml"; 
 			string strPathToXmlFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject,Path.Combine(strSelectedTarget , strXmlFileToLoad)));
 
-            utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_TargetTasks, strPathToXmlFile, obpPaths.ProjectSchemaPath, spsTargetTasksPath);						
+            utils.authentic.loadXmlFileInTargetAuthenticView(axAuthentic_TargetTasks, strPathToXmlFile, obpPaths.ProjectSchemaPath, strSpsTargetTasksPath);						
 		}
 
 		private void btSaveTasks_Click(object sender, System.EventArgs e)

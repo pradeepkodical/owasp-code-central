@@ -226,6 +226,7 @@ namespace Owasp.VulnReport.ascx
             this.cbUserProfile.Location = new System.Drawing.Point(152, 24);
             this.cbUserProfile.Name = "cbUserProfile";
             this.cbUserProfile.Size = new System.Drawing.Size(176, 21);
+            this.cbUserProfile.Sorted = true;
             this.cbUserProfile.TabIndex = 0;
             this.cbUserProfile.SelectedIndexChanged += new System.EventHandler(this.cbUserProfile_SelectedIndexChanged);
             // 
@@ -499,7 +500,7 @@ namespace Owasp.VulnReport.ascx
 
 		private void loadCurrentProfilesListBox()
 		{
-			utils.windowsForms.loadFilesIntoComboBox(cbUserProfile,up.ProfileFolder,"*.xml"); 
+			utils.windowsForms.loadFilesIntoComboBox(cbUserProfile,up.ProfileFolder,"*.xml");       
 		}
 
 		private void LoadAppConfigFile()

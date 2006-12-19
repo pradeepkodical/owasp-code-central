@@ -114,6 +114,8 @@ namespace Owasp.VulnReport
 
         public string SpsTargetsPath { get { return targetsSpsPath; } }
 
+        public string SpsTargetTasksPath { get { return targetTasksSpsPath; } }        
+
         public string SpsIssueTrackingJustItemsAndStatusPath { get { return issueTrackingJustItemsAndStatusSpsPath; } }
 
         public string SpsIssueTrackingWithResolutionPath { get { return issueTrackingWithResolutionSpsPath; } }
