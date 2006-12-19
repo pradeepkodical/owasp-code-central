@@ -98,27 +98,125 @@ namespace Owasp.VulnReport.utils
                     switch (e.lParam.ToInt32())
                     { 
                         case 2752513:
-                            bLeftShiftDown = true; Console.WriteLine("bshift down"); break;
+                            bLeftShiftDown = true;// Console.WriteLine("bshift down");
+                            break;
                         case -1070989311:
-                            bLeftShiftDown = false; Console.WriteLine("bshift up"); break;
+                            bLeftShiftDown = false;// Console.WriteLine("bshift up");
+                            break;
                         case 1900545:
-                            bLeftCtrlDown = true; Console.WriteLine("bCtrl down"); break;
+                            bLeftCtrlDown = true;// Console.WriteLine("bCtrl down");
+                            break;
                         case -1071841279:
-                            bLeftCtrlDown = false; Console.WriteLine("bCtrl up"); break;                                                        
+                            bLeftCtrlDown = false;// Console.WriteLine("bCtrl up");
+                            break;                                                        
                     }
                     
 					if (iKeyPressedValue == 0)
 					{
-						char cKeyPressed = System.Convert.ToChar(e.wParam.ToInt32());										
-						if (ccCurrentAscxControl.ActiveControl.GetType() == axCurrentAuthenticObject.GetType())
-							processAuthenticKeyboardEvent((AxXMLSPYPLUGINLib.AxAuthentic)ccCurrentAscxControl.ActiveControl, cKeyPressed , (utils.LocalWindowsHook)sender);
+                      //  Console.WriteLine(axCurrentAuthenticObject.Focused.ToString() + " " + axCurrentAuthenticObject.Focus());
+						char cKeyPressed = System.Convert.ToChar(e.wParam.ToInt32());
+
+                        Control ctrControlWithFocus = getControlWithFocus(ccCurrentAscxControl.ActiveControl);
+                        if (null != ctrControlWithFocus)
+                        {
+                            if (ctrControlWithFocus.GetType() == axCurrentAuthenticObject.GetType())
+                                processAuthenticKeyboardEvent((AxXMLSPYPLUGINLib.AxAuthentic)ctrControlWithFocus, cKeyPressed, (utils.LocalWindowsHook)sender);
+                    //        Console.WriteLine(ctrControlWithFocus.Name);
+                        }
+                        /*
+                        object objToProcess = ccCurrentAscxControl.ActiveControl;
+                        if ("System.Windows.Forms.SplitContainer" == objToProcess.GetType().ToString())
+                        {
+                            SplitContainer scSplitContainer = (SplitContainer)ccCurrentAscxControl.ActiveControl;
+                            foreach (object objControlInPanel in scSplitContainer.Panel2.Controls)
+                            {
+                                if ("System.Windows.Forms.SplitContainer" == objControlInPanel.GetType().ToString())
+                                {
+                                    SplitContainer scSplitContainer_Inside = (SplitContainer)objControlInPanel;
+                                    foreach (Control ctrControlInPanel2 in scSplitContainer_Inside.Panel2.Controls)
+                                    {
+                                        if (true == ctrControlInPanel2.ContainsFocus)
+                                            Console.WriteLine(string.Format("Contains Focus: Control in {0} : {1} :{2} : {3}", scSplitContainer.Name, scSplitContainer_Inside.Name, ctrControlInPanel2.Name, ctrControlInPanel2.Focused));                                        
+                                        if (true == ctrControlInPanel2.Focused)
+                                            Console.WriteLine(string.Format("Focused : Control in {0} : {1} :{2} : {3}", scSplitContainer.Name, scSplitContainer_Inside.Name, ctrControlInPanel2.Name, ctrControlInPanel2.Focused));                                        
+                                        
+                                    }
+                                }
+                                    
+                            }
+                        }
+                         * */
+                        //Console.WriteLine(ccCurrentAscxControl.ActiveControl.GetType());						
 					}
 				}
 		 }
-		
+
+        private Control getControlWithFocus(Control ctrControlToProcess)
+        {
+            //if (ctrControlToProcess.Focused)
+            //    return 
+            if (ctrControlToProcess.Controls.Count == 0)        // another way we can find our control (the axAuthentic don't have the Focused flag enabled)
+                return ctrControlToProcess;
+            foreach (Control ctrControl in ctrControlToProcess.Controls)
+            {
+                if (true == ctrControl.Focused)
+                    return ctrControl;
+                else
+                    if (true == ctrControl.ContainsFocus)
+                    {
+                        return getControlWithFocus(ctrControl);
+                    }
+
+            }
+            return null;
+        }
+
+        private void checkForEnterAndInsertNewLine(AxXMLSPYPLUGINLib.AxAuthentic axActiveAuthenticControl,char cKeyPressed)
+        {
+            if (0x0d == cKeyPressed)			// 0x0d (13) Enter
+                utils.authentic.authentic_InsertNewLine(axActiveAuthenticControl);
+        }
+
+        private void checkForCtrlVandInsertDataFromClipboard(AxXMLSPYPLUGINLib.AxAuthentic axActiveAuthenticControl,char cKeyPressed, bool bCheckForImages)
+        {
+            if (0x56 == cKeyPressed)	// 0x56 (86) V 
+            {
+                if (bLeftCtrlDown) // if the left control key is pressed
+                {
+                    if (true == bCheckForImages && true == utils.clipboard.isClipboardDataAnBitmap())
+                        insertImageFromClipboard();
+                    else
+                    {
+                        insertTextFromClipboard(axActiveAuthenticControl);
+                    }
+                }                
+            }		
+        }
+        private void insertTextFromClipboard(AxXMLSPYPLUGINLib.AxAuthentic axActiveAuthenticControl)
+        {
+            string strClipboardString = utils.clipboard.getStringWithClipboardData();
+            // encode clipboard content
+            System.IO.MemoryStream msClipboardData = new System.IO.MemoryStream();
+            XmlTextWriter xtwClipboardData = new XmlTextWriter(msClipboardData, null);
+            xtwClipboardData.WriteString(strClipboardString);
+            xtwClipboardData.Close();
+            string strTransformedClipboardString = System.Text.ASCIIEncoding.ASCII.GetString(msClipboardData.ToArray()); // new XmlTextReader(xtwClipboardData).ReadInnerXml();
+
+            // at the moment because I am not able to directly inject the newline element in the middle of this string, I have to add it manual to the selected text (with the user having to Save are reload the page)
+            // when doing this transformation we also have to clean the clipboard so that we don't get two pastes
+            // we also check to see if the encoding changed anything
+            if (strClipboardString.IndexOf(Environment.NewLine) > -1 || strTransformedClipboardString != strClipboardString)
+            {
+                authentic.setCurrentSelectedText(axActiveAuthenticControl, strTransformedClipboardString);
+                utils.clipboard.SetClipboardData("");
+            }
+            else
+                utils.clipboard.SetClipboardData(strClipboardString); // under normal circuntances there is no need to clear the clipboard and we can just paste the (normalized) string
+        }
+
 		private void insertImageFromClipboard()
 		{		
-			if (clipboard.isClipboardDataAnBitmap())
+			if (true == clipboard.isClipboardDataAnBitmap())
 			{
 				string strNewImageName = Path.GetFullPath(Path.Combine(strPathToSaveClipboardImage, 
                                                                        files.returnUniqueFileName(".jpeg")));
@@ -130,9 +228,9 @@ namespace Owasp.VulnReport.utils
 						strNewImageRelativePath = strNewImageRelativePath.Substring(1,strNewImageRelativePath.Length-1);
 					authentic.authentic_InsertNewLine(axCurrentAuthenticObject);					// insert new line before image								
 					authentic.authentic_InsertNewLine(axCurrentAuthenticObject);					// insert new line after image		
-					authentic.authentic_GotoPreviousTag(axCurrentAuthenticObject); 				// goto previews tag (i.e. in between the two new lines)
+					authentic.authentic_GotoPreviousTag(axCurrentAuthenticObject); 				    // goto previews tag (i.e. in between the two new lines)
 					authentic.authentic_InsertImage(axCurrentAuthenticObject, strNewImageRelativePath);	// insert image
-					authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 					// Moving the cursor forward to the next tag
+					authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 					    // Moving the cursor forward to the next tag
 					authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 									
 				}
 			}
@@ -155,44 +253,20 @@ namespace Owasp.VulnReport.utils
 				switch (strCurrentSelectedControl)
 				{					
 					case "level2":
-						if (0x0d == cKeyPressed)			// 0x0d (13) Enter
-							utils.authentic.authentic_InsertNewLine(axActiveAuthenticControl);					
+                    case "level3":
+                        checkForCtrlVandInsertDataFromClipboard(axActiveAuthenticControl,cKeyPressed, false);
+                        checkForEnterAndInsertNewLine(axActiveAuthenticControl,cKeyPressed);
+
+						//if (0x0d == cKeyPressed)			// 0x0d (13) Enter
+						//	utils.authentic.authentic_InsertNewLine(axActiveAuthenticControl);					
 						break;
 					case "AdittionalDetails":
-						if (0x56 == cKeyPressed)	// 0x56 (86) V 
-						{
-                            if(bLeftCtrlDown) // if the left control key is pressed
-							{							
-								if (utils.clipboard.isClipboardDataAnBitmap())
-									insertImageFromClipboard();
-								else
-								{									
-									string strClipboardString = utils.clipboard.getStringWithClipboardData();											
-									// encode clipboard content
-									System.IO.MemoryStream msClipboardData = new System.IO.MemoryStream();
-									XmlTextWriter xtwClipboardData = new XmlTextWriter(msClipboardData,null);									
-									xtwClipboardData.WriteString(strClipboardString);									
-									xtwClipboardData.Close();									
-									string strTransformedClipboardString =  System.Text.ASCIIEncoding.ASCII.GetString(msClipboardData.ToArray()); // new XmlTextReader(xtwClipboardData).ReadInnerXml();
-
-									// at the moment because I am not able to directly inject the newline element in the middle of this string, I have to add it manual to the selected text (with the user having to Save are reload the page)
-									// when doing this transformation we also have to clean the clipboard so that we don't get two pastes
-									// we also check to see if the encoding changed anything
-									if (strClipboardString.IndexOf(Environment.NewLine)>-1 || strTransformedClipboardString != strClipboardString)
-									{
-                                        authentic.setCurrentSelectedText(axActiveAuthenticControl, strTransformedClipboardString);
-										utils.clipboard.SetClipboardData("");
-									}
-									else
-										utils.clipboard.SetClipboardData(strClipboardString); // under normal circuntances there is no need to clear the clipboard and we can just paste the (normalized) string
-								}
-							}
-							break;
-						}					
+                        checkForCtrlVandInsertDataFromClipboard(axActiveAuthenticControl,cKeyPressed, true);
 						if (0x08 == cKeyPressed)			// 0x08 (08) Del 													
-							break;					
-						if (0x0d == cKeyPressed)			// 0x0d (13) Enter
-							utils.authentic.authentic_InsertNewLine(axActiveAuthenticControl);					
+							break;
+                        checkForEnterAndInsertNewLine(axActiveAuthenticControl, cKeyPressed);
+						//if (0x0d == cKeyPressed)			// 0x0d (13) Enter
+						//	utils.authentic.authentic_InsertNewLine(axActiveAuthenticControl);					
 						break;
 				}
 			}
@@ -200,7 +274,7 @@ namespace Owasp.VulnReport.utils
 			{
                // MessageBox.Show(ex.Message);      // this was being thrown during normal ORG usage 
             }
-		}
+		}       
 
 		public static void loadXmlFileInTargetAuthenticView(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject,string urlToXml,string urlToXsd,string urlToSps)
 		{
@@ -262,7 +336,7 @@ namespace Owasp.VulnReport.utils
 
 		public static void authentic_InsertElementInCurrentSelectionPos(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject,string strElementToInsert)
 		{
-			axTargetAuthenticObject.AuthenticView.Selection.PerformAction(XMLSPYPLUGINLib.SpyAuthenticActions.spyAuthenticInsertAt,strElementToInsert);
+			bool bResult = axTargetAuthenticObject.AuthenticView.Selection.PerformAction(XMLSPYPLUGINLib.SpyAuthenticActions.spyAuthenticInsertAt,strElementToInsert);
 		}
 
         /// <summary>
@@ -346,8 +420,10 @@ namespace Owasp.VulnReport.utils
             }
             else
             {
-                authentic_SelectNextTag(axTargetAuthenticObject); // it now needs to be SelectNextTag due to changes in the 2007 Altova component
-                axTargetAuthenticObject.AuthenticView.Selection.Text = strPathToImage;
+                MessageBox.Show("Could not paste image due to a bug in the code. Please select some text and try again");
+                //this bit is not working
+                //authentic_SelectNextTag(axTargetAuthenticObject); // it now needs to be SelectNextTag due to changes in the 2007 Altova component
+                //axTargetAuthenticObject.AuthenticView.Selection.Text = strPathToImage;
             }          
 		}
 
