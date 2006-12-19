@@ -278,22 +278,29 @@ namespace Owasp.VulnReport.utils
 
 		public static void loadXmlFileInTargetAuthenticView(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject,string urlToXml,string urlToXsd,string urlToSps)
 		{
-            if (File.Exists(urlToXml) &&
-                File.Exists(urlToXsd) &&
-                File.Exists(urlToSps))
-            {               
-                axTargetAuthenticObject.SchemaLoadObject.URL = urlToXsd;
-                axTargetAuthenticObject.DesignDataLoadObject.URL = urlToSps;
-                axTargetAuthenticObject.XMLDataLoadObject.URL = urlToXml;
-                axTargetAuthenticObject.XMLDataSaveUrl = urlToXml;
-                axTargetAuthenticObject.EntryHelpersEnabled = true;
-                axTargetAuthenticObject.AllowDrop = true;
-                axTargetAuthenticObject.StartEditing();
-                axTargetAuthenticObject.Visible = true;
-            }
-            else
+            try
             {
-                axTargetAuthenticObject.Visible = false;
+                if (File.Exists(urlToXml) &&
+                    File.Exists(urlToXsd) &&
+                    File.Exists(urlToSps))
+                {
+                    axTargetAuthenticObject.SchemaLoadObject.URL = urlToXsd;
+                    axTargetAuthenticObject.DesignDataLoadObject.URL = urlToSps;
+                    axTargetAuthenticObject.XMLDataLoadObject.URL = urlToXml;
+                    axTargetAuthenticObject.XMLDataSaveUrl = urlToXml;
+                    axTargetAuthenticObject.EntryHelpersEnabled = true;
+                    axTargetAuthenticObject.AllowDrop = true;
+                    axTargetAuthenticObject.StartEditing();
+                    axTargetAuthenticObject.Visible = true;
+                }
+                else
+                {
+                    axTargetAuthenticObject.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            { 
+                MessageBox.Show(string.Format("Error in loadXmlFileInTargetAuthenticView: {0}",ex.Message));
             }
 		}
 
