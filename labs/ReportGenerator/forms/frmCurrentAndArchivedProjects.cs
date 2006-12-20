@@ -39,9 +39,7 @@ namespace Owasp.VulnReport
 		public Owasp.VulnReport.ascxFindings ascxFindings;
 		private System.Windows.Forms.TabPage tbExecutiveSummary;
 		private Owasp.VulnReport.ascxExecutiveSummary ascxExecutiveSummary;
-		private System.Windows.Forms.TabPage tbReportPdf;
-		private System.Windows.Forms.TabPage tbTargetTasks;
-		private Owasp.VulnReport.ascx.ascxTargetTasks ascxTargetTasks;
+        private System.Windows.Forms.TabPage tbReportPdf;
 		private Owasp.VulnReport.ascx.ascxReportPdf ascxReportPdf;
         private SplitContainer splitContainer1;
         //private ascxProjects ascxProjects;			
@@ -92,10 +90,9 @@ namespace Owasp.VulnReport
             this.btDeleteSelectedTarget = new System.Windows.Forms.Button();
             this.tbProjectData = new System.Windows.Forms.TabControl();
             this.tpProjectMetadata = new System.Windows.Forms.TabPage();
+            this.ascxProjects = new Owasp.VulnReport.ascxProjects();
             this.tpTargets = new System.Windows.Forms.TabPage();
             this.ascxTargets = new Owasp.VulnReport.ascx.ascxTargets();
-            this.tbTargetTasks = new System.Windows.Forms.TabPage();
-            this.ascxTargetTasks = new Owasp.VulnReport.ascx.ascxTargetTasks();
             this.tpFindings = new System.Windows.Forms.TabPage();
             this.ascxFindings = new Owasp.VulnReport.ascxFindings();
             this.tbExecutiveSummary = new System.Windows.Forms.TabPage();
@@ -103,12 +100,10 @@ namespace Owasp.VulnReport
             this.tbReportPdf = new System.Windows.Forms.TabPage();
             this.ascxReportPdf = new Owasp.VulnReport.ascx.ascxReportPdf();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ascxProjects = new Owasp.VulnReport.ascxProjects();
             this.gbAddProject.SuspendLayout();
             this.tbProjectData.SuspendLayout();
             this.tpProjectMetadata.SuspendLayout();
             this.tpTargets.SuspendLayout();
-            this.tbTargetTasks.SuspendLayout();
             this.tpFindings.SuspendLayout();
             this.tbExecutiveSummary.SuspendLayout();
             this.tbReportPdf.SuspendLayout();
@@ -202,7 +197,6 @@ namespace Owasp.VulnReport
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tbProjectData.Controls.Add(this.tpProjectMetadata);
             this.tbProjectData.Controls.Add(this.tpTargets);
-            this.tbProjectData.Controls.Add(this.tbTargetTasks);
             this.tbProjectData.Controls.Add(this.tpFindings);
             this.tbProjectData.Controls.Add(this.tbExecutiveSummary);
             this.tbProjectData.Controls.Add(this.tbReportPdf);
@@ -221,6 +215,17 @@ namespace Owasp.VulnReport
             this.tpProjectMetadata.Size = new System.Drawing.Size(675, 462);
             this.tpProjectMetadata.TabIndex = 3;
             this.tpProjectMetadata.Text = "Project Metadata";
+            this.tpProjectMetadata.UseVisualStyleBackColor = true;
+            // 
+            // ascxProjects
+            // 
+            this.ascxProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ascxProjects.Location = new System.Drawing.Point(3, 3);
+            this.ascxProjects.Name = "ascxProjects";
+            this.ascxProjects.Size = new System.Drawing.Size(669, 456);
+            this.ascxProjects.TabIndex = 0;
             // 
             // tpTargets
             // 
@@ -230,6 +235,7 @@ namespace Owasp.VulnReport
             this.tpTargets.Size = new System.Drawing.Size(675, 462);
             this.tpTargets.TabIndex = 2;
             this.tpTargets.Text = "Targets";
+            this.tpTargets.UseVisualStyleBackColor = true;
             this.tpTargets.Visible = false;
             // 
             // ascxTargets
@@ -242,25 +248,6 @@ namespace Owasp.VulnReport
             this.ascxTargets.Size = new System.Drawing.Size(659, 456);
             this.ascxTargets.TabIndex = 0;
             // 
-            // tbTargetTasks
-            // 
-            this.tbTargetTasks.Controls.Add(this.ascxTargetTasks);
-            this.tbTargetTasks.Location = new System.Drawing.Point(4, 22);
-            this.tbTargetTasks.Name = "tbTargetTasks";
-            this.tbTargetTasks.Size = new System.Drawing.Size(675, 462);
-            this.tbTargetTasks.TabIndex = 6;
-            this.tbTargetTasks.Text = "Target Tasks";
-            // 
-            // ascxTargetTasks
-            // 
-            this.ascxTargetTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ascxTargetTasks.Location = new System.Drawing.Point(8, 8);
-            this.ascxTargetTasks.Name = "ascxTargetTasks";
-            this.ascxTargetTasks.Size = new System.Drawing.Size(659, 448);
-            this.ascxTargetTasks.TabIndex = 0;
-            // 
             // tpFindings
             // 
             this.tpFindings.Controls.Add(this.ascxFindings);
@@ -269,6 +256,7 @@ namespace Owasp.VulnReport
             this.tpFindings.Size = new System.Drawing.Size(675, 462);
             this.tpFindings.TabIndex = 1;
             this.tpFindings.Text = "Findings";
+            this.tpFindings.UseVisualStyleBackColor = true;
             this.tpFindings.Visible = false;
             // 
             // ascxFindings
@@ -289,6 +277,7 @@ namespace Owasp.VulnReport
             this.tbExecutiveSummary.Size = new System.Drawing.Size(675, 462);
             this.tbExecutiveSummary.TabIndex = 4;
             this.tbExecutiveSummary.Text = "Report Contents";
+            this.tbExecutiveSummary.UseVisualStyleBackColor = true;
             this.tbExecutiveSummary.Visible = false;
             // 
             // ascxExecutiveSummary
@@ -309,6 +298,7 @@ namespace Owasp.VulnReport
             this.tbReportPdf.Size = new System.Drawing.Size(675, 462);
             this.tbReportPdf.TabIndex = 5;
             this.tbReportPdf.Text = "Report Pdf";
+            this.tbReportPdf.UseVisualStyleBackColor = true;
             this.tbReportPdf.Visible = false;
             // 
             // ascxReportPdf
@@ -326,8 +316,8 @@ namespace Owasp.VulnReport
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(2, 5);
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer1.Location = new System.Drawing.Point(2, 5);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -344,16 +334,6 @@ namespace Owasp.VulnReport
             this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.TabIndex = 23;
             // 
-            // ascxProjects
-            // 
-            this.ascxProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ascxProjects.Location = new System.Drawing.Point(3, 3);
-            this.ascxProjects.Name = "ascxProjects";
-            this.ascxProjects.Size = new System.Drawing.Size(669, 456);
-            this.ascxProjects.TabIndex = 0;
-            // 
             // frmCurrentAndArchivedProjects
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -368,7 +348,6 @@ namespace Owasp.VulnReport
             this.tbProjectData.ResumeLayout(false);
             this.tpProjectMetadata.ResumeLayout(false);
             this.tpTargets.ResumeLayout(false);
-            this.tbTargetTasks.ResumeLayout(false);
             this.tpFindings.ResumeLayout(false);
             this.tbExecutiveSummary.ResumeLayout(false);
             this.tbReportPdf.ResumeLayout(false);
@@ -431,6 +410,7 @@ namespace Owasp.VulnReport
             {
                 lbCurrentProjects.SelectedIndex = -1;			// don't make any selection, this will make loading faster			
                 bFirstTimeThisFormIsLoaded = false;
+                setEnableFlagOnAllAscxControls(false);          // disable all ascx controls 
             }
             else
             {
@@ -455,17 +435,18 @@ namespace Owasp.VulnReport
                         ascxFindings.axAuthentic_Findings.SetUnmodified();
                     }
                 }
+                setEnableFlagOnAllAscxControls(false);         // Disable all tabs so that the user can't click anywhere
                 lbCurrentProjects.Enabled = false;          // disable it so that the user doesn't click on it before this method is full processed
                 Application.DoEvents();                     // this will allow the redraw of the disabled list box (better user experience)
                 // comment the following lines to disable autoloading of autentic pages
                 ascxProjects.loadProjectData(lbCurrentProjects.Text);
-                ascxTargets.loadProjectData(lbCurrentProjects.Text);
-                ascxTargetTasks.loadProjectData(lbCurrentProjects.Text);
+                ascxTargets.loadProjectData(lbCurrentProjects.Text);                
                 ascxFindings.loadProjectData(lbCurrentProjects.Text);
                 ascxExecutiveSummary.loadProjectData(lbCurrentProjects.Text);
                 ascxReportPdf.loadProjectData(lbCurrentProjects.Text);
-                iCurrentProjectSelectedIndex = lbCurrentProjects.SelectedIndex;
-                lbCurrentProjects.Enabled = true;  // Now the user can select another Target
+                iCurrentProjectSelectedIndex = lbCurrentProjects.SelectedIndex;                
+                setEnableFlagOnAllAscxControls(true);          // enable all ascx controls 
+                lbCurrentProjects.Enabled = true;        // Now the user can select another Target
             }
 		}
 
@@ -553,12 +534,24 @@ namespace Owasp.VulnReport
         private void frmCurrentAndArchivedProjects_FormClosing(object sender, FormClosingEventArgs e)
         {
             ascxProjects.CheckForUnSavedDataAndPromptUserToSave();
-            ascxTargets.checkForUnSavedDataAndPromptForSave();
-            ascxTargetTasks.checkForUnSavedDataAndPromptForSave();
+            ascxTargets.checkForUnSavedDataAndPromptForSave();            
             ascxFindings.checkForUnsavedData();
             ascxFindings.axAuthentic_Findings.Dispose();
             while (ascxFindings.axAuthentic_Findings.Disposing) { }
             ascxExecutiveSummary.checkForUnSavedDataAndPromptForSave();
+        }
+
+        /// <summary>
+        /// Enable or Disable all ASCX controls when there is not project loaded
+        /// </summary>
+        /// <param name="bEnableSetting"></param>
+        private void setEnableFlagOnAllAscxControls(bool bEnableSetting)
+        {                        
+            ascxProjects.Enabled = bEnableSetting;
+            ascxTargets.Enabled = bEnableSetting;
+            ascxFindings.Enabled = bEnableSetting;
+            ascxExecutiveSummary.Enabled = bEnableSetting;
+            ascxReportPdf.Enabled = bEnableSetting;            
         }
 
 	}

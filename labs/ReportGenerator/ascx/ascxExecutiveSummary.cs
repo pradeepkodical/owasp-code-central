@@ -20,7 +20,7 @@ namespace Owasp.VulnReport
 		private string strPathToProjectFiles;
 		private string strCurrentProject;
 		private string strFullPathToCurrentProject;
-        private string strFullPathToCurrentProjectXmlFile;
+        private string strFullPathToCurrentProjectXmlFile_ReportContents;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Label lbUnsavedData;
 		private AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_ExecutiveSummary;
@@ -31,11 +31,9 @@ namespace Owasp.VulnReport
         private Label lbReportContentsTemplateLabel;
         private GroupBox groupBox2;
         private Button btReportContents_UseTemplate;
-
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        private Label lbXmlBreaksXsdSchema;
+        private ToolTip toolTip1;
+        private IContainer components;
 
 		public ascxExecutiveSummary()
 		{
@@ -68,16 +66,19 @@ namespace Owasp.VulnReport
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ascxExecutiveSummary));
             this.axAuthentic_ExecutiveSummary = new AxXMLSPYPLUGINLib.AxAuthentic();
             this.btSaveReportContents = new System.Windows.Forms.Button();
             this.lblReportContentsSaved = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbXmlBreaksXsdSchema = new System.Windows.Forms.Label();
             this.lbUnsavedData = new System.Windows.Forms.Label();
             this.cbReportContentsTemplates = new System.Windows.Forms.ComboBox();
             this.lbReportContentsTemplateLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btReportContents_UseTemplate = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_ExecutiveSummary)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -92,7 +93,7 @@ namespace Owasp.VulnReport
             this.axAuthentic_ExecutiveSummary.Location = new System.Drawing.Point(8, 84);
             this.axAuthentic_ExecutiveSummary.Name = "axAuthentic_ExecutiveSummary";
             this.axAuthentic_ExecutiveSummary.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_ExecutiveSummary.OcxState")));
-            this.axAuthentic_ExecutiveSummary.Size = new System.Drawing.Size(584, 280);
+            this.axAuthentic_ExecutiveSummary.Size = new System.Drawing.Size(739, 280);
             this.axAuthentic_ExecutiveSummary.TabIndex = 18;
             this.axAuthentic_ExecutiveSummary.SelectionChanged += new System.EventHandler(this.axAuthentic_ExecutiveSummary_SelectionChanged);
             // 
@@ -100,7 +101,7 @@ namespace Owasp.VulnReport
             // 
             this.btSaveReportContents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveReportContents.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSaveReportContents.Location = new System.Drawing.Point(123, 16);
+            this.btSaveReportContents.Location = new System.Drawing.Point(235, 16);
             this.btSaveReportContents.Name = "btSaveReportContents";
             this.btSaveReportContents.Size = new System.Drawing.Size(120, 40);
             this.btSaveReportContents.TabIndex = 3;
@@ -112,39 +113,56 @@ namespace Owasp.VulnReport
             this.lblReportContentsSaved.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblReportContentsSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReportContentsSaved.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblReportContentsSaved.Location = new System.Drawing.Point(11, 24);
+            this.lblReportContentsSaved.Location = new System.Drawing.Point(118, 19);
             this.lblReportContentsSaved.Name = "lblReportContentsSaved";
-            this.lblReportContentsSaved.Size = new System.Drawing.Size(104, 24);
+            this.lblReportContentsSaved.Size = new System.Drawing.Size(109, 32);
             this.lblReportContentsSaved.TabIndex = 19;
             this.lblReportContentsSaved.Text = "Report Contents Saved";
             this.lblReportContentsSaved.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblReportContentsSaved.Visible = false;
+            this.lblReportContentsSaved.Click += new System.EventHandler(this.lblReportContentsSaved_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lbXmlBreaksXsdSchema);
             this.groupBox1.Controls.Add(this.btSaveReportContents);
-            this.groupBox1.Controls.Add(this.lblReportContentsSaved);
             this.groupBox1.Controls.Add(this.lbUnsavedData);
-            this.groupBox1.Location = new System.Drawing.Point(333, 12);
+            this.groupBox1.Controls.Add(this.lblReportContentsSaved);
+            this.groupBox1.Location = new System.Drawing.Point(376, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(259, 64);
+            this.groupBox1.Size = new System.Drawing.Size(371, 64);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
+            // 
+            // lbXmlBreaksXsdSchema
+            // 
+            this.lbXmlBreaksXsdSchema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbXmlBreaksXsdSchema.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbXmlBreaksXsdSchema.ForeColor = System.Drawing.Color.Red;
+            this.lbXmlBreaksXsdSchema.Location = new System.Drawing.Point(6, 17);
+            this.lbXmlBreaksXsdSchema.Name = "lbXmlBreaksXsdSchema";
+            this.lbXmlBreaksXsdSchema.Size = new System.Drawing.Size(105, 40);
+            this.lbXmlBreaksXsdSchema.TabIndex = 24;
+            this.lbXmlBreaksXsdSchema.Text = "Xml breaks XSD schema!!";
+            this.lbXmlBreaksXsdSchema.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lbXmlBreaksXsdSchema, "Click to view XSD errors");
+            this.lbXmlBreaksXsdSchema.Visible = false;
+            this.lbXmlBreaksXsdSchema.Click += new System.EventHandler(this.lbXmlBreaksXsdSchema_Click);
             // 
             // lbUnsavedData
             // 
             this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedData.Location = new System.Drawing.Point(19, 24);
+            this.lbUnsavedData.Location = new System.Drawing.Point(131, 17);
             this.lbUnsavedData.Name = "lbUnsavedData";
-            this.lbUnsavedData.Size = new System.Drawing.Size(56, 24);
+            this.lbUnsavedData.Size = new System.Drawing.Size(80, 38);
             this.lbUnsavedData.TabIndex = 20;
             this.lbUnsavedData.Text = "Unsaved Data";
             this.lbUnsavedData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbUnsavedData.Visible = false;
+            this.lbUnsavedData.Click += new System.EventHandler(this.lbUnsavedData_Click);
             // 
             // cbReportContentsTemplates
             // 
@@ -167,9 +185,10 @@ namespace Owasp.VulnReport
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbReportContentsTemplates);
             this.groupBox2.Controls.Add(this.btReportContents_UseTemplate);
             this.groupBox2.Controls.Add(this.lbReportContentsTemplateLabel);
-            this.groupBox2.Controls.Add(this.cbReportContentsTemplates);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox2.Location = new System.Drawing.Point(8, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(289, 66);
@@ -193,7 +212,7 @@ namespace Owasp.VulnReport
             this.Controls.Add(this.axAuthentic_ExecutiveSummary);
             this.Controls.Add(this.groupBox1);
             this.Name = "ascxExecutiveSummary";
-            this.Size = new System.Drawing.Size(600, 376);
+            this.Size = new System.Drawing.Size(755, 376);
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_ExecutiveSummary)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -210,15 +229,18 @@ namespace Owasp.VulnReport
 			this.strPathToProjectFiles  = up.ProjectFilesPath;
 			this.strCurrentProject = strProjectToLoad;
 			this.strFullPathToCurrentProject = Path.GetFullPath(Path.Combine(strPathToProjectFiles, strCurrentProject));								
-			this.strFullPathToCurrentProjectXmlFile = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject , strCurrentProject + "_ReportContents.xml"));
+			this.strFullPathToCurrentProjectXmlFile_ReportContents = Path.GetFullPath(Path.Combine(strFullPathToCurrentProject , strCurrentProject + "_ReportContents.xml"));
             checkIfReportContentsFileExists();
 			utils.authentic.loadXmlFileInTargetAuthenticView( axAuthentic_ExecutiveSummary,
-                                                              strFullPathToCurrentProjectXmlFile,
+                                                              this.strFullPathToCurrentProjectXmlFile_ReportContents,
                                                               obpCurrentPaths.ProjectSchemaPath,
                                                               obpCurrentPaths.SpsExecutiveSummaryPath);
 			axAuthentic_ExecutiveSummary.SetUnmodified();
 			lbUnsavedData.Visible = false;
             loadPlugInReportContentTemplates();
+
+            // Verify file against schema but don't show MessageBox 
+            new utils.xml.xsdVerification(strFullPathToCurrentProjectXmlFile_ReportContents, obpCurrentPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, false);
 		}
 
 		private void btSaveExecutiveSummary_Click(object sender, System.EventArgs e)
@@ -226,6 +248,8 @@ namespace Owasp.VulnReport
             saveCurrentData();
 			lblReportContentsSaved.Visible= true;
 			lbUnsavedData.Visible= false;
+            // Verify file against schema and show a MessageBox with any errors
+            new utils.xml.xsdVerification(strFullPathToCurrentProjectXmlFile_ReportContents, obpCurrentPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, true);
 		}
 
 		private void axAuthentic_ExecutiveSummary_SelectionChanged(object sender, System.EventArgs e)
@@ -286,9 +310,9 @@ namespace Owasp.VulnReport
         {
             try
             {
-                if (!File.Exists(this.strFullPathToCurrentProjectXmlFile))
+                if (!File.Exists(this.strFullPathToCurrentProjectXmlFile_ReportContents))
                 {
-                    File.Copy(obpCurrentPaths.EmptyProjectFilePath, strFullPathToCurrentProjectXmlFile);
+                    File.Copy(obpCurrentPaths.EmptyProjectFilePath, this.strFullPathToCurrentProjectXmlFile_ReportContents);
                 }
             }
             catch (IOException ex)
@@ -322,10 +346,25 @@ namespace Owasp.VulnReport
             if (DialogResult.Yes == MessageBox.Show("Are you sure you want to use this template? You will lose the current 'Report Contents' data below", "Use 'Report Contents' template", MessageBoxButtons.YesNo))
             {
                 string strPathToReportContentsToUse = Path.Combine(strReportContentsTemplatePluginPath, cbReportContentsTemplates.Text);
-                utils.files.SaveFileWithStringContents(this.strFullPathToCurrentProjectXmlFile, utils.files.GetFileContents(strPathToReportContentsToUse));
+                utils.files.SaveFileWithStringContents(this.strFullPathToCurrentProjectXmlFile_ReportContents, utils.files.GetFileContents(strPathToReportContentsToUse));
                 axAuthentic_ExecutiveSummary.SetUnmodified();
                 loadProjectData(this.strCurrentProject);
             }
+        }
+
+        private void lbXmlBreaksXsdSchema_Click(object sender, EventArgs e)
+        {
+            new utils.xml.xsdVerification(this.strFullPathToCurrentProjectXmlFile_ReportContents, obpCurrentPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, true);
+        }
+
+        private void lbUnsavedData_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblReportContentsSaved_Click(object sender, EventArgs e)
+        {
+
         }
 	}
 }

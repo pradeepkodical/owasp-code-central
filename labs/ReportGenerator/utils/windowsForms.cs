@@ -9,6 +9,7 @@ namespace Owasp.VulnReport.utils
 	/// </summary>
 	public class windowsForms
 	{
+        
 		public windowsForms()
 		{
 		}
@@ -121,5 +122,14 @@ namespace Owasp.VulnReport.utils
 		{
 			tbToUpadate.Text += Environment.NewLine  + "[" + DateTime.Now.ToShortTimeString()+"] " + strMessageToAdd; 
 		}
+
+        public static void getRowAndColFromRichTextBox(RichTextBox rtbToProcess, ref int iRowIndex, ref int iColIndex)
+        {            
+            int RowStartIndex;
+
+            iRowIndex = rtbToProcess.GetLineFromCharIndex(rtbToProcess.SelectionStart) + 1;
+            RowStartIndex = win32.SendMessage(rtbToProcess.Handle, win32.EM_LINEINDEX, -1, 0);
+            iColIndex = rtbToProcess.SelectionStart - RowStartIndex + 1;
+        }
 	}
 }

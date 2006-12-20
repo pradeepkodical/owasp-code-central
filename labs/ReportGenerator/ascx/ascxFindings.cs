@@ -23,6 +23,7 @@ namespace Owasp.VulnReport
 		private string strPathToTempFileFolder;
 		private string strPathToImageDirectoryInUnzipedFolder;
 		private string strPathToUnzipSelectedFinding;
+        private string strPathToUnzipSelectedFindingXmlFile;
 		private string strSpsTemplateToUseToEditFindings;
         private UserProfile upCurrentUser = UserProfile.GetUserProfile();
         private utils.authentic authUtils = new utils.authentic();
@@ -66,10 +67,11 @@ namespace Owasp.VulnReport
         private GroupBox groupBox3;
         private Button btAddFindingUsingTemplate;
         private RichTextBox rtbSelectedFinding;
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>		
-		private System.ComponentModel.Container components = null;
+        private GroupBox groupBox5;
+        private Label lbXmlBreaksXsdSchema;
+        private ToolTip toolTip1;
+        private Label lbRtbCursorPosition;
+        private IContainer components;
 
 		public ascxFindings()
 		{									
@@ -103,6 +105,7 @@ namespace Owasp.VulnReport
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ascxFindings));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -137,9 +140,13 @@ namespace Owasp.VulnReport
             this.btAddFindingUsingTemplate = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.axWebBrowser_Targets = new System.Windows.Forms.WebBrowser();
+            this.rtbSelectedFinding = new System.Windows.Forms.RichTextBox();
             this.axWebBrowser_WindowsExplorer = new System.Windows.Forms.WebBrowser();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.rtbSelectedFinding = new System.Windows.Forms.RichTextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lbXmlBreaksXsdSchema = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lbRtbCursorPosition = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Findings)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -154,6 +161,7 @@ namespace Owasp.VulnReport
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -222,10 +230,10 @@ namespace Owasp.VulnReport
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.axAuthentic_Findings.Enabled = true;
-            this.axAuthentic_Findings.Location = new System.Drawing.Point(10, 42);
+            this.axAuthentic_Findings.Location = new System.Drawing.Point(-2, 60);
             this.axAuthentic_Findings.Name = "axAuthentic_Findings";
             this.axAuthentic_Findings.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_Findings.OcxState")));
-            this.axAuthentic_Findings.Size = new System.Drawing.Size(596, 340);
+            this.axAuthentic_Findings.Size = new System.Drawing.Size(612, 322);
             this.axAuthentic_Findings.TabIndex = 2;
             this.axAuthentic_Findings.Enter += new System.EventHandler(this.axAuthentic1_Enter);
             this.axAuthentic_Findings.SelectionChanged += new System.EventHandler(this.axAuthentic1_SelectionChanged);
@@ -234,7 +242,7 @@ namespace Owasp.VulnReport
             // 
             this.btSaveFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveFinding.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSaveFinding.Location = new System.Drawing.Point(511, 9);
+            this.btSaveFinding.Location = new System.Drawing.Point(189, 19);
             this.btSaveFinding.Name = "btSaveFinding";
             this.btSaveFinding.Size = new System.Drawing.Size(93, 24);
             this.btSaveFinding.TabIndex = 3;
@@ -301,7 +309,7 @@ namespace Owasp.VulnReport
             this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedData.Location = new System.Drawing.Point(449, 3);
+            this.lbUnsavedData.Location = new System.Drawing.Point(126, 12);
             this.lbUnsavedData.Name = "lbUnsavedData";
             this.lbUnsavedData.Size = new System.Drawing.Size(66, 37);
             this.lbUnsavedData.TabIndex = 6;
@@ -314,7 +322,7 @@ namespace Owasp.VulnReport
             this.lblFindingSaved.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFindingSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFindingSaved.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblFindingSaved.Location = new System.Drawing.Point(455, 6);
+            this.lblFindingSaved.Location = new System.Drawing.Point(133, 16);
             this.lblFindingSaved.Name = "lblFindingSaved";
             this.lblFindingSaved.Size = new System.Drawing.Size(56, 29);
             this.lblFindingSaved.TabIndex = 6;
@@ -388,11 +396,11 @@ namespace Owasp.VulnReport
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 19);
+            this.label4.Location = new System.Drawing.Point(3, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 16);
+            this.label4.Size = new System.Drawing.Size(197, 19);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Editor Template To Use:";
+            this.label4.Text = "Edit/view selected Finding with :";
             // 
             // cbTemplateToUse
             // 
@@ -402,7 +410,7 @@ namespace Owasp.VulnReport
             "Authentic - All Fields Mode",
             "Windows Explorer",
             "Text Editor (i.e. Notepad)"});
-            this.cbTemplateToUse.Location = new System.Drawing.Point(159, 17);
+            this.cbTemplateToUse.Location = new System.Drawing.Point(3, 28);
             this.cbTemplateToUse.Name = "cbTemplateToUse";
             this.cbTemplateToUse.Size = new System.Drawing.Size(259, 21);
             this.cbTemplateToUse.TabIndex = 18;
@@ -531,14 +539,13 @@ namespace Owasp.VulnReport
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.lbRtbCursorPosition);
+            this.splitContainer2.Panel2.Controls.Add(this.groupBox5);
+            this.splitContainer2.Panel2.Controls.Add(this.cbTemplateToUse);
+            this.splitContainer2.Panel2.Controls.Add(this.label4);
             this.splitContainer2.Panel2.Controls.Add(this.rtbSelectedFinding);
             this.splitContainer2.Panel2.Controls.Add(this.axWebBrowser_WindowsExplorer);
-            this.splitContainer2.Panel2.Controls.Add(this.label4);
-            this.splitContainer2.Panel2.Controls.Add(this.lblFindingSaved);
-            this.splitContainer2.Panel2.Controls.Add(this.btSaveFinding);
             this.splitContainer2.Panel2.Controls.Add(this.axAuthentic_Findings);
-            this.splitContainer2.Panel2.Controls.Add(this.cbTemplateToUse);
-            this.splitContainer2.Panel2.Controls.Add(this.lbUnsavedData);
             this.splitContainer2.Size = new System.Drawing.Size(617, 491);
             this.splitContainer2.SplitterDistance = 99;
             this.splitContainer2.TabIndex = 23;
@@ -551,18 +558,31 @@ namespace Owasp.VulnReport
             this.axWebBrowser_Targets.Location = new System.Drawing.Point(3, 8);
             this.axWebBrowser_Targets.MinimumSize = new System.Drawing.Size(20, 20);
             this.axWebBrowser_Targets.Name = "axWebBrowser_Targets";
-            this.axWebBrowser_Targets.Size = new System.Drawing.Size(432, 84);
+            this.axWebBrowser_Targets.Size = new System.Drawing.Size(438, 84);
             this.axWebBrowser_Targets.TabIndex = 24;
+            // 
+            // rtbSelectedFinding
+            // 
+            this.rtbSelectedFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtbSelectedFinding.Location = new System.Drawing.Point(-2, 60);
+            this.rtbSelectedFinding.Name = "rtbSelectedFinding";
+            this.rtbSelectedFinding.Size = new System.Drawing.Size(612, 303);
+            this.rtbSelectedFinding.TabIndex = 20;
+            this.rtbSelectedFinding.Text = "";
+            this.rtbSelectedFinding.SelectionChanged += new System.EventHandler(this.rtbSelectedFinding_SelectionChanged);
+            this.rtbSelectedFinding.TextChanged += new System.EventHandler(this.rtbSelectedFinding_TextChanged);
             // 
             // axWebBrowser_WindowsExplorer
             // 
             this.axWebBrowser_WindowsExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.axWebBrowser_WindowsExplorer.Location = new System.Drawing.Point(10, 44);
+            this.axWebBrowser_WindowsExplorer.Location = new System.Drawing.Point(-2, 60);
             this.axWebBrowser_WindowsExplorer.MinimumSize = new System.Drawing.Size(20, 20);
             this.axWebBrowser_WindowsExplorer.Name = "axWebBrowser_WindowsExplorer";
-            this.axWebBrowser_WindowsExplorer.Size = new System.Drawing.Size(594, 337);
+            this.axWebBrowser_WindowsExplorer.Size = new System.Drawing.Size(614, 321);
             this.axWebBrowser_WindowsExplorer.TabIndex = 19;
             // 
             // splitContainer3
@@ -587,17 +607,44 @@ namespace Owasp.VulnReport
             this.splitContainer3.SplitterDistance = 185;
             this.splitContainer3.TabIndex = 24;
             // 
-            // rtbSelectedFinding
+            // groupBox5
             // 
-            this.rtbSelectedFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbSelectedFinding.Location = new System.Drawing.Point(10, 42);
-            this.rtbSelectedFinding.Name = "rtbSelectedFinding";
-            this.rtbSelectedFinding.Size = new System.Drawing.Size(594, 341);
-            this.rtbSelectedFinding.TabIndex = 20;
-            this.rtbSelectedFinding.Text = "";
-            this.rtbSelectedFinding.TextChanged += new System.EventHandler(this.rtbSelectedFinding_TextChanged);
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.lblFindingSaved);
+            this.groupBox5.Controls.Add(this.btSaveFinding);
+            this.groupBox5.Controls.Add(this.lbXmlBreaksXsdSchema);
+            this.groupBox5.Controls.Add(this.lbUnsavedData);
+            this.groupBox5.Location = new System.Drawing.Point(314, 1);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(293, 52);
+            this.groupBox5.TabIndex = 21;
+            this.groupBox5.TabStop = false;
+            // 
+            // lbXmlBreaksXsdSchema
+            // 
+            this.lbXmlBreaksXsdSchema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbXmlBreaksXsdSchema.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbXmlBreaksXsdSchema.ForeColor = System.Drawing.Color.Red;
+            this.lbXmlBreaksXsdSchema.Location = new System.Drawing.Point(10, 10);
+            this.lbXmlBreaksXsdSchema.Name = "lbXmlBreaksXsdSchema";
+            this.lbXmlBreaksXsdSchema.Size = new System.Drawing.Size(105, 40);
+            this.lbXmlBreaksXsdSchema.TabIndex = 11;
+            this.lbXmlBreaksXsdSchema.Text = "Xml breaks XSD schema!!";
+            this.lbXmlBreaksXsdSchema.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lbXmlBreaksXsdSchema, "Click to view XSD errors");
+            this.lbXmlBreaksXsdSchema.Visible = false;
+            this.lbXmlBreaksXsdSchema.Click += new System.EventHandler(this.lbXmlBreaksXsdSchema_Click);
+            // 
+            // lbRtbCursorPosition
+            // 
+            this.lbRtbCursorPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbRtbCursorPosition.AutoSize = true;
+            this.lbRtbCursorPosition.Location = new System.Drawing.Point(530, 366);
+            this.lbRtbCursorPosition.Name = "lbRtbCursorPosition";
+            this.lbRtbCursorPosition.Size = new System.Drawing.Size(19, 13);
+            this.lbRtbCursorPosition.TabIndex = 22;
+            this.lbRtbCursorPosition.Text = "....";
+            this.lbRtbCursorPosition.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ascxFindings
             // 
@@ -619,10 +666,12 @@ namespace Owasp.VulnReport
             this.groupBox3.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -717,6 +766,8 @@ namespace Owasp.VulnReport
                     // unzip new finding into temp folder
                     strPathToTempFileFolder = Path.Combine(upCurrentUser.TempDirectoryPath, utils.misc.getGUID());
                     this.strPathToUnzipSelectedFinding = Path.Combine(strPathToTempFileFolder,Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding));
+                    this.strPathToUnzipSelectedFindingXmlFile = Path.Combine(strPathToUnzipSelectedFinding, Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml");
+                
                     utils.zip.unzipFile(strFullPathToSelectedFinding, strPathToTempFileFolder);
 
                     // invoke this drop down to load the correct template
@@ -762,16 +813,6 @@ namespace Owasp.VulnReport
             try
             {
                 saveCurrentData();
-                //lblFindingSaved.Visible = true;
-                //lbUnsavedData.Visible = false;
-             /*
-                if (File.Exists(strPathToUnzipSelectedFinding))
-                {
-                    utils.zip.zipFolder(strPathToUnzipSelectedFinding, strFullPathToSelectedFinding);
-                    lblFindingSaved.Visible = true;
-                    lbUnsavedData.Visible = false;
-                }
-              */
             }
             catch (Exception ex)
             {
@@ -965,6 +1006,9 @@ namespace Owasp.VulnReport
 		private void cbTemplateToUse_SelectedIndexChanged(object sender, System.EventArgs e)
 		{            
             checkForUnsavedData();
+            if (null == strFullPathToSelectedFinding)   // nothing to do until we have a Finding loaded
+                return;
+            //    string strFullPathToXmlFile = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
 			switch (cbTemplateToUse.Text)
 			{
 				case "Authentic - Simple Mode":
@@ -972,6 +1016,7 @@ namespace Owasp.VulnReport
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = true;
                     rtbSelectedFinding.Visible = false;
+                    lbRtbCursorPosition.Visible = false;
                     loadSelectedFindingInAuthenticView();               // load data
 					break;
                 case "Authentic - All Fields Mode":
@@ -979,21 +1024,24 @@ namespace Owasp.VulnReport
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = true;
                     rtbSelectedFinding.Visible = false;
+                    lbRtbCursorPosition.Visible = false;
                     loadSelectedFindingInAuthenticView();               // load data
 					break;
                 case "Windows Explorer":                    
                     axWebBrowser_WindowsExplorer.Visible = true;                                        
                     axAuthentic_Findings.Visible = false;
                     rtbSelectedFinding.Visible = false;
+                    lbRtbCursorPosition.Visible = false;
                     axWebBrowser_WindowsExplorer.Navigate(strPathToUnzipSelectedFinding);                                        
                     break;
                 case "Text Editor (i.e. Notepad)":
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = false;
                     rtbSelectedFinding.Visible = true;
-                    string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
-                    string strPathToXmlFile = Path.Combine(strPathToUnzipSelectedFinding, strXmlFileToLoad);
-                    rtbSelectedFinding.Text = utils.files.GetFileContents(strPathToXmlFile);                    
+                    lbRtbCursorPosition.Visible = true;
+                    //string strFullPathToXmlFile = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
+                    //string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
+                    rtbSelectedFinding.Text = utils.files.GetFileContents(strPathToUnzipSelectedFindingXmlFile);                    
                     lbUnsavedData.Visible = false;
                     break;
                 default:
@@ -1004,6 +1052,10 @@ namespace Owasp.VulnReport
             btDeleteSelectedFinding.Enabled = true;
             if (null != lbFindingsInCurrentTarget.SelectedItem)
                 txtRenameFinding.Text = lbFindingsInCurrentTarget.SelectedItem.ToString();
+
+            // Check if the current file breaks the schema but don't show MessageBox
+            new utils.xml.xsdVerification(strPathToUnzipSelectedFindingXmlFile, obpPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, false);
+
 		}
 
 		private void btRenameFinding_Click(object sender, System.EventArgs e)
@@ -1084,6 +1136,8 @@ namespace Owasp.VulnReport
         /// </summary>
         private void saveCurrentData()
         {
+//            string strFindingXmlFile = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
+//            string strFullPathToXmlFile = Path.Combine(strPathToUnzipSelectedFinding, strFindingXmlFile);            
             // I can't use the switch statement here since by now the cbTemplateToUse.Text has already changed to the new value
             if (true == axAuthentic_Findings.Visible)    // when the authentic controls are visible save the xml on the control
             {
@@ -1094,10 +1148,8 @@ namespace Owasp.VulnReport
             else if (true == axWebBrowser_WindowsExplorer.Visible)  // On the Windows Explorer view there is nothing to do since we will zip the directory below
             {}  
             else if (true == rtbSelectedFinding.Visible)            // On the Notepad view, save the RichText box
-            {    
-                    string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
-                    string strPathToXmlFile = Path.Combine(strPathToUnzipSelectedFinding, strXmlFileToLoad);
-                    utils.files.SaveFileWithStringContents(strPathToXmlFile, rtbSelectedFinding.Text);      // Save xml file in Temp directory                    
+            {
+                utils.files.SaveFileWithStringContents(strPathToUnzipSelectedFindingXmlFile, rtbSelectedFinding.Text);      // Save xml file in Temp directory                    
             }
             
             if (true == Directory.Exists(strPathToUnzipSelectedFinding))
@@ -1106,6 +1158,9 @@ namespace Owasp.VulnReport
                 lblFindingSaved.Visible = true;
                 lbUnsavedData.Visible = false;
             }
+
+            // Check if the current file breaks the schema and show the MessageBox
+            new utils.xml.xsdVerification(strPathToUnzipSelectedFindingXmlFile, obpPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, true);
         }
 
         /// <summary>
@@ -1191,6 +1246,19 @@ namespace Owasp.VulnReport
         {
             lblFindingSaved.Visible = false;
             lbUnsavedData.Visible = true;
+        }
+
+        private void lbXmlBreaksXsdSchema_Click(object sender, EventArgs e)
+        {
+            // Check if the current file breaks the schema and show the MessageBox
+            new utils.xml.xsdVerification(strPathToUnzipSelectedFindingXmlFile, obpPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, true);
+        }
+
+        private void rtbSelectedFinding_SelectionChanged(object sender, EventArgs e)
+        {
+            int iRowIndex = 0, iColIndex = 0;
+            utils.windowsForms.getRowAndColFromRichTextBox(rtbSelectedFinding, ref iRowIndex, ref iColIndex);
+            lbRtbCursorPosition.Text = string.Format("Row:{0} \t Col:{1}", iRowIndex, iColIndex);
         }
  
 

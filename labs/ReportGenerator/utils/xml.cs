@@ -71,25 +71,41 @@ namespace Owasp.VulnReport.utils
             string strXmlValidationResult = "";
             bool bNoVerificationErrors = false;
 
-            public void verifyXmlFile(string strPathToFileToValidate)
+            public xsdVerification(string strPathToFileToValidate, string strSchemaToUse, Label lbLabelToSet, bool bShowMessageBox)
+            {
+                if (true == bShowMessageBox)
+                    verifyFileAndPopulateLabelAndShowMessage(strPathToFileToValidate,strSchemaToUse, lbLabelToSet);
+                else
+                    verifyFileAndPopulateLabel(strPathToFileToValidate,strSchemaToUse, lbLabelToSet);
+            }
+
+            public void verifyXmlFile(string strPathToFileToValidate,string strSchemaToUse)
             {
                 XmlTextReader xtrFileToValidate = new XmlTextReader(strPathToFileToValidate);
                 XmlReaderSettings xrs = new XmlReaderSettings();
-                xrs.Schemas.Add("vuln_report", obpPaths.ProjectSchemaPath);
+                xrs.Schemas.Add("vuln_report", strSchemaToUse);
                 xrs.ValidationEventHandler += new System.Xml.Schema.ValidationEventHandler(xvrValidator_ValidationEventHandler);
                 xrs.ValidationType = ValidationType.Schema;                
                 
                 XmlReader xrValidator = XmlReader.Create(strPathToFileToValidate, xrs);
 
                 bNoVerificationErrors = true;
-                while (xrValidator.Read()) { }
+                try
+                {
+                    while (xrValidator.Read()) { }
+                }
+                catch (Exception ex)
+                {
+                    bNoVerificationErrors = false;
+                    strXmlValidationResult += "* " + ex.Message + Environment.NewLine + Environment.NewLine;
+                }
                 xrValidator.Close();                
             }
 
             private void xvrValidator_ValidationEventHandler(Object sender, ValidationEventArgs args)
             {
                 bNoVerificationErrors = false;
-                strXmlValidationResult += "   - " + args.Message + Environment.NewLine;
+                strXmlValidationResult += "* " + args.Message + Environment.NewLine + Environment.NewLine;
             }
 
             private void copyXSDToDirectory(string strTargetDirectory, string cbPathXsdtoUseOnExport)
@@ -118,12 +134,18 @@ namespace Owasp.VulnReport.utils
             public void showMessageBoxWithVerificationResult()
             {
                 if (false == bNoVerificationErrors)
-                    MessageBox.Show("Xml Validation Failed:" + Environment.NewLine + Environment.NewLine + this.strXmlValidationResult);
+                    MessageBox.Show("Validation errors:" + Environment.NewLine + Environment.NewLine + this.strXmlValidationResult, "Xml fails XSD Validation - Please fix these errors since this will break the reports");
             }
 
-            public void verifyFilePopulateLabelAndShowMessage(string strPathToFileToValidate, Label lbLabelToSet)
+            public void verifyFileAndPopulateLabel(string strPathToFileToValidate, string strSchemaToUse, Label lbLabelToSet)
             {
-                this.verifyXmlFile(strPathToFileToValidate);
+                this.verifyXmlFile(strPathToFileToValidate, strSchemaToUse);
+                this.setLabelBasedOnResult(lbLabelToSet);
+            }
+
+            public void verifyFileAndPopulateLabelAndShowMessage(string strPathToFileToValidate, string strSchemaToUse, Label lbLabelToSet)
+            {
+                this.verifyXmlFile(strPathToFileToValidate, strSchemaToUse);
                 this.setLabelBasedOnResult(lbLabelToSet);
                 this.showMessageBoxWithVerificationResult();
             }

@@ -28,10 +28,8 @@ namespace Owasp.VulnReport
 		private AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_Project;
 		private System.Windows.Forms.Label lblProjectsSaved;
         private Label lbXmlBreaksXsdSchema;
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        private ToolTip toolTip1;
+        private IContainer components;
 
 		public ascxProjects()
 		{
@@ -63,13 +61,15 @@ namespace Owasp.VulnReport
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ascxProjects));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbXmlBreaksXsdSchema = new System.Windows.Forms.Label();
+            this.btSaveProjectMetadata = new System.Windows.Forms.Button();
             this.lblProjectsSaved = new System.Windows.Forms.Label();
             this.lbUnsavedData = new System.Windows.Forms.Label();
-            this.btSaveProjectMetadata = new System.Windows.Forms.Button();
             this.axAuthentic_Project = new AxXMLSPYPLUGINLib.AxAuthentic();
-            this.lbXmlBreaksXsdSchema = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Project)).BeginInit();
             this.SuspendLayout();
@@ -77,15 +77,42 @@ namespace Owasp.VulnReport
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.lblProjectsSaved);
             this.groupBox1.Controls.Add(this.lbXmlBreaksXsdSchema);
-            this.groupBox1.Controls.Add(this.lbUnsavedData);
             this.groupBox1.Controls.Add(this.btSaveProjectMetadata);
+            this.groupBox1.Controls.Add(this.lblProjectsSaved);
+            this.groupBox1.Controls.Add(this.lbUnsavedData);
             this.groupBox1.Location = new System.Drawing.Point(250, 8);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(342, 64);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
+            // 
+            // lbXmlBreaksXsdSchema
+            // 
+            this.lbXmlBreaksXsdSchema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbXmlBreaksXsdSchema.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbXmlBreaksXsdSchema.ForeColor = System.Drawing.Color.Red;
+            this.lbXmlBreaksXsdSchema.Location = new System.Drawing.Point(14, 14);
+            this.lbXmlBreaksXsdSchema.Name = "lbXmlBreaksXsdSchema";
+            this.lbXmlBreaksXsdSchema.Size = new System.Drawing.Size(105, 40);
+            this.lbXmlBreaksXsdSchema.TabIndex = 7;
+            this.lbXmlBreaksXsdSchema.Text = "Xml breaks XSD schema!!";
+            this.lbXmlBreaksXsdSchema.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lbXmlBreaksXsdSchema, "Click to view XSD errors");
+            this.lbXmlBreaksXsdSchema.Visible = false;
+            this.lbXmlBreaksXsdSchema.Click += new System.EventHandler(this.lbXmlBreaksXsdSchema_Click);
+            // 
+            // btSaveProjectMetadata
+            // 
+            this.btSaveProjectMetadata.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btSaveProjectMetadata.Enabled = false;
+            this.btSaveProjectMetadata.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSaveProjectMetadata.Location = new System.Drawing.Point(190, 16);
+            this.btSaveProjectMetadata.Name = "btSaveProjectMetadata";
+            this.btSaveProjectMetadata.Size = new System.Drawing.Size(136, 40);
+            this.btSaveProjectMetadata.TabIndex = 3;
+            this.btSaveProjectMetadata.Text = "Save Project Metadata";
+            this.btSaveProjectMetadata.Click += new System.EventHandler(this.btSaveProjectMetadata_Click);
             // 
             // lblProjectsSaved
             // 
@@ -105,24 +132,13 @@ namespace Owasp.VulnReport
             this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedData.Location = new System.Drawing.Point(119, 16);
+            this.lbUnsavedData.Location = new System.Drawing.Point(119, 12);
             this.lbUnsavedData.Name = "lbUnsavedData";
             this.lbUnsavedData.Size = new System.Drawing.Size(65, 40);
             this.lbUnsavedData.TabIndex = 7;
             this.lbUnsavedData.Text = "Unsaved Data";
             this.lbUnsavedData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbUnsavedData.Visible = false;
-            // 
-            // btSaveProjectMetadata
-            // 
-            this.btSaveProjectMetadata.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSaveProjectMetadata.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSaveProjectMetadata.Location = new System.Drawing.Point(190, 16);
-            this.btSaveProjectMetadata.Name = "btSaveProjectMetadata";
-            this.btSaveProjectMetadata.Size = new System.Drawing.Size(136, 40);
-            this.btSaveProjectMetadata.TabIndex = 3;
-            this.btSaveProjectMetadata.Text = "Save Project Metadata";
-            this.btSaveProjectMetadata.Click += new System.EventHandler(this.btSaveProjectMetadata_Click);
             // 
             // axAuthentic_Project
             // 
@@ -136,19 +152,6 @@ namespace Owasp.VulnReport
             this.axAuthentic_Project.Size = new System.Drawing.Size(584, 296);
             this.axAuthentic_Project.TabIndex = 16;
             this.axAuthentic_Project.SelectionChanged += new System.EventHandler(this.axAuthentic_Project_SelectionChanged);
-            // 
-            // lbXmlBreaksXsdSchema
-            // 
-            this.lbXmlBreaksXsdSchema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbXmlBreaksXsdSchema.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbXmlBreaksXsdSchema.ForeColor = System.Drawing.Color.Red;
-            this.lbXmlBreaksXsdSchema.Location = new System.Drawing.Point(14, 12);
-            this.lbXmlBreaksXsdSchema.Name = "lbXmlBreaksXsdSchema";
-            this.lbXmlBreaksXsdSchema.Size = new System.Drawing.Size(105, 40);
-            this.lbXmlBreaksXsdSchema.TabIndex = 7;
-            this.lbXmlBreaksXsdSchema.Text = "Note: Xml breaks XSD schema!";
-            this.lbXmlBreaksXsdSchema.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbXmlBreaksXsdSchema.Visible = false;            
             // 
             // ascxProjects
             // 
@@ -167,6 +170,7 @@ namespace Owasp.VulnReport
 
 		public void loadProjectData(string strProjectToLoad)
 		{
+            btSaveProjectMetadata.Enabled = false;
             // Check to see if we are loading over a currently open and modified project
             CheckForUnSavedDataAndPromptUserToSave();
           
@@ -185,7 +189,10 @@ namespace Owasp.VulnReport
 			setCurrentProjectsFindingIdValue();
 			setCurrentProjectNumberValue();
 			lbUnsavedData.Visible = false;
+            // Check if the current file breaks the schema but don't show MessageBox
+            new utils.xml.xsdVerification(strFullPathToCurrentProjectXmlFile, obpCurrentPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, false);
             unsavedDataExists = false;
+            btSaveProjectMetadata.Enabled = true;
 		}
 
 		private void btSaveProjectMetadata_Click(object sender, System.EventArgs e)
@@ -199,8 +206,8 @@ namespace Owasp.VulnReport
 			lbUnsavedData.Visible= false;
             unsavedDataExists = false;
 
-            // Verify file against schema
-            new utils.xml.xsdVerification().verifyFilePopulateLabelAndShowMessage(strFullPathToCurrentProjectXmlFile, lbXmlBreaksXsdSchema);
+            // Verify file against schema and show a MessageBox with any errors
+            new utils.xml.xsdVerification(strFullPathToCurrentProjectXmlFile, obpCurrentPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, true);
 		}
 
         /// <summary>
@@ -330,6 +337,11 @@ namespace Owasp.VulnReport
             {
                 promptToSave();
             }
+        }
+
+        private void lbXmlBreaksXsdSchema_Click(object sender, EventArgs e)
+        {
+            new utils.xml.xsdVerification(strFullPathToCurrentProjectXmlFile, obpCurrentPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, true);
         }
 
      

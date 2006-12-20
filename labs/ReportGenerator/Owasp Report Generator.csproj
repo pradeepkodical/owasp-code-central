@@ -242,6 +242,7 @@
     <Compile Include="utils\webBrowser.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="utils\win32.cs" />
     <Compile Include="utils\windowsForms.cs">
       <SubType>Code</SubType>
     </Compile>
