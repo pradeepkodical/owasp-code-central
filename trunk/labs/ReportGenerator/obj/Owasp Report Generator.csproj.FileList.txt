@@ -61,9 +61,9 @@ obj\Debug\Owasp.VulnReport.frmRecommendationsDatabase.resources
 obj\Debug\Owasp.VulnReport.frmReports.resources
 obj\Debug\Owasp.VulnReport.frmReportXsltEditor.resources
 obj\Debug\Owasp.VulnReport.frmSplashPage.resources
-obj\Debug\Owasp.VulnReport.frmTestPlugIns.resources
 obj\Debug\Owasp.VulnReport.frmViewFindingsByDate.resources
 obj\Debug\Owasp.VulnReport.PenTest_Reporter.resources
 obj\Debug\Owasp Report Generator.csproj.GenerateResource.Cache
 obj\Debug\Owasp Report Generator.exe
 obj\Debug\Owasp Report Generator.pdb
+obj\Debug\Owasp.VulnReport.frmOrgPlugIns.resources

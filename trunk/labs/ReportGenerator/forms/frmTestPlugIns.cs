@@ -11,7 +11,7 @@ namespace Owasp.VulnReport
 	/// <summary>
 	/// Summary description for frmTestPlugIns.
 	/// </summary>
-	public class frmTestPlugIns : System.Windows.Forms.Form
+	public class frmOrgPlugIns : System.Windows.Forms.Form
 	{
 		private Owasp.VulnReport.ascx.ascxPlugIns ascxPlugIns1;
 		
@@ -20,7 +20,7 @@ namespace Owasp.VulnReport
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		public frmTestPlugIns()
+		public frmOrgPlugIns()
 		{
 			//
 			// Required for Windows Form Designer support
@@ -50,28 +50,28 @@ namespace Owasp.VulnReport
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.ascxPlugIns1 = new Owasp.VulnReport.ascx.ascxPlugIns();
-			this.SuspendLayout();
-			// 
-			// ascxPlugIns1
-			// 
-			this.ascxPlugIns1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this.ascxPlugIns1.Location = new System.Drawing.Point(0, 0);
-			this.ascxPlugIns1.Name = "ascxPlugIns1";
-			this.ascxPlugIns1.Size = new System.Drawing.Size(848, 400);
-			this.ascxPlugIns1.TabIndex = 0;
-			this.ascxPlugIns1.Load += new System.EventHandler(this.ascxPlugIns1_Load);
-			// 
-			// frmTestPlugIns
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(848, 398);
-			this.Controls.Add(this.ascxPlugIns1);
-			this.Name = "frmTestPlugIns";
-			this.Text = "frmTestPlugIns";
-			this.ResumeLayout(false);
+            this.ascxPlugIns1 = new Owasp.VulnReport.ascx.ascxPlugIns();
+            this.SuspendLayout();
+            // 
+            // ascxPlugIns1
+            // 
+            this.ascxPlugIns1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ascxPlugIns1.Location = new System.Drawing.Point(0, 0);
+            this.ascxPlugIns1.Name = "ascxPlugIns1";
+            this.ascxPlugIns1.Size = new System.Drawing.Size(848, 400);
+            this.ascxPlugIns1.TabIndex = 0;
+            this.ascxPlugIns1.Load += new System.EventHandler(this.ascxPlugIns1_Load);
+            // 
+            // frmOrgPlugIns
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(848, 398);
+            this.Controls.Add(this.ascxPlugIns1);
+            this.Name = "frmOrgPlugIns";
+            this.Text = "ORG Plug-ins";
+            this.ResumeLayout(false);
 
 		}
 		#endregion
