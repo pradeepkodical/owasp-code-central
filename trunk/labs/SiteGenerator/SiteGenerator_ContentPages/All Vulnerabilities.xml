@@ -29,6 +29,9 @@
 				<file mappedTo="Vulnerabilities\Xss.aspx" name="Xss.aspx"/>
 				<file mappedTo="Vulnerabilities\Leaked_Data_Through_Error_Messages.aspx" name="LeakedThruErrors.aspx"/>
 				<file mappedTo="Vulnerabilities\Hardcoded_Password.aspx" name="HardCodedPassword.aspx"/>
+				<file mappedTo="Vulnerabilities\Hidden_Form_Field.aspx" name="HiddenFormField.aspx"/>
+				<file mappedTo="Vulnerabilities\Integer_Overflow.aspx" name="IntegerOverflow.aspx"/>
+				<file mappedTo="Vulnerabilities\Poor_Encryption.aspx" name="PoorEncryption.aspx"/>
 			</folder>
 			<folder name="images">
 				<file mappedTo="images\leftBanner.png" name="leftBanner.png"/>
