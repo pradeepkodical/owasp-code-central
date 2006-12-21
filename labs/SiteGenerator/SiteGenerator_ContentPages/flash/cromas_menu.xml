@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding= "UTF-8" ?>
 <menu>
-	<button text="Sql Injection" url="http://sitegenerator/aspx/DataValidation_SqlInjection_Basic.aspx?user_id=1" target="ContentFrame"></button>
-	<button text="Remove cmd" url="http://sitegenerator/aspx/Remote%20Cmd%20Shell.aspx" target="ContentFrame"></button>
-	<!--
-	<button text="FlashNavigation" url="/FlashNavigation" target="ContentFrame"></button>
-	<button text="SiteA_Folder" url="/SiteA_Folder" target="ContentFrame"></button>
-	<button text="SiteA_Images" url="/SiteA_Images" target="ContentFrame"></button>
-	<button text="Normal_Html_pages" url="/Normal_Html_pages" target="ContentFrame"></button>
-	
-	<button text="Exploits" url="/Exploits" target="ContentFrame"></button>
-	<button text="Site_with_Html_Navigation" url="/Site_with_Html_Navigation" target="ContentFrame"></button>
-	-->
+	<button text="Sql Injection" url="/aspx/DataValidation_SqlInjection_Basic.aspx?user_id=1" target="ContentFrame"></button>
+	<button text="Remove cmd" url="/aspx/Remote%20Cmd%20Shell.aspx" target="ContentFrame"></button>
+	<button text="Leaked Data" url="/aspx/LeakedThruErrors.aspx" target="ContentFrame"></button>
+	<button text="Hardcoded Password" url="/aspx/HardCodedPassword.aspx" target="ContentFrame"></button>
+	<button text="Hidden Form Field" url="/aspx/HiddenFormField.aspx" target="ContentFrame"></button>
+	<button text="Integer Overflow" url="/aspx/IntegerOverflow.aspx" target="ContentFrame"></button>
+	<button text="Poor Encryption" url="/aspx/PoorEncryption.aspx" target="ContentFrame"></button>
+	<button text="Remote Cmd (Advanced)" url="/aspx/Remote%20Cmd%20Shell%20Advanced.aspx" target="ContentFrame"></button>
+	<button text="Direct SQL Query" url="/aspx/Direct%20Sql%20Query.aspx" target="ContentFrame"></button>
+	<button text="Weak Password" url="/aspx/Weak%20Password.aspx" target="ContentFrame"></button>
+	<button text="Write File on Server" url="/aspx/Write%20File%20On%20Server.aspx" target="ContentFrame"></button>
+	<button text="Show Directories" url="/aspx/Show%20Directories.aspx" target="ContentFrame"></button>
+	<button text="Show File Contents" url="/aspx/Show%20File%20Contents.aspx" target="ContentFrame"></button>
+	<button text="none" />
+	<button text="none" />
 	<options button_color="2E3192" text_color="00FFFF" cursor_color="00FFFF" custom_cursor="false"></options>	
 </menu>
