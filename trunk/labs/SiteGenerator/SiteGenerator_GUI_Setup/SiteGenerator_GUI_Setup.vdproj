@@ -15,8 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_4AE43166ACDF0C2758F89D1F4E834E3F"
-        "OwnerKey" = "8:_A888040A05974CE39E3DF4A4640D9CCC"
+        "MsmKey" = "8:_0216A4D854B3C62587E63E635881976B"
+        "OwnerKey" = "8:_02C66D89C55903AE7F0B39C83328B743"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_02C66D89C55903AE7F0B39C83328B743"
+        "OwnerKey" = "8:_985256B71EA36786BC4A887C3616EED0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_02C66D89C55903AE7F0B39C83328B743"
+        "OwnerKey" = "8:_2463D4BD982A44E681B5D2043589DF86"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2463D4BD982A44E681B5D2043589DF86"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -27,38 +45,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A888040A05974CE39E3DF4A4640D9CCC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B01D51657FA46DD40CF1F163B6DF4052"
-        "OwnerKey" = "8:_4AE43166ACDF0C2758F89D1F4E834E3F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B01D51657FA46DD40CF1F163B6DF4052"
-        "OwnerKey" = "8:_A888040A05974CE39E3DF4A4640D9CCC"
+        "MsmKey" = "8:_985256B71EA36786BC4A887C3616EED0"
+        "OwnerKey" = "8:_2463D4BD982A44E681B5D2043589DF86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A888040A05974CE39E3DF4A4640D9CCC"
+        "OwnerKey" = "8:_2463D4BD982A44E681B5D2043589DF86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4AE43166ACDF0C2758F89D1F4E834E3F"
+        "OwnerKey" = "8:_985256B71EA36786BC4A887C3616EED0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B01D51657FA46DD40CF1F163B6DF4052"
+        "OwnerKey" = "8:_02C66D89C55903AE7F0B39C83328B743"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -151,23 +157,43 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4AE43166ACDF0C2758F89D1F4E834E3F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0216A4D854B3C62587E63E635881976B"
+            {
+            "SourcePath" = "8:AuthenticPlugin.dll"
+            "TargetName" = "8:AuthenticPlugin.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_31D2B550887C41F6BFB24F3F1A72F060"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:4"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_02C66D89C55903AE7F0B39C83328B743"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AxInterop.XMLSPYPLUGINLib, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Interop.XMLSPYPLUGINLib, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4AE43166ACDF0C2758F89D1F4E834E3F"
+                    "_02C66D89C55903AE7F0B39C83328B743"
                     {
-                    "Name" = "8:AxInterop.XMLSPYPLUGINLib.dll"
+                    "Name" = "8:Interop.XMLSPYPLUGINLib.DLL"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:AxInterop.XMLSPYPLUGINLib.dll"
+            "SourcePath" = "8:Interop.XMLSPYPLUGINLib.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_9647B8D2262640CA88E215CC7F1CC0F3"
+            "Folder" = "8:_31D2B550887C41F6BFB24F3F1A72F060"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -180,6 +206,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2463D4BD982A44E681B5D2043589DF86"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SiteGenerator, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_2463D4BD982A44E681B5D2043589DF86"
+                    {
+                    "Name" = "8:SiteGenerator.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\SiteGeneratorGUI\\obj\\Release\\SiteGenerator.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31D2B550887C41F6BFB24F3F1A72F060"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_969CDB33D1034DABA8B030112030B3DB"
@@ -202,23 +259,23 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B01D51657FA46DD40CF1F163B6DF4052"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_985256B71EA36786BC4A887C3616EED0"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Interop.XMLSPYPLUGINLib, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:AxInterop.XMLSPYPLUGINLib, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B01D51657FA46DD40CF1F163B6DF4052"
+                    "_985256B71EA36786BC4A887C3616EED0"
                     {
-                    "Name" = "8:Interop.XMLSPYPLUGINLib.dll"
+                    "Name" = "8:AxInterop.XMLSPYPLUGINLib.DLL"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Interop.XMLSPYPLUGINLib.dll"
+            "SourcePath" = "8:AxInterop.XMLSPYPLUGINLib.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_9647B8D2262640CA88E215CC7F1CC0F3"
+            "Folder" = "8:_31D2B550887C41F6BFB24F3F1A72F060"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -419,31 +476,31 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_47257C4AE6B540C498420AC8CFB4D6A7"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AEB9BC5C53654A96A64BC1DC0C3723AD"
             {
-            "Name" = "8:SiteGenerator"
+            "Name" = "8:Shortcut to SiteGenerator.exe"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_A888040A05974CE39E3DF4A4640D9CCC"
-            "Folder" = "8:_31D2B550887C41F6BFB24F3F1A72F060"
-            "WorkingFolder" = "8:_9647B8D2262640CA88E215CC7F1CC0F3"
+            "Target" = "8:_2463D4BD982A44E681B5D2043589DF86"
+            "Folder" = "8:_549D2F71845C43D4ABFCADF188EFEBF7"
+            "WorkingFolder" = "8:_31D2B550887C41F6BFB24F3F1A72F060"
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5275D3EC0CA346DB809F55D8BA22913A"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F3AB4F93CC084D7DA7B0456D5A0AF4C3"
             {
-            "Name" = "8:SiteGenerator"
+            "Name" = "8:Shortcut to SiteGenerator.exe"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_A888040A05974CE39E3DF4A4640D9CCC"
+            "Target" = "8:_2463D4BD982A44E681B5D2043589DF86"
             "Folder" = "8:_D69CBF7D9F054CD797A42A12CCA28791"
-            "WorkingFolder" = "8:_9647B8D2262640CA88E215CC7F1CC0F3"
+            "WorkingFolder" = "8:_31D2B550887C41F6BFB24F3F1A72F060"
             "Icon" = "8:"
             "Feature" = "8:"
             }
@@ -846,62 +903,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8C48BACEB83640779523A87BDB8B2271"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_31D2B550887C41F6BFB24F3F1A72F060"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{8533C1B2-0CFE-4D6C-92FA-76C8DC3BC710}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A888040A05974CE39E3DF4A4640D9CCC"
-            {
-            "SourcePath" = "8:..\\SiteGeneratorGUI\\obj\\Release\\SiteGenerator.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9647B8D2262640CA88E215CC7F1CC0F3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{8533C1B2-0CFE-4D6C-92FA-76C8DC3BC710}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
         }
         "VJSharpPlugin"
         {
