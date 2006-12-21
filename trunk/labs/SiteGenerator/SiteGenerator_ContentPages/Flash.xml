@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SiteGenerator name="SiteName" xmlns:ipo="http://www.altova.com/IPO" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SiteGenerator name="Flash Site" xmlns:ipo="http://www.altova.com/IPO" xmlns="http://www.xmlspy.com/schemas/orgchart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<site>
-		<rootFolder>
+		<rootFolder defaultPage="Default.htm">
 			<folder name="Flash">
 				<file mappedTo="flash\cromas_xml.htm" name="menu.htm"/>
 				<file mappedTo="flash\cromas_menu.xml" name="cromas_menu.xml"/>
@@ -10,68 +10,89 @@
 			<folder name="aspx">
 				<file mappedTo="vulnerabilities\DataValidation_SqlInjection_Basic.aspx" name="DataValidation_SqlInjection_Basic.aspx"/>
 				<file mappedTo="vulnerabilities\Remote Cmd Shell.aspx" name="Remote Cmd Shell.aspx"/>
+				<file mappedTo="Vulnerabilities\Leaked_Data_Through_Error_Messages.aspx" name="LeakedThruErrors.aspx"/>
+				<file mappedTo="Vulnerabilities\Hardcoded_Password.aspx" name="HardCodedPassword.aspx"/>
+				<file mappedTo="Vulnerabilities\Hidden_Form_Field.aspx" name="HiddenFormField.aspx"/>
+				<file mappedTo="Vulnerabilities\Integer_Overflow.aspx" name="IntegerOverflow.aspx"/>
+				<file mappedTo="Vulnerabilities\Poor_Encryption.aspx" name="PoorEncryption.aspx"/>
+				<file mappedTo="Vulnerabilities\Remote Cmd Shell Advanced.aspx" name="Remote Cmd Shell Advanced.aspx"/>
+				<file mappedTo="Vulnerabilities\Direct Sql Query.aspx" name="Direct Sql Query.aspx"/>
+				<file mappedTo="Vulnerabilities\Weak Password.aspx" name="Weak Password.aspx"/>
+				<file mappedTo="Vulnerabilities\Write File On Server.aspx" name="Write File On Server.aspx"/>
+				<file mappedTo="Vulnerabilities\Show Directories.aspx" name="Show Directories.aspx"/>
+				<file mappedTo="Vulnerabilities\Show File Contents.aspx" name="Show File Contents.aspx"/>
 			</folder>
 			<file mappedTo="htm\Frameset_Flash.htm" name="Default.htm"/>
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
-			<altovaHack />
+			<file mappedTo="htm\Welcome.htm" name="FirstPage.htm"/>
+			<file mappedTo="htm\TopBanner.htm" name="TopBanner.htm"/>
+			<file mappedTo="htm\BottomBanner.htm" name="BottomBanner.htm"/>
+			<file mappedTo="css\style.css" name="style.css"/>
+			<folder name="images">
+				<file mappedTo="images\owasp_logo.png" name="owasp_logo.png"/>
+				<file mappedTo="Images\TopBanner_slice.gif" name="TopBanner_slice.gif"/>
+				<file mappedTo="images\Foundstone_Logo.jpg" name="Foundstone_logo.jpg"/>
+				<file mappedTo="images\leftBanner.png" name="leftBanner.png"/>
+			</folder>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
+			<altovaHack/>
 		</rootFolder>
 	</site>
 </SiteGenerator>
