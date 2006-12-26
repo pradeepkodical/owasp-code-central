@@ -22,7 +22,6 @@ obj\Release\Owasp.VulnReport.frmRecommendationsDatabase.resources
 obj\Release\Owasp.VulnReport.frmReports.resources
 obj\Release\Owasp.VulnReport.frmReportXsltEditor.resources
 obj\Release\Owasp.VulnReport.frmSplashPage.resources
-obj\Release\Owasp.VulnReport.frmTestPlugIns.resources
 obj\Release\Owasp.VulnReport.frmViewFindingsByDate.resources
 obj\Release\Owasp.VulnReport.PenTest_Reporter.resources
 obj\Release\Owasp Report Generator.csproj.GenerateResource.Cache
@@ -34,7 +33,6 @@ obj\Release\Interop.XMLSPYPLUGINLib.dll
 obj\Release\AxInterop.XMLSPYPLUGINLib.dll
 ..\Application (exe)\v0.86\Owasp Report Generator.exe.config
 ..\Application (exe)\v0.86\Owasp Report Generator.exe
-..\Application (exe)\v0.86\Owasp Report Generator.pdb
 obj\Debug\ResolveAssemblyReference.cache
 obj\Debug\Interop.XMLSPYPLUGINLib.dll
 obj\Debug\AxInterop.XMLSPYPLUGINLib.dll
@@ -67,3 +65,5 @@ obj\Debug\Owasp Report Generator.csproj.GenerateResource.Cache
 obj\Debug\Owasp Report Generator.exe
 obj\Debug\Owasp Report Generator.pdb
 obj\Debug\Owasp.VulnReport.frmOrgPlugIns.resources
+obj\Release\Owasp.VulnReport.frmOrgPlugIns.resources
+..\Application (exe)\v0.86\Owasp Report Generator.pdb
