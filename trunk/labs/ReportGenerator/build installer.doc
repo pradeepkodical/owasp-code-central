@@ -1,0 +1,16 @@
+1. Check out Owasp Report Generator.sln
+2. Compile all projects (uninstaller and Owasp Report Generator)
+3. Add a new setup wizard project called Installer vX to the solution
+4. Add primary outputs from Uninstaller and Owasp Report Generator into that setup wizard when it asks to.
+5. Add the following files into Installer project
+    a. FOP.zip.txt
+    b. ORG_CONFIG_FILES.zip.txt (Need to check out new one from L3, zip it and change the file extension to txt)
+    c. AuthenticPlugin.zip.txt
+    d. ReportGenerator_new.bat
+    e. ReportGenerator_old.bat
+6. Create a folder called Owasp Report Generator in User's Programs Menu 
+7. Create shortcuts for ReportGenerator_new.bat, ReportGenerator_old.bat and the primary output from uninstaller project.
+8. Cut and Paste them into User's desktop and the folder created in step 6
+9. Find out product code in Installer project property window.
+10. Single click the shortcut of primary output of Unstaller project in Installer project. Change the Arguments field in property window as /u={ProductCode}
+11. Build Installer project and the output can be found in Installer project's directory.
