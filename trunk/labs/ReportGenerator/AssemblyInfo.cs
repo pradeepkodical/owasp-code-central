@@ -54,5 +54,7 @@ using System.Runtime.CompilerServices;
 //       documentation for more information on this.
 //
 [assembly: AssemblyDelaySign(false)]
+[assembly: System.Runtime.InteropServices.ComVisible(false)]
+[assembly: System.CLSCompliant(false)]
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
