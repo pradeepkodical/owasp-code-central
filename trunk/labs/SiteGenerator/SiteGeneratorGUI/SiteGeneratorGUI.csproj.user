@@ -1,9 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <StartWorkingDirectory>C:\SiteGenerator\bin\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Projects\owasp\SiteGenerator\bin\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <StartWorkingDirectory>../bin/</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Projects\owasp\SiteGenerator\bin\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup>
     <PublishUrlHistory>http://localhost/SiteGenerator/|http://localhost/SharedMemoryGUI/</PublishUrlHistory>
