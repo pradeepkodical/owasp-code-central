@@ -96,31 +96,49 @@ namespace Owasp.VulnReport
         /// History: 
         /// 11/15/2006 - Mike : Added in the execution of the authentic plugin registration batch file
         ///                     for first time users.  Note there should be a better way to do this.
+        /// 1/7/2007 - Mike : Added a cursor so that users would know the program is doing something and not 
+        ///                   just sitting there frozen.  Made it so the examples folder was unzipped into the 
+        ///                   ORG_BASE_FOLDER area.
         /// </summary>
         public static void confirmExistenceOfRequiredFilesAndFolders()
         {
-            //if the org_config_files folder doesn't exist, three zip files need to be unzipped for first time users.            }
-            if (!Directory.Exists(OrgBasePaths.BasePath))
+            // First set the cursor to an hourglass so users know at least something is happening
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
+            try
             {
-                FileInfo fileconfig = new FileInfo("ORG_CONFIG_FILES.zip.txt");
-                FileInfo fileFOP = new FileInfo("FOP.zip.txt");
-                FileInfo fileAuthenticPlugin = new FileInfo("AuthenticPlugin.zip.txt");
-                fileconfig.CopyTo("ORG_CONFIG_FILES.zip", true);
-                fileFOP.CopyTo("FOP.zip", true);
-                fileAuthenticPlugin.CopyTo("AuthenticPlugin.zip", true);
-                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "ORG_CONFIG_FILES.zip"), 
-                                    Environment.CurrentDirectory);
-                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "FOP.zip"), 
-                                    Environment.CurrentDirectory);
-                utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "AuthenticPlugin.zip"), 
-                                    Environment.CurrentDirectory);
-
-                // Register the Authentic component for first time users
-                if (File.Exists(Path.Combine(Environment.CurrentDirectory, "AuthenticPlugin.dll")) && 
-                    File.Exists(Path.Combine(Environment.CurrentDirectory, "regAuthenticPlugin.bat")))
+                //if the org_config_files folder doesn't exist, three zip files need to be unzipped for first time users.            }
+                if (!Directory.Exists(OrgBasePaths.BasePath))
                 {
-                    System.Diagnostics.Process.Start(Path.Combine(Environment.CurrentDirectory, "regAuthenticPlugin.bat"));
+                    FileInfo fileconfig = new FileInfo("ORG_CONFIG_FILES.zip.txt");
+                    FileInfo fileFOP = new FileInfo("FOP.zip.txt");
+                    FileInfo fileAuthenticPlugin = new FileInfo("AuthenticPlugin.zip.txt");
+                    fileconfig.CopyTo("ORG_CONFIG_FILES.zip", true);
+                    fileFOP.CopyTo("FOP.zip", true);
+                    fileAuthenticPlugin.CopyTo("AuthenticPlugin.zip", true);
+                    utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "ORG_CONFIG_FILES.zip"),
+                                        Environment.CurrentDirectory);
+                    utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "FOP.zip"),
+                                        Environment.CurrentDirectory);
+                    utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "AuthenticPlugin.zip"),
+                                        Environment.CurrentDirectory);
+
+                    if (File.Exists(Path.Combine(Environment.CurrentDirectory, "Examples.zip")))
+                    {
+                        utils.zip.unzipFile(Path.Combine(Environment.CurrentDirectory, "Examples.zip"), 
+                                            OrgBasePaths.BasePath);
+                    }
+
+                    // Register the Authentic component for first time users
+                    if (File.Exists(Path.Combine(Environment.CurrentDirectory, "AuthenticPlugin.dll")) &&
+                        File.Exists(Path.Combine(Environment.CurrentDirectory, "regAuthenticPlugin.bat")))
+                    {
+                        System.Diagnostics.Process.Start(Path.Combine(Environment.CurrentDirectory, "regAuthenticPlugin.bat"));
+                    }
                 }
+            }
+            finally
+            {
+                System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default;
             }
             if (!Directory.Exists(Path.Combine(OrgBasePaths.BasePath, "templates"))) 
                 throw new Exception("The template folder is missing, please re-install");
