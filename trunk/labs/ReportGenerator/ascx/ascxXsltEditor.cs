@@ -31,8 +31,7 @@ namespace Owasp.VulnReport.ascx
 		private System.Windows.Forms.Label lbFileSaved;
 		private System.Windows.Forms.Label lbFind;
 		private System.Windows.Forms.TextBox txtTextToFind;
-		private System.Windows.Forms.Button btFindText;
-		private System.Windows.Forms.Button btFindNext;
+        private System.Windows.Forms.Button btFindText;
 		private System.Windows.Forms.Label lbPhraseNotFound;
 		/// <summary> 
 		/// Required designer variable.
@@ -81,7 +80,6 @@ namespace Owasp.VulnReport.ascx
             this.lbFind = new System.Windows.Forms.Label();
             this.txtTextToFind = new System.Windows.Forms.TextBox();
             this.btFindText = new System.Windows.Forms.Button();
-            this.btFindNext = new System.Windows.Forms.Button();
             this.lbPhraseNotFound = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -202,6 +200,7 @@ namespace Owasp.VulnReport.ascx
             this.lbFind.Size = new System.Drawing.Size(40, 16);
             this.lbFind.TabIndex = 33;
             this.lbFind.Text = "Find:";
+            this.lbFind.Click += new System.EventHandler(this.lbFind_Click);
             // 
             // txtTextToFind
             // 
@@ -211,6 +210,7 @@ namespace Owasp.VulnReport.ascx
             this.txtTextToFind.Size = new System.Drawing.Size(96, 20);
             this.txtTextToFind.TabIndex = 0;
             this.txtTextToFind.Text = "xml";
+            this.txtTextToFind.TextChanged += new System.EventHandler(this.txtTextToFind_TextChanged);
             // 
             // btFindText
             // 
@@ -222,26 +222,17 @@ namespace Owasp.VulnReport.ascx
             this.btFindText.Text = "Find";
             this.btFindText.Click += new System.EventHandler(this.btFindText_Click);
             // 
-            // btFindNext
-            // 
-            this.btFindNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btFindNext.Location = new System.Drawing.Point(400, 472);
-            this.btFindNext.Name = "btFindNext";
-            this.btFindNext.Size = new System.Drawing.Size(72, 20);
-            this.btFindNext.TabIndex = 1;
-            this.btFindNext.Text = "Find Next";
-            this.btFindNext.Click += new System.EventHandler(this.btFindNext_Click);
-            // 
             // lbPhraseNotFound
             // 
             this.lbPhraseNotFound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbPhraseNotFound.ForeColor = System.Drawing.Color.Red;
-            this.lbPhraseNotFound.Location = new System.Drawing.Point(488, 472);
+            this.lbPhraseNotFound.Location = new System.Drawing.Point(393, 475);
             this.lbPhraseNotFound.Name = "lbPhraseNotFound";
             this.lbPhraseNotFound.Size = new System.Drawing.Size(296, 24);
             this.lbPhraseNotFound.TabIndex = 34;
             this.lbPhraseNotFound.Text = "Phrase not Found";
             this.lbPhraseNotFound.Visible = false;
+            this.lbPhraseNotFound.Click += new System.EventHandler(this.lbPhraseNotFound_Click);
             // 
             // ascxXsltEditor
             // 
@@ -257,7 +248,6 @@ namespace Owasp.VulnReport.ascx
             this.Controls.Add(this.lbXsltFiles);
             this.Controls.Add(this.txtTextToFind);
             this.Controls.Add(this.btFindText);
-            this.Controls.Add(this.btFindNext);
             this.Name = "ascxXsltEditor";
             this.Size = new System.Drawing.Size(784, 496);
             this.Load += new System.EventHandler(this.ascxXsltEditor_Load);
@@ -364,9 +354,7 @@ namespace Owasp.VulnReport.ascx
                 textEditorControl.ActiveTextAreaControl.TextArea.ScrollToCaret();
 
                 
-				textEditorControl.ActiveTextAreaControl.TextArea.SelectionManager.FireSelectionChanged();
-                
-//				iLastFoundPosition = iFoundPos + txtTextToFind.Text.Length;
+				textEditorControl.ActiveTextAreaControl.TextArea.SelectionManager.FireSelectionChanged();                
 			}
 			else
 			{
@@ -397,5 +385,20 @@ namespace Owasp.VulnReport.ascx
 				lbPhraseNotFound.Visible = true;
 			}			
 		}
+
+        private void txtTextToFind_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbFind_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbPhraseNotFound_Click(object sender, EventArgs e)
+        {
+
+        }
 	}
 }
