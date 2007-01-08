@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="vuln_report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Metadata/>
+	<Targets>
+		<TaskItem>
+			<TaskName>Black box assessment</TaskName>
+			<CreatedBy>Mike</CreatedBy>
+			<AssignedTo>Bambi</AssignedTo>
+			<CompletedDate>2007-01-07</CompletedDate>
+		</TaskItem>
+		<Target name="SiteGenerator Website" type="Website">
+			<IP value="127.0.0.1"/>
+			<DnsName value="Localhost"/>
+		</Target>
+	</Targets>
+</Project>

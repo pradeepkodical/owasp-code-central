@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="vuln_report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Metadata next_ID_Number="1">
+		<TestType>Blackbox</TestType>
+		<Region>Global</Region>
+		<project_description>This is an example ReportGenerator project that uses SiteGenerator - All Vulnerabilities site as the example assessment.</project_description>
+		<project_name>SiteGenerator Example</project_name>
+		<project_number>1337</project_number>
+	</Metadata>
+	<Targets/>
+</Project>
