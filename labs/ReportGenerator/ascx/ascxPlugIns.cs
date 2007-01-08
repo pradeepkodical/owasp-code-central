@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Collections.Generic;
+using ICSharpCode.TextEditor.Document;
 
 namespace Owasp.VulnReport.ascx
 {
@@ -62,6 +63,10 @@ namespace Owasp.VulnReport.ascx
         private ComboBox cbEditMode;
         private RichTextBox rtbPlugInData;
         private Label lbRtbCursorPosition;
+        private Label lbPhraseNotFound;
+        private Label lbFind;
+        private TextBox txtTextToFind;
+        private Button btFindText;
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -130,6 +135,10 @@ namespace Owasp.VulnReport.ascx
             this.lbPlugInFileSaved = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDebugMessages = new System.Windows.Forms.TextBox();
+            this.lbPhraseNotFound = new System.Windows.Forms.Label();
+            this.lbFind = new System.Windows.Forms.Label();
+            this.txtTextToFind = new System.Windows.Forms.TextBox();
+            this.btFindText = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpPlugIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Plugin)).BeginInit();
@@ -372,6 +381,10 @@ namespace Owasp.VulnReport.ascx
             // 
             // tpEditPlugIn
             // 
+            this.tpEditPlugIn.Controls.Add(this.lbPhraseNotFound);
+            this.tpEditPlugIn.Controls.Add(this.lbFind);
+            this.tpEditPlugIn.Controls.Add(this.txtTextToFind);
+            this.tpEditPlugIn.Controls.Add(this.btFindText);
             this.tpEditPlugIn.Controls.Add(this.btPlugInCompile);
             this.tpEditPlugIn.Controls.Add(this.lbUnsavedData);
             this.tpEditPlugIn.Controls.Add(this.btSavePlugIn);
@@ -434,7 +447,7 @@ namespace Owasp.VulnReport.ascx
             this.tecPlugIns.ShowSpaces = true;
             this.tecPlugIns.ShowTabs = true;
             this.tecPlugIns.ShowVRuler = true;
-            this.tecPlugIns.Size = new System.Drawing.Size(648, 264);
+            this.tecPlugIns.Size = new System.Drawing.Size(648, 266);
             this.tecPlugIns.TabIndex = 4;
             this.tecPlugIns.Enter += new System.EventHandler(this.tecPlugIns_Enter);
             this.tecPlugIns.Load += new System.EventHandler(this.tecPlugIns_Load);
@@ -518,6 +531,45 @@ namespace Owasp.VulnReport.ascx
             this.txtDebugMessages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtDebugMessages.Size = new System.Drawing.Size(816, 104);
             this.txtDebugMessages.TabIndex = 6;
+            // 
+            // lbPhraseNotFound
+            // 
+            this.lbPhraseNotFound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbPhraseNotFound.ForeColor = System.Drawing.Color.Red;
+            this.lbPhraseNotFound.Location = new System.Drawing.Point(358, 313);
+            this.lbPhraseNotFound.Name = "lbPhraseNotFound";
+            this.lbPhraseNotFound.Size = new System.Drawing.Size(296, 24);
+            this.lbPhraseNotFound.TabIndex = 38;
+            this.lbPhraseNotFound.Text = "Phrase not Found";
+            this.lbPhraseNotFound.Visible = false;
+            // 
+            // lbFind
+            // 
+            this.lbFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbFind.Location = new System.Drawing.Point(157, 312);
+            this.lbFind.Name = "lbFind";
+            this.lbFind.Size = new System.Drawing.Size(40, 16);
+            this.lbFind.TabIndex = 37;
+            this.lbFind.Text = "Find:";
+            // 
+            // txtTextToFind
+            // 
+            this.txtTextToFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtTextToFind.Location = new System.Drawing.Point(197, 309);
+            this.txtTextToFind.Name = "txtTextToFind";
+            this.txtTextToFind.Size = new System.Drawing.Size(96, 20);
+            this.txtTextToFind.TabIndex = 35;
+            this.txtTextToFind.Text = "xml";
+            // 
+            // btFindText
+            // 
+            this.btFindText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btFindText.Location = new System.Drawing.Point(309, 309);
+            this.btFindText.Name = "btFindText";
+            this.btFindText.Size = new System.Drawing.Size(48, 20);
+            this.btFindText.TabIndex = 36;
+            this.btFindText.Text = "Find";
+            this.btFindText.Click += new System.EventHandler(this.btFindText_Click);
             // 
             // ascxPlugIns
             // 
@@ -925,6 +977,41 @@ namespace Owasp.VulnReport.ascx
             int iRowIndex = 0, iColIndex = 0;
             utils.windowsForms.getRowAndColFromRichTextBox(rtbPlugInData, ref iRowIndex, ref iColIndex);
             lbRtbCursorPosition.Text = string.Format("Row:{0} \t Col:{1}",iRowIndex, iColIndex);            
+        }
+
+        private void btFindText_Click(object sender, EventArgs e)
+        {
+            lbPhraseNotFound.Visible = false;
+            int iOriginalTextCaret = tecPlugIns.ActiveTextAreaControl.TextArea.Caret.Offset;
+            int iOffsetOfEndOfCurrentSelection = tecPlugIns.ActiveTextAreaControl.TextArea.Caret.Offset +
+                 tecPlugIns.ActiveTextAreaControl.TextArea.SelectionManager.SelectedText.Length;
+
+            int iFoundPos = tecPlugIns.Text.IndexOf(txtTextToFind.Text, iOffsetOfEndOfCurrentSelection);  //start from the cursor position
+            if (iFoundPos == -1) // didn't find anything
+                iFoundPos = tecPlugIns.Text.IndexOf(txtTextToFind.Text, 0); // start from the top
+            if (iFoundPos > -1)      // if there is a match process it
+            {
+                tecPlugIns.ActiveTextAreaControl.TextArea.SelectionManager.ClearSelection();
+                tecPlugIns.ActiveTextAreaControl.TextArea.SelectionManager.SetSelection(new DefaultSelection(tecPlugIns.Document,
+                    tecPlugIns.Document.OffsetToPosition(iFoundPos),
+                    tecPlugIns.Document.OffsetToPosition(iFoundPos + txtTextToFind.Text.Length)));
+
+                tecPlugIns.ActiveTextAreaControl.Caret.Position = tecPlugIns.ActiveTextAreaControl.TextArea.SelectionManager.SelectionCollection[0].StartPosition;
+                tecPlugIns.ActiveTextAreaControl.TextArea.ScrollToCaret();
+
+
+                tecPlugIns.ActiveTextAreaControl.TextArea.SelectionManager.FireSelectionChanged();
+            }
+            else
+            {
+                lbPhraseNotFound.Visible = true;
+                lbPhraseNotFound.Text = string.Format("Provided search string not found: '{0}'", txtTextToFind.Text);
+            }
+            if (iOriginalTextCaret == tecPlugIns.ActiveTextAreaControl.TextArea.Caret.Offset)
+            {
+                lbPhraseNotFound.Visible = true;
+                lbPhraseNotFound.Text = string.Format("No more matches for '{0}'", txtTextToFind.Text);
+            }
         }
 
     }

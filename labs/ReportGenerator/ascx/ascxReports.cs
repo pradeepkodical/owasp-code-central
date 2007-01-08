@@ -785,7 +785,7 @@ namespace Owasp.VulnReport.ascx
 					break;
 				case "Altova":
 					bool bShowCmdWindow = true;
-					strXsltTransformationErrorMessage = utils.altovaXml.processFiles(strDataTransformationXmlFile,strXmlFileToUse,strXsltDataTransformationFile,bShowCmdWindow,ref bCancelPdfReportGeneration);
+					strXsltTransformationErrorMessage = utils.altovaXml.processFiles(strDataTransformationXmlFile,strXmlFileToUse,strXsltDataTransformationFile,bShowCmdWindow,ref bCancelPdfReportGeneration, true);
 					break;
 			}						
 

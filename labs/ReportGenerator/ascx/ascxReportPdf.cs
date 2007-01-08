@@ -460,7 +460,7 @@ namespace Owasp.VulnReport.ascx
 			string stringPathToXSLfile = Path.Combine(obpCurrentPaths.XsltLiveProjectsReportPath, cbFopXsltToUse.Text); 
 		
 			bool boolShowFOPResults = cbShowFopResults.Checked;
-			utils.altovaXml.processFiles(stringPathToTempFile,stringPathToXMLfile,stringPathToXSLfile,boolShowFOPResults,ref bCancelPdfReportGeneration);		
+			utils.altovaXml.processFiles(stringPathToTempFile,stringPathToXMLfile,stringPathToXSLfile,boolShowFOPResults,ref bCancelPdfReportGeneration,true);		
 		}
 
 		private void useDotNetToCreateFile()

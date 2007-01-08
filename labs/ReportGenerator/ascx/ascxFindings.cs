@@ -71,6 +71,10 @@ namespace Owasp.VulnReport
         private Label lbXmlBreaksXsdSchema;
         private ToolTip toolTip1;
         private Label lbRtbCursorPosition;
+        private GroupBox gbRtbNotepadEditorTools;
+        private TextBox txtRtbNotepadSearchContents;
+        private Label label6;
+        private Label lbRtbNotepadSearchCount;
         private IContainer components;
 
 		public ascxFindings()
@@ -140,13 +144,17 @@ namespace Owasp.VulnReport
             this.btAddFindingUsingTemplate = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.axWebBrowser_Targets = new System.Windows.Forms.WebBrowser();
+            this.lbRtbCursorPosition = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lbXmlBreaksXsdSchema = new System.Windows.Forms.Label();
             this.rtbSelectedFinding = new System.Windows.Forms.RichTextBox();
             this.axWebBrowser_WindowsExplorer = new System.Windows.Forms.WebBrowser();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.lbXmlBreaksXsdSchema = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.lbRtbCursorPosition = new System.Windows.Forms.Label();
+            this.gbRtbNotepadEditorTools = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtRtbNotepadSearchContents = new System.Windows.Forms.TextBox();
+            this.lbRtbNotepadSearchCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Findings)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -158,10 +166,11 @@ namespace Owasp.VulnReport
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.gbRtbNotepadEditorTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -539,7 +548,7 @@ namespace Owasp.VulnReport
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.lbRtbCursorPosition);
+            this.splitContainer2.Panel2.Controls.Add(this.gbRtbNotepadEditorTools);
             this.splitContainer2.Panel2.Controls.Add(this.groupBox5);
             this.splitContainer2.Panel2.Controls.Add(this.cbTemplateToUse);
             this.splitContainer2.Panel2.Controls.Add(this.label4);
@@ -561,6 +570,45 @@ namespace Owasp.VulnReport
             this.axWebBrowser_Targets.Size = new System.Drawing.Size(438, 84);
             this.axWebBrowser_Targets.TabIndex = 24;
             // 
+            // lbRtbCursorPosition
+            // 
+            this.lbRtbCursorPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbRtbCursorPosition.AutoSize = true;
+            this.lbRtbCursorPosition.Location = new System.Drawing.Point(521, 13);
+            this.lbRtbCursorPosition.Name = "lbRtbCursorPosition";
+            this.lbRtbCursorPosition.Size = new System.Drawing.Size(68, 13);
+            this.lbRtbCursorPosition.TabIndex = 22;
+            this.lbRtbCursorPosition.Text = " Row:1 Col:1";
+            this.lbRtbCursorPosition.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.lblFindingSaved);
+            this.groupBox5.Controls.Add(this.btSaveFinding);
+            this.groupBox5.Controls.Add(this.lbXmlBreaksXsdSchema);
+            this.groupBox5.Controls.Add(this.lbUnsavedData);
+            this.groupBox5.Location = new System.Drawing.Point(314, 1);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(293, 52);
+            this.groupBox5.TabIndex = 21;
+            this.groupBox5.TabStop = false;
+            // 
+            // lbXmlBreaksXsdSchema
+            // 
+            this.lbXmlBreaksXsdSchema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbXmlBreaksXsdSchema.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbXmlBreaksXsdSchema.ForeColor = System.Drawing.Color.Red;
+            this.lbXmlBreaksXsdSchema.Location = new System.Drawing.Point(10, 10);
+            this.lbXmlBreaksXsdSchema.Name = "lbXmlBreaksXsdSchema";
+            this.lbXmlBreaksXsdSchema.Size = new System.Drawing.Size(105, 40);
+            this.lbXmlBreaksXsdSchema.TabIndex = 11;
+            this.lbXmlBreaksXsdSchema.Text = "Xml breaks XSD schema!!";
+            this.lbXmlBreaksXsdSchema.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.lbXmlBreaksXsdSchema, "Click to view XSD errors");
+            this.lbXmlBreaksXsdSchema.Visible = false;
+            this.lbXmlBreaksXsdSchema.Click += new System.EventHandler(this.lbXmlBreaksXsdSchema_Click);
+            // 
             // rtbSelectedFinding
             // 
             this.rtbSelectedFinding.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -568,7 +616,7 @@ namespace Owasp.VulnReport
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbSelectedFinding.Location = new System.Drawing.Point(-2, 60);
             this.rtbSelectedFinding.Name = "rtbSelectedFinding";
-            this.rtbSelectedFinding.Size = new System.Drawing.Size(612, 303);
+            this.rtbSelectedFinding.Size = new System.Drawing.Size(612, 284);
             this.rtbSelectedFinding.TabIndex = 20;
             this.rtbSelectedFinding.Text = "";
             this.rtbSelectedFinding.SelectionChanged += new System.EventHandler(this.rtbSelectedFinding_SelectionChanged);
@@ -607,44 +655,47 @@ namespace Owasp.VulnReport
             this.splitContainer3.SplitterDistance = 185;
             this.splitContainer3.TabIndex = 24;
             // 
-            // groupBox5
+            // gbRtbNotepadEditorTools
             // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.lblFindingSaved);
-            this.groupBox5.Controls.Add(this.btSaveFinding);
-            this.groupBox5.Controls.Add(this.lbXmlBreaksXsdSchema);
-            this.groupBox5.Controls.Add(this.lbUnsavedData);
-            this.groupBox5.Location = new System.Drawing.Point(314, 1);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(293, 52);
-            this.groupBox5.TabIndex = 21;
-            this.groupBox5.TabStop = false;
+            this.gbRtbNotepadEditorTools.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbRtbNotepadEditorTools.Controls.Add(this.txtRtbNotepadSearchContents);
+            this.gbRtbNotepadEditorTools.Controls.Add(this.label6);
+            this.gbRtbNotepadEditorTools.Controls.Add(this.lbRtbNotepadSearchCount);
+            this.gbRtbNotepadEditorTools.Controls.Add(this.lbRtbCursorPosition);
+            this.gbRtbNotepadEditorTools.Location = new System.Drawing.Point(2, 348);
+            this.gbRtbNotepadEditorTools.Name = "gbRtbNotepadEditorTools";
+            this.gbRtbNotepadEditorTools.Size = new System.Drawing.Size(607, 32);
+            this.gbRtbNotepadEditorTools.TabIndex = 23;
+            this.gbRtbNotepadEditorTools.TabStop = false;
             // 
-            // lbXmlBreaksXsdSchema
+            // label6
             // 
-            this.lbXmlBreaksXsdSchema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbXmlBreaksXsdSchema.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbXmlBreaksXsdSchema.ForeColor = System.Drawing.Color.Red;
-            this.lbXmlBreaksXsdSchema.Location = new System.Drawing.Point(10, 10);
-            this.lbXmlBreaksXsdSchema.Name = "lbXmlBreaksXsdSchema";
-            this.lbXmlBreaksXsdSchema.Size = new System.Drawing.Size(105, 40);
-            this.lbXmlBreaksXsdSchema.TabIndex = 11;
-            this.lbXmlBreaksXsdSchema.Text = "Xml breaks XSD schema!!";
-            this.lbXmlBreaksXsdSchema.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.lbXmlBreaksXsdSchema, "Click to view XSD errors");
-            this.lbXmlBreaksXsdSchema.Visible = false;
-            this.lbXmlBreaksXsdSchema.Click += new System.EventHandler(this.lbXmlBreaksXsdSchema_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Search contents for";
             // 
-            // lbRtbCursorPosition
+            // txtRtbNotepadSearchContents
             // 
-            this.lbRtbCursorPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbRtbCursorPosition.AutoSize = true;
-            this.lbRtbCursorPosition.Location = new System.Drawing.Point(530, 366);
-            this.lbRtbCursorPosition.Name = "lbRtbCursorPosition";
-            this.lbRtbCursorPosition.Size = new System.Drawing.Size(19, 13);
-            this.lbRtbCursorPosition.TabIndex = 22;
-            this.lbRtbCursorPosition.Text = "....";
-            this.lbRtbCursorPosition.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtRtbNotepadSearchContents.Location = new System.Drawing.Point(113, 10);
+            this.txtRtbNotepadSearchContents.Name = "txtRtbNotepadSearchContents";
+            this.txtRtbNotepadSearchContents.Size = new System.Drawing.Size(149, 20);
+            this.txtRtbNotepadSearchContents.TabIndex = 24;
+            this.txtRtbNotepadSearchContents.TextChanged += new System.EventHandler(this.txtRtbNotepadSearchContents_TextChanged);
+            // 
+            // lbRtbNotepadSearchCount
+            // 
+            this.lbRtbNotepadSearchCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbRtbNotepadSearchCount.AutoSize = true;
+            this.lbRtbNotepadSearchCount.Location = new System.Drawing.Point(267, 13);
+            this.lbRtbNotepadSearchCount.Name = "lbRtbNotepadSearchCount";
+            this.lbRtbNotepadSearchCount.Size = new System.Drawing.Size(16, 13);
+            this.lbRtbNotepadSearchCount.TabIndex = 22;
+            this.lbRtbNotepadSearchCount.Text = "...";
+            this.lbRtbNotepadSearchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ascxFindings
             // 
@@ -666,12 +717,13 @@ namespace Owasp.VulnReport
             this.groupBox3.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
+            this.gbRtbNotepadEditorTools.ResumeLayout(false);
+            this.gbRtbNotepadEditorTools.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -1016,7 +1068,7 @@ namespace Owasp.VulnReport
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = true;
                     rtbSelectedFinding.Visible = false;
-                    lbRtbCursorPosition.Visible = false;
+                    gbRtbNotepadEditorTools.Visible = false;
                     loadSelectedFindingInAuthenticView();               // load data
 					break;
                 case "Authentic - All Fields Mode":
@@ -1024,23 +1076,21 @@ namespace Owasp.VulnReport
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = true;
                     rtbSelectedFinding.Visible = false;
-                    lbRtbCursorPosition.Visible = false;
+                    gbRtbNotepadEditorTools.Visible = false;
                     loadSelectedFindingInAuthenticView();               // load data
 					break;
                 case "Windows Explorer":                    
                     axWebBrowser_WindowsExplorer.Visible = true;                                        
                     axAuthentic_Findings.Visible = false;
                     rtbSelectedFinding.Visible = false;
-                    lbRtbCursorPosition.Visible = false;
+                    gbRtbNotepadEditorTools.Visible = false;
                     axWebBrowser_WindowsExplorer.Navigate(strPathToUnzipSelectedFinding);                                        
                     break;
                 case "Text Editor (i.e. Notepad)":
                     axWebBrowser_WindowsExplorer.Visible = false;
                     axAuthentic_Findings.Visible = false;
                     rtbSelectedFinding.Visible = true;
-                    lbRtbCursorPosition.Visible = true;
-                    //string strFullPathToXmlFile = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
-                    //string strXmlFileToLoad = Path.GetFileNameWithoutExtension(strFullPathToSelectedFinding) + ".xml";
+                    gbRtbNotepadEditorTools.Visible = true;                    
                     rtbSelectedFinding.Text = utils.files.GetFileContents(strPathToUnzipSelectedFindingXmlFile);                    
                     lbUnsavedData.Visible = false;
                     break;
@@ -1259,6 +1309,25 @@ namespace Owasp.VulnReport
             int iRowIndex = 0, iColIndex = 0;
             utils.windowsForms.getRowAndColFromRichTextBox(rtbSelectedFinding, ref iRowIndex, ref iColIndex);
             lbRtbCursorPosition.Text = string.Format("Row:{0} \t Col:{1}", iRowIndex, iColIndex);
+        }
+
+        private void txtRtbNotepadSearchContents_TextChanged(object sender, EventArgs e)
+        {            
+            int iNumberOfFindings = 0;
+            // clean any previous selections
+            rtbSelectedFinding.SelectAll();
+            rtbSelectedFinding.SelectionBackColor = Color.White;
+            rtbSelectedFinding.DeselectAll();
+            int iFoundPosition = rtbSelectedFinding.Find(txtRtbNotepadSearchContents.Text);
+            while (iFoundPosition > 0)
+            {
+                iNumberOfFindings++;
+                rtbSelectedFinding.SelectionBackColor = Color.LightGreen;
+                iFoundPosition += txtRtbNotepadSearchContents.Text.Length;
+                iFoundPosition = rtbSelectedFinding.Find(txtRtbNotepadSearchContents.Text, iFoundPosition,RichTextBoxFinds.None);                
+            }
+            lbRtbNotepadSearchCount.Text = string.Format("{0} matches",  iNumberOfFindings);          
+            
         }
  
 
