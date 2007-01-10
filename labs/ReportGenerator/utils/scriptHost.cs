@@ -23,6 +23,21 @@ namespace Owasp.VulnReport.utils
 		{
 		}
 
+        public static CompilerResults compileAndReturnCompilerResults(string strSourceCodeToExecute,  string[] strReferenceAssembliesToAdd)
+        {
+            string strTempFileName = Path.GetTempFileName();
+            if (strSourceCodeToExecute.Length == 0)
+            {
+                MessageBox.Show("Code to compile cannot be empty");
+                return null;
+            }
+            else
+            {
+                utils.files.SaveFileWithStringContents(strTempFileName, strSourceCodeToExecute);
+                return new WindowsApp().compileAndReturnCompilerResultsObject(strTempFileName, strReferenceAssembliesToAdd);
+            }
+        }
+
 		public static void compileAndExecuteSourceCode(string strSourceCodeToExecute, string strArguments,string[] strReferenceAssembliesToAdd)
 		{
 			string strTempFileName = Path.GetTempFileName();
@@ -66,6 +81,7 @@ namespace Owasp.VulnReport.utils
 		public interface IScriptManager
 		{
 			void CompileAndExecuteFile(string file, string[] args, string[] strReferenceAssembliesToAdd, IScriptManagerCallback callback);
+            System.CodeDom.Compiler.CompilerResults CompileFile(string file, string[] strReferenceAssembliesToAdd, IScriptManagerCallback callback);
 		}
 
 		public interface IScriptManagerCallback
@@ -226,6 +242,8 @@ namespace Owasp.VulnReport.utils
 		
 			delegate void CompileAndExecuteRoutine(string file, string[] args, string[] strReferenceAssembliesToAdd, IScriptManagerCallback callback);
 
+            delegate void compileAndReturnCompilerResults(string file, string[] strReferenceAssembliesToAdd, IScriptManagerCallback callback);
+
 			public string Compile(string strfile, string[] strReferenceAssembliesToAdd)
 			{
 				string strErrorMsg = "";
@@ -242,7 +260,35 @@ namespace Owasp.VulnReport.utils
 				}
 				return strErrorMsg;
 			}
-			
+
+            public System.CodeDom.Compiler.CompilerResults compileAndReturnCompilerResultsObject(string file, string[] strReferenceAssembliesToAdd)
+            {
+                try
+                {
+                    //Create an AppDomain to compile and execute the code
+                    //This enables us to cancel the execution if needed
+                    //executionDomain = AppDomain.CreateDomain("ExecutionDomain");
+                    //IScriptManager manager = (IScriptManager)executionDomain.CreateInstanceFromAndUnwrap(typeof(BaseApp).Assembly.Location, typeof(ScriptManager).FullName);
+                    ScriptManager smScriptManager = new ScriptManager();
+                    System.CodeDom.Compiler.CompilerResults scCompilerResults = smScriptManager.CompileFile(file, strReferenceAssembliesToAdd, this);
+                    return scCompilerResults;
+                }
+                catch (UnsupportedLanguageExecption e)
+                {
+                    ShowErrorMessage("UnsupportedLanguage (from resource):" + e.Extension);
+                }
+                catch (AppDomainUnloadedException e)
+                {
+                    System.Diagnostics.Trace.WriteLine(e.Message);
+                }
+                catch (Exception e)
+                {
+                    ShowErrorMessage(e.Message);
+                }
+
+                TerminateExecutionLoop();
+                return null;
+            }
 
 			private void CompileAndExecute(string file, string[] args,string[] strReferenceAssembliesToAdd, IScriptManagerCallback callback)
 			{
@@ -269,7 +315,9 @@ namespace Owasp.VulnReport.utils
 				}
 			
 				TerminateExecutionLoop();
-			}			
+			}			            
+
+
 
 			public void Run(string[] args,string[] strReferenceAssembliesToAdd)
 			{
@@ -347,9 +395,38 @@ namespace Owasp.VulnReport.utils
 				}
 				else
 				{
-					crResults.CompiledAssembly.EntryPoint.Invoke(null, BindingFlags.Static, null, new object[]{args}, null);
+					crResults.CompiledAssembly.EntryPoint.Invoke(null, BindingFlags.Static, null, new object[]{args}, null);                   
 				}
 			}
+
+            public System.CodeDom.Compiler.CompilerResults CompileFile(string file, string[] strReferenceAssembliesToAdd, IScriptManagerCallback callback)
+            {
+                System.CodeDom.Compiler.CompilerResults crResults = CompileSourceCode(file, strReferenceAssembliesToAdd);
+                if (crResults.Errors.HasErrors)
+                {
+                    System.Collections.ArrayList templist = new System.Collections.ArrayList();
+                    foreach (System.CodeDom.Compiler.CompilerError error in crResults.Errors)
+                    {
+                        templist.Add(new CompilerError(error));
+                    }
+                    callback.OnCompilerError((CompilerError[])templist.ToArray(typeof(CompilerError)));
+                    return null;
+                }
+                else
+                {
+                    return crResults;                    
+                }
+            }
+
+            public void executeCode(System.CodeDom.Compiler.CompilerResults crResults, string[] args)
+            {
+                crResults.CompiledAssembly.EntryPoint.Invoke(null, BindingFlags.Static, null, new object[] { args }, null);
+                Type[] tTypes = crResults.CompiledAssembly.GetTypes();
+                foreach (Type tType in tTypes)
+                    foreach (MethodInfo mi in tType.GetMethods())
+                        Console.WriteLine(tType.FullName + "." + mi.Name);
+                //return crResults;
+            }
 
             /// <summary>
             /// This method compiles the source given to it dynamically for use in plugins, etc...
