@@ -23,7 +23,7 @@ namespace Owasp.VulnReport.utils
 		{
 		}
 
-        public static CompilerResults compileAndReturnCompilerResults(string strSourceCodeToExecute,  string[] strReferenceAssembliesToAdd)
+        public static CompilerResults compileAndReturnCompilerResults(string strSourceCodeToExecute, string[] strReferenceAssembliesToAdd, ref string strCompilationErrors)
         {
             string strTempFileName = Path.GetTempFileName();
             if (strSourceCodeToExecute.Length == 0)
@@ -34,7 +34,10 @@ namespace Owasp.VulnReport.utils
             else
             {
                 utils.files.SaveFileWithStringContents(strTempFileName, strSourceCodeToExecute);
-                return new WindowsApp().compileAndReturnCompilerResultsObject(strTempFileName, strReferenceAssembliesToAdd);
+                WindowsApp  waWindowsApp = new WindowsApp();
+                CompilerResults crCompilerResults = waWindowsApp.compileAndReturnCompilerResultsObject(strTempFileName, strReferenceAssembliesToAdd);
+                strCompilationErrors = waWindowsApp.StrCompilationErrors;
+                return crCompilerResults;
             }
         }
 
@@ -73,9 +76,11 @@ namespace Owasp.VulnReport.utils
 			}            
 		}
 
-		public static void compileAndExecuteFile(string strFileToExecute,string[] strReferenceAssembliesToAdd)
+		public static string compileAndExecuteFile(string strFileToExecute,string[] strReferenceAssembliesToAdd)
 		{
-			new WindowsApp().Run(new string[] {strFileToExecute}, strReferenceAssembliesToAdd);		
+			WindowsApp waWindowsApp = new WindowsApp();
+            waWindowsApp.Run(new string[] { strFileToExecute }, strReferenceAssembliesToAdd);
+            return waWindowsApp.StrCompilationErrors;
 		}	
 
 		public interface IScriptManager
@@ -176,6 +181,7 @@ namespace Owasp.VulnReport.utils
 		{
 			private AppDomain executionDomain;
 			private string fileName;
+            private string strCompilationErrors = "";
 
 			public BaseApp()
 			{
@@ -357,8 +363,19 @@ namespace Owasp.VulnReport.utils
 				
 				//throw new ApplicationException(writer.ToString());            // We can't crash the app in these cases, we should just show a message to the user with the error that occured
                 // For now do it via Messagebox, but ideally the should go to txtDebugMessages Text Box
-                MessageBox.Show(writer.ToString());
+                //MessageBox.Show(writer.ToString());
+
+                // Errors are now placed on strCompilationErrors so it is the caller's responsibility to check them
+                strCompilationErrors = writer.ToString();
 			}
+
+            public string StrCompilationErrors
+            {
+                get 
+                {
+                    return strCompilationErrors;
+                }
+            }
 			#endregion
 		}
 
