@@ -25,6 +25,7 @@ namespace Owasp.VulnReport.ascx
         private string strFullPathToXmlFile;
         private OrgBasePaths obpPaths = OrgBasePaths.GetPaths();
         private CompilerResults crSelectedPluginAction_CompilerResults;
+        private XmlNodeList xnlDynamicCode;
 
         private string strPathToSpsFile;
         private string strPathToXsdFile;
@@ -37,7 +38,7 @@ namespace Owasp.VulnReport.ascx
         private System.Windows.Forms.TabPage tpPlugIn;
         private AxXMLSPYPLUGINLib.AxAuthentic axAuthentic_Plugin;
         private System.Windows.Forms.GroupBox gbPlugInActions;
-        private System.Windows.Forms.Button btExecuteAction;
+        private System.Windows.Forms.Button btExecuteAction_Main;
         private System.Windows.Forms.ListBox lbPlugInXmlFiles;
         private System.Windows.Forms.ComboBox cbCurrentPlugIns;
         private System.Windows.Forms.TabPage tpEditPlugIn;
@@ -53,7 +54,6 @@ namespace Owasp.VulnReport.ascx
         private System.Windows.Forms.Button btReloadPluginData;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDebugMessages;
-        private System.Windows.Forms.TextBox txtPlugInArguments;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btPlugInCompile;
         private TextBox txtNewPlugInFileName;
@@ -95,6 +95,10 @@ namespace Owasp.VulnReport.ascx
         private DataGridView dgvOutputDataGridView;
         private SplitContainer splitContainer1;
         private SplitContainer splitContainer2;
+        private SplitContainer splitContainer3;
+        private SplitContainer splitContainer4;
+        private Label lbDynamicCodeDetected;
+        private Label lbCompilePlugIn_CompilationErrors;
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -130,18 +134,21 @@ namespace Owasp.VulnReport.ascx
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ascxPlugIns));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpPlugIn = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btCreatePlugInFile = new System.Windows.Forms.Button();
-            this.btDeletePlugInFile = new System.Windows.Forms.Button();
-            this.txtNewPlugInFileName = new System.Windows.Forms.TextBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.lbPlugInXmlFiles = new System.Windows.Forms.ListBox();
+            this.cbCurrentPlugIns = new System.Windows.Forms.ComboBox();
             this.btReloadPluginData = new System.Windows.Forms.Button();
+            this.btExecuteAction_Main = new System.Windows.Forms.Button();
             this.gbPlugInActions = new System.Windows.Forms.GroupBox();
+            this.lbDynamicCodeDetected = new System.Windows.Forms.Label();
             this.cboxPlugRunParam_DebugTextBox = new System.Windows.Forms.CheckBox();
+            this.cboxPlugRunParam_DataGrid = new System.Windows.Forms.CheckBox();
             this.cboxPlugRunParam_TextBox = new System.Windows.Forms.CheckBox();
             this.cboxPlugRunParam_WebBrowser = new System.Windows.Forms.CheckBox();
             this.cboxPlugRunParam_SelectedXmlFile = new System.Windows.Forms.CheckBox();
@@ -149,10 +156,10 @@ namespace Owasp.VulnReport.ascx
             this.cbPlugin_Actions = new System.Windows.Forms.ComboBox();
             this.btCompilePlugIn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtPlugInArguments = new System.Windows.Forms.TextBox();
-            this.btExecuteAction = new System.Windows.Forms.Button();
-            this.lbPlugInXmlFiles = new System.Windows.Forms.ListBox();
-            this.cbCurrentPlugIns = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btCreatePlugInFile = new System.Windows.Forms.Button();
+            this.btDeletePlugInFile = new System.Windows.Forms.Button();
+            this.txtNewPlugInFileName = new System.Windows.Forms.TextBox();
             this.tcPluginsDataAndExecution = new System.Windows.Forms.TabControl();
             this.tpPlugIndata = new System.Windows.Forms.TabPage();
             this.axAuthentic_Plugin = new AxXMLSPYPLUGINLib.AxAuthentic();
@@ -164,15 +171,20 @@ namespace Owasp.VulnReport.ascx
             this.lbPlugInDataXmlBreaksXsdSchema = new System.Windows.Forms.Label();
             this.btSavePlugInData = new System.Windows.Forms.Button();
             this.tpPluginExecutionOutput_TextBoxAndWebBrowser = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.tbPluginExecution_OutputTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.wbPluginExecution_OutputWebBrowser = new System.Windows.Forms.WebBrowser();
-            this.tbPluginExecution_OutputTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tpPluginExecutionOutput_DataGrid = new System.Windows.Forms.TabPage();
+            this.dgvOutputDataGridView = new System.Windows.Forms.DataGridView();
             this.tpEditPlugIn = new System.Windows.Forms.TabPage();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.dgvPluginSettings = new System.Windows.Forms.DataGridView();
             this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
+            this.tecPlugIns_Action = new ICSharpCode.TextEditor.TextEditorControl();
             this.label6 = new System.Windows.Forms.Label();
             this.lbPhraseNotFound = new System.Windows.Forms.Label();
             this.lbFind = new System.Windows.Forms.Label();
@@ -181,7 +193,6 @@ namespace Owasp.VulnReport.ascx
             this.btPlugInCompile = new System.Windows.Forms.Button();
             this.lbUnsavedData = new System.Windows.Forms.Label();
             this.btSavePlugIn = new System.Windows.Forms.Button();
-            this.tecPlugIns_Action = new ICSharpCode.TextEditor.TextEditorControl();
             this.txtNewPlugInName = new System.Windows.Forms.TextBox();
             this.btDeletePlugIn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -190,29 +201,31 @@ namespace Owasp.VulnReport.ascx
             this.lbPlugInFileSaved = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDebugMessages = new System.Windows.Forms.TextBox();
-            this.tpPluginExecutionOutput_DataGrid = new System.Windows.Forms.TabPage();
-            this.dgvOutputDataGridView = new System.Windows.Forms.DataGridView();
-            this.cboxPlugRunParam_DataGrid = new System.Windows.Forms.CheckBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.lbCompilePlugIn_CompilationErrors = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tpPlugIn.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.gbPlugInActions.SuspendLayout();
-            this.tcPluginsDataAndExecution.SuspendLayout();
-            this.tpPlugIndata.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Plugin)).BeginInit();
-            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.SuspendLayout();
-            this.tpEditPlugIn.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPluginSettings)).BeginInit();
-            this.tpPluginExecutionOutput_DataGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOutputDataGridView)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.gbPlugInActions.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tcPluginsDataAndExecution.SuspendLayout();
+            this.tpPlugIndata.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Plugin)).BeginInit();
+            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.SuspendLayout();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.tpPluginExecutionOutput_DataGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOutputDataGridView)).BeginInit();
+            this.tpEditPlugIn.SuspendLayout();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPluginSettings)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -237,82 +250,129 @@ namespace Owasp.VulnReport.ascx
             this.tpPlugIn.TabIndex = 1;
             this.tpPlugIn.Text = "Plug-Ins";
             // 
-            // groupBox1
+            // splitContainer1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btCreatePlugInFile);
-            this.groupBox1.Controls.Add(this.btDeletePlugInFile);
-            this.groupBox1.Controls.Add(this.txtNewPlugInFileName);
-            this.groupBox1.Location = new System.Drawing.Point(7, 181);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(191, 58);
-            this.groupBox1.TabIndex = 37;
-            this.groupBox1.TabStop = false;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // btCreatePlugInFile
+            // splitContainer1.Panel1
             // 
-            this.btCreatePlugInFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCreatePlugInFile.Location = new System.Drawing.Point(137, 12);
-            this.btCreatePlugInFile.Name = "btCreatePlugInFile";
-            this.btCreatePlugInFile.Size = new System.Drawing.Size(50, 42);
-            this.btCreatePlugInFile.TabIndex = 6;
-            this.btCreatePlugInFile.Text = "Create";
-            this.btCreatePlugInFile.Click += new System.EventHandler(this.btCreatePlugInFile_Click);
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
             // 
-            // btDeletePlugInFile
+            // splitContainer1.Panel2
             // 
-            this.btDeletePlugInFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.splitContainer1.Panel2.Controls.Add(this.tcPluginsDataAndExecution);
+            this.splitContainer1.Size = new System.Drawing.Size(717, 394);
+            this.splitContainer1.SplitterDistance = 254;
+            this.splitContainer1.TabIndex = 39;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDeletePlugInFile.Location = new System.Drawing.Point(3, 34);
-            this.btDeletePlugInFile.Name = "btDeletePlugInFile";
-            this.btDeletePlugInFile.Size = new System.Drawing.Size(103, 20);
-            this.btDeletePlugInFile.TabIndex = 7;
-            this.btDeletePlugInFile.Text = "Delete Plug-In";
-            this.btDeletePlugInFile.Click += new System.EventHandler(this.btDeletePlugInFile_Click);
+            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer2.Location = new System.Drawing.Point(1, 1);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // txtNewPlugInFileName
+            // splitContainer2.Panel1
             // 
-            this.txtNewPlugInFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.splitContainer2.Panel1.Controls.Add(this.lbPlugInXmlFiles);
+            this.splitContainer2.Panel1.Controls.Add(this.cbCurrentPlugIns);
+            this.splitContainer2.Panel1.Controls.Add(this.btReloadPluginData);
+            this.splitContainer2.Panel1.Controls.Add(this.btExecuteAction_Main);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.gbPlugInActions);
+            this.splitContainer2.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer2.Size = new System.Drawing.Size(250, 396);
+            this.splitContainer2.SplitterDistance = 137;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // lbPlugInXmlFiles
+            // 
+            this.lbPlugInXmlFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNewPlugInFileName.Location = new System.Drawing.Point(3, 12);
-            this.txtNewPlugInFileName.Name = "txtNewPlugInFileName";
-            this.txtNewPlugInFileName.Size = new System.Drawing.Size(115, 20);
-            this.txtNewPlugInFileName.TabIndex = 8;
+            this.lbPlugInXmlFiles.Location = new System.Drawing.Point(3, 28);
+            this.lbPlugInXmlFiles.Name = "lbPlugInXmlFiles";
+            this.lbPlugInXmlFiles.Size = new System.Drawing.Size(240, 69);
+            this.lbPlugInXmlFiles.TabIndex = 1;
+            this.lbPlugInXmlFiles.SelectedIndexChanged += new System.EventHandler(this.lbPlugInXmlFiles_SelectedIndexChanged);
+            // 
+            // cbCurrentPlugIns
+            // 
+            this.cbCurrentPlugIns.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCurrentPlugIns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCurrentPlugIns.Location = new System.Drawing.Point(3, 4);
+            this.cbCurrentPlugIns.Name = "cbCurrentPlugIns";
+            this.cbCurrentPlugIns.Size = new System.Drawing.Size(196, 21);
+            this.cbCurrentPlugIns.TabIndex = 0;
+            this.cbCurrentPlugIns.SelectedIndexChanged += new System.EventHandler(this.cbCurrentPlugIns_SelectedIndexChanged);
             // 
             // btReloadPluginData
             // 
             this.btReloadPluginData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btReloadPluginData.Location = new System.Drawing.Point(160, 4);
+            this.btReloadPluginData.Location = new System.Drawing.Point(205, 4);
             this.btReloadPluginData.Name = "btReloadPluginData";
             this.btReloadPluginData.Size = new System.Drawing.Size(39, 20);
             this.btReloadPluginData.TabIndex = 4;
             this.btReloadPluginData.Text = "R";
             this.btReloadPluginData.Click += new System.EventHandler(this.btReloadPluginData_Click);
             // 
+            // btExecuteAction_Main
+            // 
+            this.btExecuteAction_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btExecuteAction_Main.Location = new System.Drawing.Point(129, 110);
+            this.btExecuteAction_Main.Name = "btExecuteAction_Main";
+            this.btExecuteAction_Main.Size = new System.Drawing.Size(114, 21);
+            this.btExecuteAction_Main.TabIndex = 0;
+            this.btExecuteAction_Main.Text = "Execute Main()";
+            this.btExecuteAction_Main.Click += new System.EventHandler(this.btExecuteAction_Click);
+            // 
             // gbPlugInActions
             // 
             this.gbPlugInActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbPlugInActions.Controls.Add(this.cbPlugin_Actions);
+            this.gbPlugInActions.Controls.Add(this.lbCompilePlugIn_CompilationErrors);
+            this.gbPlugInActions.Controls.Add(this.lbDynamicCodeDetected);
             this.gbPlugInActions.Controls.Add(this.cboxPlugRunParam_DebugTextBox);
             this.gbPlugInActions.Controls.Add(this.cboxPlugRunParam_DataGrid);
             this.gbPlugInActions.Controls.Add(this.cboxPlugRunParam_TextBox);
             this.gbPlugInActions.Controls.Add(this.cboxPlugRunParam_WebBrowser);
             this.gbPlugInActions.Controls.Add(this.cboxPlugRunParam_SelectedXmlFile);
             this.gbPlugInActions.Controls.Add(this.btPlugInRunSelectecAction);
-            this.gbPlugInActions.Controls.Add(this.cbPlugin_Actions);
             this.gbPlugInActions.Controls.Add(this.btCompilePlugIn);
             this.gbPlugInActions.Controls.Add(this.label4);
             this.gbPlugInActions.Location = new System.Drawing.Point(6, 7);
             this.gbPlugInActions.Name = "gbPlugInActions";
-            this.gbPlugInActions.Size = new System.Drawing.Size(192, 169);
+            this.gbPlugInActions.Size = new System.Drawing.Size(237, 169);
             this.gbPlugInActions.TabIndex = 2;
             this.gbPlugInActions.TabStop = false;
             this.gbPlugInActions.Text = "Actions";
             // 
+            // lbDynamicCodeDetected
+            // 
+            this.lbDynamicCodeDetected.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDynamicCodeDetected.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lbDynamicCodeDetected.Location = new System.Drawing.Point(103, 14);
+            this.lbDynamicCodeDetected.Name = "lbDynamicCodeDetected";
+            this.lbDynamicCodeDetected.Size = new System.Drawing.Size(99, 16);
+            this.lbDynamicCodeDetected.TabIndex = 7;
+            this.lbDynamicCodeDetected.Text = "Dynamic Code ";
+            // 
             // cboxPlugRunParam_DebugTextBox
             // 
             this.cboxPlugRunParam_DebugTextBox.AutoSize = true;
+            this.cboxPlugRunParam_DebugTextBox.Checked = true;
+            this.cboxPlugRunParam_DebugTextBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxPlugRunParam_DebugTextBox.Location = new System.Drawing.Point(9, 90);
             this.cboxPlugRunParam_DebugTextBox.Name = "cboxPlugRunParam_DebugTextBox";
             this.cboxPlugRunParam_DebugTextBox.Size = new System.Drawing.Size(100, 17);
@@ -320,9 +380,23 @@ namespace Owasp.VulnReport.ascx
             this.cboxPlugRunParam_DebugTextBox.Text = "Debug TextBox";
             this.cboxPlugRunParam_DebugTextBox.UseVisualStyleBackColor = true;
             // 
+            // cboxPlugRunParam_DataGrid
+            // 
+            this.cboxPlugRunParam_DataGrid.AutoSize = true;
+            this.cboxPlugRunParam_DataGrid.Checked = true;
+            this.cboxPlugRunParam_DataGrid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxPlugRunParam_DataGrid.Location = new System.Drawing.Point(9, 149);
+            this.cboxPlugRunParam_DataGrid.Name = "cboxPlugRunParam_DataGrid";
+            this.cboxPlugRunParam_DataGrid.Size = new System.Drawing.Size(68, 17);
+            this.cboxPlugRunParam_DataGrid.TabIndex = 6;
+            this.cboxPlugRunParam_DataGrid.Text = "DataGrid";
+            this.cboxPlugRunParam_DataGrid.UseVisualStyleBackColor = true;
+            // 
             // cboxPlugRunParam_TextBox
             // 
             this.cboxPlugRunParam_TextBox.AutoSize = true;
+            this.cboxPlugRunParam_TextBox.Checked = true;
+            this.cboxPlugRunParam_TextBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxPlugRunParam_TextBox.Location = new System.Drawing.Point(95, 128);
             this.cboxPlugRunParam_TextBox.Name = "cboxPlugRunParam_TextBox";
             this.cboxPlugRunParam_TextBox.Size = new System.Drawing.Size(65, 17);
@@ -333,6 +407,8 @@ namespace Owasp.VulnReport.ascx
             // cboxPlugRunParam_WebBrowser
             // 
             this.cboxPlugRunParam_WebBrowser.AutoSize = true;
+            this.cboxPlugRunParam_WebBrowser.Checked = true;
+            this.cboxPlugRunParam_WebBrowser.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxPlugRunParam_WebBrowser.Location = new System.Drawing.Point(9, 128);
             this.cboxPlugRunParam_WebBrowser.Name = "cboxPlugRunParam_WebBrowser";
             this.cboxPlugRunParam_WebBrowser.Size = new System.Drawing.Size(87, 17);
@@ -343,6 +419,8 @@ namespace Owasp.VulnReport.ascx
             // cboxPlugRunParam_SelectedXmlFile
             // 
             this.cboxPlugRunParam_SelectedXmlFile.AutoSize = true;
+            this.cboxPlugRunParam_SelectedXmlFile.Checked = true;
+            this.cboxPlugRunParam_SelectedXmlFile.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxPlugRunParam_SelectedXmlFile.Location = new System.Drawing.Point(9, 108);
             this.cboxPlugRunParam_SelectedXmlFile.Name = "cboxPlugRunParam_SelectedXmlFile";
             this.cboxPlugRunParam_SelectedXmlFile.Size = new System.Drawing.Size(150, 17);
@@ -353,11 +431,11 @@ namespace Owasp.VulnReport.ascx
             // btPlugInRunSelectecAction
             // 
             this.btPlugInRunSelectecAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btPlugInRunSelectecAction.Location = new System.Drawing.Point(150, 47);
+            this.btPlugInRunSelectecAction.Location = new System.Drawing.Point(177, 47);
             this.btPlugInRunSelectecAction.Name = "btPlugInRunSelectecAction";
-            this.btPlugInRunSelectecAction.Size = new System.Drawing.Size(36, 21);
+            this.btPlugInRunSelectecAction.Size = new System.Drawing.Size(54, 21);
             this.btPlugInRunSelectecAction.TabIndex = 5;
-            this.btPlugInRunSelectecAction.Text = "Run";
+            this.btPlugInRunSelectecAction.Text = "Execute";
             this.btPlugInRunSelectecAction.UseVisualStyleBackColor = true;
             this.btPlugInRunSelectecAction.Click += new System.EventHandler(this.btPlugInRunSelectecAction_Click);
             // 
@@ -369,14 +447,14 @@ namespace Owasp.VulnReport.ascx
             this.cbPlugin_Actions.FormattingEnabled = true;
             this.cbPlugin_Actions.Location = new System.Drawing.Point(10, 47);
             this.cbPlugin_Actions.Name = "cbPlugin_Actions";
-            this.cbPlugin_Actions.Size = new System.Drawing.Size(138, 21);
+            this.cbPlugin_Actions.Size = new System.Drawing.Size(161, 21);
             this.cbPlugin_Actions.TabIndex = 4;
             // 
             // btCompilePlugIn
             // 
-            this.btCompilePlugIn.Location = new System.Drawing.Point(10, 20);
+            this.btCompilePlugIn.Location = new System.Drawing.Point(10, 14);
             this.btCompilePlugIn.Name = "btCompilePlugIn";
-            this.btCompilePlugIn.Size = new System.Drawing.Size(86, 23);
+            this.btCompilePlugIn.Size = new System.Drawing.Size(86, 29);
             this.btCompilePlugIn.TabIndex = 3;
             this.btCompilePlugIn.Text = "Compile PlugIn";
             this.btCompilePlugIn.UseVisualStyleBackColor = true;
@@ -390,46 +468,48 @@ namespace Owasp.VulnReport.ascx
             this.label4.TabIndex = 2;
             this.label4.Text = "Plug-in Arguments";
             // 
-            // txtPlugInArguments
+            // groupBox1
             // 
-            this.txtPlugInArguments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPlugInArguments.Location = new System.Drawing.Point(78, 114);
-            this.txtPlugInArguments.Multiline = true;
-            this.txtPlugInArguments.Name = "txtPlugInArguments";
-            this.txtPlugInArguments.Size = new System.Drawing.Size(47, 10);
-            this.txtPlugInArguments.TabIndex = 1;
-            // 
-            // btExecuteAction
-            // 
-            this.btExecuteAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btExecuteAction.Location = new System.Drawing.Point(131, 110);
-            this.btExecuteAction.Name = "btExecuteAction";
-            this.btExecuteAction.Size = new System.Drawing.Size(67, 21);
-            this.btExecuteAction.TabIndex = 0;
-            this.btExecuteAction.Text = "Execute Action";
-            this.btExecuteAction.Click += new System.EventHandler(this.btExecuteAction_Click);
-            // 
-            // lbPlugInXmlFiles
-            // 
-            this.lbPlugInXmlFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbPlugInXmlFiles.Location = new System.Drawing.Point(3, 28);
-            this.lbPlugInXmlFiles.Name = "lbPlugInXmlFiles";
-            this.lbPlugInXmlFiles.Size = new System.Drawing.Size(195, 69);
-            this.lbPlugInXmlFiles.TabIndex = 1;
-            this.lbPlugInXmlFiles.SelectedIndexChanged += new System.EventHandler(this.lbPlugInXmlFiles_SelectedIndexChanged);
+            this.groupBox1.Controls.Add(this.btCreatePlugInFile);
+            this.groupBox1.Controls.Add(this.btDeletePlugInFile);
+            this.groupBox1.Controls.Add(this.txtNewPlugInFileName);
+            this.groupBox1.Location = new System.Drawing.Point(7, 181);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(236, 58);
+            this.groupBox1.TabIndex = 37;
+            this.groupBox1.TabStop = false;
             // 
-            // cbCurrentPlugIns
+            // btCreatePlugInFile
             // 
-            this.cbCurrentPlugIns.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btCreatePlugInFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btCreatePlugInFile.Location = new System.Drawing.Point(182, 12);
+            this.btCreatePlugInFile.Name = "btCreatePlugInFile";
+            this.btCreatePlugInFile.Size = new System.Drawing.Size(50, 42);
+            this.btCreatePlugInFile.TabIndex = 6;
+            this.btCreatePlugInFile.Text = "Create";
+            this.btCreatePlugInFile.Click += new System.EventHandler(this.btCreatePlugInFile_Click);
+            // 
+            // btDeletePlugInFile
+            // 
+            this.btDeletePlugInFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCurrentPlugIns.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCurrentPlugIns.Location = new System.Drawing.Point(3, 4);
-            this.cbCurrentPlugIns.Name = "cbCurrentPlugIns";
-            this.cbCurrentPlugIns.Size = new System.Drawing.Size(151, 21);
-            this.cbCurrentPlugIns.TabIndex = 0;
-            this.cbCurrentPlugIns.SelectedIndexChanged += new System.EventHandler(this.cbCurrentPlugIns_SelectedIndexChanged);
+            this.btDeletePlugInFile.Location = new System.Drawing.Point(3, 34);
+            this.btDeletePlugInFile.Name = "btDeletePlugInFile";
+            this.btDeletePlugInFile.Size = new System.Drawing.Size(148, 20);
+            this.btDeletePlugInFile.TabIndex = 7;
+            this.btDeletePlugInFile.Text = "Delete Plug-In";
+            this.btDeletePlugInFile.Click += new System.EventHandler(this.btDeletePlugInFile_Click);
+            // 
+            // txtNewPlugInFileName
+            // 
+            this.txtNewPlugInFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNewPlugInFileName.Location = new System.Drawing.Point(3, 12);
+            this.txtNewPlugInFileName.Name = "txtNewPlugInFileName";
+            this.txtNewPlugInFileName.Size = new System.Drawing.Size(160, 20);
+            this.txtNewPlugInFileName.TabIndex = 8;
             // 
             // tcPluginsDataAndExecution
             // 
@@ -442,7 +522,7 @@ namespace Owasp.VulnReport.ascx
             this.tcPluginsDataAndExecution.Location = new System.Drawing.Point(3, 6);
             this.tcPluginsDataAndExecution.Name = "tcPluginsDataAndExecution";
             this.tcPluginsDataAndExecution.SelectedIndex = 0;
-            this.tcPluginsDataAndExecution.Size = new System.Drawing.Size(498, 385);
+            this.tcPluginsDataAndExecution.Size = new System.Drawing.Size(453, 385);
             this.tcPluginsDataAndExecution.TabIndex = 38;
             // 
             // tpPlugIndata
@@ -458,7 +538,7 @@ namespace Owasp.VulnReport.ascx
             this.tpPlugIndata.Location = new System.Drawing.Point(4, 22);
             this.tpPlugIndata.Name = "tpPlugIndata";
             this.tpPlugIndata.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPlugIndata.Size = new System.Drawing.Size(600, 301);
+            this.tpPlugIndata.Size = new System.Drawing.Size(445, 359);
             this.tpPlugIndata.TabIndex = 0;
             this.tpPlugIndata.Text = "PlugIn Data";
             this.tpPlugIndata.UseVisualStyleBackColor = true;
@@ -472,7 +552,7 @@ namespace Owasp.VulnReport.ascx
             this.axAuthentic_Plugin.Location = new System.Drawing.Point(6, 35);
             this.axAuthentic_Plugin.Name = "axAuthentic_Plugin";
             this.axAuthentic_Plugin.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAuthentic_Plugin.OcxState")));
-            this.axAuthentic_Plugin.Size = new System.Drawing.Size(588, 260);
+            this.axAuthentic_Plugin.Size = new System.Drawing.Size(433, 318);
             this.axAuthentic_Plugin.TabIndex = 3;
             this.axAuthentic_Plugin.SelectionChanged += new System.EventHandler(this.axAuthentic_Plugin_SelectionChanged);
             // 
@@ -483,7 +563,7 @@ namespace Owasp.VulnReport.ascx
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbPlugInData.Location = new System.Drawing.Point(6, 35);
             this.rtbPlugInData.Name = "rtbPlugInData";
-            this.rtbPlugInData.Size = new System.Drawing.Size(588, 244);
+            this.rtbPlugInData.Size = new System.Drawing.Size(433, 302);
             this.rtbPlugInData.TabIndex = 36;
             this.rtbPlugInData.Text = "";
             this.rtbPlugInData.SelectionChanged += new System.EventHandler(this.rtbPlugInData_SelectionChanged);
@@ -493,7 +573,7 @@ namespace Owasp.VulnReport.ascx
             // 
             this.lbRtbCursorPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbRtbCursorPosition.AutoSize = true;
-            this.lbRtbCursorPosition.Location = new System.Drawing.Point(480, 282);
+            this.lbRtbCursorPosition.Location = new System.Drawing.Point(325, 340);
             this.lbRtbCursorPosition.Name = "lbRtbCursorPosition";
             this.lbRtbCursorPosition.Size = new System.Drawing.Size(19, 13);
             this.lbRtbCursorPosition.TabIndex = 7;
@@ -505,7 +585,7 @@ namespace Owasp.VulnReport.ascx
             this.lbUnsavedPlugIndata.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUnsavedPlugIndata.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUnsavedPlugIndata.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedPlugIndata.Location = new System.Drawing.Point(347, 5);
+            this.lbUnsavedPlugIndata.Location = new System.Drawing.Point(192, 5);
             this.lbUnsavedPlugIndata.Name = "lbUnsavedPlugIndata";
             this.lbUnsavedPlugIndata.Size = new System.Drawing.Size(107, 21);
             this.lbUnsavedPlugIndata.TabIndex = 28;
@@ -530,7 +610,7 @@ namespace Owasp.VulnReport.ascx
             this.lblPlugIndataSaved.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPlugIndataSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlugIndataSaved.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblPlugIndataSaved.Location = new System.Drawing.Point(334, 5);
+            this.lblPlugIndataSaved.Location = new System.Drawing.Point(179, 5);
             this.lblPlugIndataSaved.Name = "lblPlugIndataSaved";
             this.lblPlugIndataSaved.Size = new System.Drawing.Size(120, 20);
             this.lblPlugIndataSaved.TabIndex = 27;
@@ -543,7 +623,7 @@ namespace Owasp.VulnReport.ascx
             this.lbPlugInDataXmlBreaksXsdSchema.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPlugInDataXmlBreaksXsdSchema.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPlugInDataXmlBreaksXsdSchema.ForeColor = System.Drawing.Color.Red;
-            this.lbPlugInDataXmlBreaksXsdSchema.Location = new System.Drawing.Point(173, 4);
+            this.lbPlugInDataXmlBreaksXsdSchema.Location = new System.Drawing.Point(18, 4);
             this.lbPlugInDataXmlBreaksXsdSchema.Name = "lbPlugInDataXmlBreaksXsdSchema";
             this.lbPlugInDataXmlBreaksXsdSchema.Size = new System.Drawing.Size(168, 25);
             this.lbPlugInDataXmlBreaksXsdSchema.TabIndex = 25;
@@ -556,7 +636,7 @@ namespace Owasp.VulnReport.ascx
             // 
             this.btSavePlugInData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSavePlugInData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSavePlugInData.Location = new System.Drawing.Point(460, 5);
+            this.btSavePlugInData.Location = new System.Drawing.Point(305, 5);
             this.btSavePlugInData.Name = "btSavePlugInData";
             this.btSavePlugInData.Size = new System.Drawing.Size(120, 22);
             this.btSavePlugInData.TabIndex = 26;
@@ -565,31 +645,54 @@ namespace Owasp.VulnReport.ascx
             // 
             // tpPluginExecutionOutput_TextBoxAndWebBrowser
             // 
-            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Controls.Add(this.label5);
-            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Controls.Add(this.label1);
-            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Controls.Add(this.wbPluginExecution_OutputWebBrowser);
-            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Controls.Add(this.tbPluginExecution_OutputTextBox);
+            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Controls.Add(this.splitContainer3);
             this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Location = new System.Drawing.Point(4, 22);
             this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Name = "tpPluginExecutionOutput_TextBoxAndWebBrowser";
             this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Size = new System.Drawing.Size(600, 301);
+            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Size = new System.Drawing.Size(475, 359);
             this.tpPluginExecutionOutput_TextBoxAndWebBrowser.TabIndex = 1;
             this.tpPluginExecutionOutput_TextBoxAndWebBrowser.Text = "Output - TextBox And WebBrowser";
             this.tpPluginExecutionOutput_TextBoxAndWebBrowser.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // splitContainer3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 169);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Output: WebBrowser";
+            this.splitContainer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 2);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.tbPluginExecution_OutputTextBox);
+            this.splitContainer3.Panel1.Controls.Add(this.label1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.wbPluginExecution_OutputWebBrowser);
+            this.splitContainer3.Panel2.Controls.Add(this.label5);
+            this.splitContainer3.Size = new System.Drawing.Size(475, 357);
+            this.splitContainer3.SplitterDistance = 95;
+            this.splitContainer3.TabIndex = 3;
+            // 
+            // tbPluginExecution_OutputTextBox
+            // 
+            this.tbPluginExecution_OutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPluginExecution_OutputTextBox.Location = new System.Drawing.Point(14, 23);
+            this.tbPluginExecution_OutputTextBox.Multiline = true;
+            this.tbPluginExecution_OutputTextBox.Name = "tbPluginExecution_OutputTextBox";
+            this.tbPluginExecution_OutputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbPluginExecution_OutputTextBox.Size = new System.Drawing.Size(454, 65);
+            this.tbPluginExecution_OutputTextBox.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Location = new System.Drawing.Point(1, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 2;
@@ -600,27 +703,46 @@ namespace Owasp.VulnReport.ascx
             this.wbPluginExecution_OutputWebBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.wbPluginExecution_OutputWebBrowser.Location = new System.Drawing.Point(17, 189);
+            this.wbPluginExecution_OutputWebBrowser.Location = new System.Drawing.Point(14, 25);
             this.wbPluginExecution_OutputWebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbPluginExecution_OutputWebBrowser.Name = "wbPluginExecution_OutputWebBrowser";
-            this.wbPluginExecution_OutputWebBrowser.Size = new System.Drawing.Size(577, 106);
+            this.wbPluginExecution_OutputWebBrowser.Size = new System.Drawing.Size(454, 226);
             this.wbPluginExecution_OutputWebBrowser.TabIndex = 1;
             // 
-            // tbPluginExecution_OutputTextBox
+            // label5
             // 
-            this.tbPluginExecution_OutputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Output: WebBrowser";
+            // 
+            // tpPluginExecutionOutput_DataGrid
+            // 
+            this.tpPluginExecutionOutput_DataGrid.Controls.Add(this.dgvOutputDataGridView);
+            this.tpPluginExecutionOutput_DataGrid.Location = new System.Drawing.Point(4, 22);
+            this.tpPluginExecutionOutput_DataGrid.Name = "tpPluginExecutionOutput_DataGrid";
+            this.tpPluginExecutionOutput_DataGrid.Padding = new System.Windows.Forms.Padding(3);
+            this.tpPluginExecutionOutput_DataGrid.Size = new System.Drawing.Size(475, 359);
+            this.tpPluginExecutionOutput_DataGrid.TabIndex = 2;
+            this.tpPluginExecutionOutput_DataGrid.Text = "Output - DataGrid";
+            this.tpPluginExecutionOutput_DataGrid.UseVisualStyleBackColor = true;
+            // 
+            // dgvOutputDataGridView
+            // 
+            this.dgvOutputDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPluginExecution_OutputTextBox.Location = new System.Drawing.Point(17, 23);
-            this.tbPluginExecution_OutputTextBox.Multiline = true;
-            this.tbPluginExecution_OutputTextBox.Name = "tbPluginExecution_OutputTextBox";
-            this.tbPluginExecution_OutputTextBox.Size = new System.Drawing.Size(577, 142);
-            this.tbPluginExecution_OutputTextBox.TabIndex = 0;
+            this.dgvOutputDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOutputDataGridView.Location = new System.Drawing.Point(3, 2);
+            this.dgvOutputDataGridView.Name = "dgvOutputDataGridView";
+            this.dgvOutputDataGridView.Size = new System.Drawing.Size(468, 354);
+            this.dgvOutputDataGridView.TabIndex = 0;
             // 
             // tpEditPlugIn
             // 
-            this.tpEditPlugIn.Controls.Add(this.dgvPluginSettings);
-            this.tpEditPlugIn.Controls.Add(this.label7);
-            this.tpEditPlugIn.Controls.Add(this.label6);
+            this.tpEditPlugIn.Controls.Add(this.splitContainer4);
             this.tpEditPlugIn.Controls.Add(this.lbPhraseNotFound);
             this.tpEditPlugIn.Controls.Add(this.lbFind);
             this.tpEditPlugIn.Controls.Add(this.txtTextToFind);
@@ -628,7 +750,6 @@ namespace Owasp.VulnReport.ascx
             this.tpEditPlugIn.Controls.Add(this.btPlugInCompile);
             this.tpEditPlugIn.Controls.Add(this.lbUnsavedData);
             this.tpEditPlugIn.Controls.Add(this.btSavePlugIn);
-            this.tpEditPlugIn.Controls.Add(this.tecPlugIns_Action);
             this.tpEditPlugIn.Controls.Add(this.txtNewPlugInName);
             this.tpEditPlugIn.Controls.Add(this.btDeletePlugIn);
             this.tpEditPlugIn.Controls.Add(this.label2);
@@ -637,45 +758,68 @@ namespace Owasp.VulnReport.ascx
             this.tpEditPlugIn.Controls.Add(this.lbPlugInFileSaved);
             this.tpEditPlugIn.Location = new System.Drawing.Point(4, 22);
             this.tpEditPlugIn.Name = "tpEditPlugIn";
-            this.tpEditPlugIn.Size = new System.Drawing.Size(816, 334);
+            this.tpEditPlugIn.Size = new System.Drawing.Size(723, 400);
             this.tpEditPlugIn.TabIndex = 0;
             this.tpEditPlugIn.Text = "Edit Plug-In";
             this.tpEditPlugIn.Visible = false;
             // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer4.Location = new System.Drawing.Point(159, 33);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.dgvPluginSettings);
+            this.splitContainer4.Panel1.Controls.Add(this.label7);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.tecPlugIns_Action);
+            this.splitContainer4.Panel2.Controls.Add(this.label6);
+            this.splitContainer4.Size = new System.Drawing.Size(556, 323);
+            this.splitContainer4.SplitterDistance = 96;
+            this.splitContainer4.TabIndex = 41;
+            // 
             // dgvPluginSettings
             // 
             this.dgvPluginSettings.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvPluginSettings.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
-            this.dgvPluginSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvPluginSettings.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPluginSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPluginSettings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPluginSettings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cName,
             this.cValue});
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPluginSettings.DefaultCellStyle = dataGridViewCellStyle17;
-            this.dgvPluginSettings.Location = new System.Drawing.Point(177, 35);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPluginSettings.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPluginSettings.Location = new System.Drawing.Point(20, 17);
             this.dgvPluginSettings.Name = "dgvPluginSettings";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPluginSettings.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPluginSettings.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPluginSettings.RowHeadersWidth = 15;
             this.dgvPluginSettings.RowTemplate.Height = 15;
-            this.dgvPluginSettings.Size = new System.Drawing.Size(631, 129);
+            this.dgvPluginSettings.Size = new System.Drawing.Size(529, 72);
             this.dgvPluginSettings.TabIndex = 40;
-            this.dgvPluginSettings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPluginSettings_CellContentClick);
             // 
             // cName
             // 
@@ -692,16 +836,31 @@ namespace Owasp.VulnReport.ascx
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(158, 19);
+            this.label7.Location = new System.Drawing.Point(1, 1);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 13);
             this.label7.TabIndex = 39;
             this.label7.Text = "Plugin Settings";
             // 
+            // tecPlugIns_Action
+            // 
+            this.tecPlugIns_Action.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tecPlugIns_Action.Location = new System.Drawing.Point(7, 17);
+            this.tecPlugIns_Action.Name = "tecPlugIns_Action";
+            this.tecPlugIns_Action.ShowEOLMarkers = true;
+            this.tecPlugIns_Action.ShowSpaces = true;
+            this.tecPlugIns_Action.ShowTabs = true;
+            this.tecPlugIns_Action.ShowVRuler = true;
+            this.tecPlugIns_Action.Size = new System.Drawing.Size(542, 199);
+            this.tecPlugIns_Action.TabIndex = 4;
+            this.tecPlugIns_Action.Enter += new System.EventHandler(this.tecPlugIns_Enter);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(158, 167);
+            this.label6.Location = new System.Drawing.Point(5, 1);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 13);
             this.label6.TabIndex = 39;
@@ -711,7 +870,7 @@ namespace Owasp.VulnReport.ascx
             // 
             this.lbPhraseNotFound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbPhraseNotFound.ForeColor = System.Drawing.Color.Red;
-            this.lbPhraseNotFound.Location = new System.Drawing.Point(358, 308);
+            this.lbPhraseNotFound.Location = new System.Drawing.Point(358, 374);
             this.lbPhraseNotFound.Name = "lbPhraseNotFound";
             this.lbPhraseNotFound.Size = new System.Drawing.Size(296, 24);
             this.lbPhraseNotFound.TabIndex = 38;
@@ -721,7 +880,7 @@ namespace Owasp.VulnReport.ascx
             // lbFind
             // 
             this.lbFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbFind.Location = new System.Drawing.Point(157, 307);
+            this.lbFind.Location = new System.Drawing.Point(157, 373);
             this.lbFind.Name = "lbFind";
             this.lbFind.Size = new System.Drawing.Size(40, 16);
             this.lbFind.TabIndex = 37;
@@ -730,7 +889,7 @@ namespace Owasp.VulnReport.ascx
             // txtTextToFind
             // 
             this.txtTextToFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtTextToFind.Location = new System.Drawing.Point(197, 304);
+            this.txtTextToFind.Location = new System.Drawing.Point(197, 370);
             this.txtTextToFind.Name = "txtTextToFind";
             this.txtTextToFind.Size = new System.Drawing.Size(96, 20);
             this.txtTextToFind.TabIndex = 35;
@@ -739,7 +898,7 @@ namespace Owasp.VulnReport.ascx
             // btFindText
             // 
             this.btFindText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btFindText.Location = new System.Drawing.Point(309, 304);
+            this.btFindText.Location = new System.Drawing.Point(309, 370);
             this.btFindText.Name = "btFindText";
             this.btFindText.Size = new System.Drawing.Size(48, 20);
             this.btFindText.TabIndex = 36;
@@ -749,7 +908,7 @@ namespace Owasp.VulnReport.ascx
             // btPlugInCompile
             // 
             this.btPlugInCompile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btPlugInCompile.Location = new System.Drawing.Point(664, 299);
+            this.btPlugInCompile.Location = new System.Drawing.Point(571, 365);
             this.btPlugInCompile.Name = "btPlugInCompile";
             this.btPlugInCompile.Size = new System.Drawing.Size(144, 24);
             this.btPlugInCompile.TabIndex = 29;
@@ -761,7 +920,7 @@ namespace Owasp.VulnReport.ascx
             this.lbUnsavedData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbUnsavedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUnsavedData.ForeColor = System.Drawing.Color.Red;
-            this.lbUnsavedData.Location = new System.Drawing.Point(592, 5);
+            this.lbUnsavedData.Location = new System.Drawing.Point(499, 5);
             this.lbUnsavedData.Name = "lbUnsavedData";
             this.lbUnsavedData.Size = new System.Drawing.Size(112, 24);
             this.lbUnsavedData.TabIndex = 27;
@@ -773,32 +932,17 @@ namespace Owasp.VulnReport.ascx
             // 
             this.btSavePlugIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSavePlugIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSavePlugIn.Location = new System.Drawing.Point(712, 4);
+            this.btSavePlugIn.Location = new System.Drawing.Point(619, 4);
             this.btSavePlugIn.Name = "btSavePlugIn";
             this.btSavePlugIn.Size = new System.Drawing.Size(96, 24);
             this.btSavePlugIn.TabIndex = 26;
             this.btSavePlugIn.Text = "Save Plug-In ";
             this.btSavePlugIn.Click += new System.EventHandler(this.btSavePlugIn_Click);
             // 
-            // tecPlugIns_Action
-            // 
-            this.tecPlugIns_Action.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tecPlugIns_Action.Location = new System.Drawing.Point(160, 183);
-            this.tecPlugIns_Action.Name = "tecPlugIns_Action";
-            this.tecPlugIns_Action.ShowEOLMarkers = true;
-            this.tecPlugIns_Action.ShowSpaces = true;
-            this.tecPlugIns_Action.ShowTabs = true;
-            this.tecPlugIns_Action.ShowVRuler = true;
-            this.tecPlugIns_Action.Size = new System.Drawing.Size(648, 110);
-            this.tecPlugIns_Action.TabIndex = 4;
-            this.tecPlugIns_Action.Enter += new System.EventHandler(this.tecPlugIns_Enter);
-            // 
             // txtNewPlugInName
             // 
             this.txtNewPlugInName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNewPlugInName.Location = new System.Drawing.Point(8, 270);
+            this.txtNewPlugInName.Location = new System.Drawing.Point(8, 336);
             this.txtNewPlugInName.Name = "txtNewPlugInName";
             this.txtNewPlugInName.Size = new System.Drawing.Size(72, 20);
             this.txtNewPlugInName.TabIndex = 3;
@@ -806,7 +950,7 @@ namespace Owasp.VulnReport.ascx
             // btDeletePlugIn
             // 
             this.btDeletePlugIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btDeletePlugIn.Location = new System.Drawing.Point(8, 299);
+            this.btDeletePlugIn.Location = new System.Drawing.Point(8, 365);
             this.btDeletePlugIn.Name = "btDeletePlugIn";
             this.btDeletePlugIn.Size = new System.Drawing.Size(136, 24);
             this.btDeletePlugIn.TabIndex = 2;
@@ -828,14 +972,14 @@ namespace Owasp.VulnReport.ascx
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAvailablePlugIns.Location = new System.Drawing.Point(8, 32);
             this.lbAvailablePlugIns.Name = "lbAvailablePlugIns";
-            this.lbAvailablePlugIns.Size = new System.Drawing.Size(136, 212);
+            this.lbAvailablePlugIns.Size = new System.Drawing.Size(136, 277);
             this.lbAvailablePlugIns.TabIndex = 0;
             this.lbAvailablePlugIns.SelectedIndexChanged += new System.EventHandler(this.lbAvailablePlugIns_SelectedIndexChanged);
             // 
             // btCreateNewPlugIn
             // 
             this.btCreateNewPlugIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btCreateNewPlugIn.Location = new System.Drawing.Point(88, 270);
+            this.btCreateNewPlugIn.Location = new System.Drawing.Point(88, 336);
             this.btCreateNewPlugIn.Name = "btCreateNewPlugIn";
             this.btCreateNewPlugIn.Size = new System.Drawing.Size(56, 20);
             this.btCreateNewPlugIn.TabIndex = 2;
@@ -847,7 +991,7 @@ namespace Owasp.VulnReport.ascx
             this.lbPlugInFileSaved.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPlugInFileSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPlugInFileSaved.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbPlugInFileSaved.Location = new System.Drawing.Point(576, 6);
+            this.lbPlugInFileSaved.Location = new System.Drawing.Point(483, 6);
             this.lbPlugInFileSaved.Name = "lbPlugInFileSaved";
             this.lbPlugInFileSaved.Size = new System.Drawing.Size(136, 24);
             this.lbPlugInFileSaved.TabIndex = 28;
@@ -875,82 +1019,15 @@ namespace Owasp.VulnReport.ascx
             this.txtDebugMessages.Size = new System.Drawing.Size(637, 105);
             this.txtDebugMessages.TabIndex = 6;
             // 
-            // tpPluginExecutionOutput_DataGrid
+            // lbCompilePlugIn_CompilationErrors
             // 
-            this.tpPluginExecutionOutput_DataGrid.Controls.Add(this.dgvOutputDataGridView);
-            this.tpPluginExecutionOutput_DataGrid.Location = new System.Drawing.Point(4, 22);
-            this.tpPluginExecutionOutput_DataGrid.Name = "tpPluginExecutionOutput_DataGrid";
-            this.tpPluginExecutionOutput_DataGrid.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPluginExecutionOutput_DataGrid.Size = new System.Drawing.Size(490, 359);
-            this.tpPluginExecutionOutput_DataGrid.TabIndex = 2;
-            this.tpPluginExecutionOutput_DataGrid.Text = "Output - DataGrid";
-            this.tpPluginExecutionOutput_DataGrid.UseVisualStyleBackColor = true;
-            // 
-            // dgvOutputDataGridView
-            // 
-            this.dgvOutputDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvOutputDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOutputDataGridView.Location = new System.Drawing.Point(3, 2);
-            this.dgvOutputDataGridView.Name = "dgvOutputDataGridView";
-            this.dgvOutputDataGridView.Size = new System.Drawing.Size(483, 354);
-            this.dgvOutputDataGridView.TabIndex = 0;
-            // 
-            // cboxPlugRunParam_DataGrid
-            // 
-            this.cboxPlugRunParam_DataGrid.AutoSize = true;
-            this.cboxPlugRunParam_DataGrid.Location = new System.Drawing.Point(9, 149);
-            this.cboxPlugRunParam_DataGrid.Name = "cboxPlugRunParam_DataGrid";
-            this.cboxPlugRunParam_DataGrid.Size = new System.Drawing.Size(68, 17);
-            this.cboxPlugRunParam_DataGrid.TabIndex = 6;
-            this.cboxPlugRunParam_DataGrid.Text = "DataGrid";
-            this.cboxPlugRunParam_DataGrid.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tcPluginsDataAndExecution);
-            this.splitContainer1.Size = new System.Drawing.Size(717, 394);
-            this.splitContainer1.SplitterDistance = 209;
-            this.splitContainer1.TabIndex = 39;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer2.Location = new System.Drawing.Point(1, 1);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.lbPlugInXmlFiles);
-            this.splitContainer2.Panel1.Controls.Add(this.cbCurrentPlugIns);
-            this.splitContainer2.Panel1.Controls.Add(this.btReloadPluginData);
-            this.splitContainer2.Panel1.Controls.Add(this.btExecuteAction);
-            this.splitContainer2.Panel1.Controls.Add(this.txtPlugInArguments);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.gbPlugInActions);
-            this.splitContainer2.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(205, 396);
-            this.splitContainer2.SplitterDistance = 137;
-            this.splitContainer2.TabIndex = 0;
+            this.lbCompilePlugIn_CompilationErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCompilePlugIn_CompilationErrors.ForeColor = System.Drawing.Color.Red;
+            this.lbCompilePlugIn_CompilationErrors.Location = new System.Drawing.Point(102, 30);
+            this.lbCompilePlugIn_CompilationErrors.Name = "lbCompilePlugIn_CompilationErrors";
+            this.lbCompilePlugIn_CompilationErrors.Size = new System.Drawing.Size(124, 18);
+            this.lbCompilePlugIn_CompilationErrors.TabIndex = 7;
+            this.lbCompilePlugIn_CompilationErrors.Text = "Compilation Errors";
             // 
             // ascxPlugIns
             // 
@@ -962,28 +1039,36 @@ namespace Owasp.VulnReport.ascx
             this.Load += new System.EventHandler(this.ascxPlugIns_Load);
             this.tabControl1.ResumeLayout(false);
             this.tpPlugIn.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.ResumeLayout(false);
             this.gbPlugInActions.ResumeLayout(false);
             this.gbPlugInActions.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tcPluginsDataAndExecution.ResumeLayout(false);
             this.tpPlugIndata.ResumeLayout(false);
             this.tpPlugIndata.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axAuthentic_Plugin)).EndInit();
             this.tpPluginExecutionOutput_TextBoxAndWebBrowser.ResumeLayout(false);
-            this.tpPluginExecutionOutput_TextBoxAndWebBrowser.PerformLayout();
-            this.tpEditPlugIn.ResumeLayout(false);
-            this.tpEditPlugIn.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPluginSettings)).EndInit();
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            this.splitContainer3.Panel2.PerformLayout();
+            this.splitContainer3.ResumeLayout(false);
             this.tpPluginExecutionOutput_DataGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutputDataGridView)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.ResumeLayout(false);
+            this.tpEditPlugIn.ResumeLayout(false);
+            this.tpEditPlugIn.PerformLayout();
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel1.PerformLayout();
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
+            this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPluginSettings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1269,13 +1354,14 @@ namespace Owasp.VulnReport.ascx
                         break;
                 }
                 lbUnsavedPlugIndata.Visible = false;
-                txtPlugInArguments.Text = strFullPathToXmlFile;
-                if (false == axAuthentic_Plugin.Visible) // which will only happen if there was a problem loading the XML file
+                
+                if (false == axAuthentic_Plugin.Visible && false == rtbPlugInData.Visible ) // which will only happen if there was a problem loading the XML file
                     utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, string.Format("Could not file files to load. Make sure that the SPS, XML and XSD are all there"));
                 try
                 {
                     // Verify file against schema but don't show MessageBox
                     new utils.xml.xsdVerification(this.strFullPathToXmlFile, this.strFullPathToXsdFile, lbPlugInDataXmlBreaksXsdSchema, false);
+                    checkForDynamicCode();
                 }
                 catch (Exception ex)
                 {
@@ -1287,7 +1373,7 @@ namespace Owasp.VulnReport.ascx
 
         private void btExecuteAction_Click(object sender, System.EventArgs e)
         {
-            utils.scriptHost.compileAndExecuteSourceCode(strActionSourceCode, txtPlugInArguments.Text, strReferenceAssemblies);
+            utils.scriptHost.compileAndExecuteSourceCode(strActionSourceCode, this.strFullPathToXmlFile, this.strReferenceAssemblies);
         }
 
         private void ascxPlugIns_Load(object sender, System.EventArgs e)
@@ -1470,34 +1556,57 @@ namespace Owasp.VulnReport.ascx
         }
 
         private void btCompilePlugIn_Click(object sender, EventArgs e)
-        {
+        {            
+            btCompilePlugIn.Enabled = false;
+            cbPlugin_Actions.Enabled = false;
+            btPlugInRunSelectecAction.Enabled = false;
+            lbCompilePlugIn_CompilationErrors.Visible = false;
             loadXmlFileAndPopulateVars();
             //CompileAndExecuteRoutine asyncDelegate = new CompileAndExecuteRoutine(this.CompileAndExecute);
             //IAsyncResult result = asyncDelegate.BeginInvoke(fileName, newargs, strReferenceAssembliesToAdd, this, null, null);
-
-            crSelectedPluginAction_CompilerResults = utils.scriptHost.compileAndReturnCompilerResults(strActionSourceCode, strReferenceAssemblies);
+            checkForDynamicCode();
+            addDynamicCode();
+            string strCompilerErrors = "";
+            crSelectedPluginAction_CompilerResults = utils.scriptHost.compileAndReturnCompilerResults(strActionSourceCode, strReferenceAssemblies, ref strCompilerErrors);
             if (crSelectedPluginAction_CompilerResults == null)
-                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, "Compilation Errors"); 
+            {
+                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, string.Format("Compilation Errors :" + Environment.NewLine + "{0}", strCompilerErrors));
+                btCompilePlugIn.Enabled = true;                     // only enable this one
+                lbCompilePlugIn_CompilationErrors.Visible = true;   // and show this one
+                return;
+            }
             else
             {
-                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, "Compilation OK, Populating Combo box with available methods"); 
+                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, "Compilation OK, Populating Combo box with available methods");
+                string strCurrentCbPlugInSection = cbPlugin_Actions.Text;
                 cbPlugin_Actions.Items.Clear();
                 foreach (Type tType in crSelectedPluginAction_CompilerResults.CompiledAssembly.GetTypes())
                     foreach (MethodInfo miMethodInfo in tType.GetMethods())
                         switch (miMethodInfo.Name)
-                        { 
+                        {
                             case "ToString":        // ignore these since they exist in every class
                             case "GetType":
                             case "GetHashCode":
                             case "Equals":
+                            case "GetTypeCode":
+                            case "CompareTo":
                                 break;
                             default:
                                 cbPlugin_Actions.Items.Add(miMethodInfo.Name);
                                 break;
                         }
                 if (cbPlugin_Actions.Items.Count > 0)
-                    cbPlugin_Actions.SelectedIndex = 0;
+                {
+                    cbPlugin_Actions.SelectedIndex = 0; // default to the firs one
+                    foreach (string strItem in cbPlugin_Actions.Items)   // but if still there use the previous selection 
+                        if (strItem == strCurrentCbPlugInSection)
+                            cbPlugin_Actions.Text = strCurrentCbPlugInSection;
+
+                }
             }
+            btCompilePlugIn.Enabled = true;
+            cbPlugin_Actions.Enabled = true;
+            btPlugInRunSelectecAction.Enabled = true;
         }
 
         private void btPlugInRunSelectecAction_Click(object sender, EventArgs e)
@@ -1506,26 +1615,31 @@ namespace Owasp.VulnReport.ascx
 
 //            DataGridViewColumn asd = new DataGridViewColumn();
  //           asd.CellTemplate = asd.DataGridView();
+            btPlugInRunSelectecAction.Enabled = false;
             if (null == crSelectedPluginAction_CompilerResults)      // if this plugin has not been compiled
             {
                 btCompilePlugIn_Click(null,null);                    // try to compiler it
                 if (null == crSelectedPluginAction_CompilerResults)  // and try again (if this fail is because there is an error in the compilation
                 {
-                    utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, "Error: no plug-in compiled");
+                    utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, "Error: no plug-in compiled");                    
                     return;
     }
             }
+            utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, string.Format("Execution action {0}",cbPlugin_Actions.Text));
             // Get the Type of the class to reflect
             Type[] tTypesFromCurrentAssembly = crSelectedPluginAction_CompilerResults.CompiledAssembly.GetTypes();
-            if (tTypesFromCurrentAssembly.Length != 1)
+            if (tTypesFromCurrentAssembly.Length == 0)
             {
-                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, "Error in btPlugInRunSelectecAction_Click: currently only one Type in tTypesFromCurrentAssembly is supported");
-                return;
-            }
+                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, "Error in btPlugInRunSelectecAction_Click: No Types (i.e. classes) in current plug-in code");                
+                return; }
+            if (tTypesFromCurrentAssembly.Length > 1)
+                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, "Note: More that one Type detected in the current Plug-in, only the first one will be processed ");
             // Calculate the params:
             List<object> loParameters = new List<object>();
             if (true == cboxPlugRunParam_DebugTextBox.Checked)
                 loParameters.Add(txtDebugMessages);
+            if (true == cboxPlugRunParam_SelectedXmlFile.Checked)
+                loParameters.Add(strFullPathToXmlFile);
             if (true == cboxPlugRunParam_WebBrowser.Checked)
                 loParameters.Add(wbPluginExecution_OutputWebBrowser);
             if (true == cboxPlugRunParam_TextBox.Checked)
@@ -1559,12 +1673,62 @@ namespace Owasp.VulnReport.ascx
                     utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, string.Format("  Inner Exception: {0}", ex.InnerException.Message));
             }
             // check for results            
+            btPlugInRunSelectecAction.Enabled = true;
             
         }
 
-        private void dgvPluginSettings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void checkForDynamicCode()
         {
+            btCompilePlugIn.Enabled = false;
+            cbPlugin_Actions.Enabled = false;
+            btPlugInRunSelectecAction.Enabled = false;
+            lbCompilePlugIn_CompilationErrors.Visible = false;
+            XmlDocument xdLoadedPlugin = new XmlDocument();
+            xdLoadedPlugin.Load(this.strFullPathToXmlFile);
+            xnlDynamicCode = xdLoadedPlugin.GetElementsByTagName("DynamicCode");
+            if (0 == xnlDynamicCode.Count)
+            {
+                lbDynamicCodeDetected.Visible = false;                
+            }
+            else
+            {
+                lbDynamicCodeDetected.Visible = true;
+                btCompilePlugIn.Enabled = true;                
+            }
 
+        }
+
+        private void addDynamicCode()
+        {
+            string strKeywordsToUseToInsertDynamicCode = "public static void Main(string[] args)";
+            string strDefaultParamsInDynamicMethod = "TextBox txtDebugTextBox, string strSelectedPlugInXmlFileName, WebBrowser wbOutputWebBrowser, TextBox txtOutputTextBox, DataGridView dbgOutputDataGrid";
+            if (this.strActionSourceCode.IndexOf(strKeywordsToUseToInsertDynamicCode) == -1)
+            {
+                utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, string.Format(" -- Error in addDynamicCode, could not find 'Keywords To Use To Insert Dynamic Code': {0}", strKeywordsToUseToInsertDynamicCode));
+                return;
+            }
+
+            if (xnlDynamicCode.Count > 0)
+            {
+                foreach (XmlNode xnDynamicCode in xnlDynamicCode)
+                { 
+                    string strEnabled = xnDynamicCode.Attributes["Enabled"].Value;
+                    string strMethodName = xnDynamicCode["Name"].InnerText;
+                    string strCode = xnDynamicCode["Code"].InnerText;
+                    if (null == strEnabled || null == strMethodName || null == strCode)                    
+                        utils.windowsForms.addMessageToTextBox_top(txtDebugMessages,string.Format("Error in DynamicCode row, the 'Enabled', 'Name' and 'Code' fields are mandatory"));                        
+                    else
+                    {
+                        string strCSharpMethodSignature = string.Format(Environment.NewLine + " public static void {0}({1})", strMethodName, strDefaultParamsInDynamicMethod);
+                        string strCSharpMethodBody = "{ " + Environment.NewLine + strCode + Environment.NewLine + "}" + Environment.NewLine + Environment.NewLine;
+                        // Insert Code
+                        this.strActionSourceCode = this.strActionSourceCode.Replace(strKeywordsToUseToInsertDynamicCode, strCSharpMethodSignature + strCSharpMethodBody + strKeywordsToUseToInsertDynamicCode);
+                        utils.windowsForms.addMessageToTextBox_top(txtDebugMessages, string.Format(" * Dynamic Method added : {0}",strCSharpMethodSignature));
+
+                        //MessageBox.Show(strCSharpMethodSignature + strCSharpMethodBody);
+                    }
+                }
+            }
         }
 
     }

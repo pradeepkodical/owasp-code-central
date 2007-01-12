@@ -71,6 +71,12 @@ namespace Owasp.VulnReport.utils
             string strXmlValidationResult = "";
             bool bNoVerificationErrors = false;
 
+            public xsdVerification(string strPathToFileToValidate, string strSchemaToUse)
+            {
+                this.verifyXmlFile(strPathToFileToValidate, strSchemaToUse);
+                // note the results are in this strXmlValidationResult
+            }                                    
+
             public xsdVerification(string strPathToFileToValidate, string strSchemaToUse, Label lbLabelToSet, bool bShowMessageBox)
             {
                 if (true == bShowMessageBox)
