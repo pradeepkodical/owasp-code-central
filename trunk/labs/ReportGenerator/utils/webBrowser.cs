@@ -20,7 +20,8 @@ namespace Owasp.VulnReport.utils
 		}
 
         public static void openFileInWebBrowser(WebBrowser wbWBtoUse, string strPathToFileToOpen)
-        {            
+        {
+            wbWBtoUse.Visible = true;
             wbWBtoUse.Navigate(strPathToFileToOpen);
         }
 	}

@@ -36,16 +36,15 @@ namespace Owasp.VulnReport.ascx
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox cbFopXsltToUse;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.ComboBox cbReportFileEngine;
-		private AxSHDocVw.AxWebBrowser axWebBrowser_WithXslResult;
+        private System.Windows.Forms.ComboBox cbReportFileEngine;
 		private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cbReportExtension;
         private Button btCreateAndShowConsolidatedXmlFile;
         private Label label3;
+        private WebBrowser wbReportOutput;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
-		private System.ComponentModel.Container components = null;
 
 		public ascxReportPdf()
 		{
@@ -58,22 +57,13 @@ namespace Owasp.VulnReport.ascx
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
-			if( disposing )
-			{
-				axWebBrowser_WithXslResult.Dispose();
-				axWebBrowser_WithXslResult.ContainingControl = null;
-				if(null != axWebBrowser_WithXslResult && null != components )
-				{
-					components.Dispose();
-				}
-			}
 			base.Dispose( disposing );	
 		}
 
 
 		public void loadProjectData(string strProjectToLoad)
 		{
-			axWebBrowser_WithXslResult.Visible=false;
+			wbReportOutput.Visible=false;
 			this.strPathToProjectFiles  = upCurrentUser.ProjectFilesPath;
 			this.strCurrentProject = strProjectToLoad;
 			this.strFullPathToCurrentProject = Path.GetFullPath(Path.Combine(strPathToProjectFiles, strCurrentProject));																		
@@ -89,7 +79,6 @@ namespace Owasp.VulnReport.ascx
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ascxReportPdf));
             this.cbShowFopResults = new System.Windows.Forms.CheckBox();
             this.txtDebugMessages = new System.Windows.Forms.TextBox();
             this.btGeneratePdf = new System.Windows.Forms.Button();
@@ -100,13 +89,12 @@ namespace Owasp.VulnReport.ascx
             this.label1 = new System.Windows.Forms.Label();
             this.cbFopXsltToUse = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.axWebBrowser_WithXslResult = new AxSHDocVw.AxWebBrowser();
             this.cbReportFileEngine = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cbReportExtension = new System.Windows.Forms.ComboBox();
             this.btCreateAndShowConsolidatedXmlFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser_WithXslResult)).BeginInit();
+            this.wbReportOutput = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // cbShowFopResults
@@ -203,17 +191,6 @@ namespace Owasp.VulnReport.ascx
             this.label2.TabIndex = 21;
             this.label2.Text = "Step 2)";
             // 
-            // axWebBrowser_WithXslResult
-            // 
-            this.axWebBrowser_WithXslResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.axWebBrowser_WithXslResult.Enabled = true;
-            this.axWebBrowser_WithXslResult.Location = new System.Drawing.Point(8, 56);
-            this.axWebBrowser_WithXslResult.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWebBrowser_WithXslResult.OcxState")));
-            this.axWebBrowser_WithXslResult.Size = new System.Drawing.Size(784, 176);
-            this.axWebBrowser_WithXslResult.TabIndex = 23;
-            // 
             // cbReportFileEngine
             // 
             this.cbReportFileEngine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -265,6 +242,17 @@ namespace Owasp.VulnReport.ascx
             this.label3.TabIndex = 28;
             this.label3.Text = "This is the file that is used by the selected XSLT engine";
             // 
+            // wbReportOutput
+            // 
+            this.wbReportOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.wbReportOutput.Location = new System.Drawing.Point(8, 58);
+            this.wbReportOutput.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbReportOutput.Name = "wbReportOutput";
+            this.wbReportOutput.Size = new System.Drawing.Size(783, 176);
+            this.wbReportOutput.TabIndex = 29;
+            // 
             // ascxReportPdf
             // 
             this.Controls.Add(this.label3);
@@ -272,7 +260,6 @@ namespace Owasp.VulnReport.ascx
             this.Controls.Add(this.cbReportExtension);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbReportFileEngine);
-            this.Controls.Add(this.axWebBrowser_WithXslResult);
             this.Controls.Add(this.cbFopXsltToUse);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btJustCreatePdf);
@@ -283,9 +270,9 @@ namespace Owasp.VulnReport.ascx
             this.Controls.Add(this.btGeneratePdf);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.wbReportOutput);
             this.Name = "ascxReportPdf";
             this.Size = new System.Drawing.Size(800, 376);
-            ((System.ComponentModel.ISupportInitialize)(this.axWebBrowser_WithXslResult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -471,7 +458,7 @@ namespace Owasp.VulnReport.ascx
 			string strErrorMessage = utils.xml.returnXmlXslTransformation(stringPathToXMLfile,stringPathToXSLfile,stringPathToTempFile);
 			if (strErrorMessage != "")
 				MessageBox.Show(strErrorMessage);
-			utils.webBrowser.openFileInWebBrowser(axWebBrowser_WithXslResult,stringPathToTempFile);						
+			utils.webBrowser.openFileInWebBrowser(wbReportOutput,stringPathToTempFile);						
 		}
 
 		private void useFopToCreatePdf()
@@ -482,7 +469,7 @@ namespace Owasp.VulnReport.ascx
 			string stringPathToXSL_FO_file = Path.Combine(obpCurrentPaths.XsltLiveProjectsReportPath, cbFopXsltToUse.Text); 
 			bool boolShowFOPResults = cbShowFopResults.Checked;
 			if (utils.FOP.genereteAndCreatePDF( stringPathToTempPdfFile,stringPathToPDFEngine,stringPathToXMLfile,stringPathToXSL_FO_file,boolShowFOPResults, ref bCancelPdfReportGeneration))					
-				utils.webBrowser.openFileInWebBrowser(axWebBrowser_WithXslResult,stringPathToTempPdfFile);						
+				utils.webBrowser.openFileInWebBrowser(wbReportOutput, stringPathToTempPdfFile);						
 		}
 
 		private void addMessageToDebugWindow(string strMessageToAdd)
@@ -546,8 +533,8 @@ namespace Owasp.VulnReport.ascx
         private void btCreateAndShowConsolidatedXmlFile_Click(object sender, EventArgs e)
         {
             createReportXmlFile();
-            axWebBrowser_WithXslResult.Navigate(strFullPathToTempReportXmlFile);
-            axWebBrowser_WithXslResult.Visible = true;
+            wbReportOutput.Navigate(strFullPathToTempReportXmlFile);
+            wbReportOutput.Visible = true;
         }
 
 	}
