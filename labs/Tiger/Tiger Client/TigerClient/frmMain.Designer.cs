@@ -289,22 +289,23 @@ namespace TigerClient
             this.mnuTools.Name = "mnuTools";
             this.mnuTools.Size = new System.Drawing.Size(44, 20);
             this.mnuTools.Text = "&Tools";
+            this.mnuTools.Visible = false;
             // 
             // mnuToolsTemplates
             // 
             this.mnuToolsTemplates.Name = "mnuToolsTemplates";
-            this.mnuToolsTemplates.Size = new System.Drawing.Size(146, 22);
+            this.mnuToolsTemplates.Size = new System.Drawing.Size(152, 22);
             this.mnuToolsTemplates.Text = "&Templates...";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.optionsToolStripMenuItem.Text = "&Options...";
             // 
             // mnuHelp
