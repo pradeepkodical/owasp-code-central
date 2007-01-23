@@ -1,0 +1,444 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5C57FB8A-2D66-4BA5-ADA7-4D3520EDCE11}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TigerClient</RootNamespace>
+    <AssemblyName>TigerClient</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlAdapters\TreeViewAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ControlAdapters\TreeViewAdapter.Designer.cs">
+      <DependentUpon>TreeViewAdapter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\AndControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\AndControl.Designer.cs">
+      <DependentUpon>AndControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\BinaryConditionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\BinaryConditionControl.Designer.cs">
+      <DependentUpon>BinaryConditionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ConditionEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ConditionEditorForm.Designer.cs">
+      <DependentUpon>ConditionEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ConditionEditorSurface.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ConditionEditorSurface.Designer.cs">
+      <DependentUpon>ConditionEditorSurface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ConditionControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ConditionControlBase.Designer.cs">
+      <DependentUpon>ConditionControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ConditionControlWithTextBoxBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ConditionControlWithTextBoxBase.Designer.cs">
+      <DependentUpon>ConditionControlWithTextBoxBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ConditionPlaceholderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ConditionPlaceholderControl.Designer.cs">
+      <DependentUpon>ConditionPlaceholderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ConditionTypeEditor.cs" />
+    <Compile Include="CustomControls\DeleteConditionEventArgs.cs" />
+    <Compile Include="CustomControls\InsertConditionEventArgs.cs" />
+    <Compile Include="CustomControls\OrControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\OrControl.Designer.cs">
+      <DependentUpon>OrControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ResponseBodyContainsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ResponseBodyContainsControl.Designer.cs">
+      <DependentUpon>ResponseBodyContainsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ResponseBodyContainsNotControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ResponseBodyContainsNotControl.Designer.cs">
+      <DependentUpon>ResponseBodyContainsNotControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ResponseBodyContainsRegexControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ResponseBodyContainsRegexControl.Designer.cs">
+      <DependentUpon>ResponseBodyContainsRegexControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ResponseBodyContainsRegexNotControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ResponseBodyContainsRegexNotControl.Designer.cs">
+      <DependentUpon>ResponseBodyContainsRegexNotControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ResponseStatusEqualToControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ResponseStatusEqualToControl.Designer.cs">
+      <DependentUpon>ResponseStatusEqualToControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ResponseStatusNotEqualToControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ResponseStatusNotEqualToControl.Designer.cs">
+      <DependentUpon>ResponseStatusNotEqualToControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ProjectRunnerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ProjectRunnerControl.Designer.cs">
+      <DependentUpon>ProjectRunnerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\TestCompletedEventArgs.cs" />
+    <Compile Include="Document\Alert.cs" />
+    <Compile Include="Document\AlertType.cs" />
+    <Compile Include="Document\Condition\AndCondition.cs" />
+    <Compile Include="Document\Condition\BinaryCondition.cs" />
+    <Compile Include="Document\Condition\ICondition.cs" />
+    <Compile Include="Document\Condition\OrCondition.cs" />
+    <Compile Include="Document\Condition\ResponseBodyContainsCondition.cs" />
+    <Compile Include="Document\Condition\ResponseBodyContainsConditionBase.cs" />
+    <Compile Include="Document\Condition\ResponseBodyContainsNotCondition.cs" />
+    <Compile Include="Document\Condition\ResponseBodyConditionBase.cs" />
+    <Compile Include="Document\Condition\ResponseBodyRegexConditionBase.cs" />
+    <Compile Include="Document\Condition\ResponseBodyRegexMatchCondition.cs" />
+    <Compile Include="Document\Condition\ResponseBodyRegexMatchNotCondition.cs" />
+    <Compile Include="Document\Condition\ResponseStatusCodeConditionBase.cs" />
+    <Compile Include="Document\Condition\ResponseStatusCodeEqualToCondition.cs" />
+    <Compile Include="Document\Condition\ResponseStatusCodeEqualToNotCondition.cs" />
+    <Compile Include="CustomControls\AutomatedTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\AutomatedTestControl.Designer.cs">
+      <DependentUpon>AutomatedTestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\CloseButtonControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ProjectExplorerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ProjectExplorerControl.Designer.cs">
+      <DependentUpon>ProjectExplorerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\PropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\PropertiesControl.Designer.cs">
+      <DependentUpon>PropertiesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\TargetControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\TargetControl.Designer.cs">
+      <DependentUpon>TargetControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\WindowHeaderControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Document\DocumentManager.cs" />
+    <Compile Include="Document\DocumentPart.cs" />
+    <Compile Include="Document\DocumentPartCollection.cs" />
+    <Compile Include="Document\DocumentPartModificationType.cs" />
+    <Compile Include="Document\DocumentPartModifiedEventArgs.cs" />
+    <Compile Include="Document\MethodType.cs" />
+    <Compile Include="Document\TestParameter.cs" />
+    <Compile Include="Document\TestStatusType.cs" />
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewProject.Designer.cs">
+      <DependentUpon>frmNewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\frmReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmReportViewer.Designer.cs">
+      <DependentUpon>frmReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Project.cs" />
+    <Compile Include="Report\ProjectPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\ProjectPage.Designer.cs">
+      <DependentUpon>ProjectPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\frmSingleTestRunner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\frmSingleTestRunner.Designer.cs">
+      <DependentUpon>frmSingleTestRunner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\IdGenerator.cs" />
+    <Compile Include="Document\IDocument.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Document\Project.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlAdapters\TreeViewAdapter.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TreeViewAdapter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\BinaryConditionControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BinaryConditionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\AutomatedTestControl.resx">
+      <DependentUpon>AutomatedTestControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ConditionControlBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConditionControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ConditionControlWithTextBoxBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConditionControlWithTextBoxBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ConditionEditorForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConditionEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ConditionEditorSurface.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConditionEditorSurface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ConditionPlaceholderControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConditionPlaceholderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ProjectExplorerControl.resx">
+      <DependentUpon>ProjectExplorerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\PropertiesControl.resx">
+      <DependentUpon>PropertiesControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\TargetControl.resx">
+      <DependentUpon>TargetControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ProjectRunnerControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProjectRunnerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\WindowHeaderControl.resx">
+      <DependentUpon>WindowHeaderControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewProject.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmNewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmReportViewer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ProjectPage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProjectPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\frmSingleTestRunner.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmSingleTestRunner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmReportWizard.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmReportWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Document\Target.cs" />
+    <Compile Include="Document\AutomatedTest.cs" />
+    <Compile Include="Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\TemplateManager.cs" />
+    <Compile Include="Report\frmReportWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmReportWizard.Designer.cs">
+      <DependentUpon>frmReportWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\IWizard.cs" />
+    <Compile Include="Wizard\IWizardPage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveAllHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Resources\DocumentHS.png" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add Test.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add Parameter.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PropertiesHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add_Target_2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Collapsed.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Expanded.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FormRunHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\busy.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test_succeeded.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test_alert.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test_failed.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_alert.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StopHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orange_flag.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red_flag.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow_flag.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\owasp_logo_small.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\owasp_logo_small2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PrintHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Project Templates\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
