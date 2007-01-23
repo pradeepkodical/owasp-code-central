@@ -1,0 +1,4 @@
+[Enter bug information here, each bug on one line]
+
+- User should not be able to start an empty project [Boris]
+- All commands from the File and Project menus (except for the "Stop" command) should bew disabled when the project is running [Boris]
