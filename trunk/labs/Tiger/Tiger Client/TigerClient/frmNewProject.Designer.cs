@@ -31,10 +31,10 @@ namespace TigerClient
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewProject));
             this.lstTemplates = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnManageTemplates = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // lstTemplates
@@ -52,6 +52,13 @@ namespace TigerClient
             this.lstTemplates.UseCompatibleStateImageBehavior = false;
             this.lstTemplates.DoubleClick += new System.EventHandler(this.lstTemplates_DoubleClick);
             this.lstTemplates.SelectedIndexChanged += new System.EventHandler(this.lstTemplates_SelectedIndexChanged);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "blank_project");
+            this.imageList1.Images.SetKeyName(1, "template");
             // 
             // btnOK
             // 
@@ -85,13 +92,7 @@ namespace TigerClient
             this.btnManageTemplates.TabIndex = 4;
             this.btnManageTemplates.Text = "&Manage Templates...";
             this.btnManageTemplates.UseVisualStyleBackColor = true;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "blank_project");
-            this.imageList1.Images.SetKeyName(1, "template");
+            this.btnManageTemplates.Visible = false;
             // 
             // frmNewProject
             // 
