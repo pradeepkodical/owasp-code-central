@@ -22,6 +22,7 @@ namespace Owasp.VulnReport.ascx
 		private string strPathToTempFileFolder;
         private string strPathToTargetXmlFile;
 
+        private utils.authentic authUtils = new utils.authentic();
 		private System.Windows.Forms.ListBox lbTargetsInCurrentProject;
 		private System.Windows.Forms.Label lbCurrentProject;
 		private System.Windows.Forms.Label label1;
@@ -858,6 +859,15 @@ namespace Owasp.VulnReport.ascx
         private void lbXmlBreaksXsdSchema_Click(object sender, EventArgs e)
         {
             new utils.xml.xsdVerification(strPathToTargetXmlFile, obpPaths.ProjectSchemaPath, lbXmlBreaksXsdSchema, true);
+        }
+
+        public void configVariablesForKeyboardHook()
+        {
+            if ((authUtils.CurrentKeyboardHook == null) || (!authUtils.CurrentKeyboardHook.IsInstalled))
+                authUtils.installKeyboardHookInCurrentThread();
+            authUtils.AuthenticObject = axAuthentic_Targets;
+            authUtils.CurrentControl = (ContainerControl)this;
+
         }
 	}
 }

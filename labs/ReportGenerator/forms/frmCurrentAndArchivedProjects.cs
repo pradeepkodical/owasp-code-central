@@ -502,6 +502,9 @@ namespace Owasp.VulnReport
 		{
 			switch (tbProjectData.SelectedTab.Text )
 			{
+                case "Targets":
+                    ascxTargets.configVariablesForKeyboardHook();
+                    break;
 				case "Findings":
 					ascxFindings.configVariablesForKeyboardHook();									
 					ascxFindings.refreshNextIdToBeAssigned();
