@@ -120,8 +120,7 @@ namespace Owasp.VulnReport.utils
                         if (null != ctrControlWithFocus)
                         {
                             if (ctrControlWithFocus.GetType() == axCurrentAuthenticObject.GetType())
-                                processAuthenticKeyboardEvent((AxXMLSPYPLUGINLib.AxAuthentic)ctrControlWithFocus, cKeyPressed, (utils.LocalWindowsHook)sender);
-                    //        Console.WriteLine(ctrControlWithFocus.Name);
+                                processAuthenticKeyboardEvent((AxXMLSPYPLUGINLib.AxAuthentic)ctrControlWithFocus, cKeyPressed, (utils.LocalWindowsHook)sender);                           
                         }
                         /*
                         object objToProcess = ccCurrentAscxControl.ActiveControl;
@@ -197,6 +196,7 @@ namespace Owasp.VulnReport.utils
             string strClipboardString = utils.clipboard.getStringWithClipboardData();
             // encode clipboard content
             System.IO.MemoryStream msClipboardData = new System.IO.MemoryStream();
+            // populate msClipboardData with strClipboardString contents
             XmlTextWriter xtwClipboardData = new XmlTextWriter(msClipboardData, null);
             xtwClipboardData.WriteString(strClipboardString);
             xtwClipboardData.Close();
@@ -208,7 +208,7 @@ namespace Owasp.VulnReport.utils
             if (strClipboardString.IndexOf(Environment.NewLine) > -1 || strTransformedClipboardString != strClipboardString)
             {
                 authentic.setCurrentSelectedText(axActiveAuthenticControl, strTransformedClipboardString);
-                utils.clipboard.SetClipboardData("");
+                utils.clipboard.SetClipboardData("");   // we have to clean it or the Authentic control will paste the content
             }
             else
                 utils.clipboard.SetClipboardData(strClipboardString); // under normal circuntances there is no need to clear the clipboard and we can just paste the (normalized) string
@@ -221,18 +221,23 @@ namespace Owasp.VulnReport.utils
 				string strNewImageName = Path.GetFullPath(Path.Combine(strPathToSaveClipboardImage, 
                                                                        files.returnUniqueFileName(".jpeg")));
 				files.createDirectoryIfRequired(strNewImageName);
-				if (clipboard.saveClipboardImageAsJpeg(strNewImageName))		
-				{
-					string strNewImageRelativePath = strNewImageName.Replace(strPathToUnzipSelectedFinding,"");	//make the image path relevative so that it works on multiple computers
-					if (strNewImageRelativePath.Substring(0,1) == "\\") 
-						strNewImageRelativePath = strNewImageRelativePath.Substring(1,strNewImageRelativePath.Length-1);
-					authentic.authentic_InsertNewLine(axCurrentAuthenticObject);					// insert new line before image								
-					authentic.authentic_InsertNewLine(axCurrentAuthenticObject);					// insert new line after image		
-					authentic.authentic_GotoPreviousTag(axCurrentAuthenticObject); 				    // goto previews tag (i.e. in between the two new lines)
-					authentic.authentic_InsertImage(axCurrentAuthenticObject, strNewImageRelativePath);	// insert image
-					authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 					    // Moving the cursor forward to the next tag
-					authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 									
-				}
+				if (clipboard.saveClipboardImageAsJpeg(strNewImageName))
+                {
+                    string strNewImageRelativePath = strNewImageName.Replace(strPathToUnzipSelectedFinding, "");	//make the image path relevative so that it works on multiple computers
+                    if (strNewImageRelativePath.Substring(0, 1) == "\\")
+                        strNewImageRelativePath = strNewImageRelativePath.Substring(1, strNewImageRelativePath.Length - 1);
+                    // 5-feb-07:[Dinis]: 
+                    //      I removed these those lines since they where making the copy and paste not work in some ocasions (namely where there was no text selected)
+                    //      The error seemed to be related to a lack of refresh when you add a new element progamatically (in this case we were adding some newlines and then the img
+                    //authentic.authentic_InsertNewLine(axCurrentAuthenticObject);					// insert new line before image								
+                    //authentic.authentic_InsertNewLine(axCurrentAuthenticObject);					// insert new line after image		
+                    //authentic.authentic_GotoPreviousTag(axCurrentAuthenticObject); 				    // goto previews tag (i.e. in between the two new lines)
+                    authentic.authentic_InsertImage(axCurrentAuthenticObject, strNewImageRelativePath);	// insert image
+                    // 5-feb-07:[Dinis]: 
+                    //      See above description
+                    //authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 					    // Moving the cursor forward to the next tag
+                    //authentic.authentic_GotoNextTag(axCurrentAuthenticObject); 									
+                }
 			}
 		}
 
@@ -251,7 +256,68 @@ namespace Owasp.VulnReport.utils
 					strCurrentSelectedControl = "Error in recognizing SPYXMLDataKind";			
 				// apply Gui Funcionality
 				switch (strCurrentSelectedControl)
-				{					
+				{                    
+	                case "value":               // this could be the Target DNS or IP
+                        string strParentControl = axActiveAuthenticControl.AuthenticView.Selection.FirstXMLData.Parent.Name;
+                        if (cKeyPressed == 0x0d)
+                        {
+                            // 05-Feb-07: [Dinis], This is a hack to make the Enter work with the DnsName and IP elements (which use an attribute for its value and don't work in the new version of the Authentic component)
+
+                            // get the value of the current element which should be either DnsValue or IP
+                            string strValueOfCurrentElement = axActiveAuthenticControl.AuthenticView.Selection.FirstXMLData.TextValue ;
+                            // get the parent.parent object which should be a 'Target' Element
+                            XMLSPYPLUGINLib.XMLData xdData = axActiveAuthenticControl.AuthenticView.Selection.FirstXMLData.Parent.Parent;
+                            if (xdData.Name == "Target")
+                            {
+                                // Now we are going to create manually either the 'DnsValue' or the 'IP' Element (the name we need is conveiniently in strParentControl)  
+                                XMLSPYPLUGINLib.XMLData xdXmlDataElement = axActiveAuthenticControl.CreateChild(XMLSPYPLUGINLib.SPYXMLDataKind.spyXMLDataElement);
+                                xdXmlDataElement.Name = strParentControl;
+                                // create the atribute 'value'
+                                XMLSPYPLUGINLib.XMLData xdXmlDataAttribute = axActiveAuthenticControl.CreateChild(XMLSPYPLUGINLib.SPYXMLDataKind.spyXMLDataAttr);
+                                xdXmlDataAttribute.Name = "value";
+                                // add addit it to the xdXmlDataElement
+                                xdXmlDataElement.AppendChild(xdXmlDataAttribute);
+                                // now that we have an 'DnsValue' or 'IP' element ready we need to find the correct location to insert it (note that due to the current xsd you cannot append it at the end)
+                                // Get first Child
+                                XMLSPYPLUGINLib.XMLData xdChild = xdData.GetFirstChild(XMLSPYPLUGINLib.SPYXMLDataKind.spyXMLDataElement);
+                                // and go though all childs until we find the current one
+                                for (int iChildId = 0; iChildId < xdData.CountChildren(); iChildId++)
+                                {
+                                    // at lack of better choise we will use the 'value' attribute to try to fing the location to insert (the only problem will happen if there is a duplicate 'value' (which would be a mistake in this case))
+                                    if (xdChild.Name == strParentControl && getAttributeFromElement(xdChild, "value") == strValueOfCurrentElement)
+                                    {
+                                        // This will place the new Element before the current one
+                                        xdData.InsertChild(xdXmlDataElement);
+                                        // xdData.AppendChild(xdXmlDataElement);   /// this one doesn't work since it all puts it at the end
+                                        break;
+                                    }
+                                    // move to the next child (we need to do this so that the InsertChild works as expected
+                                    if (iChildId < xdData.CountChildren() - 1)            // don't go to the next child if we are on the last one
+                                        xdChild = xdData.GetNextChild();
+                                }
+                            }
+                        }                                             
+                        break;
+                        
+                        switch (strParentControl)
+                        {
+                            case "DnsName":
+                                authentic.authentic_GotoNextTag(axActiveAuthenticControl);
+                                authentic.authentic_GotoNextTag(axActiveAuthenticControl);
+                                authentic.authentic_GotoNextTag(axActiveAuthenticControl);
+                                authentic.authentic_GotoNextTag(axActiveAuthenticControl);
+
+                                ///string strText = 
+                                
+                                string strParentContol2 = axActiveAuthenticControl.AuthenticView.Selection.FirstXMLData.Name;
+
+                                // bool bResulta = authentic.authentic_InsertElementInCurrentSelectionPos_spyAuthenticInsertBefore(axActiveAuthenticControl, "DnsName");
+                                break;
+                            case "IP":
+                                break;
+
+                        }
+                        break;      
 					case "level2":
                     case "level3":
                         checkForCtrlVandInsertDataFromClipboard(axActiveAuthenticControl,cKeyPressed, false);
@@ -270,9 +336,9 @@ namespace Owasp.VulnReport.utils
 						break;
 				}
 			}
-			catch // (Exception ex)
+			catch  (Exception ex)
 			{
-               // MessageBox.Show(ex.Message);      // this was being thrown during normal ORG usage 
+                MessageBox.Show(ex.Message);      // this was being thrown during normal ORG usage 
             }
 		}       
 
@@ -341,10 +407,15 @@ namespace Owasp.VulnReport.utils
             }
 		}
 
-		public static void authentic_InsertElementInCurrentSelectionPos(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject,string strElementToInsert)
+        public static bool authentic_InsertElementInCurrentSelectionPos_spyAuthenticInsertAt(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string strElementToInsert)
 		{
-			bool bResult = axTargetAuthenticObject.AuthenticView.Selection.PerformAction(XMLSPYPLUGINLib.SpyAuthenticActions.spyAuthenticInsertAt,strElementToInsert);
+			return axTargetAuthenticObject.AuthenticView.Selection.PerformAction(XMLSPYPLUGINLib.SpyAuthenticActions.spyAuthenticInsertAt,strElementToInsert);                        
 		}
+
+        public static bool authentic_InsertElementInCurrentSelectionPos_spyAuthenticInsertBefore(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string strElementToInsert)
+        {            
+            return axTargetAuthenticObject.AuthenticView.Selection.PerformAction(XMLSPYPLUGINLib.SpyAuthenticActions.spyAuthenticInsertBefore, strElementToInsert);                       
+        }
 
         /// <summary>
         /// Description: This method is used to add a newline into the specified authentic object
@@ -356,7 +427,7 @@ namespace Owasp.VulnReport.utils
 		public static void authentic_InsertNewLine(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject)
 		{
             XMLSPYPLUGINLib.AuthenticRange ar = axTargetAuthenticObject.AuthenticView.Selection;
-			authentic_InsertElementInCurrentSelectionPos(axTargetAuthenticObject,"newline");
+			authentic_InsertElementInCurrentSelectionPos_spyAuthenticInsertAt(axTargetAuthenticObject,"newline");
             axTargetAuthenticObject.AuthenticView.Selection = ar;
             axTargetAuthenticObject.AuthenticView.Selection =
                 axTargetAuthenticObject.AuthenticView.Selection.GotoNextCursorPosition();
@@ -420,10 +491,20 @@ namespace Owasp.VulnReport.utils
 		}
 		public static void authentic_InsertImage(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string strPathToImage)
 		{
-			authentic_InsertElementInCurrentSelectionPos(axTargetAuthenticObject,"img");
-            if (axTargetAuthenticObject.AuthenticView.Selection.FirstXMLData.Name == "src")
+            if ("" != axTargetAuthenticObject.AuthenticView.Selection.Text)         // if there is some text selected, we have to select the next item
             {
-                axTargetAuthenticObject.AuthenticView.Selection.FirstXMLData.TextValue = strPathToImage;
+                // move this into a method call authentic_ClearCurrentSelection
+                axTargetAuthenticObject.AuthenticView.Selection =
+                    axTargetAuthenticObject.AuthenticView.Selection.GotoNextCursorPosition();
+            }
+           // XMLSPYPLUGINLib.AuthenticRange ar = axTargetAuthenticObject.AuthenticView.Selection;
+            if (true == authentic_InsertElementInCurrentSelectionPos_spyAuthenticInsertBefore(axTargetAuthenticObject, "img") &&
+               (axTargetAuthenticObject.AuthenticView.Selection.FirstXMLData.Name == "src"))
+            {
+                    axTargetAuthenticObject.AuthenticView.Selection.FirstXMLData.TextValue = strPathToImage;
+                    authentic.authentic_GotoNextTag(axTargetAuthenticObject);
+                    // this authentic_GotoNextTag is sort of working since it is removing the focus from the img's src tag entry area, but it is not putting the focus after it
+                    
             }
             else
             {
@@ -434,5 +515,27 @@ namespace Owasp.VulnReport.utils
             }          
 		}
 
+        static XMLSPYPLUGINLib.XMLData findXmlDataRecursively(AxXMLSPYPLUGINLib.AxAuthentic axTargetAuthenticObject, string strElementToFind)
+        {
+            XMLSPYPLUGINLib.XMLData xdXmlData = axTargetAuthenticObject.AuthenticView.WholeDocument.FirstXMLData;
+            while (xdXmlData.Name != strElementToFind)
+            {
+                xdXmlData = xdXmlData.Parent;
+            }
+            return xdXmlData;
+        }
+
+        static string getAttributeFromElement(XMLSPYPLUGINLib.XMLData xnDataToSearch, string strAttributeName)
+        {             
+            if (true == xnDataToSearch.HasChildren)            
+                for( int iChildId = 0; iChildId < xnDataToSearch.CountChildren(); iChildId++)
+                {
+                    XMLSPYPLUGINLib.XMLData xdAttribute = xnDataToSearch.GetChild(iChildId);
+                    if (XMLSPYPLUGINLib.SPYXMLDataKind.spyXMLDataAttr ==  xdAttribute.kind)
+                        if (strAttributeName == xdAttribute.Name)
+                            return xdAttribute.TextValue;
+                }
+            return "";
+        }
 	}
 }
