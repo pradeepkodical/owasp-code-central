@@ -28,12 +28,11 @@ namespace TigerClient.Report
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReportViewer));
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tbtnPrint = new System.Windows.Forms.ToolStripButton();
             this.tbtnSave = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,14 +56,6 @@ namespace TigerClient.Report
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 532);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(711, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // tbtnPrint
             // 
             this.tbtnPrint.Image = global::TigerClient.Properties.Resources.PrintHS;
@@ -76,12 +67,20 @@ namespace TigerClient.Report
             // 
             // tbtnSave
             // 
-            this.tbtnSave.Image = ((System.Drawing.Image)(resources.GetObject("tbtnSave.Image")));
+            this.tbtnSave.Image = global::TigerClient.Properties.Resources.saveHS;
             this.tbtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbtnSave.Name = "tbtnSave";
             this.tbtnSave.Size = new System.Drawing.Size(51, 22);
             this.tbtnSave.Text = "&Save";
             this.tbtnSave.Click += new System.EventHandler(this.tbtnSave_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 532);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(711, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // frmReportViewer
             // 
