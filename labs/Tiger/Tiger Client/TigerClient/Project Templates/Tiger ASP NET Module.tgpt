@@ -3,7 +3,7 @@
   <Name>Tiger ASP.NET Module</Name>
   <Targets>
     <Target>
-      <Path></Path>
+      <Path />
       <AutomatedTests>
         <Test>
           <Parameters />
@@ -32,8 +32,6 @@
               <Message>Successfully executed the 'dir' command.</Message>
               <Type>Red</Type>
               <ResponseBodyContains>
-                <ActualResponseBody>&lt;Alert:Red&gt;
-Successfully executed the 'dir' command using cmd.exe. Return code was '0'.</ActualResponseBody>
                 <Value>&lt;Alert:Red&gt;</Value>
               </ResponseBodyContains>
               <Name>Success</Name>
@@ -42,8 +40,6 @@ Successfully executed the 'dir' command using cmd.exe. Return code was '0'.</Act
               <Message>Succcessfully created the WSH (SWSCRIPT.SHELL) object, but failed to execute the 'dir' command.</Message>
               <Type>Yellow</Type>
               <ResponseBodyContains>
-                <ActualResponseBody>&lt;Alert:Red&gt;
-Successfully executed the 'dir' command using cmd.exe. Return code was '0'.</ActualResponseBody>
                 <Value>&lt;Alert:Yellow&gt;</Value>
               </ResponseBodyContains>
               <Name>WSH Created</Name>
@@ -60,8 +56,6 @@ Successfully executed the 'dir' command using cmd.exe. Return code was '0'.</Act
               <Message>RevertToSelf() API call succeeded, and the identity changed.</Message>
               <Type>Red</Type>
               <ResponseBodyContains>
-                <ActualResponseBody>&lt;Alert:Yellow&gt;
-RevertToSelf() API call succeeded. However, the identity used did not change.</ActualResponseBody>
                 <Value>&lt;Alert:Red&gt;</Value>
               </ResponseBodyContains>
               <Name>Success</Name>
@@ -70,8 +64,6 @@ RevertToSelf() API call succeeded. However, the identity used did not change.</A
               <Message>RevertToSelf() API call succeeded. However, the identity used did not change.</Message>
               <Type>Yellow</Type>
               <ResponseBodyContains>
-                <ActualResponseBody>&lt;Alert:Yellow&gt;
-RevertToSelf() API call succeeded. However, the identity used did not change.</ActualResponseBody>
                 <Value>&lt;Alert:Yellow&gt;</Value>
               </ResponseBodyContains>
               <Name>Identity has not changed</Name>
@@ -88,9 +80,6 @@ RevertToSelf() API call succeeded. However, the identity used did not change.</A
               <Message>Successfully enumerated user accounts.</Message>
               <Type>Red</Type>
               <ResponseBodyContains>
-                <ActualResponseBody>&lt;Alert:Red&gt;
-Successfully enumerated user accounts:
-Administrator, ASPNET, Boris, Guest, HelpAssistant, SQLDebugger, SUPPORT_0cbdf702, SUPPORT_388945a0, Tanja</ActualResponseBody>
                 <Value>&lt;Alert:Red&gt;</Value>
               </ResponseBodyContains>
             </Alert>
@@ -107,15 +96,13 @@ Administrator, ASPNET, Boris, Guest, HelpAssistant, SQLDebugger, SUPPORT_0cbdf70
               <Message>Successfully enumerated shares.</Message>
               <Type>Red</Type>
               <ResponseBodyContains>
-                <ActualResponseBody>&lt;Alert:Red&gt;
-Successfully enumerated shares: E$, IPC$, print$, SharedDocs, ADMIN$, C$, Printer</ActualResponseBody>
                 <Value>&lt;Alert:Red&gt;</Value>
               </ResponseBodyContains>
             </Alert>
           </Alerts>
           <Method>GET</Method>
           <RelativePath>System.Management_Win32_Share.aspx</RelativePath>
-          <Name>System.Management_Win32_Share</Name>
+          <Name>Enumerate shares using WMI</Name>
         </Test>
         <Test>
           <Parameters />
@@ -124,15 +111,13 @@ Successfully enumerated shares: E$, IPC$, print$, SharedDocs, ADMIN$, C$, Printe
               <Message>Successfully enumerated services.</Message>
               <Type>Red</Type>
               <ResponseBodyContains>
-                <ActualResponseBody>&lt;Alert:Red&gt;
-Successfully enumerated 90 services.</ActualResponseBody>
                 <Value>&lt;Alert:Red&gt;</Value>
               </ResponseBodyContains>
             </Alert>
           </Alerts>
           <Method>GET</Method>
           <RelativePath>System.Management_Win32_Service.aspx</RelativePath>
-          <Name>System.Management_Win32_Service</Name>
+          <Name>Enumerate services using WMI</Name>
         </Test>
         <Test>
           <Parameters />
@@ -141,15 +126,127 @@ Successfully enumerated 90 services.</ActualResponseBody>
               <Message>Successfully enumerated processes.</Message>
               <Type>Red</Type>
               <ResponseBodyContains>
-                <ActualResponseBody>&lt;Alert:Red&gt;
-Successfully enumerated 36 processes.</ActualResponseBody>
                 <Value>&lt;Alert:Red&gt;</Value>
               </ResponseBodyContains>
             </Alert>
           </Alerts>
           <Method>GET</Method>
           <RelativePath>System.Management_Win32_Process.aspx</RelativePath>
-          <Name>System.Management_Win32_Process</Name>
+          <Name>Enumerate processes using WMI</Name>
+        </Test>
+        <Test>
+          <Parameters />
+          <Alerts>
+            <Alert>
+              <Message>Sucessfully read the 'System' event log.</Message>
+              <Type>Red</Type>
+              <ResponseBodyContains>
+                <Value>&lt;Alert:Red&gt;</Value>
+              </ResponseBodyContains>
+            </Alert>
+          </Alerts>
+          <Method>GET</Method>
+          <RelativePath>System.Management_Win32_NTLogEvent_System.aspx</RelativePath>
+          <Name>Read the 'System' event log using WMI</Name>
+        </Test>
+        <Test>
+          <Parameters />
+          <Alerts>
+            <Alert>
+              <Message>Sucessfully read the 'Application' event log.</Message>
+              <Type>Red</Type>
+              <ResponseBodyContains>
+                <Value>&lt;Alert:Red&gt;</Value>
+              </ResponseBodyContains>
+            </Alert>
+          </Alerts>
+          <Method>GET</Method>
+          <RelativePath>System.Management_Win32_NTLogEvent_Application.aspx</RelativePath>
+          <Name>Read the 'Application' event log using WMI</Name>
+        </Test>
+        <Test>
+          <Parameters />
+          <Alerts>
+            <Alert>
+              <Message>Logical disks are sucessfully enumerated. Hover for details.</Message>
+              <Type>Red</Type>
+              <ResponseBodyContains>
+                <Value>&lt;Alert:Red&gt;</Value>
+              </ResponseBodyContains>
+            </Alert>
+          </Alerts>
+          <Method>GET</Method>
+          <RelativePath>System.Management_Win32_LogicalDisk.aspx</RelativePath>
+          <Name>Enumerate logical disks using WMI</Name>
+        </Test>
+        <Test>
+          <Parameters />
+          <Alerts>
+            <Alert>
+              <Message>Username and password retrieved. Hover for details.</Message>
+              <Type>Red</Type>
+              <ResponseBodyContains>
+                <Value>&lt;Alert:Red&gt;</Value>
+              </ResponseBodyContains>
+            </Alert>
+          </Alerts>
+          <Method>GET</Method>
+          <RelativePath>System.Management_IisWebVirtualDirSetting_AnonymousUser.aspx</RelativePath>
+          <Name>Find out username and password of the IIS anonymous user</Name>
+        </Test>
+        <Test>
+          <Parameters>
+            <Parameter>
+              <Name>file</Name>
+              <Value>calc.exe</Value>
+            </Parameter>
+            <Parameter>
+              <Name>useshell</Name>
+              <Value>1</Value>
+            </Parameter>
+          </Parameters>
+          <Alerts>
+            <Alert>
+              <Message>Successfully executed the file specified. Hover for details.</Message>
+              <Type>Red</Type>
+              <ResponseBodyContains>
+                <Value>&lt;Alert:Red&gt;</Value>
+              </ResponseBodyContains>
+            </Alert>
+          </Alerts>
+          <Method>GET</Method>
+          <RelativePath>System.Diagnostics.Process.Start.aspx</RelativePath>
+          <Name>Start process</Name>
+        </Test>
+        <Test>
+          <Parameters />
+          <Alerts>
+            <Alert>
+              <Message>FSO is enbled.</Message>
+              <Type>Red</Type>
+              <ResponseBodyContains>
+                <Value>&lt;Alert:Red&gt;</Value>
+              </ResponseBodyContains>
+            </Alert>
+          </Alerts>
+          <Method>GET</Method>
+          <RelativePath>FSO_Enabled.aspx</RelativePath>
+          <Name>Is FSO enabled</Name>
+        </Test>
+        <Test>
+          <Parameters />
+          <Alerts>
+            <Alert>
+              <Message>Sucessfully created files in the root of some volumes. Hover for details.</Message>
+              <Type>Red</Type>
+              <ResponseBodyContains>
+                <Value>&lt;Alert:Red&gt;</Value>
+              </ResponseBodyContains>
+            </Alert>
+          </Alerts>
+          <Method>GET</Method>
+          <RelativePath>Create_File_In_Volume_Root.aspx</RelativePath>
+          <Name>Create a file in the volume root</Name>
         </Test>
       </AutomatedTests>
     </Target>

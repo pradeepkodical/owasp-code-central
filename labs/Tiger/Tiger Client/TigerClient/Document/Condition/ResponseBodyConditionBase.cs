@@ -8,7 +8,7 @@ namespace TigerClient.Document.Condition
     {
         protected string actualResponseBody;
 
-        // This property should not be serialized
+        [System.Xml.Serialization.XmlIgnore()]
         public virtual string ActualResponseBody
         {
             get { return actualResponseBody; }
