@@ -336,11 +336,26 @@ namespace TigerClient
 
         private void mnuProject_DropDownOpening(object sender, EventArgs e)
         {
-            Document.Target target = propertiesControl1.SelectedObject as Document.Target;
-            mnuProjectAddTest.Enabled = (target != null);
+            if (isProjectExecuting)
+            {
+                mnuProjectAddTarget.Enabled = false;
+                mnuProjectAddTest.Enabled = false;
+                mnuProjectAddTestParameter.Enabled = false;
+                mnuProjectRun.Enabled = false;
+                mnuProjectStop.Enabled = true;
+            }
+            else
+            {
+                mnuProjectAddTarget.Enabled = true;
+                mnuProjectRun.Enabled = true;
+                mnuProjectStop.Enabled = false;
 
-            Document.AutomatedTest test = propertiesControl1.SelectedObject as Document.AutomatedTest;
-            mnuProjectAddTestParameter.Enabled = (test != null);
+                Document.Target target = propertiesControl1.SelectedObject as Document.Target;
+                mnuProjectAddTest.Enabled = (target != null);
+
+                Document.AutomatedTest test = propertiesControl1.SelectedObject as Document.AutomatedTest;
+                mnuProjectAddTestParameter.Enabled = (test != null);
+            }
         }
 
         private void mnuProjectAddTarget_Click(object sender, EventArgs e)
@@ -442,10 +457,13 @@ namespace TigerClient
                 isProjectExecuting = value;
 
                 tbtnProjectRun.Enabled = !value;
-                mnuProjectRun.Enabled = !value;
-
                 tbtnProjectStop.Enabled = value;
-                mnuProjectStop.Enabled = value;
+                tbtnFileNew.Enabled = !value;
+                tbtnFileOpen.Enabled = !value;
+                tbtnFileSave.Enabled = !value;
+                //mnuProjectRun.Enabled = !value;
+
+                //mnuProjectStop.Enabled = value;
 
                 projectExplorerControl1.Enabled = !value;
                 propertiesControl1.Enabled = !value;
@@ -460,6 +478,20 @@ namespace TigerClient
                 e.Handled = true;
                 New();
             }
+        }
+
+        private void mnuHelpUserManual_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("IExplore.exe", "http://www.owasp.org/index.php/Tiger_User_Manual");
+        }
+
+        private void mnuFile_DropDownOpening(object sender, EventArgs e)
+        {
+            mnuFileExit.Enabled = !isProjectExecuting;
+            mnuFileNew.Enabled = !isProjectExecuting;
+            mnuFileOpen.Enabled = !isProjectExecuting;
+            mnuFileSave.Enabled = !isProjectExecuting;
+            mnuFileSaveAs.Enabled = !isProjectExecuting;
         }
     }
 }

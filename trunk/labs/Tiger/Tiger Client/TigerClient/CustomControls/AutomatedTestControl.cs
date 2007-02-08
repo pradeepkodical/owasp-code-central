@@ -80,8 +80,16 @@ namespace TigerClient.CustomControls
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            automatedTest.Status = TigerClient.Document.TestStatusType.Executing;
-            automatedTest.Run();
+            if (!backgroundWorker1.CancellationPending)
+            {
+                automatedTest.Status = TigerClient.Document.TestStatusType.Executing;
+                automatedTest.Run();
+            }
+            else
+            {
+                automatedTest.Status = TigerClient.Document.TestStatusType.Cancelled;
+                automatedTest.StatusMessage = "User cancelled.";
+            }
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -104,40 +112,43 @@ namespace TigerClient.CustomControls
                     break;
             }
 
-            foreach (Document.Alert alert in automatedTest.Alerts)
+            if (automatedTest.Status == TigerClient.Document.TestStatusType.Succeeded)
             {
-                Document.Condition.ICondition condition = alert.Condition as Document.Condition.ICondition;
-
-                if (condition.Result)
+                foreach (Document.Alert alert in automatedTest.Alerts)
                 {
-                    switch (alert.Type)
-                    {
-                        case TigerClient.Document.AlertType.Red:
-                            picStatus.Image = Properties.Resources.red_flag;
-                            statusImageFileName = "red_flag.gif";
-                            break;
-                        case TigerClient.Document.AlertType.Orange:
-                            picStatus.Image = Properties.Resources.orange_flag;
-                            statusImageFileName = "orange_flag.gif";
-                            break;
-                        case TigerClient.Document.AlertType.Yellow:
-                            picStatus.Image = Properties.Resources.yellow_flag;
-                            statusImageFileName = "yellow_flag.gif";
-                            break;
-                    }
+                    Document.Condition.ICondition condition = alert.Condition as Document.Condition.ICondition;
 
-                    if (string.IsNullOrEmpty(alert.Message))
+                    if (condition.Result)
                     {
-                        finalStatusMessage = "[no alert message available]";
-                        message = automatedTest.DisplayName + ": " + alert.Type.ToString() + " alert " + finalStatusMessage; // - no detailed message available";
-                    }
-                    else
-                    {
-                        finalStatusMessage = alert.Message;
-                        message = automatedTest.DisplayName + ": " + alert.Type.ToString() + " alert - " + finalStatusMessage;
-                    }
+                        switch (alert.Type)
+                        {
+                            case TigerClient.Document.AlertType.Red:
+                                picStatus.Image = Properties.Resources.red_flag;
+                                statusImageFileName = "red_flag.gif";
+                                break;
+                            case TigerClient.Document.AlertType.Orange:
+                                picStatus.Image = Properties.Resources.orange_flag;
+                                statusImageFileName = "orange_flag.gif";
+                                break;
+                            case TigerClient.Document.AlertType.Yellow:
+                                picStatus.Image = Properties.Resources.yellow_flag;
+                                statusImageFileName = "yellow_flag.gif";
+                                break;
+                        }
 
-                    break;
+                        if (string.IsNullOrEmpty(alert.Message))
+                        {
+                            finalStatusMessage = "[no alert message available]";
+                            message = automatedTest.DisplayName + ": " + alert.Type.ToString() + " alert " + finalStatusMessage; // - no detailed message available";
+                        }
+                        else
+                        {
+                            finalStatusMessage = alert.Message;
+                            message = automatedTest.DisplayName + ": " + alert.Type.ToString() + " alert - " + finalStatusMessage;
+                        }
+
+                        break;
+                    }
                 }
             }
 
