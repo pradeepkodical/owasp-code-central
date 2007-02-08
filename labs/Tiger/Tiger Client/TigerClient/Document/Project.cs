@@ -219,6 +219,12 @@ namespace TigerClient.Document
                 foreach (Document.Target t in Targets)
                     if (!t.IsValid) return "Some targets for this project are not valid.";
 
+                int totalTests = 0;
+                foreach (Document.Target t in Targets)
+                    totalTests += t.AutomatedTests.Count;
+
+                if (totalTests == 0) return "There are no tests in this project.";
+
                 return null;
             }
         }

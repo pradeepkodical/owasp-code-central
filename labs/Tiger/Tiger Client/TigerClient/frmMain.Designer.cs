@@ -59,8 +59,6 @@ namespace TigerClient
             this.mnuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.projectExplorerControl1 = new TigerClient.CustomControls.ProjectExplorerControl();
-            this.propertiesControl1 = new TigerClient.CustomControls.PropertiesControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.openDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveDialog = new System.Windows.Forms.SaveFileDialog();
@@ -71,6 +69,10 @@ namespace TigerClient
             this.tbtnFileSave = new System.Windows.Forms.ToolStripButton();
             this.tbtnProjectRun = new System.Windows.Forms.ToolStripButton();
             this.tbtnProjectStop = new System.Windows.Forms.ToolStripButton();
+            this.mnuHelpUserManual = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.projectExplorerControl1 = new TigerClient.CustomControls.ProjectExplorerControl();
+            this.propertiesControl1 = new TigerClient.CustomControls.PropertiesControl();
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -112,6 +114,7 @@ namespace TigerClient
             this.mnuFile.Name = "mnuFile";
             this.mnuFile.Size = new System.Drawing.Size(35, 20);
             this.mnuFile.Text = "&File";
+            this.mnuFile.DropDownOpening += new System.EventHandler(this.mnuFile_DropDownOpening);
             // 
             // mnuFileNew
             // 
@@ -294,23 +297,25 @@ namespace TigerClient
             // mnuToolsTemplates
             // 
             this.mnuToolsTemplates.Name = "mnuToolsTemplates";
-            this.mnuToolsTemplates.Size = new System.Drawing.Size(152, 22);
+            this.mnuToolsTemplates.Size = new System.Drawing.Size(146, 22);
             this.mnuToolsTemplates.Text = "&Templates...";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(143, 6);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.optionsToolStripMenuItem.Text = "&Options...";
             // 
             // mnuHelp
             // 
             this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuHelpUserManual,
+            this.toolStripSeparator6,
             this.mnuHelpAbout});
             this.mnuHelp.Name = "mnuHelp";
             this.mnuHelp.Size = new System.Drawing.Size(40, 20);
@@ -319,7 +324,7 @@ namespace TigerClient
             // mnuHelpAbout
             // 
             this.mnuHelpAbout.Name = "mnuHelpAbout";
-            this.mnuHelpAbout.Size = new System.Drawing.Size(181, 22);
+            this.mnuHelpAbout.Size = new System.Drawing.Size(211, 22);
             this.mnuHelpAbout.Text = "&About OWASP Tiger";
             this.mnuHelpAbout.Click += new System.EventHandler(this.mnuHelpAbout_Click);
             // 
@@ -361,29 +366,6 @@ namespace TigerClient
             this.splitContainer2.SplitterDistance = 282;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.TabStop = false;
-            // 
-            // projectExplorerControl1
-            // 
-            this.projectExplorerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.projectExplorerControl1.Location = new System.Drawing.Point(0, 0);
-            this.projectExplorerControl1.Name = "projectExplorerControl1";
-            this.projectExplorerControl1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.projectExplorerControl1.Project = null;
-            this.projectExplorerControl1.Size = new System.Drawing.Size(239, 281);
-            this.projectExplorerControl1.TabIndex = 0;
-            this.projectExplorerControl1.SelectedObjectChanged += new System.EventHandler(this.projectExplorerControl1_SelectedObjectChanged);
-            this.projectExplorerControl1.CloseButtonClick += new System.EventHandler(this.projectExplorerControl1_CloseButtonClick);
-            // 
-            // propertiesControl1
-            // 
-            this.propertiesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertiesControl1.Location = new System.Drawing.Point(0, 0);
-            this.propertiesControl1.Name = "propertiesControl1";
-            this.propertiesControl1.Padding = new System.Windows.Forms.Padding(0, 0, 4, 4);
-            this.propertiesControl1.SelectedObject = null;
-            this.propertiesControl1.Size = new System.Drawing.Size(243, 288);
-            this.propertiesControl1.TabIndex = 0;
-            this.propertiesControl1.CloseButtonClick += new System.EventHandler(this.propertiesControl1_CloseButtonClick);
             // 
             // statusStrip1
             // 
@@ -475,6 +457,41 @@ namespace TigerClient
             this.tbtnProjectStop.ToolTipText = "Stop";
             this.tbtnProjectStop.Click += new System.EventHandler(this.tbtnProjectStop_Click);
             // 
+            // mnuHelpUserManual
+            // 
+            this.mnuHelpUserManual.Name = "mnuHelpUserManual";
+            this.mnuHelpUserManual.Size = new System.Drawing.Size(211, 22);
+            this.mnuHelpUserManual.Text = "User Manual at owasp.org";
+            this.mnuHelpUserManual.Click += new System.EventHandler(this.mnuHelpUserManual_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(208, 6);
+            // 
+            // projectExplorerControl1
+            // 
+            this.projectExplorerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.projectExplorerControl1.Location = new System.Drawing.Point(0, 0);
+            this.projectExplorerControl1.Name = "projectExplorerControl1";
+            this.projectExplorerControl1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.projectExplorerControl1.Project = null;
+            this.projectExplorerControl1.Size = new System.Drawing.Size(239, 281);
+            this.projectExplorerControl1.TabIndex = 0;
+            this.projectExplorerControl1.SelectedObjectChanged += new System.EventHandler(this.projectExplorerControl1_SelectedObjectChanged);
+            this.projectExplorerControl1.CloseButtonClick += new System.EventHandler(this.projectExplorerControl1_CloseButtonClick);
+            // 
+            // propertiesControl1
+            // 
+            this.propertiesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertiesControl1.Location = new System.Drawing.Point(0, 0);
+            this.propertiesControl1.Name = "propertiesControl1";
+            this.propertiesControl1.Padding = new System.Windows.Forms.Padding(0, 0, 4, 4);
+            this.propertiesControl1.SelectedObject = null;
+            this.propertiesControl1.Size = new System.Drawing.Size(243, 288);
+            this.propertiesControl1.TabIndex = 0;
+            this.propertiesControl1.CloseButtonClick += new System.EventHandler(this.propertiesControl1_CloseButtonClick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,6 +567,8 @@ namespace TigerClient
         private System.Windows.Forms.ToolStripMenuItem mnuProjectStop;
         private System.Windows.Forms.ToolStripMenuItem mnuToolsTemplates;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpUserManual;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }
 

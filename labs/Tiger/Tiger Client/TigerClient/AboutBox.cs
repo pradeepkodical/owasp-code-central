@@ -16,7 +16,7 @@ namespace TigerClient
             this.Text = "About OWASP Tiger";
             this.labelProductName.Text = "OWASP Tiger";
             this.labelVersion.Text = "Version 0.9";
-            this.labelCopyright.Text = "Copyright ©";
+            this.labelCopyright.Text = "Copyright © Boris Maletic 2007.";
             this.labelCompanyName.Text = "OWASP";
             this.textBoxDescription.Text = "OWASP Tiger";
         }
