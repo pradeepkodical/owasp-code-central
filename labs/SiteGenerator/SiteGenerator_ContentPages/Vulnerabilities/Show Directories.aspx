@@ -36,7 +36,7 @@
                                 &nbsp;</td>
                             <td style="width: 322px; height: 29px">
                                 <asp:Button ID="btnLoginAdminSection" TabIndex="2" runat="server" CssClass="butnstyle2"
-                                    Width="159px" Height="27px" Text="Show" OnClick="btnLoginAdminSection_Click"></asp:Button>                              
+                                    Width="159px" Height="27px" Text="Show" OnClick="btnLoginAdminSection_Click"></asp:Button>     
                             </td>
                         </tr>
                         <tr>
@@ -54,8 +54,7 @@
 </html>
 
 <script runat="server">
-   
-     
+
     protected void btnLoginAdminSection_Click(object sender, System.EventArgs e)
     {     
         lblDirectoryList.Text = "";
