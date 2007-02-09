@@ -18,13 +18,13 @@ namespace TigerClient.Utilities
             catch { }
 
             if (string.IsNullOrEmpty(templateFolderPath))
-                templateFolderPath = "..\\..\\Project Templates";
-
-            if (!System.IO.Path.IsPathRooted(templateFolderPath))
-                templateFolderPath = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, templateFolderPath);
+                templateFolderPath = "Project Templates";
 
             try
             {
+                if (!System.IO.Path.IsPathRooted(templateFolderPath))
+                    templateFolderPath = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, templateFolderPath);
+
                 return Directory.GetFiles(templateFolderPath, "*.tgpt", System.IO.SearchOption.TopDirectoryOnly);
             }
             catch
