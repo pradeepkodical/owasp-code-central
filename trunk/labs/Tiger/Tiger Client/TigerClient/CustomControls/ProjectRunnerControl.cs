@@ -135,12 +135,12 @@ namespace TigerClient.CustomControls
             catch { }
 
             if (string.IsNullOrEmpty(path))
-                path = "..\\..\\Report Images";
+                path = "Report Images";
 
-            if (System.IO.Path.IsPathRooted(path))
-                return path;
-            else
-                return (System.IO.Path.Combine(Application.StartupPath, path));
+            if (!System.IO.Path.IsPathRooted(path))
+                path = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, path);
+
+            return System.IO.Path.GetFullPath(path); // GetFullPath 'resolves' the '..\' fragments...
         }
 
         private string CreateHtmlReport()

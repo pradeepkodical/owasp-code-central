@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+  <Product Name='OWASP Tiger 1.0' Id='87671CB1-77A4-402b-AF2C-8F0DAC9995F1'
+    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='OWASP'>
+
+    <Package Id='????????-????-????-????-????????????' Keywords='Installer'
+      Description="OWASP Tiger 1.0 Installer"
+      Comments='OWASP Tiger 1.0 Installation Program' Manufacturer='OWASP'
+      InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+
+    <Media Id='1' Cabinet='Simple.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
+    <Property Id='DiskPrompt' Value="OWASP Tiger 1.0 Installer" />
+
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='ProgramFilesFolder' Name='PFiles'>
+        <Directory Id='OWASP' Name='OWASP'>
+          <Directory Id='INSTALLDIR' Name='Tiger10' LongName='Tiger 1.0'>
+
+            <Component Id='MainExecutable' Guid='63EFBA94-5835-469c-8F70-548198D59596'>
+              <File Id='TigerClient.exe' Name='TCLIENT.exe' LongName='TigerClient.exe' DiskId='1'
+                Source='..\TigerClient\bin\Release\TigerClient.exe' Vital='yes'>
+                <Shortcut Id="startmenuTiger10" Directory="ProgramMenuDir" Name="Tiger10" 
+                  LongName="OWASP Tiger 1.0" WorkingDirectory='INSTALLDIR' Icon="TigerClient.ico" IconIndex="0" />
+              </File>
+              <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+            </Component>
+
+            <Directory Id='ProjectTemplates' Name='TEMPLATE' LongName='Project Templates'>
+              <Component Id='ProjectTemplateFiles' Guid='3AE13129-25F7-48f3-8D3B-8214C264FD14'>
+                <File Id='TigerAspNetModule' Name='TASPXMOD' LongName='Tiger ASP NET Module.tgpt' DiskId='1'
+                  Source='..\TigerClient\Project Templates\Tiger ASP NET Module.tgpt'>
+                </File>
+                <RemoveFolder Id='ProjectTemplates' On='uninstall' />
+              </Component>
+            </Directory>
+
+            <Directory Id='ReportImages' Name='IMAGES' LongName='Report Images'>
+              <Component Id='ProjectReportImages' Guid='E8AECBE4-94A2-4fda-A0F3-9D3CADAFF93C'>
+                <File Id='RedFlagGif' Name='REDFLAG.GIF' LongName='red_flag.gif' DiskId='1'
+                  Source='..\TigerClient\Report Images\red_flag.gif'>
+                </File>
+                <File Id='OrangeFlagGif' Name='ORAFLAG.GIF' LongName='orange_flag.gif' DiskId='1'
+                  Source='..\TigerClient\Report Images\orange_flag.gif'>
+                </File>
+                <File Id='YellowFlagGif' Name='YELFLAG.GIF' LongName='yellow_flag.gif' DiskId='1'
+                  Source='..\TigerClient\Report Images\yellow_flag.gif'>
+                </File>
+                <File Id='StopHsPng' Name='STOPHS.PNG' LongName='StopHS.png' DiskId='1'
+                  Source='..\TigerClient\Report Images\StopHS.png'>
+                </File>
+                <File Id='TestFailedGif' Name='FAILED.GIF' LongName='test_failed.gif' DiskId='1'
+                  Source='..\TigerClient\Report Images\test_failed.gif'>
+                </File>
+                <File Id='TestSucceededGif' Name='SUCCEED.GIF' LongName='test_succeeded.gif' DiskId='1'
+                  Source='..\TigerClient\Report Images\test_succeeded.gif'>
+                </File>
+                <RemoveFolder Id='ReportImages' On='uninstall' />
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="PMenu" LongName="Programs">
+        <Directory Id="ProgramMenuDir" Name='Tiger10' LongName="OWASP Tiger" />
+      </Directory>
+    </Directory>
+
+    <Feature Id='Complete' Level='1'>
+      <ComponentRef Id='MainExecutable' />
+      <ComponentRef Id='ProjectTemplateFiles' />
+      <ComponentRef Id='ProjectReportImages' />
+    </Feature>
+
+    <Icon Id="TigerClient.ico" SourceFile="..\TigerClient.ico" />
+
+  </Product>
+</Wix>
