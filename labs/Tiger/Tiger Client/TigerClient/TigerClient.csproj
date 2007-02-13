@@ -217,12 +217,6 @@
       <DependentUpon>frmReportViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\Project.cs" />
-    <Compile Include="Report\ProjectPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Report\ProjectPage.Designer.cs">
-      <DependentUpon>ProjectPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utilities\frmSingleTestRunner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,17 +301,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmReportViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\ProjectPage.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ProjectPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Utilities\frmSingleTestRunner.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmSingleTestRunner.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\frmReportWizard.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmReportWizard.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -341,14 +327,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Utilities\TemplateManager.cs" />
-    <Compile Include="Report\frmReportWizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Report\frmReportWizard.Designer.cs">
-      <DependentUpon>frmReportWizard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Wizard\IWizard.cs" />
-    <Compile Include="Wizard\IWizardPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\openHS.png" />
