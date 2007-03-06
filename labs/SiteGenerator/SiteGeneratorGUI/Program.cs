@@ -14,8 +14,6 @@ namespace Owasp.SiteGenerator
         [STAThread]
         static void Main()
         {
-            ConfigurationManager.AppSettings["ContentPagesRoot"] = Path.GetFullPath(
-                Path.Combine(Environment.CurrentDirectory, @"..\SiteGenerator_ContentPages"));
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainGui());
