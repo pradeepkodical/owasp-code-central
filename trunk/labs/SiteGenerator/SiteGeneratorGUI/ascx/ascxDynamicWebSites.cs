@@ -22,7 +22,7 @@ namespace Owasp.SiteGenerator.ascx
 
         public ascxDynamicWebSites()
         {
-            InitializeComponent();   
+            InitializeComponent();
         }
 
         public void populateDynamicWebsitesListBox()

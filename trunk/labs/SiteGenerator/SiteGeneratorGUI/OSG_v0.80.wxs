@@ -1,0 +1,713 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+  <Product Name='OWASP Site Generator v0.80' Id='1455F71F-86DA-4211-8266-D0981C87916C'
+    UpgradeCode='7FDB600D-3F55-4ed6-8292-A16E656D1E9F' 
+    Language='1033' Codepage='1252' Version='0.80.0' Manufacturer='OWASP'>
+
+    <Package Id='????????-????-????-????-????????????' Keywords='Installer'
+      Description="OWASP's Site Generator v0.80 Installer" Manufacturer='OWASP'
+      InstallerVersion='080' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+
+	<Media Id='1' Cabinet='OSG.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
+	<Property Id='DiskPrompt' Value="OWASP Site Generator Installation [1]" />
+
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='ProgramFilesFolder' Name='PFiles'>
+        <Directory Id='OWASP' Name='OWASP'>
+          <Directory Id='INSTALLDIR' Name='OSG' LongName='OWASP Site Generator'>
+            <Component Id='MainExecutable' Guid='45291A05-76D5-43f7-921F-AF31211B8FE3'>
+              <File Id='OSGEXE' Name='OSG.exe' LongName='SiteGenerator.exe' DiskId='1'
+                Source='SiteGenerator.exe' Vital='yes'>
+                <Shortcut Id="startmenuOSG" Directory="ProgramMenuDir" Name="OSG" 
+                  LongName="OWASP Site Generator" WorkingDirectory='INSTALLDIR' Icon="OSG.exe" IconIndex="0" />
+                <Shortcut Id="desktopOSG" Directory="DesktopFolder" Name="OSG"
+                  LongName="OWASP Site Generator" WorkingDirectory='INSTALLDIR' Icon="OSG.exe" IconIndex="0" />
+              </File>
+              <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+            </Component>
+             
+            <Component Id='AltovaLibrary' Guid='30C70FB7-172D-45fc-A8D0-69DDD2379E3F'>
+              <File Id="ApDll" Name="Ap.dll" LongName="AuthenticPlugin.dll" 
+                DiskId="1" Source="AuthenticPlugin.dll" Vital='yes' />
+            </Component>
+              
+            <Component Id='OSGConfig' Guid='40ADF658-2F6B-4d8b-B07B-4C45E3086414'>
+              <File Id='OsgConfig' Name='OCfg.cfg' DiskId='1' LongName='SiteGenerator.exe.config' 
+                Source='SiteGenerator.exe.config' Vital='yes' />
+            </Component>
+              
+            <Component Id='AxXmlSpy' Guid='C3A9C6CA-8268-4bcb-B381-A0AD53BFE3AC'>
+              <File Id='AxXmlSpyDll' Name='AxXmlSpy.dll' DiskId='1' LongName='AxInterop.XMLSPYPLUGINLib.dll' 
+                Source='AxInterop.XMLSPYPLUGINLib.dll' Vital='yes' />
+            </Component>
+              
+            <Component Id='InXmlSpy' Guid='1D285AA4-AC8A-4d80-8E61-F9AE7A86ECF9'>
+              <File Id='InXmlSpyDll' Name='InXmlSpy.dll' DiskId='1' LongName='Interop.XMLSPYPLUGINLib.dll' 
+                Source='Interop.XMLSPYPLUGINLib.dll' Vital='yes' />
+            </Component>
+            
+            <Component Id='RegAuth' Guid='979D5EC1-23B6-4090-B24C-AC3D8741BD30'>
+              <File Id='RegAuthBat' Name='RegAuth.bat' DiskId='1' LongName='regAuthenticPlugin.bat' 
+                Source='regAuthenticPlugin.bat' Vital='yes' />
+            </Component>
+            
+            <Directory Id="dirSGContent" Name="SITEGE_1" LongName="SiteGenerator_ContentPages">
+				<Component Id="component0" DiskId="1" Guid="B9324898-BF95-4dd3-B318-C771E87656E5">
+				  <File Id="file0" Name="ALLVUL_1.XML" LongName="All Vulnerabilities.xml" src="SiteGenerator_ContentPages/All Vulnerabilities.xml" />
+				  <File Id="file1" Name="COPYOF_1.SPS" LongName="Copy of DynamicWebsites.sps" src="SiteGenerator_ContentPages/Copy of DynamicWebsites.sps" />
+				  <File Id="file2" Name="demo.xml" src="SiteGenerator_ContentPages/demo.xml" />
+				  <File Id="file3" Name="DYNAMI_1.SPS" LongName="DynamicWebsites.sps" src="SiteGenerator_ContentPages/DynamicWebsites.sps" />
+				  <File Id="file4" Name="DYNAMI_1.XSD" LongName="DynamicWebsites.xsd" src="SiteGenerator_ContentPages/DynamicWebsites.xsd" />
+				  <File Id="file5" Name="Flash.xml" src="SiteGenerator_ContentPages/Flash.xml" />
+				  <File Id="file6" Name="GEN_1.HTM" LongName="gen.html" src="SiteGenerator_ContentPages/gen.html" />
+				  <File Id="file7" Name="GENHTM_1.XSL" LongName="genhtml.xslt" src="SiteGenerator_ContentPages/genhtml.xslt" />
+				  <File Id="file8" Name="GLOBAL_1.ASA" LongName="Global.asax" src="SiteGenerator_ContentPages/Global.asax" />
+				  <File Id="file9" Name="GLOBAL_1.CS" LongName="Global.asax.cs" src="SiteGenerator_ContentPages/Global.asax.cs" />
+				  <File Id="file10" Name="GLOBAL_1.RES" LongName="Global.asax.resx" src="SiteGenerator_ContentPages/Global.asax.resx" />
+				  <File Id="file11" Name="HACME__1.XML" LongName="Hacme_Bank.xml" src="SiteGenerator_ContentPages/Hacme_Bank.xml" />
+				  <File Id="file12" Name="SITEGE_1.HTM" LongName="SiteGenerator_Banner.html" src="SiteGenerator_ContentPages/SiteGenerator_Banner.html" />
+				  <File Id="file13" Name="SQLINJ_1.XML" LongName="Sql Injection.xml" src="SiteGenerator_ContentPages/Sql Injection.xml" />
+				  <File Id="file14" Name="TestSite.xml" src="SiteGenerator_ContentPages/TestSite.xml" />
+				  <File Id="file15" Name="VULNER_1.SPS" LongName="Vulnerabilities.sps" src="SiteGenerator_ContentPages/Vulnerabilities.sps" />
+				  <File Id="file16" Name="VULNER_1.XSD" LongName="Vulnerabilities.xsd" src="SiteGenerator_ContentPages/Vulnerabilities.xsd" />
+				  <File Id="file17" Name="VULNER_1.ASP" LongName="Vulnerability_Template.aspx" src="SiteGenerator_ContentPages/Vulnerability_Template.aspx" />
+				  <File Id="file18" Name="WEB_1.CON" LongName="web.config" src="SiteGenerator_ContentPages/web.config" />
+				</Component>
+				<Directory Id="directory1" Name="ascx">
+				  <Component Id="component1" DiskId="1" Guid="E7D9E21B-5669-4093-925D-1402D9DBBF68">
+					<File Id="file19" Name="ACCOUN_1.ASC" LongName="AccountTransfer.ascx" src="SiteGenerator_ContentPages/ascx/AccountTransfer.ascx" />
+					<File Id="file20" Name="ACCOUN_1.CS" LongName="AccountTransfer.ascx.cs" src="SiteGenerator_ContentPages/ascx/AccountTransfer.ascx.cs" />
+					<File Id="file21" Name="ACCOUN_2.CS" LongName="AccountTransfer.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/AccountTransfer.ascx.designer.cs" />
+					<File Id="file22" Name="ACCOUN_1.RES" LongName="AccountTransfer.ascx.resx" src="SiteGenerator_ContentPages/ascx/AccountTransfer.ascx.resx" />
+					<File Id="file23" Name="ADMINS_1.ASC" LongName="AdminSection.ascx" src="SiteGenerator_ContentPages/ascx/AdminSection.ascx" />
+					<File Id="file24" Name="ADMINS_1.CS" LongName="AdminSection.ascx.cs" src="SiteGenerator_ContentPages/ascx/AdminSection.ascx.cs" />
+					<File Id="file25" Name="ADMINS_2.CS" LongName="AdminSection.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/AdminSection.ascx.designer.cs" />
+					<File Id="file26" Name="ADMINS_1.RES" LongName="AdminSection.ascx.resx" src="SiteGenerator_ContentPages/ascx/AdminSection.ascx.resx" />
+					<File Id="file27" Name="LOAN_1.ASC" LongName="Loan.ascx" src="SiteGenerator_ContentPages/ascx/Loan.ascx" />
+					<File Id="file28" Name="LOANAS_1.CS" LongName="Loan.ascx.cs" src="SiteGenerator_ContentPages/ascx/Loan.ascx.cs" />
+					<File Id="file29" Name="LOANAS_2.CS" LongName="Loan.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/Loan.ascx.designer.cs" />
+					<File Id="file30" Name="LOANAS_1.RES" LongName="Loan.ascx.resx" src="SiteGenerator_ContentPages/ascx/Loan.ascx.resx" />
+					<File Id="file31" Name="MYACCO_1.ASC" LongName="MyAccountForm.ascx" src="SiteGenerator_ContentPages/ascx/MyAccountForm.ascx" />
+					<File Id="file32" Name="MYACCO_1.CS" LongName="MyAccountForm.ascx.cs" src="SiteGenerator_ContentPages/ascx/MyAccountForm.ascx.cs" />
+					<File Id="file33" Name="MYACCO_2.CS" LongName="MyAccountForm.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/MyAccountForm.ascx.designer.cs" />
+					<File Id="file34" Name="MYACCO_1.RES" LongName="MyAccountForm.ascx.resx" src="SiteGenerator_ContentPages/ascx/MyAccountForm.ascx.resx" />
+					<File Id="file35" Name="PASSWO_1.ASC" LongName="PasswordChange.ascx" src="SiteGenerator_ContentPages/ascx/PasswordChange.ascx" />
+					<File Id="file36" Name="PASSWO_1.CS" LongName="PasswordChange.ascx.cs" src="SiteGenerator_ContentPages/ascx/PasswordChange.ascx.cs" />
+					<File Id="file37" Name="PASSWO_2.CS" LongName="PasswordChange.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/PasswordChange.ascx.designer.cs" />
+					<File Id="file38" Name="PASSWO_1.RES" LongName="PasswordChange.ascx.resx" src="SiteGenerator_ContentPages/ascx/PasswordChange.ascx.resx" />
+					<File Id="file39" Name="POSTME_1.ASC" LongName="PostMessageForm.ascx" src="SiteGenerator_ContentPages/ascx/PostMessageForm.ascx" />
+					<File Id="file40" Name="POSTME_1.CS" LongName="PostMessageForm.ascx.cs" src="SiteGenerator_ContentPages/ascx/PostMessageForm.ascx.cs" />
+					<File Id="file41" Name="POSTME_2.CS" LongName="PostMessageForm.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/PostMessageForm.ascx.designer.cs" />
+					<File Id="file42" Name="POSTME_1.RES" LongName="PostMessageForm.ascx.resx" src="SiteGenerator_ContentPages/ascx/PostMessageForm.ascx.resx" />
+					<File Id="file43" Name="TRANSA_1.ASC" LongName="TransactionDetails.ascx" src="SiteGenerator_ContentPages/ascx/TransactionDetails.ascx" />
+					<File Id="file44" Name="TRANSA_1.CS" LongName="TransactionDetails.ascx.cs" src="SiteGenerator_ContentPages/ascx/TransactionDetails.ascx.cs" />
+					<File Id="file45" Name="TRANSA_2.CS" LongName="TransactionDetails.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/TransactionDetails.ascx.designer.cs" />
+					<File Id="file46" Name="TRANSA_1.RES" LongName="TransactionDetails.ascx.resx" src="SiteGenerator_ContentPages/ascx/TransactionDetails.ascx.resx" />
+					<File Id="file47" Name="WELCOM_1.ASC" LongName="Welcome.ascx" src="SiteGenerator_ContentPages/ascx/Welcome.ascx" />
+					<File Id="file48" Name="WELCOM_1.CS" LongName="Welcome.ascx.cs" src="SiteGenerator_ContentPages/ascx/Welcome.ascx.cs" />
+					<File Id="file49" Name="WELCOM_2.CS" LongName="Welcome.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/Welcome.ascx.designer.cs" />
+					<File Id="file50" Name="WELCOM_1.RES" LongName="Welcome.ascx.resx" src="SiteGenerator_ContentPages/ascx/Welcome.ascx.resx" />
+					<File Id="file51" Name="_ADMIN_1.ASC" LongName="_AdminLeftMenu.ascx" src="SiteGenerator_ContentPages/ascx/_AdminLeftMenu.ascx" />
+					<File Id="file52" Name="_ADMIN_1.CS" LongName="_AdminLeftMenu.ascx.cs" src="SiteGenerator_ContentPages/ascx/_AdminLeftMenu.ascx.cs" />
+					<File Id="file53" Name="_ADMIN_2.CS" LongName="_AdminLeftMenu.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/_AdminLeftMenu.ascx.designer.cs" />
+					<File Id="file54" Name="_ADMIN_1.RES" LongName="_AdminLeftMenu.ascx.resx" src="SiteGenerator_ContentPages/ascx/_AdminLeftMenu.ascx.resx" />
+					<File Id="file55" Name="_FOOTE_1.ASC" LongName="_Footer.ascx" src="SiteGenerator_ContentPages/ascx/_Footer.ascx" />
+					<File Id="file56" Name="_FOOTE_1.CS" LongName="_Footer.ascx.cs" src="SiteGenerator_ContentPages/ascx/_Footer.ascx.cs" />
+					<File Id="file57" Name="_FOOTE_2.CS" LongName="_Footer.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/_Footer.ascx.designer.cs" />
+					<File Id="file58" Name="_FOOTE_1.RES" LongName="_Footer.ascx.resx" src="SiteGenerator_ContentPages/ascx/_Footer.ascx.resx" />
+					<File Id="file59" Name="_LEFTM_1.ASC" LongName="_LeftMenu.ascx" src="SiteGenerator_ContentPages/ascx/_LeftMenu.ascx" />
+					<File Id="file60" Name="_LEFTM_1.CS" LongName="_LeftMenu.ascx.cs" src="SiteGenerator_ContentPages/ascx/_LeftMenu.ascx.cs" />
+					<File Id="file61" Name="_LEFTM_2.CS" LongName="_LeftMenu.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/_LeftMenu.ascx.designer.cs" />
+					<File Id="file62" Name="_LEFTM_1.RES" LongName="_LeftMenu.ascx.resx" src="SiteGenerator_ContentPages/ascx/_LeftMenu.ascx.resx" />
+					<File Id="file63" Name="_TOPME_1.ASC" LongName="_TopMenu.ascx" src="SiteGenerator_ContentPages/ascx/_TopMenu.ascx" />
+					<File Id="file64" Name="_TOPME_1.CS" LongName="_TopMenu.ascx.cs" src="SiteGenerator_ContentPages/ascx/_TopMenu.ascx.cs" />
+					<File Id="file65" Name="_TOPME_2.CS" LongName="_TopMenu.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/_TopMenu.ascx.designer.cs" />
+					<File Id="file66" Name="_TOPME_1.RES" LongName="_TopMenu.ascx.resx" src="SiteGenerator_ContentPages/ascx/_TopMenu.ascx.resx" />
+				  </Component>
+				  <Directory Id="directory2" Name="admin">
+					<Component Id="component2" DiskId="1" Guid="12F81A0D-67F2-41f5-BDE6-327C88437A0B">
+					  <File Id="file67" Name="FETCH__1.ASC" LongName="Fetch_Web_Page.ascx" src="SiteGenerator_ContentPages/ascx/admin/Fetch_Web_Page.ascx" />
+					  <File Id="file68" Name="FETCH__1.CS" LongName="Fetch_Web_Page.ascx.cs" src="SiteGenerator_ContentPages/ascx/admin/Fetch_Web_Page.ascx.cs" />
+					  <File Id="file69" Name="FETCH__2.CS" LongName="Fetch_Web_Page.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/admin/Fetch_Web_Page.ascx.designer.cs" />
+					  <File Id="file70" Name="FETCH__1.RES" LongName="Fetch_Web_Page.ascx.resx" src="SiteGenerator_ContentPages/ascx/admin/Fetch_Web_Page.ascx.resx" />
+					  <File Id="file71" Name="MANAGE_1.ASC" LongName="Manage_Accounts.ascx" src="SiteGenerator_ContentPages/ascx/admin/Manage_Accounts.ascx" />
+					  <File Id="file72" Name="MANAGE_1.CS" LongName="Manage_Accounts.ascx.cs" src="SiteGenerator_ContentPages/ascx/admin/Manage_Accounts.ascx.cs" />
+					  <File Id="file73" Name="MANAGE_2.CS" LongName="Manage_Accounts.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/admin/Manage_Accounts.ascx.designer.cs" />
+					  <File Id="file74" Name="MANAGE_1.RES" LongName="Manage_Accounts.ascx.resx" src="SiteGenerator_ContentPages/ascx/admin/Manage_Accounts.ascx.resx" />
+					  <File Id="file75" Name="MANAGE_2.ASC" LongName="Manage_Messages.ascx" src="SiteGenerator_ContentPages/ascx/admin/Manage_Messages.ascx" />
+					  <File Id="file76" Name="MANAGE_3.CS" LongName="Manage_Messages.ascx.cs" src="SiteGenerator_ContentPages/ascx/admin/Manage_Messages.ascx.cs" />
+					  <File Id="file77" Name="MANAGE_4.CS" LongName="Manage_Messages.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/admin/Manage_Messages.ascx.designer.cs" />
+					  <File Id="file78" Name="MANAGE_2.RES" LongName="Manage_Messages.ascx.resx" src="SiteGenerator_ContentPages/ascx/admin/Manage_Messages.ascx.resx" />
+					  <File Id="file79" Name="MANAGE_3.ASC" LongName="Manage_Users.ascx" src="SiteGenerator_ContentPages/ascx/admin/Manage_Users.ascx" />
+					  <File Id="file80" Name="MA25A6_1.CS" LongName="Manage_Users.ascx.cs" src="SiteGenerator_ContentPages/ascx/admin/Manage_Users.ascx.cs" />
+					  <File Id="file81" Name="MAC0BC_1.CS" LongName="Manage_Users.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/admin/Manage_Users.ascx.designer.cs" />
+					  <File Id="file82" Name="MANAGE_3.RES" LongName="Manage_Users.ascx.resx" src="SiteGenerator_ContentPages/ascx/admin/Manage_Users.ascx.resx" />
+					  <File Id="file83" Name="SQL_QU_1.ASC" LongName="Sql_Query.ascx" src="SiteGenerator_ContentPages/ascx/admin/Sql_Query.ascx" />
+					  <File Id="file84" Name="SQL_QU_1.CS" LongName="Sql_Query.ascx.cs" src="SiteGenerator_ContentPages/ascx/admin/Sql_Query.ascx.cs" />
+					  <File Id="file85" Name="SQL_QU_2.CS" LongName="Sql_Query.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/admin/Sql_Query.ascx.designer.cs" />
+					  <File Id="file86" Name="SQL_QU_1.RES" LongName="Sql_Query.ascx.resx" src="SiteGenerator_ContentPages/ascx/admin/Sql_Query.ascx.resx" />
+					  <File Id="file87" Name="WEB_SE_1.ASC" LongName="Web_Services.ascx" src="SiteGenerator_ContentPages/ascx/admin/Web_Services.ascx" />
+					  <File Id="file88" Name="WEB_SE_1.CS" LongName="Web_Services.ascx.cs" src="SiteGenerator_ContentPages/ascx/admin/Web_Services.ascx.cs" />
+					  <File Id="file89" Name="WEB_SE_2.CS" LongName="Web_Services.ascx.designer.cs" src="SiteGenerator_ContentPages/ascx/admin/Web_Services.ascx.designer.cs" />
+					  <File Id="file90" Name="WEB_SE_1.RES" LongName="Web_Services.ascx.resx" src="SiteGenerator_ContentPages/ascx/admin/Web_Services.ascx.resx" />
+					</Component>
+				  </Directory>
+				</Directory>
+				<Directory Id="directory3" Name="bin">
+				  <Component Id="component3" DiskId="1" Guid="78650AE7-0450-45c5-A4D4-CD3A63CB49CF">
+					<File Id="file91" Name="HACMEB_1.DLL" LongName="HacmeBank_v2_Website.dll" src="SiteGenerator_ContentPages/bin/HacmeBank_v2_Website.dll" />
+					<File Id="file92" Name="HACMEB_2.DLL" LongName="HacmeBank_v2_WS.dll" src="SiteGenerator_ContentPages/bin/HacmeBank_v2_WS.dll" />
+					<File Id="file93" Name="SITEGE_1.DLL" LongName="SiteGenerator_IIS_HttpModule.dll" src="SiteGenerator_ContentPages/bin/SiteGenerator_IIS_HttpModule.dll" />
+					<File Id="file94" Name="SITEGE_1.PDB" LongName="SiteGenerator_IIS_HttpModule.pdb" src="SiteGenerator_ContentPages/bin/SiteGenerator_IIS_HttpModule.pdb" />
+				  </Component>
+				</Directory>
+				<Directory Id="directory4" Name="css">
+				  <Component Id="component4" DiskId="1" Guid="58C57C73-F0FB-4c87-81D1-A63911B1A2DD">
+					<File Id="file95" Name="style.css" src="SiteGenerator_ContentPages/css/style.css" />
+				  </Component>
+				</Directory>
+				<Directory Id="directory5" Name="Demo2">
+				  <Component Id="component5" DiskId="1" Guid="269E809E-3EC0-485b-B61A-F6631D488FD9">
+					<File Id="file96" Name="Default.htm" src="SiteGenerator_ContentPages/Demo2/Default.htm" />
+					<File Id="file97" Name="NAVIGA_1.HTM" LongName="Navigation_Level_0_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_0_SubLevel_0.html" />
+					<File Id="file98" Name="NAVIGA_2.HTM" LongName="Navigation_Level_0_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_0_SubLevel_1.html" />
+					<File Id="file99" Name="NAVIGA_3.HTM" LongName="Navigation_Level_0_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_0_SubLevel_2.html" />
+					<File Id="file100" Name="NAVIGA_4.HTM" LongName="Navigation_Level_0_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_0_SubLevel_3.html" />
+					<File Id="file101" Name="NAE92D_1.HTM" LongName="Navigation_Level_10_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_10_SubLevel_0.html" />
+					<File Id="file102" Name="NAE927_1.HTM" LongName="Navigation_Level_10_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_10_SubLevel_1.html" />
+					<File Id="file103" Name="NAE929_1.HTM" LongName="Navigation_Level_10_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_10_SubLevel_2.html" />
+					<File Id="file104" Name="NAE923_1.HTM" LongName="Navigation_Level_10_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_10_SubLevel_3.html" />
+					<File Id="file105" Name="NA4A92_1.HTM" LongName="Navigation_Level_1_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_1_SubLevel_0.html" />
+					<File Id="file106" Name="NA4E92_1.HTM" LongName="Navigation_Level_1_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_1_SubLevel_1.html" />
+					<File Id="file107" Name="NA42A2_1.HTM" LongName="Navigation_Level_1_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_1_SubLevel_2.html" />
+					<File Id="file108" Name="NA46A2_1.HTM" LongName="Navigation_Level_1_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_1_SubLevel_3.html" />
+					<File Id="file109" Name="NA4A22_1.HTM" LongName="Navigation_Level_2_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_2_SubLevel_0.html" />
+					<File Id="file110" Name="NA4E22_1.HTM" LongName="Navigation_Level_2_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_2_SubLevel_1.html" />
+					<File Id="file111" Name="NA4232_1.HTM" LongName="Navigation_Level_2_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_2_SubLevel_2.html" />
+					<File Id="file112" Name="NA4632_1.HTM" LongName="Navigation_Level_2_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_2_SubLevel_3.html" />
+					<File Id="file113" Name="NA4AF5_1.HTM" LongName="Navigation_Level_3_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_3_SubLevel_0.html" />
+					<File Id="file114" Name="NA4EF5_1.HTM" LongName="Navigation_Level_3_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_3_SubLevel_1.html" />
+					<File Id="file115" Name="NA4206_1.HTM" LongName="Navigation_Level_3_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_3_SubLevel_2.html" />
+					<File Id="file116" Name="NA4606_1.HTM" LongName="Navigation_Level_3_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_3_SubLevel_3.html" />
+					<File Id="file117" Name="NA4A06_1.HTM" LongName="Navigation_Level_4_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_4_SubLevel_0.html" />
+					<File Id="file118" Name="NA4E06_1.HTM" LongName="Navigation_Level_4_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_4_SubLevel_1.html" />
+					<File Id="file119" Name="NA4216_1.HTM" LongName="Navigation_Level_4_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_4_SubLevel_2.html" />
+					<File Id="file120" Name="NA4616_1.HTM" LongName="Navigation_Level_4_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_4_SubLevel_3.html" />
+					<File Id="file121" Name="NA4AD5_1.HTM" LongName="Navigation_Level_5_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_5_SubLevel_0.html" />
+					<File Id="file122" Name="NA4ED5_1.HTM" LongName="Navigation_Level_5_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_5_SubLevel_1.html" />
+					<File Id="file123" Name="NA42E5_1.HTM" LongName="Navigation_Level_5_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_5_SubLevel_2.html" />
+					<File Id="file124" Name="NA46E5_1.HTM" LongName="Navigation_Level_5_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_5_SubLevel_3.html" />
+					<File Id="file125" Name="NA4AE5_1.HTM" LongName="Navigation_Level_6_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_6_SubLevel_0.html" />
+					<File Id="file126" Name="NA4EE5_1.HTM" LongName="Navigation_Level_6_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_6_SubLevel_1.html" />
+					<File Id="file127" Name="NA42F5_1.HTM" LongName="Navigation_Level_6_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_6_SubLevel_2.html" />
+					<File Id="file128" Name="NA46F5_1.HTM" LongName="Navigation_Level_6_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_6_SubLevel_3.html" />
+					<File Id="file129" Name="NA4AB5_1.HTM" LongName="Navigation_Level_7_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_7_SubLevel_0.html" />
+					<File Id="file130" Name="NA4EB5_1.HTM" LongName="Navigation_Level_7_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_7_SubLevel_1.html" />
+					<File Id="file131" Name="NA42C5_1.HTM" LongName="Navigation_Level_7_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_7_SubLevel_2.html" />
+					<File Id="file132" Name="NA46C5_1.HTM" LongName="Navigation_Level_7_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_7_SubLevel_3.html" />
+					<File Id="file133" Name="NA4AC5_1.HTM" LongName="Navigation_Level_8_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_8_SubLevel_0.html" />
+					<File Id="file134" Name="NA4EC5_1.HTM" LongName="Navigation_Level_8_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_8_SubLevel_1.html" />
+					<File Id="file135" Name="NA42D5_1.HTM" LongName="Navigation_Level_8_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_8_SubLevel_2.html" />
+					<File Id="file136" Name="NA46D5_1.HTM" LongName="Navigation_Level_8_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_8_SubLevel_3.html" />
+					<File Id="file137" Name="NA4A16_1.HTM" LongName="Navigation_Level_9_SubLevel_0.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_9_SubLevel_0.html" />
+					<File Id="file138" Name="NA4E12_1.HTM" LongName="Navigation_Level_9_SubLevel_1.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_9_SubLevel_1.html" />
+					<File Id="file139" Name="NA4222_1.HTM" LongName="Navigation_Level_9_SubLevel_2.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_9_SubLevel_2.html" />
+					<File Id="file140" Name="NA4622_1.HTM" LongName="Navigation_Level_9_SubLevel_3.html" src="SiteGenerator_ContentPages/Demo2/Navigation_Level_9_SubLevel_3.html" />
+					<File Id="file141" Name="TOPNAV_1.HTM" LongName="TopNavigation.htm" src="SiteGenerator_ContentPages/Demo2/TopNavigation.htm" />
+				  </Component>
+				</Directory>
+				<Directory Id="directory6" Name="flash">
+				  <Component Id="component6" DiskId="1" Guid="170AFBFF-D897-46af-9F2A-F68008DC7A1E">
+					<File Id="file142" Name="CROMAS_1.XML" LongName="cromas_menu.xml" src="SiteGenerator_ContentPages/flash/cromas_menu.xml" />
+					<File Id="file143" Name="CROMAS_1.HTM" LongName="cromas_xml.htm" src="SiteGenerator_ContentPages/flash/cromas_xml.htm" />
+					<File Id="file144" Name="CROMAS_1.SWF" LongName="cromas_xml.swf" src="SiteGenerator_ContentPages/flash/cromas_xml.swf" />
+					<File Id="file145" Name="readme.txt" src="SiteGenerator_ContentPages/flash/readme.txt" />
+					<File Id="file146" Name="SUBSCR_1.SWF" LongName="subscribe.swf" src="SiteGenerator_ContentPages/flash/subscribe.swf" />
+					<File Id="file147" Name="WWWADR_1.URL" LongName="www.adrianTNT.com.url" src="SiteGenerator_ContentPages/flash/www.adrianTNT.com.url" />
+				  </Component>
+				</Directory>
+				<Directory Id="directory7" Name="HACMEB_2" LongName="HacmeBank_v2_Website">
+				  <Component Id="component7" DiskId="1" Guid="64AF6AA4-E5FF-42f5-82EF-44535FE7A49B">
+					<File Id="file148" Name="CODE_D_1.TXT" LongName="Code_development_Notes.txt" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Code_development_Notes.txt" />
+					<File Id="file149" Name="CONVER_1.TXT" LongName="ConversionReport.txt" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ConversionReport.txt" />
+					<File Id="file150" Name="DEFAUL_1.ASP" LongName="default.aspx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/default.aspx" />
+					<File Id="file151" Name="GLOBAL_1.ASA" LongName="Global.asax" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Global.asax" />
+					<File Id="file152" Name="GLOBAL_1.CS" LongName="Global.asax.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Global.asax.cs" />
+					<File Id="file153" Name="GLOBAL_1.RES" LongName="Global.asax.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Global.asax.resx" />
+					<File Id="file154" Name="HACMEB_1.CSP" LongName="HacmeBank_v2_Website.csproj" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/HacmeBank_v2_Website.csproj" />
+					<File Id="file155" Name="HACMEB_1.USE" LongName="HacmeBank_v2_Website.csproj.user" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/HacmeBank_v2_Website.csproj.user" />
+					<File Id="file156" Name="HACMEB_1.SLN" LongName="HacmeBank_v2_Website.sln" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/HacmeBank_v2_Website.sln" />
+					<File Id="file157" Name="WEB_1.CON" LongName="Web.config" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web.config" />
+				  </Component>
+				  <Directory Id="directory8" Name="App_Code">
+					<Component Id="component8" DiskId="1" Guid="04A3D6B2-7F47-4421-9708-6FFE6A2402DF">
+					  <File Id="file158" Name="ASSEMB_1.CS" LongName="AssemblyInfo.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/AssemblyInfo.cs" />
+					  <File Id="file159" Name="GLOBAL_1.CS" LongName="Global.asax.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/Global.asax.cs" />
+					</Component>
+					<Directory Id="directory9" Name="classes">
+					  <Component Id="component9" DiskId="1" Guid="25176535-1A83-420f-A4C7-A13FCF9FF6E3">
+						<File Id="file160" Name="ACCOUN_1.CS" LongName="AccountManagement.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/classes/AccountManagement.cs" />
+						<File Id="file161" Name="ADMINF_1.CS" LongName="AdminFunctions.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/classes/AdminFunctions.cs" />
+						<File Id="file162" Name="ASCXTH_1.CS" LongName="ascxThreadingIssue.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/classes/ascxThreadingIssue.cs" />
+						<File Id="file163" Name="DATACL_1.CS" LongName="dataClasses.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/classes/dataClasses.cs" />
+						<File Id="file164" Name="Gui.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/classes/Gui.cs" />
+						<File Id="file165" Name="USERMA_1.CS" LongName="UserManagement.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/classes/UserManagement.cs" />
+						<File Id="file166" Name="USERSC_1.CS" LongName="UsersCommunity.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/classes/UsersCommunity.cs" />
+					  </Component>
+					</Directory>
+					<Directory Id="directory10" Name="HTTPMO_1" LongName="httpModules">
+					  <Component Id="component10" DiskId="1" Guid="E1DD0475-A25A-4e92-B8A9-93DC4FF926A7">
+						<File Id="file167" Name="HTTPMO_1.CS" LongName="HttpModule_errorHandeling.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_Code/httpModules/HttpModule_errorHandeling.cs" />
+					  </Component>
+					</Directory>
+				  </Directory>
+				  <Directory Id="directory11" Name="APP_WE_1" LongName="App_WebReferences">
+					<Directory Id="directory12" Name="HACMEB_1" LongName="HacmeBank_v2_Website">
+					  <Directory Id="directory13" Name="WS_ACC_1" LongName="WS_AccountManagement">
+						<Component Id="component11" DiskId="1" Guid="EF450890-196C-451b-997C-405D6236993F">
+						  <File Id="file168" Name="ACCOUN_1.DIS" LongName="AccountManagement.disco" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_WebReferences/HacmeBank_v2_Website/WS_AccountManagement/AccountManagement.disco" />
+						  <File Id="file169" Name="ACCOUN_2.DIS" LongName="AccountManagement.discomap" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_WebReferences/HacmeBank_v2_Website/WS_AccountManagement/AccountManagement.discomap" />
+						  <File Id="file170" Name="ACCOUN_1.WSD" LongName="AccountManagement.wsdl" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_WebReferences/HacmeBank_v2_Website/WS_AccountManagement/AccountManagement.wsdl" />
+						</Component>
+					  </Directory>
+					  <Directory Id="directory14" Name="WS_USE_2" LongName="WS_UserManagement">
+						<Component Id="component12" DiskId="1" Guid="E0705444-FC8F-45da-B471-FD12677C0820">
+						  <File Id="file171" Name="USERMA_1.DIS" LongName="UserManagement.disco" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_WebReferences/HacmeBank_v2_Website/WS_UserManagement/UserManagement.disco" />
+						  <File Id="file172" Name="USERMA_2.DIS" LongName="UserManagement.discomap" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_WebReferences/HacmeBank_v2_Website/WS_UserManagement/UserManagement.discomap" />
+						  <File Id="file173" Name="USERMA_1.WSD" LongName="UserManagement.wsdl" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_WebReferences/HacmeBank_v2_Website/WS_UserManagement/UserManagement.wsdl" />
+						</Component>
+					  </Directory>
+					  <Directory Id="directory15" Name="WS_USE_1" LongName="WS_UsersCommunity">
+						<Component Id="component13" DiskId="1" Guid="0D7F8CF1-8401-4a68-B4D6-292D8E55E7C2">
+						  <File Id="file174" Name="REFERE_1.DIS" LongName="Reference.discomap" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_WebReferences/HacmeBank_v2_Website/WS_UsersCommunity/Reference.discomap" />
+						  <File Id="file175" Name="USERSC_1.WSD" LongName="UsersCommunity.wsdl" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/App_WebReferences/HacmeBank_v2_Website/WS_UsersCommunity/UsersCommunity.wsdl" />
+						</Component>
+					  </Directory>
+					</Directory>
+					<Directory Id="directory16" Name="WS_USE_2" LongName="WS_UserManagement" />
+					<Directory Id="directory17" Name="WS_USE_1" LongName="WS_UsersCommunity">
+					  <Directory Id="directory18" Name="WS_ACC_1" LongName="WS_AccountManagement" />
+					</Directory>
+				  </Directory>
+				  <Directory Id="directory19" Name="ascx">
+					<Component Id="component14" DiskId="1" Guid="45031361-E1A6-462f-A23A-70505C0C77E5">
+					  <File Id="file176" Name="ACCOUN_1.ASC" LongName="accounttransfer.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/accounttransfer.ascx" />
+					  <File Id="file177" Name="ACCOUN_1.CS" LongName="AccountTransfer.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/AccountTransfer.ascx.cs" />
+					  <File Id="file178" Name="ACCOUN_2.CS" LongName="AccountTransfer.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/AccountTransfer.ascx.designer.cs" />
+					  <File Id="file179" Name="ACCOUN_1.RES" LongName="AccountTransfer.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/AccountTransfer.ascx.resx" />
+					  <File Id="file180" Name="ADMINS_1.ASC" LongName="adminsection.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/adminsection.ascx" />
+					  <File Id="file181" Name="ADMINS_1.CS" LongName="AdminSection.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/AdminSection.ascx.cs" />
+					  <File Id="file182" Name="ADMINS_2.CS" LongName="AdminSection.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/AdminSection.ascx.designer.cs" />
+					  <File Id="file183" Name="ADMINS_1.RES" LongName="AdminSection.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/AdminSection.ascx.resx" />
+					  <File Id="file184" Name="LOAN_1.ASC" LongName="loan.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/loan.ascx" />
+					  <File Id="file185" Name="LOANAS_1.CS" LongName="Loan.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/Loan.ascx.cs" />
+					  <File Id="file186" Name="LOANAS_2.CS" LongName="Loan.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/Loan.ascx.designer.cs" />
+					  <File Id="file187" Name="LOANAS_1.RES" LongName="Loan.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/Loan.ascx.resx" />
+					  <File Id="file188" Name="MYACCO_1.ASC" LongName="myaccountform.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/myaccountform.ascx" />
+					  <File Id="file189" Name="MYACCO_1.CS" LongName="MyAccountForm.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/MyAccountForm.ascx.cs" />
+					  <File Id="file190" Name="MYACCO_2.CS" LongName="MyAccountForm.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/MyAccountForm.ascx.designer.cs" />
+					  <File Id="file191" Name="MYACCO_1.RES" LongName="MyAccountForm.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/MyAccountForm.ascx.resx" />
+					  <File Id="file192" Name="PASSWO_1.ASC" LongName="passwordchange.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/passwordchange.ascx" />
+					  <File Id="file193" Name="PASSWO_1.CS" LongName="PasswordChange.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/PasswordChange.ascx.cs" />
+					  <File Id="file194" Name="PASSWO_2.CS" LongName="PasswordChange.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/PasswordChange.ascx.designer.cs" />
+					  <File Id="file195" Name="PASSWO_1.RES" LongName="PasswordChange.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/PasswordChange.ascx.resx" />
+					  <File Id="file196" Name="POSTME_1.ASC" LongName="postmessageform.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/postmessageform.ascx" />
+					  <File Id="file197" Name="POSTME_1.CS" LongName="PostMessageForm.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/PostMessageForm.ascx.cs" />
+					  <File Id="file198" Name="POSTME_2.CS" LongName="PostMessageForm.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/PostMessageForm.ascx.designer.cs" />
+					  <File Id="file199" Name="POSTME_1.RES" LongName="PostMessageForm.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/PostMessageForm.ascx.resx" />
+					  <File Id="file200" Name="TRANSA_1.ASC" LongName="transactiondetails.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/transactiondetails.ascx" />
+					  <File Id="file201" Name="TRANSA_1.CS" LongName="TransactionDetails.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/TransactionDetails.ascx.cs" />
+					  <File Id="file202" Name="TRANSA_2.CS" LongName="TransactionDetails.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/TransactionDetails.ascx.designer.cs" />
+					  <File Id="file203" Name="TRANSA_1.RES" LongName="TransactionDetails.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/TransactionDetails.ascx.resx" />
+					  <File Id="file204" Name="WELCOM_1.ASC" LongName="welcome.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/welcome.ascx" />
+					  <File Id="file205" Name="WELCOM_1.CS" LongName="Welcome.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/Welcome.ascx.cs" />
+					  <File Id="file206" Name="WELCOM_2.CS" LongName="Welcome.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/Welcome.ascx.designer.cs" />
+					  <File Id="file207" Name="WELCOM_1.RES" LongName="Welcome.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/Welcome.ascx.resx" />
+					  <File Id="file208" Name="_ADMIN_1.ASC" LongName="_adminleftmenu.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_adminleftmenu.ascx" />
+					  <File Id="file209" Name="_ADMIN_1.CS" LongName="_AdminLeftMenu.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_AdminLeftMenu.ascx.cs" />
+					  <File Id="file210" Name="_ADMIN_2.CS" LongName="_AdminLeftMenu.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_AdminLeftMenu.ascx.designer.cs" />
+					  <File Id="file211" Name="_ADMIN_1.RES" LongName="_AdminLeftMenu.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_AdminLeftMenu.ascx.resx" />
+					  <File Id="file212" Name="_FOOTE_1.ASC" LongName="_footer.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_footer.ascx" />
+					  <File Id="file213" Name="_FOOTE_1.CS" LongName="_Footer.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_Footer.ascx.cs" />
+					  <File Id="file214" Name="_FOOTE_2.CS" LongName="_Footer.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_Footer.ascx.designer.cs" />
+					  <File Id="file215" Name="_FOOTE_1.RES" LongName="_Footer.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_Footer.ascx.resx" />
+					  <File Id="file216" Name="_LEFTM_1.ASC" LongName="_leftmenu.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_leftmenu.ascx" />
+					  <File Id="file217" Name="_LEFTM_1.CS" LongName="_LeftMenu.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_LeftMenu.ascx.cs" />
+					  <File Id="file218" Name="_LEFTM_2.CS" LongName="_LeftMenu.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_LeftMenu.ascx.designer.cs" />
+					  <File Id="file219" Name="_LEFTM_1.RES" LongName="_LeftMenu.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_LeftMenu.ascx.resx" />
+					  <File Id="file220" Name="_TOPME_1.ASC" LongName="_topmenu.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_topmenu.ascx" />
+					  <File Id="file221" Name="_TOPME_1.CS" LongName="_TopMenu.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_TopMenu.ascx.cs" />
+					  <File Id="file222" Name="_TOPME_2.CS" LongName="_TopMenu.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_TopMenu.ascx.designer.cs" />
+					  <File Id="file223" Name="_TOPME_1.RES" LongName="_TopMenu.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/_TopMenu.ascx.resx" />
+					</Component>
+					<Directory Id="directory20" Name="admin">
+					  <Component Id="component15" DiskId="1" Guid="583FB0A9-742C-4241-90FA-2728784BED47">
+						<File Id="file224" Name="FETCH__1.ASC" LongName="fetch_web_page.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/fetch_web_page.ascx" />
+						<File Id="file225" Name="FETCH__1.CS" LongName="Fetch_Web_Page.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Fetch_Web_Page.ascx.cs" />
+						<File Id="file226" Name="FETCH__2.CS" LongName="Fetch_Web_Page.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Fetch_Web_Page.ascx.designer.cs" />
+						<File Id="file227" Name="FETCH__1.RES" LongName="Fetch_Web_Page.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Fetch_Web_Page.ascx.resx" />
+						<File Id="file228" Name="MANAGE_1.ASC" LongName="manage_accounts.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/manage_accounts.ascx" />
+						<File Id="file229" Name="MANAGE_1.CS" LongName="Manage_Accounts.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Accounts.ascx.cs" />
+						<File Id="file230" Name="MANAGE_2.CS" LongName="Manage_Accounts.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Accounts.ascx.designer.cs" />
+						<File Id="file231" Name="MANAGE_1.RES" LongName="Manage_Accounts.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Accounts.ascx.resx" />
+						<File Id="file232" Name="MANAGE_2.ASC" LongName="manage_messages.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/manage_messages.ascx" />
+						<File Id="file233" Name="MANAGE_3.CS" LongName="Manage_Messages.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Messages.ascx.cs" />
+						<File Id="file234" Name="MANAGE_4.CS" LongName="Manage_Messages.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Messages.ascx.designer.cs" />
+						<File Id="file235" Name="MANAGE_2.RES" LongName="Manage_Messages.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Messages.ascx.resx" />
+						<File Id="file236" Name="MANAGE_3.ASC" LongName="manage_users.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/manage_users.ascx" />
+						<File Id="file237" Name="MA25A6_1.CS" LongName="Manage_Users.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Users.ascx.cs" />
+						<File Id="file238" Name="MAC0BC_1.CS" LongName="Manage_Users.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Users.ascx.designer.cs" />
+						<File Id="file239" Name="MANAGE_3.RES" LongName="Manage_Users.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Manage_Users.ascx.resx" />
+						<File Id="file240" Name="SQL_QU_1.ASC" LongName="sql_query.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/sql_query.ascx" />
+						<File Id="file241" Name="SQL_QU_1.CS" LongName="Sql_Query.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Sql_Query.ascx.cs" />
+						<File Id="file242" Name="SQL_QU_2.CS" LongName="Sql_Query.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Sql_Query.ascx.designer.cs" />
+						<File Id="file243" Name="SQL_QU_1.RES" LongName="Sql_Query.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Sql_Query.ascx.resx" />
+						<File Id="file244" Name="WEB_SE_1.ASC" LongName="web_services.ascx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/web_services.ascx" />
+						<File Id="file245" Name="WEB_SE_1.CS" LongName="Web_Services.ascx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Web_Services.ascx.cs" />
+						<File Id="file246" Name="WEB_SE_2.CS" LongName="Web_Services.ascx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Web_Services.ascx.designer.cs" />
+						<File Id="file247" Name="WEB_SE_1.RES" LongName="Web_Services.ascx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/ascx/admin/Web_Services.ascx.resx" />
+					  </Component>
+					</Directory>
+				  </Directory>
+				  <Directory Id="directory21" Name="aspx">
+					<Component Id="component16" DiskId="1" Guid="DD951ABA-4B6B-42be-A8C6-DBACE5E41F52">
+					  <File Id="file248" Name="LOGIN_1.ASP" LongName="login.aspx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/login.aspx" />
+					  <File Id="file249" Name="LOGINA_1.CS" LongName="Login.aspx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/Login.aspx.cs" />
+					  <File Id="file250" Name="LOGINA_2.CS" LongName="Login.aspx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/Login.aspx.designer.cs" />
+					  <File Id="file251" Name="LOGINA_1.RES" LongName="Login.aspx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/Login.aspx.resx" />
+					  <File Id="file252" Name="MAIN_1.ASP" LongName="main.aspx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/main.aspx" />
+					  <File Id="file253" Name="MAINAS_1.CS" LongName="Main.aspx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/Main.aspx.cs" />
+					  <File Id="file254" Name="MAINAS_2.CS" LongName="Main.aspx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/Main.aspx.designer.cs" />
+					  <File Id="file255" Name="MAINAS_1.RES" LongName="Main.aspx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/Main.aspx.resx" />
+					</Component>
+					<Directory Id="directory22" Name="images">
+					  <Component Id="component17" DiskId="1" Guid="411E83F6-8C43-4676-A6F2-1F40FFDD01C8">
+						<File Id="file256" Name="BLUEHE_1.JPG" LongName="blueheaderblank.jpg" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/blueheaderblank.jpg" />
+						<File Id="file257" Name="BLUEHE_1.GIF" LongName="blueheader_bg.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/blueheader_bg.gif" />
+						<File Id="file258" Name="clear.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/clear.gif" />
+						<File Id="file259" Name="HACME__1.JPG" LongName="hacme_header.jpg" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/hacme_header.jpg" />
+						<File Id="file260" Name="HEADER_1.GIF" LongName="header_hacmebank.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/header_hacmebank.gif" />
+						<File Id="file261" Name="NAV_AR_1.GIF" LongName="nav_arrows.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/nav_arrows.gif" />
+						<File Id="file262" Name="ONLINE_1.JPG" LongName="onlinebanking.jpg" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/onlinebanking.jpg" />
+						<File Id="file263" Name="RED_AR_1.GIF" LongName="red_arrows.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/red_arrows.gif" />
+						<File Id="file264" Name="ROWHEA_1.GIF" LongName="rowheader_bg.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/rowheader_bg.gif" />
+						<File Id="file265" Name="SHADOW_1.GIF" LongName="shadow_txtbox.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/shadow_txtbox.gif" />
+						<File Id="file266" Name="SHADOW_2.GIF" LongName="shadow_txtfield.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/shadow_txtfield.gif" />
+						<File Id="file267" Name="Thumbs.db" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/Thumbs.db" />
+						<File Id="file268" Name="TOP_BL_1.JPG" LongName="top_blue_menu.jpg" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/top_blue_menu.jpg" />
+						<File Id="file269" Name="vssver.scc" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/vssver.scc" />
+						<File Id="file270" Name="_HACME_1.JPG" LongName="_hacme_header.jpg" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/_hacme_header.jpg" />
+					  </Component>
+					  <Directory Id="directory23" Name="login">
+						<Component Id="component18" DiskId="1" Guid="232730E5-DBCF-4264-BCCC-E294F4DC1B9D">
+						  <File Id="file271" Name="bottom.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/login/bottom.gif" />
+						  <File Id="file272" Name="bottombg.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/login/bottombg.gif" />
+						  <File Id="file273" Name="BOTTOM_1.GIF" LongName="bottom_old.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/login/bottom_old.gif" />
+						  <File Id="file274" Name="Thumbs.db" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/login/Thumbs.db" />
+						  <File Id="file275" Name="top.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/login/top.gif" />
+						  <File Id="file276" Name="topbg.gif" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/login/topbg.gif" />
+						  <File Id="file277" Name="vssver.scc" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/aspx/images/login/vssver.scc" />
+						</Component>
+					  </Directory>
+					</Directory>
+				  </Directory>
+				  <Directory Id="directory24" Name="bin">
+					<Component Id="component19" DiskId="1" Guid="C7B247B0-DD1D-4d97-BB72-87C9AF9D0F88">
+					  <File Id="file278" Name="DEFAUL_1.RUL" LongName="DefaultRuleFile.rule" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/bin/DefaultRuleFile.rule" />
+					  <File Id="file279" Name="FS_HTT_1.DLL" LongName="FS_HttpModule.dll" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/bin/FS_HttpModule.dll" />
+					  <File Id="file280" Name="FS_HTT_1.PDB" LongName="FS_HttpModule.pdb" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/bin/FS_HttpModule.pdb" />
+					  <File Id="file281" Name="HACMEB_1.PRO" LongName="HacmeBankValidatorNetProject.project" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/bin/HacmeBankValidatorNetProject.project" />
+					  <File Id="file282" Name="VALIDA_1.ZIP" LongName="Validator.Net files (to put in hacmebank bin folder) v2.18.zip" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/bin/Validator.Net files (to put in hacmebank bin folder) v2.18.zip" />
+					  <File Id="file283" Name="VALIDA_1.DLL" LongName="ValidatorNET_GAC_Assembly.dll" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/bin/ValidatorNET_GAC_Assembly.dll" />
+					  <File Id="file284" Name="VALIDA_1.PDB" LongName="ValidatorNET_GAC_Assembly.pdb" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/bin/ValidatorNET_GAC_Assembly.pdb" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory25" Name="classes">
+					<Component Id="component20" DiskId="1" Guid="291D62E3-DF43-4bbe-BC58-D791F1D1B069">
+					  <File Id="file285" Name="ACCOUN_1.CS" LongName="AccountManagement.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/classes/AccountManagement.cs" />
+					  <File Id="file286" Name="ADMINF_1.CS" LongName="AdminFunctions.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/classes/AdminFunctions.cs" />
+					  <File Id="file287" Name="ASCXTH_1.CS" LongName="ascxThreadingIssue.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/classes/ascxThreadingIssue.cs" />
+					  <File Id="file288" Name="DATACL_1.CS" LongName="dataClasses.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/classes/dataClasses.cs" />
+					  <File Id="file289" Name="Gui.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/classes/Gui.cs" />
+					  <File Id="file290" Name="USERMA_1.CS" LongName="UserManagement.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/classes/UserManagement.cs" />
+					  <File Id="file291" Name="USERSC_1.CS" LongName="UsersCommunity.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/classes/UsersCommunity.cs" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory26" Name="css">
+					<Component Id="component21" DiskId="1" Guid="5D059468-61F9-4804-AB74-76893338A7FB">
+					  <File Id="file292" Name="FOUNDS_1.CSS" LongName="FoundStoneBank.css" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/css/FoundStoneBank.css" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory27" Name="HTTPMO_1" LongName="httpModules">
+					<Component Id="component22" DiskId="1" Guid="5F4F7F79-7851-4915-BEA2-ED9AA715759B">
+					  <File Id="file293" Name="HTTPMO_1.CS" LongName="HttpModule_errorHandeling.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/httpModules/HttpModule_errorHandeling.cs" />
+					  <File Id="file294" Name="HTTPMO_2.CS" LongName="HttpModule_onlyAllowLocalAccess.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/httpModules/HttpModule_onlyAllowLocalAccess.cs" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory28" Name="obj">
+					<Directory Id="directory29" Name="Debug" />
+				  </Directory>
+				  <Directory Id="directory30" Name="WEBREF_1" LongName="Web References">
+					<Directory Id="directory31" Name="WS_ACC_1" LongName="WS_AccountManagement">
+					  <Component Id="component23" DiskId="1" Guid="303B6077-53C8-49e0-9A66-DC4CB4CF1EF7">
+						<File Id="file295" Name="ACCOUN_1.DIS" LongName="AccountManagement.disco" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_AccountManagement/AccountManagement.disco" />
+						<File Id="file296" Name="ACCOUN_1.WSD" LongName="AccountManagement.wsdl" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_AccountManagement/AccountManagement.wsdl" />
+						<File Id="file297" Name="REFERE_1.CS" LongName="Reference.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_AccountManagement/Reference.cs" />
+						<File Id="file298" Name="REFERE_1.MAP" LongName="Reference.map" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_AccountManagement/Reference.map" />
+					  </Component>
+					</Directory>
+					<Directory Id="directory32" Name="WS_USE_2" LongName="WS_UserManagement">
+					  <Component Id="component24" DiskId="1" Guid="55B759BD-07B8-4950-B5DD-BA374C08DAB7">
+						<File Id="file299" Name="REFERE_1.CS" LongName="Reference.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_UserManagement/Reference.cs" />
+						<File Id="file300" Name="REFERE_1.MAP" LongName="Reference.map" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_UserManagement/Reference.map" />
+						<File Id="file301" Name="USERMA_1.DIS" LongName="UserManagement.disco" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_UserManagement/UserManagement.disco" />
+						<File Id="file302" Name="USERMA_1.WSD" LongName="UserManagement.wsdl" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_UserManagement/UserManagement.wsdl" />
+					  </Component>
+					</Directory>
+					<Directory Id="directory33" Name="WS_USE_1" LongName="WS_UsersCommunity">
+					  <Component Id="component25" DiskId="1" Guid="968F2743-C019-4c00-8832-8A052AEB544F">
+						<File Id="file303" Name="REFERE_1.CS" LongName="Reference.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_UsersCommunity/Reference.cs" />
+						<File Id="file304" Name="REFERE_1.MAP" LongName="Reference.map" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_UsersCommunity/Reference.map" />
+						<File Id="file305" Name="USERSC_1.WSD" LongName="UsersCommunity.wsdl" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/Web References/WS_UsersCommunity/UsersCommunity.wsdl" />
+					  </Component>
+					</Directory>
+				  </Directory>
+				  <Directory Id="directory34" Name="xml">
+					<Component Id="component26" DiskId="1" Guid="CC055FEA-7C4D-4bed-A76F-A76F37360FCE">
+					  <File Id="file306" Name="info.xml" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/xml/info.xml" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory35" Name="xsl">
+					<Component Id="component27" DiskId="1" Guid="EE235C42-548C-4cea-93B4-7953DAE1CFF3">
+					  <File Id="file307" Name="info.xsl" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/xsl/info.xsl" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory36" Name="_misc">
+					<Component Id="component28" DiskId="1" Guid="F28608C9-1AF5-41aa-9D0B-1BBCD45B132F">
+					  <File Id="file308" Name="ASCXDE_1.ASP" LongName="ascxDebug.aspx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/_misc/ascxDebug.aspx" />
+					  <File Id="file309" Name="ASCXDE_1.CS" LongName="ascxDebug.aspx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/_misc/ascxDebug.aspx.cs" />
+					  <File Id="file310" Name="ASCXDE_1.RES" LongName="ascxDebug.aspx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/_misc/ascxDebug.aspx.resx" />
+					  <File Id="file311" Name="THREAT_1.ASP" LongName="ThreatIssue.aspx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/_misc/ThreatIssue.aspx" />
+					  <File Id="file312" Name="THREAT_1.CS" LongName="ThreatIssue.aspx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/_misc/ThreatIssue.aspx.cs" />
+					  <File Id="file313" Name="THREAT_2.CS" LongName="ThreatIssue.aspx.designer.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/_misc/ThreatIssue.aspx.designer.cs" />
+					  <File Id="file314" Name="THREAT_1.RES" LongName="ThreatIssue.aspx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_Website/_misc/ThreatIssue.aspx.resx" />
+					</Component>
+				  </Directory>
+				</Directory>
+				<Directory Id="directory37" Name="HACMEB_1" LongName="HacmeBank_v2_WS">
+				  <Component Id="component29" DiskId="1" Guid="9473CF1A-5117-4940-BAE6-DDA8E88E0391">
+					<File Id="file315" Name="ASSEMB_1.CS" LongName="AssemblyInfo.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/AssemblyInfo.cs" />
+					<File Id="file316" Name="GLOBAL_1.ASA" LongName="Global.asax" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/Global.asax" />
+					<File Id="file317" Name="GLOBAL_1.CS" LongName="Global.asax.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/Global.asax.cs" />
+					<File Id="file318" Name="GLOBAL_1.RES" LongName="Global.asax.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/Global.asax.resx" />
+					<File Id="file319" Name="HACMEB_1.URL" LongName="Hacme Bank WebServices v2.0.url" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/Hacme Bank WebServices v2.0.url" />
+					<File Id="file320" Name="HACMEB_1.CSP" LongName="HacmeBank_v2_WS.csproj" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/HacmeBank_v2_WS.csproj" />
+					<File Id="file321" Name="HACMEB_1.SLN" LongName="HacmeBank_v2_WS.sln" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/HacmeBank_v2_WS.sln" />
+					<File Id="file322" Name="WEB_1.CON" LongName="Web.config" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/Web.config" />
+				  </Component>
+				  <Directory Id="directory38" Name="bin">
+					<Component Id="component30" DiskId="1" Guid="DA5DE8B8-129D-4e23-BB17-D0E4A0F22A36">
+					  <File Id="file323" Name="HACMEB_1.DLL" LongName="HacmeBank_v2_WS.dll" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/bin/HacmeBank_v2_WS.dll" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory39" Name="classes">
+					<Component Id="component31" DiskId="1" Guid="DFF35D71-AC5A-4f71-8B7C-1167FCC28B6A">
+					  <File Id="file324" Name="DATAFA_1.CS" LongName="DataFactory.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/classes/DataFactory.cs" />
+					  <File Id="file325" Name="FILEMA_1.CS" LongName="FileManagement.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/classes/FileManagement.cs" />
+					  <File Id="file326" Name="HTTPMO_1.CS" LongName="HttpModule_onlyAllowLocalAccess.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/classes/HttpModule_onlyAllowLocalAccess.cs" />
+					  <File Id="file327" Name="INSTAL_1.CS" LongName="InstallTools.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/classes/InstallTools.cs" />
+					  <File Id="file328" Name="PAYMEN_1.CS" LongName="PaymentProviders.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/classes/PaymentProviders.cs" />
+					  <File Id="file329" Name="SQLSER_1.CS" LongName="SqlServerEngine.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/classes/SqlServerEngine.cs" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory40" Name="install">
+					<Component Id="component32" DiskId="1" Guid="005C2C7C-47C0-4bb7-A9DC-E5904767E710">
+					  <File Id="file330" Name="DELETE_1.BAT" LongName="Delete_FoundstoneBank_Database.bat" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/Delete_FoundstoneBank_Database.bat" />
+					  <File Id="file331" Name="FOUNDS_1.SQL" LongName="FoundStoneBank_export.sql" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/FoundStoneBank_export.sql" />
+					  <File Id="file332" Name="FOUNDS_2.SQL" LongName="FoundStoneBank_export_old.sql" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/FoundStoneBank_export_old.sql" />
+					  <File Id="file333" Name="HACMEB_1.EXE" LongName="Hacme Bank Database Setup.exe" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/Hacme Bank Database Setup.exe" />
+					  <File Id="file334" Name="HACMEB_2.EXE" LongName="Hacme Bank Database Setup.exe_" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/Hacme Bank Database Setup.exe_" />
+					  <File Id="file335" Name="HACMEB_1.PDB" LongName="Hacme Bank Database Setup.pdb" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/Hacme Bank Database Setup.pdb" />
+					  <File Id="file336" Name="IMPORT_1.BAT" LongName="Import_FoundstoneBank_Database.bat" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/Import_FoundstoneBank_Database.bat" />
+					  <File Id="file337" Name="INSTAL_1.ASM" LongName="Install.asmx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/Install.asmx" />
+					  <File Id="file338" Name="INSTAL_1.CS" LongName="Install.asmx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/Install.asmx.cs" />
+					  <File Id="file339" Name="INSTAL_1.RES" LongName="Install.asmx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/install/Install.asmx.resx" />
+					</Component>
+				  </Directory>
+				  <Directory Id="directory41" Name="WEBSER_1" LongName="WebServices">
+					<Component Id="component33" DiskId="1" Guid="8ED59226-A927-45a7-B2ED-3D1E5660D4A2">
+					  <File Id="file340" Name="ACCOUN_1.ASM" LongName="AccountManagement.asmx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/AccountManagement.asmx" />
+					  <File Id="file341" Name="ACCOUN_1.CS" LongName="AccountManagement.asmx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/AccountManagement.asmx.cs" />
+					  <File Id="file342" Name="ACCOUN_1.RES" LongName="AccountManagement.asmx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/AccountManagement.asmx.resx" />
+					  <File Id="file343" Name="USERMA_1.ASM" LongName="UserManagement.asmx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/UserManagement.asmx" />
+					  <File Id="file344" Name="USERMA_1.CS" LongName="UserManagement.asmx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/UserManagement.asmx.cs" />
+					  <File Id="file345" Name="USERMA_1.RES" LongName="UserManagement.asmx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/UserManagement.asmx.resx" />
+					  <File Id="file346" Name="USERSC_1.ASM" LongName="UsersCommunity.asmx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/UsersCommunity.asmx" />
+					  <File Id="file347" Name="USERSC_1.CS" LongName="UsersCommunity.asmx.cs" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/UsersCommunity.asmx.cs" />
+					  <File Id="file348" Name="USERSC_1.RES" LongName="UsersCommunity.asmx.resx" src="SiteGenerator_ContentPages/HacmeBank_v2_WS/WebServices/UsersCommunity.asmx.resx" />
+					</Component>
+				  </Directory>
+				</Directory>
+				<Directory Id="directory42" Name="htm">
+				  <Component Id="component34" DiskId="1" Guid="09B07FA2-F146-4ab2-8B19-F914A122C717">
+					<File Id="file349" Name="BOTTOM_1.HTM" LongName="BottomBanner.htm" src="SiteGenerator_ContentPages/htm/BottomBanner.htm" />
+					<File Id="file350" Name="default.htm" src="SiteGenerator_ContentPages/htm/default.htm" />
+					<File Id="file351" Name="Frameset.htm" src="SiteGenerator_ContentPages/htm/Frameset.htm" />
+					<File Id="file352" Name="FRAMES_1.HTM" LongName="Frameset_Flash.htm" src="SiteGenerator_ContentPages/htm/Frameset_Flash.htm" />
+					<File Id="file353" Name="FRAMES_2.HTM" LongName="Frameset_Html.htm" src="SiteGenerator_ContentPages/htm/Frameset_Html.htm" />
+					<File Id="file354" Name="HomePage.htm" src="SiteGenerator_ContentPages/htm/HomePage.htm" />
+					<File Id="file355" Name="HOMEPA_1.HTM" LongName="HomePage_All_Vulnerabilities.htm" src="SiteGenerator_ContentPages/htm/HomePage_All_Vulnerabilities.htm" />
+					<File Id="file356" Name="NORMAL_1.HTM" LongName="NormalPage.htm" src="SiteGenerator_ContentPages/htm/NormalPage.htm" />
+					<File Id="file357" Name="sql.htm" src="SiteGenerator_ContentPages/htm/sql.htm" />
+					<File Id="file358" Name="TOPBAN_1.HTM" LongName="TopBanner.htm" src="SiteGenerator_ContentPages/htm/TopBanner.htm" />
+					<File Id="file359" Name="Welcome.htm" src="SiteGenerator_ContentPages/htm/Welcome.htm" />
+				  </Component>
+				</Directory>
+				<Directory Id="directory43" Name="images">
+				  <Component Id="component35" DiskId="1" Guid="F9433690-0DB6-43a5-B95D-118ABACAAD60">
+					<File Id="file360" Name="BOTTOM_1.GIF" LongName="bottomBanner.gif" src="SiteGenerator_ContentPages/images/bottomBanner.gif" />
+					<File Id="file361" Name="CODESC_1.XSL" LongName="CodeScope_Report.xsl" src="SiteGenerator_ContentPages/images/CodeScope_Report.xsl" />
+					<File Id="file362" Name="file.gif" src="SiteGenerator_ContentPages/images/file.gif" />
+					<File Id="file363" Name="folder.gif" src="SiteGenerator_ContentPages/images/folder.gif" />
+					<File Id="file364" Name="FOUNDS_1.JPG" LongName="Foundstone_logo.jpg" src="SiteGenerator_ContentPages/images/Foundstone_logo.jpg" />
+					<File Id="file365" Name="LEFTBA_1.JPG" LongName="leftBanner.jpg" src="SiteGenerator_ContentPages/images/leftBanner.jpg" />
+					<File Id="file366" Name="LEFTBA_1.PNG" LongName="LeftBanner.png" src="SiteGenerator_ContentPages/images/LeftBanner.png" />
+					<File Id="file367" Name="leftTab.gif" src="SiteGenerator_ContentPages/images/leftTab.gif" />
+					<File Id="file368" Name="OWASP__1.GIF" LongName="owasp_logo.gif" src="SiteGenerator_ContentPages/images/owasp_logo.gif" />
+					<File Id="file369" Name="OWASP__1.PNG" LongName="owasp_logo.png" src="SiteGenerator_ContentPages/images/owasp_logo.png" />
+					<File Id="file370" Name="REFLEC_1.DLL" LongName="Reflector.Diff.dll" src="SiteGenerator_ContentPages/images/Reflector.Diff.dll" />
+					<File Id="file371" Name="rightTab.gif" src="SiteGenerator_ContentPages/images/rightTab.gif" />
+					<File Id="file372" Name="Thumbs.db" src="SiteGenerator_ContentPages/images/Thumbs.db" />
+					<File Id="file373" Name="TOPBAN_1.GIF" LongName="topBanner.gif" src="SiteGenerator_ContentPages/images/topBanner.gif" />
+					<File Id="file374" Name="TOPBAN_2.GIF" LongName="TopBanner_slice.gif" src="SiteGenerator_ContentPages/images/TopBanner_slice.gif" />
+					<File Id="file375" Name="_image1.gif" src="SiteGenerator_ContentPages/images/_image1.gif" />
+					<File Id="file376" Name="_image2.gif" src="SiteGenerator_ContentPages/images/_image2.gif" />
+				  </Component>
+				</Directory>
+				<Directory Id="directory44" Name="TestSite">
+				  <Component Id="component36" DiskId="1" Guid="68739AB8-DDB9-4149-AF84-5FD6A02AB7A8">
+					<File Id="file377" Name="Default.htm" src="SiteGenerator_ContentPages/TestSite/Default.htm" />
+					<File Id="file378" Name="NAVIGA_1.HTM" LongName="Navigation_Level_0_SubLevel_0.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_0_SubLevel_0.html" />
+					<File Id="file379" Name="NAVIGA_2.HTM" LongName="Navigation_Level_0_SubLevel_1.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_0_SubLevel_1.html" />
+					<File Id="file380" Name="NAVIGA_3.HTM" LongName="Navigation_Level_0_SubLevel_2.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_0_SubLevel_2.html" />
+					<File Id="file381" Name="NAVIGA_4.HTM" LongName="Navigation_Level_1_SubLevel_0.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_1_SubLevel_0.html" />
+					<File Id="file382" Name="NA4E92_1.HTM" LongName="Navigation_Level_1_SubLevel_1.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_1_SubLevel_1.html" />
+					<File Id="file383" Name="NA42A2_1.HTM" LongName="Navigation_Level_1_SubLevel_2.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_1_SubLevel_2.html" />
+					<File Id="file384" Name="NA4A22_1.HTM" LongName="Navigation_Level_2_SubLevel_0.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_2_SubLevel_0.html" />
+					<File Id="file385" Name="NA4E22_1.HTM" LongName="Navigation_Level_2_SubLevel_1.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_2_SubLevel_1.html" />
+					<File Id="file386" Name="NA4232_1.HTM" LongName="Navigation_Level_2_SubLevel_2.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_2_SubLevel_2.html" />
+					<File Id="file387" Name="NA4AF5_1.HTM" LongName="Navigation_Level_3_SubLevel_0.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_3_SubLevel_0.html" />
+					<File Id="file388" Name="NA4EF5_1.HTM" LongName="Navigation_Level_3_SubLevel_1.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_3_SubLevel_1.html" />
+					<File Id="file389" Name="NA4206_1.HTM" LongName="Navigation_Level_3_SubLevel_2.html" src="SiteGenerator_ContentPages/TestSite/Navigation_Level_3_SubLevel_2.html" />
+					<File Id="file390" Name="TOPNAV_1.HTM" LongName="TopNavigation.htm" src="SiteGenerator_ContentPages/TestSite/TopNavigation.htm" />
+				  </Component>
+				</Directory>
+				<Directory Id="directory45" Name="VULNER_1" LongName="Vulnerabilities">
+				  <Component Id="component37" DiskId="1" Guid="69B1C47C-FD25-4365-AA18-B63B65B5D629">
+					<File Id="file391" Name="DATAVA_1.ASP" LongName="DataValidation_SqlInjection_Advanced.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/DataValidation_SqlInjection_Advanced.aspx" />
+					<File Id="file392" Name="DATAVA_2.ASP" LongName="DataValidation_SqlInjection_Basic.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/DataValidation_SqlInjection_Basic.aspx" />
+					<File Id="file393" Name="DATAVA_1.XML" LongName="DataValidation_SqlInjection_Basic.aspx.xml" src="SiteGenerator_ContentPages/Vulnerabilities/DataValidation_SqlInjection_Basic.aspx.xml" />
+					<File Id="file394" Name="DATAVA_3.ASP" LongName="DataValidation_SqlInjection_Medium.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/DataValidation_SqlInjection_Medium.aspx" />
+					<File Id="file395" Name="DIRECT_1.ASP" LongName="Direct Sql Query.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Direct Sql Query.aspx" />
+					<File Id="file396" Name="HARDCO_1.ASP" LongName="Hardcoded_Password.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Hardcoded_Password.aspx" />
+					<File Id="file397" Name="HIDDEN_1.ASP" LongName="Hidden_Form_Field.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Hidden_Form_Field.aspx" />
+					<File Id="file398" Name="INSESS_1.ASP" LongName="InSession - Login.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/InSession - Login.aspx" />
+					<File Id="file399" Name="INSESS_2.ASP" LongName="InSession - SqlInjectionPages.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/InSession - SqlInjectionPages.aspx" />
+					<File Id="file400" Name="INTEGE_1.ASP" LongName="Integer_Overflow.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Integer_Overflow.aspx" />
+					<File Id="file401" Name="LEAKED_1.ASP" LongName="Leaked_Data_Through_Error_Messages.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Leaked_Data_Through_Error_Messages.aspx" />
+					<File Id="file402" Name="POOR_E_1.ASP" LongName="Poor_Encryption.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Poor_Encryption.aspx" />
+					<File Id="file403" Name="REMOTE_1.ASP" LongName="Remote Cmd Shell Advanced.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Remote Cmd Shell Advanced.aspx" />
+					<File Id="file404" Name="REMOTE_2.ASP" LongName="Remote Cmd Shell.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Remote Cmd Shell.aspx" />
+					<File Id="file405" Name="SHOWDI_1.ASP" LongName="Show Directories.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Show Directories.aspx" />
+					<File Id="file406" Name="SHOWFI_1.ASP" LongName="Show File Contents.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Show File Contents.aspx" />
+					<File Id="file407" Name="UNPROT_1.ASP" LongName="UnprotectedSecrets_Viewstate_HiddenField.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/UnprotectedSecrets_Viewstate_HiddenField.aspx" />
+					<File Id="file408" Name="WEAKPA_1.ASP" LongName="Weak Password.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Weak Password.aspx" />
+					<File Id="file409" Name="WRITEF_1.ASP" LongName="Write File On Server.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/Write File On Server.aspx" />
+					<File Id="file410" Name="XSS_1.ASP" LongName="XSS.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/XSS.aspx" />
+					<File Id="file411" Name="XSS_V4_1.ASP" LongName="XSS_v4.aspx" src="SiteGenerator_ContentPages/Vulnerabilities/XSS_v4.aspx" />
+				  </Component>
+				</Directory>
+				<Directory Id="directory46" Name="_TEMPL_1" LongName="_templates">
+				  <Component Id="component38" DiskId="1" Guid="D804E6D7-902A-4093-9B8D-022FD7094252">
+					<File Id="file412" Name="_TEMPL_1.XML" LongName="_templateSite.xml" src="SiteGenerator_ContentPages/_templates/_templateSite.xml" />
+				  </Component>
+				</Directory>
+			  </Directory>
+             
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="PMenu" LongName="Programs">
+        <Directory Id="ProgramMenuDir" Name='OSG' LongName="OWASP Site Generator" />
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+
+    <Feature Id='Complete' Title='OWASP Site Generator v0.80' 
+      Description='Install for the OWASP Site Generator'
+      Display='expand' Level='1' ConfigurableDirectory='INSTALLDIR'>
+        <Feature Id='MainProgram' Title='OWASP Site Generator (OSG)' Description='The fat-client portion of OSG' Level='1'>
+          <ComponentRef Id='MainExecutable' />
+          <ComponentRef Id='AltovaLibrary' />
+          <ComponentRef Id='OSGConfig' />
+          <ComponentRef Id='AxXmlSpy' />
+          <ComponentRef Id='InXmlSpy' />
+          <ComponentRef Id='RegAuth' />
+          <ComponentRef Id='component0' />
+          <ComponentRef Id='component1' />
+          <ComponentRef Id='component2' />
+          <ComponentRef Id='component3' />
+          <ComponentRef Id='component4' />
+          <ComponentRef Id='component5' />
+          <ComponentRef Id='component6' />
+          <ComponentRef Id='component7' />
+          <ComponentRef Id='component8' />
+          <ComponentRef Id='component9' />
+          <ComponentRef Id='component10' />
+          <ComponentRef Id='component11' />
+          <ComponentRef Id='component12' />
+          <ComponentRef Id='component13' />
+          <ComponentRef Id='component14' />
+          <ComponentRef Id='component15' />
+          <ComponentRef Id='component16' />
+          <ComponentRef Id='component17' />
+          <ComponentRef Id='component18' />
+          <ComponentRef Id='component19' />
+          <ComponentRef Id='component20' />
+          <ComponentRef Id='component21' />
+          <ComponentRef Id='component22' />
+          <ComponentRef Id='component23' />
+          <ComponentRef Id='component24' />
+          <ComponentRef Id='component25' />
+          <ComponentRef Id='component26' />
+          <ComponentRef Id='component27' />
+          <ComponentRef Id='component28' />
+          <ComponentRef Id='component29' />
+          <ComponentRef Id='component30' />
+          <ComponentRef Id='component31' />
+          <ComponentRef Id='component32' />
+          <ComponentRef Id='component33' />
+          <ComponentRef Id='component34' />
+          <ComponentRef Id='component35' />
+          <ComponentRef Id='component36' />
+          <ComponentRef Id='component37' />
+          <ComponentRef Id='component38' />
+        </Feature>
+    </Feature>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+    <Icon Id="OSG.exe" SourceFile="Owasp.ico" />
+    
+    <CustomAction Id='LaunchFile' FileKey='RegAuthBat' ExeCommand='"[INSTALLDIR]"' Return='asyncNoWait' />
+    
+    <InstallExecuteSequence>
+	  <Custom Action='LaunchFile' After='InstallFinalize' />
+	</InstallExecuteSequence>
+
+  </Product>
+</Wix>
