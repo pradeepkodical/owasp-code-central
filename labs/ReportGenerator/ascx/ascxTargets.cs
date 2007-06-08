@@ -686,15 +686,15 @@ namespace Owasp.VulnReport.ascx
                         // Make sure the host was actually up when the scan was ran
                         if (null != xnHost.SelectSingleNode("status[@state='up']") || cbIgnoreStatusFlag.Checked == true)
                         {
-                            XmlNodeList xnlHostNames = xnHost.SelectNodes("hostnames/hostname");
-                            if (xnlHostNames.Count > 0)
+                            XmlNodeList xnlAddresses = xnHost.SelectNodes("address");
+                            if (xnlAddresses.Count > 0)
                             {
-                                for (int j = 0; j < xnlHostNames.Count; j++)
+                                for (int j = 0; j < xnlAddresses.Count; j++)
                                 {
-                                    XmlAttribute xaHostName = (XmlAttribute)xnlHostNames[j].Attributes.GetNamedItem("name");
-                                    if (xaHostName.Value != "")
+                                    XmlAttribute xaAddress = (XmlAttribute)xnlAddresses[j].Attributes.GetNamedItem("addr");
+                                    if (xaAddress.Value != "")
                                     {
-                                        string sanitizedHost = xaHostName.Value.Replace('.', '_');
+                                        string sanitizedHost = xaAddress.Value.Replace('.', '_');
                                         if (true == lbTargetsInCurrentProject.Items.Contains(sanitizedHost))
                                         {
                                             iNumberOfDuplicatedTargets++;
@@ -705,7 +705,7 @@ namespace Owasp.VulnReport.ascx
                                             VulnReportHelpers.createNewTargetAndAddItToListBox(lbTargetsInCurrentProject,
                                                                                            sanitizedHost,
                                                                                            strFullPathToCurrentProject);
-                                            PopulateTargetInformation(xaHostName.Value, sanitizedHost, xnHost);
+                                            PopulateTargetInformation(xaAddress.Value, sanitizedHost, xnHost);
                                             iNumberOfTargetsImported++;
                                         }
                                     }
