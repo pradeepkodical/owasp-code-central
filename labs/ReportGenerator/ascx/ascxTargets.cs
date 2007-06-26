@@ -736,6 +736,11 @@ namespace Owasp.VulnReport.ascx
         /// <param name="sanitizedHostName">A sanitized version of the host name.  It is considered 
         /// sanitized when there are no periods in the name.</param>
         /// <param name="xnHost">The host node from the nmap import xml file</param>
+        /// 
+        /// History: 
+        /// 26/6/2007 - Mike Woodhead:  Changed the order of the function to Add the ip address before the DNSname 
+        ///                             as it was causing schema errors when saving.
+        /// 
         private void PopulateTargetInformation(string hostName, string sanitizedHostName, XmlNode xnHost)
         {
             // Load the xml file now and put in the host name and IP Address if available.
@@ -755,12 +760,6 @@ namespace Owasp.VulnReport.ascx
                 xaTestType.Value = txtDefaultTargetType.Text;
                 xnTarget.Attributes.Append(xaTestType);
             }
-            // Add the DNS name
-            XmlNode xnDnsName = xdTarget.CreateElement("DnsName", "vuln_report");
-            XmlAttribute xaDnsNameValue = xdTarget.CreateAttribute("value");
-            xaDnsNameValue.Value = hostName;
-            xnDnsName.Attributes.Append(xaDnsNameValue);
-            xnTarget.AppendChild(xnDnsName);
 
             // Get the IP address
             XmlNode xnIpAddress = xnHost.SelectSingleNode("address[@addrtype='ipv4']");
@@ -773,6 +772,13 @@ namespace Owasp.VulnReport.ascx
                 xnNewIpAddress.Attributes.Append(xaIpValue);
                 xnTarget.AppendChild(xnNewIpAddress);
             }
+
+            // Add the DNS name
+            XmlNode xnDnsName = xdTarget.CreateElement("DnsName", "vuln_report");
+            XmlAttribute xaDnsNameValue = xdTarget.CreateAttribute("value");
+            xaDnsNameValue.Value = hostName;
+            xnDnsName.Attributes.Append(xaDnsNameValue);
+            xnTarget.AppendChild(xnDnsName);
 
             XmlNodeList xnlTmp = xdTarget.GetElementsByTagName("Targets");
             if (xnlTmp.Count == 0)
