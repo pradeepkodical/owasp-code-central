@@ -1,0 +1,18 @@
+* Write nunit test cases for everything
+* Implement parameter substitution in HTML in the filter
+* Implement logging options
+* Implement configurable retaliation options
+* Investigate techniques/designs to allow overriding of the logging method, etc. to hook in the platform log4net logger, for example
+* Implement URL whitelisting
+* Shitload of error handling to be production-ready.
+* Data input validation on everything
+* Data input canonicalization
+
+
+* Test this against the sandbox app to uncover other situations (e.g. javascript URLs) that are not covered (i.e. false positives due to incomplete rewriting of the HTML)
+* Investigate an option for an application to provide its own web control (hidden) that you could override with the value from session instead of replacing the form tags with regex.
+    * Or, an option that would involve tightly coupling the app and the module -- the module could stick the token in session and the app could put it in the pages; then the module would only need to validate the data coming back and not do any rewriting.
+
+* Document the design and configurable options on the wiki
+    * Discuss how using viewstate actually prevents CSRF
+* Get the code into source control
