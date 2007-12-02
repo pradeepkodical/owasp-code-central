@@ -65,17 +65,91 @@ namespace org.owasp.csrfguard.ResponseFilters
 		
 		private String injectURLParameters(String htmlText)
 		{
-            /*
-            State machine parser
-            1. look for a tag start <[a-z]
-            2. scan ahead until you find a " h" or " s" for href/src, or end of tag >
-            3. if you find h, look for href; s, look for src
-            4. scan ahead and capture the URI
-            5. check the URI to ensure it is either a relative URI or the hostname matches (same origin).  Ignore javascript URIs.
-            6. if valid URI, then check for a ? and append the token, or add the ? and token
-             */
-			return htmlText;
+            StringBuilder newHtmlText = new StringBuilder();
+
+            for (int i=0; i < htmlText.Length; i++) {
+                Console.WriteLine(htmlText[i]);
+
+                switch (htmlText[i]) {
+                    case '<':
+                        // got a tag start.  Let's grab the whole tag
+                        String htmlTag = captureFromStartToStopChar(htmlText, i, '<', '>');
+                        // okay, now we need to tokenize the internals to grab src=blah or href=blah so we can replace them.  Best to create an objec
+                        // that exposes these values that we can rewrite.
+                        i += htmlTag.Length;    // advance the loop value ahead past this tag.
+                        break;
+                    case '>':
+                        // should never get here since the end tag gets gobbled up by the captureFromStartToStopChar() method
+                        break;
+                    default:
+                        newHtmlText.Append(htmlText[i]);
+                        break;
+                }
+            }
+
+			return newHtmlText.ToString();
 		}
+
+        private String captureFromStartToStopChar(String str, int start, char startchar, char endchar)
+        {
+            bool capturingText = false;
+            bool gotStart = false;
+            bool gotEnd = false;
+
+            StringBuilder sb = new StringBuilder();
+            
+            for (int i = start; i < str.Length; i++)
+            {
+
+                // it's stupid that c# switch statements require CONSTANTS.  Blame MS for how ugly this is.
+                if (str[i] == startchar) {
+                    if (capturingText && !gotEnd)
+                    {
+                        // this is an error.  We got a duplicate startchar before an endchar
+                        // TODO:  probably need to throw a parsing exception
+                    }
+                    else
+                    {
+                        gotStart = true;
+                        capturingText = true;
+                        sb.Append(str[i]);
+                    }
+                }
+                else if (str[i] == endchar)
+                {
+                    sb.Append(str[i]);
+                    capturingText = false;
+                    gotEnd = true;
+                    break;  // break out of loop
+                }
+                else
+                {
+                    if (capturingText)
+                    {
+                        // not a start or end character so add it
+                        sb.Append(str[i]);
+                    }
+                }
+            }
+            // if we ever get here, we did not find an end delimiter so just return what we have
+            return sb.ToString();
+        }
+
+        private String injectURLToken(String url, String tokenName, String tokenValue)
+        {
+            if (url.IndexOf('?') > 0)
+            {
+                // this url has parameters.  We need to append one more
+                url = String.Format("{0}&{1}={2}", url, tokenName, tokenValue);
+            }
+            else
+            {
+                // this url has no parameters.  Add one
+                url = String.Format("{0}?{1}={2}", url, tokenName, tokenValue);
+            }
+
+            return url;
+        }
 		#endregion
 	}
 }

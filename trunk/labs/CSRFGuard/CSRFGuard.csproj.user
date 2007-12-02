@@ -21,13 +21,11 @@
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
     <RemoteDebugMachine>
     </RemoteDebugMachine>
-    <StartAction>Project</StartAction>
-    <StartArguments>
-    </StartArguments>
+    <StartAction>Program</StartAction>
+    <StartArguments></StartArguments>
     <StartPage>
     </StartPage>
-    <StartProgram>
-    </StartProgram>
+    <StartProgram>c:\Program Files\TestDriven.NET 2.0\NUnit\2.4\nunit.exe</StartProgram>
     <StartURL>
     </StartURL>
     <StartWorkingDirectory>

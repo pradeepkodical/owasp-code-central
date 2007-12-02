@@ -28,7 +28,7 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
         [Test]
         public void RewriteFORMTag()
         {
-            String testString = "</form>       </html>";
+            String testString = "</form>" + "      </html>";
 
             Byte[] bytes = UTF8Encoding.UTF8.GetBytes(testString);
             MemoryStream stream = new MemoryStream();
@@ -38,15 +38,18 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
             testFilter.Write(bytes, 0, bytes.Length);
 
             String responseHtml = testFilter.getResponseHTML.ToString();
-
-            Assert.AreEqual(testString, responseHtml);
+            
+            // strings must not be the same, else that means no filtering happened
+            Assert.IsFalse( testString == responseHtml,
+               "responseHtml was not modified by the filter.  It is still:  {0}",
+               responseHtml );
         }
 
         // Rewrite HREF <a href="">blah</a>
 		[Test]
         public void RewriteHREF()
 		{
-            String testString = "<a href=\"/something/blah.aspx\">Link Name</a>";
+            String testString = "<a href=\"/something/blah.aspx\">Link Name</a>" + "      </html>";
 
             Byte[] bytes = UTF8Encoding.UTF8.GetBytes(testString);
             MemoryStream stream = new MemoryStream();
@@ -57,7 +60,9 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
 
             String responseHtml = testFilter.getResponseHTML.ToString();
 
-            Assert.AreEqual(testString, responseHtml);
+            Assert.IsFalse(testString == responseHtml,
+               "responseHtml was not modified by the filter.  It is still:  {0}",
+               responseHtml);
 		}
 
         // Rewrite HREF with inconsistent spaces
