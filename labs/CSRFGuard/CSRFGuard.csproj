@@ -74,17 +74,21 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.core, Version=2.3.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+    <Reference Include="nunit.core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\TestDriven.NET\NUnit\nunit.core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\TestDriven.NET 2.0\NUnit\2.4\nunit.core.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.3.0.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+    <Reference Include="nunit.framework, Version=2.4.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\TestDriven.NET\NUnit\nunit.framework.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\TestDriven.NET 2.0\NUnit\2.4\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.util, Version=2.3.0.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+    <Reference Include="nunit.mocks, Version=2.4.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\TestDriven.NET\NUnit\nunit.util.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\TestDriven.NET 2.0\NUnit\2.4\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util, Version=2.4.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\TestDriven.NET 2.0\NUnit\2.4\nunit.util.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -118,6 +122,7 @@
     <Compile Include="CSRFGuardModule.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HtmlTag.cs" />
     <Compile Include="ResponseFilters\HTMLParserFilter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -130,6 +135,7 @@
     <Compile Include="ResponseFilters\ResponseFilterBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\HtmlTagTest.cs" />
     <Compile Include="Tests\RegexFilterTest.cs" />
     <Compile Include="Tests\UtilityTest.cs" />
     <Compile Include="Util.cs">
