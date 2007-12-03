@@ -18,7 +18,7 @@ namespace org.owasp.csrfguard.ResponseFilters
 		public ResponseFilterBase(Stream inputStream, String tokenName, String token)
 		{
 			_responseStream = inputStream;
-			_responseHtml = new StringBuilder();	// read in the response HTML and add to this SB for rewriting
+            _responseHtml = new StringBuilder();    // html is appended gradually by the Write() method
 			_CSRFSesssionToken = token;
 			_CSRFTokenName = tokenName;
 		}

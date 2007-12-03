@@ -16,15 +16,15 @@ namespace org.owasp.csrfguard.Tests
         [Test]
         public void simpleTagNoAttributes()
         {
-            HtmlTag testTag = new HtmlTag("<br/>");
+            HtmlTag testTag = new HtmlTag("<br />");
             Assert.IsTrue(testTag.AttrCount == 0);
         }
 
         [Test]
         public void tagWithMultipleAttributesAndNiceSpacing()
         {
-            const String orig = "<img src=\"http://a52.g.akamaitech.net/f/52/827/1d/www.space.com/template_images/common_topmenu08_968x28.gif\" border=\"0\" usemap=\"#common_topmenu\"/>";
-            const String normalized = "<img src=\"http://a52.g.akamaitech.net/f/52/827/1d/www.space.com/template_images/common_topmenu08_968x28.gif\" border=\"0\" usemap=\"#common_topmenu\" />";
+            const String orig = "<IMG src=\"http://a52.g.akamaitech.net/f/52/827/1d/www.space.com/template_images/common_topmenu08_968x28.gif\" border=\"0\" usemap=\"#common_topmenu\"/>";
+            const String normalized = "<img src=\"http://a52.g.akamaitech.net/f/52/827/1d/www.space.com/template_images/common_topmenu08_968x28.gif\" border=\"0\" usemap=\"#common_topmenu\"/>";
             HtmlTag testTag = new HtmlTag(orig);
             Assert.IsTrue(testTag.AttrCount == 3, "Tag count is incorrect.  Got {0}, expected {1}", testTag.AttrCount, 3);
             Assert.IsTrue("\"http://a52.g.akamaitech.net/f/52/827/1d/www.space.com/template_images/common_topmenu08_968x28.gif\"" == testTag.getAttributeValue("src"), "Attribute value mismatch");
@@ -39,7 +39,7 @@ namespace org.owasp.csrfguard.Tests
         public void tagWithSpacesInAttributeValue()
         {
             const String orig = "<META name=\"keywords\" content=\"wmap, cmb, hole, radio, universe, matter, dark matter, galaxies, huge hole\">";
-            const String normalized = "<META name=\"keywords\" content=\"wmap, cmb, hole, radio, universe, matter, dark matter, galaxies, huge hole\" >";
+            const String normalized = "<meta name=\"keywords\" content=\"wmap, cmb, hole, radio, universe, matter, dark matter, galaxies, huge hole\">";
             HtmlTag testTag = new HtmlTag(orig);
             Assert.IsTrue(testTag.AttrCount == 2, "Tag count is incorrect.  Got {0}, expected {1}", testTag.AttrCount, 2);
             Assert.IsTrue("\"keywords\"" == testTag.getAttributeValue("name"), "Attribute value mismatch");
@@ -53,7 +53,7 @@ namespace org.owasp.csrfguard.Tests
         public void tagWithLotsOfAbnormalSpacing()
         {
             const String orig = "<META    name     =  \"keywords\"     content  =     \"wmap, cmb, hole, radio, universe, matter, dark matter, galaxies, huge hole\">";
-            const String normalized = "<META name=\"keywords\" content=\"wmap, cmb, hole, radio, universe, matter, dark matter, galaxies, huge hole\" >";
+            const String normalized = "<meta name=\"keywords\" content=\"wmap, cmb, hole, radio, universe, matter, dark matter, galaxies, huge hole\">";
             HtmlTag testTag = new HtmlTag(orig);
             Assert.IsTrue(testTag.AttrCount == 2, "Tag count is incorrect.  Got {0}, expected {1}", testTag.AttrCount, 2);
             Assert.IsTrue("\"keywords\"" == testTag.getAttributeValue("name"), "Attribute value mismatch");
@@ -64,9 +64,32 @@ namespace org.owasp.csrfguard.Tests
         }
 
         [Test]
-        public void GetOlbExReturnsNewOlb1()
+        public void tagWithEqualsSignInValue()
         {
+            const String orig = "<IMG src     =  \"keywords\"     content  =     \"1 + 1 = 2\">";
+            const String normalized = "<img src=\"keywords\" content=\"1 + 1 = 2\">";
+            HtmlTag testTag = new HtmlTag(orig);
+            Assert.IsTrue(testTag.AttrCount == 2, "Tag count is incorrect.  Got {0}, expected {1}", testTag.AttrCount, 2);
+            Assert.IsTrue("\"keywords\"" == testTag.getAttributeValue("src"), "Attribute value mismatch");
+            Assert.IsTrue("\"1 + 1 = 2\"" == testTag.getAttributeValue("content"), "Attribute value mismatch");
 
+            // ensure modified string is what we expect. In this case, one change.
+            Assert.IsTrue(normalized == testTag.TagString, "Modified string does not match expected!");
+        }
+        [Test]
+        public void updatingAttributeUpdatesTag()
+        {
+            const String orig = "<IMG src     =  \"keywords\"     content  =     \"1 + 1 = 2\">";
+            const String updated = "<img src=\"keywords\" content=\"2 + 2 = 4\">";
+            HtmlTag testTag = new HtmlTag(orig);
+            Assert.IsTrue(testTag.AttrCount == 2, "Tag count is incorrect.  Got {0}, expected {1}", testTag.AttrCount, 2);
+            Assert.IsTrue("\"1 + 1 = 2\"" == testTag.getAttributeValue("content"), "Attribute value mismatch");
+
+            testTag.setAttributeValue("content", "\"2 + 2 = 4\"");
+            Assert.IsTrue("\"2 + 2 = 4\"" == testTag.getAttributeValue("content"), "Attribute value mismatch");
+
+            // ensure modified string is what we expect. In this case, one change.
+            Assert.IsTrue(updated == testTag.TagString, "Modified string does not match expected!");
         }
     }
 }

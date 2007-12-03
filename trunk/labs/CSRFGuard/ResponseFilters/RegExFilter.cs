@@ -40,16 +40,17 @@ namespace org.owasp.csrfguard.ResponseFilters
 				String finalHtml = _responseHtml.ToString();
 
 				// Do the transformations
-				// put the hidden form fields in place
-				finalHtml = injectHiddenFormFields(finalHtml);
-				
+
 				// now, inject parameters into any URLs within the page
 				finalHtml = injectURLParameters(finalHtml);
+
+                // put the hidden form fields in place (do this after url parameters to avoid injecting twice)
+                finalHtml = injectHiddenFormFields(finalHtml);
                 _responseHtml = new StringBuilder(finalHtml);
 
-				byte[] data = UTF8Encoding.UTF8.GetBytes(finalHtml);
+				byte[] responseHtmlBytes = UTF8Encoding.UTF8.GetBytes(finalHtml);
         
-				_responseStream.Write (data, 0, data.Length);
+				_responseStream.Write (responseHtmlBytes, 0, responseHtmlBytes.Length);
 			}
 		}
 		#endregion
@@ -73,10 +74,20 @@ namespace org.owasp.csrfguard.ResponseFilters
                 switch (htmlText[i]) {
                     case '<':
                         // got a tag start.  Let's grab the whole tag
-                        String htmlTag = captureFromStartToStopChar(htmlText, i, '<', '>');
-                        // okay, now we need to tokenize the internals to grab src=blah or href=blah so we can replace them.  Best to create an objec
-                        // that exposes these values that we can rewrite.
-                        i += htmlTag.Length;    // advance the loop value ahead past this tag.
+                        String tagStr = Util.captureFromStartToStopChar(htmlText, i, '<', '>'); 
+                        i += (tagStr.Length - 1);    // advance the loop value ahead past this tag.
+                        HtmlTag tagObj = new HtmlTag(tagStr);
+                        String value;
+                        if ((value = tagObj.getAttributeValue("src")) != null)
+                        {
+                            tagObj.setAttributeValue("src", injectURLToken(value, _CSRFTokenName, _CSRFSesssionToken));
+                        }
+                        else if ((value = tagObj.getAttributeValue("href")) != null)
+                        {
+                            tagObj.setAttributeValue("href", injectURLToken(value, _CSRFTokenName, _CSRFSesssionToken));
+                        }
+
+                        newHtmlText.Append(tagObj.TagString);
                         break;
                     case '>':
                         // should never get here since the end tag gets gobbled up by the captureFromStartToStopChar() method
@@ -90,62 +101,33 @@ namespace org.owasp.csrfguard.ResponseFilters
 			return newHtmlText.ToString();
 		}
 
-        private String captureFromStartToStopChar(String str, int start, char startchar, char endchar)
-        {
-            bool capturingText = false;
-            bool gotStart = false;
-            bool gotEnd = false;
-
-            StringBuilder sb = new StringBuilder();
-            
-            for (int i = start; i < str.Length; i++)
-            {
-
-                // it's stupid that c# switch statements require CONSTANTS.  Blame MS for how ugly this is.
-                if (str[i] == startchar) {
-                    if (capturingText && !gotEnd)
-                    {
-                        // this is an error.  We got a duplicate startchar before an endchar
-                        // TODO:  probably need to throw a parsing exception
-                    }
-                    else
-                    {
-                        gotStart = true;
-                        capturingText = true;
-                        sb.Append(str[i]);
-                    }
-                }
-                else if (str[i] == endchar)
-                {
-                    sb.Append(str[i]);
-                    capturingText = false;
-                    gotEnd = true;
-                    break;  // break out of loop
-                }
-                else
-                {
-                    if (capturingText)
-                    {
-                        // not a start or end character so add it
-                        sb.Append(str[i]);
-                    }
-                }
-            }
-            // if we ever get here, we did not find an end delimiter so just return what we have
-            return sb.ToString();
-        }
-
         private String injectURLToken(String url, String tokenName, String tokenValue)
         {
             if (url.IndexOf('?') > 0)
             {
                 // this url has parameters.  We need to append one more
-                url = String.Format("{0}&{1}={2}", url, tokenName, tokenValue);
+                // check for trailing quote
+                if (url[url.Length-1] == '"')
+                {
+                    url = url.Substring(0, url.Length - 1) + "&" + tokenName + "=" + tokenValue + "\"";
+                }
+                else
+                {
+                    url = String.Format("{0}&{1}={2}", url, tokenName, tokenValue);
+                }
             }
             else
             {
-                // this url has no parameters.  Add one
-                url = String.Format("{0}?{1}={2}", url, tokenName, tokenValue);
+                // check for trailing quote
+                if (url[url.Length-1] == '"')
+                {
+                    url = url.Substring(0, url.Length - 1) + "?" + tokenName + "=" + tokenValue + "\"";
+                }
+                else
+                {
+                    // this url has no parameters.  Add one
+                    url = String.Format("{0}?{1}={2}", url, tokenName, tokenValue);
+                }
             }
 
             return url;

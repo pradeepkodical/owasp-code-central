@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Specialized;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -8,36 +9,103 @@ namespace org.owasp.csrfguard
     class HtmlTag
     {
         // collection holding all attributes
-        private Hashtable _attrCollection = new Hashtable();
+        private ListDictionary _attrList = new ListDictionary();
         private String _tagString;
-        private String[] _tokenizedTagString;
+        private String _tagName;    // e.g. <img has a tag name of "img"
+        private bool _selfClosing = false;   // whether this is a self-closing tag or not
+        private bool _isStartTag = false;   // is this a start or an end tag?
 
         // constructor
         public HtmlTag(String tagString)
         {
             _tagString = tagString;
+            normalizeHtml();
+            Regex tagNameRegex = new Regex("<([^ ]+)");
+            Match m = tagNameRegex.Match(_tagString);
+            if (m.Success)
+            {
+                _tagName = m.Groups[1].Captures[0].Value.ToLower();
+            }
             if (tagHasAttributes())
             {
-                normalizeHtml();
                 populateAttributes();
             }
+            updateTagString();
         }
 
         // tokenizes the Html tag string and populates the attributes Hash table
+        #region methods
         protected void populateAttributes() {
             // 
             String[] tokens = Split(_tagString, " ", "\"", true);
 
             foreach (String token in tokens)
             {
-                // TODO:  only split on = outside of quotes to avoid impacting values
                 if (token.IndexOf('=') > 0)
                 {
-                    String[] attr = token.Split(new char[] { '=' });
-                    _attrCollection.Add(attr[0].ToLower(), attr[1]);
+                    String[] attr = Split(token.ToString(), "=", "\"", true);
+                    _attrList.Add(attr[0].ToLower(), attr[1]);
                 }
             }
         }
+
+        // normalizes whitespace in the Html
+        protected void normalizeHtml()
+        {
+            // <a    href = "/my/url/that has spaces.aspx" id = 1>
+            // normalize any closing tag endings to be offset by a space to make splitting the attributes easier
+            // also, set tag information based on the matches
+            Regex startTagRegex = new Regex("</", RegexOptions.Compiled);
+            if (!startTagRegex.Match(_tagString).Success)
+            {
+                _isStartTag = true;
+            }
+
+            Regex endTagRegex = new Regex("/>", RegexOptions.Compiled);
+            if (endTagRegex.Match(_tagString).Success)
+            {
+                // capture whether this tag is self-closing or not
+                _selfClosing = true;
+                _tagString = endTagRegex.Replace(_tagString, " />");
+            }
+            else
+            {
+                Regex endTagRegex2 = new Regex("([^/])>", RegexOptions.Compiled);
+                _tagString = endTagRegex2.Replace(_tagString, "$1 >");
+            }
+
+            // replace consecutive spaces with a single space and remove spaces around equals while ignoring them in quoted strings
+            _tagString = CompressWhitespace(_tagString, "\"");
+        }
+
+        // rewrite the tag string with the latest attributes
+        protected void updateTagString()
+        {
+            StringBuilder newTag = new StringBuilder();
+
+            // add start of tag and double-quote
+            newTag.Append("<");
+            newTag.Append(Name);
+
+            // add all of the attributes in the original order
+            foreach (DictionaryEntry item in _attrList) {
+                newTag.Append(" ");
+                newTag.Append(item.Key + "=" + item.Value);
+            }
+
+            // add the closing tag and double-quote
+            if (isSelfClosing)
+            {
+                newTag.Append("/>");
+            }
+            else
+            {
+                newTag.Append(">");
+            }
+            _tagString = newTag.ToString();
+        }
+
+        #endregion
 
         // need getter/setter methods for the attributes
         #region getters and setters
@@ -45,7 +113,7 @@ namespace org.owasp.csrfguard
         {
             get
             {
-                return _attrCollection.Count;
+                return _attrList.Count;
             }
         }
 
@@ -57,23 +125,57 @@ namespace org.owasp.csrfguard
             }
         }
 
+        public bool isSelfClosing
+        {
+            get
+            {
+                return _selfClosing;
+            }
+        }
+
+        public bool isStartTag
+        {
+            get
+            {
+                return _isStartTag;
+            }
+        }
+
+        public String Name
+        {
+            get
+            {
+                return _tagName;
+            }
+        }
+
         // Oh why make properties not easily able to deal with data structures in a safe way.  No way am I returning the whole
         // hashtable to the caller to screw up.
         public String getAttributeValue(String attrName)
         {
-            return _attrCollection[attrName].ToString();
+            // avoid null reference exception with ToString()
+            if (_attrList.Contains(attrName))
+            {
+                return _attrList[attrName].ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void setAttributeValue(String attrName, String value)
         {
-            if (_attrCollection.ContainsKey(attrName))
+            if (_attrList.Contains(attrName))
             {
-                _attrCollection[attrName] = value;
+                _attrList[attrName] = value;
             }
             else
             {
-                _attrCollection.Add(attrName, value);
+                _attrList.Add(attrName, value);
             }
+            // update the tag string since we changed the attribute value
+            updateTagString();
         }
         #endregion
 
@@ -100,25 +202,6 @@ namespace org.owasp.csrfguard
                 }
             }
             return isAttrFound;
-        }
-
-        // normalizes whitespace in the Html using regexes
-        protected void normalizeHtml()
-        {
-            // <a    href = "/my/url/that has spaces.aspx" id = 1>
-            // normalize any closing tag endings to be offset by a space
-            Regex endTagRegex = new Regex("/>", RegexOptions.Compiled);
-            Regex endTagRegex2 = new Regex("([^/])>", RegexOptions.Compiled);
-            _tagString = endTagRegex.Replace(_tagString, " />");
-            _tagString = endTagRegex2.Replace(_tagString, "$1 >");
-            // match 2+ whitespace not occuring within double quotes.  Love the zero-width lookaheads
-            /* Regex whiteSpaceRegex = new Regex("(?!\".*)[ ]{2,}(?!.*\")", RegexOptions.Compiled);
-            // Replace with a single whitespace
-            _tagString = whiteSpaceRegex.Replace(_tagString, "$1 "); */
-            _tagString = CompressWhitespace(_tagString, "\"");
-            // now, get rid of whitespace around equals signs
-            Regex equalsRegex = new Regex(" += +| +=|= +", RegexOptions.Compiled);
-            _tagString = equalsRegex.Replace(_tagString, "=");
         }
 
         // String split that supports text qualifiers so we can split text on a delimiter but ignore delimiters inside quotes
@@ -155,30 +238,55 @@ namespace org.owasp.csrfguard
         // replace two or more consecutive spaces with a single space, but only outside of quoted strings!
         public String CompressWhitespace(string str, string qualifier)
         {
+            const int MAX_CONSEC_SPACES = 2;
             bool gotQuotedString = false;
-            int wsCount = 0;
+            bool gotEquals = false;
+            int consecWsCount = 0;  // how many consecutive spaces we've found.
             StringBuilder sb = new StringBuilder();
+            StringBuilder space = new StringBuilder();
 
             for (int i = 0; i < str.Length; i++)
             {
                 if (str[i] == qualifier[0])
                 {
+                    // state = inside quoted string.  Append the qualifier and continue on.
                     gotQuotedString = !(gotQuotedString);
                     sb.Append(str[i]);
                 }
                 else if (str[i] == ' ' && !gotQuotedString)
                 {
-                    wsCount++;
-                    if (wsCount < 2)
+                    // outside of quoted string and we found a space.  
+                    // Compress whitespace by only keeping whitespace < MAX_CONSEC_SPACES chars.
+                    // save it to a buffer that will be possibly appended later.
+                    if (++consecWsCount < MAX_CONSEC_SPACES)
                     {
-                        sb.Append(str[i]);
+                        space.Append(str[i]);  // append to whitespace buffer.  This may/may not be appended later depending on if the space is around an equals
                     }
+                }
+                else if (str[i] == '=' && !gotQuotedString)
+                {
+                    gotEquals = true;
+                    if (space.Length > 0)
+                    {
+                        space.Remove(0, space.Length);  // discard queued spaces
+                    }
+                    sb.Append(str[i]);
                 }
                 else
                 {
-                    if (wsCount > 0)
+                    // conditionally append queued space.  
+                    if (!gotEquals && space.Length > 0)
                     {
-                        wsCount = 0;
+                        sb.Append(space.ToString());
+                        space.Remove(0, space.Length);  // empty the buffer
+                    }
+                    gotEquals = false;
+
+                    // not a whitespace so just append.
+                    // reset whitespace count when you hit a non-whitespace char.
+                    if (consecWsCount > 0)
+                    {
+                        consecWsCount = 0;
                     }
                     sb.Append(str[i]);
                 }
