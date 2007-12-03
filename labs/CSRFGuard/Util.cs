@@ -101,5 +101,50 @@ namespace org.owasp.csrfguard
 			SetPropertyEx(Sub, Subs, Value);
 			return null;
 		}
+
+
+        public static String captureFromStartToStopChar(String str, int start, char startchar, char endchar)
+        {
+            bool capturingText = false;
+            bool gotEnd = false;
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = start; i < str.Length; i++)
+            {
+
+                // it's stupid that c# switch statements require CONSTANTS.  Blame MS for how ugly this is.
+                if (str[i] == startchar)
+                {
+                    if (capturingText && !gotEnd)
+                    {
+                        // this is an error.  We got a duplicate startchar before an endchar
+                        // TODO:  probably need to throw a parsing exception
+                    }
+                    else
+                    {
+                        capturingText = true;
+                        sb.Append(str[i]);
+                    }
+                }
+                else if (str[i] == endchar)
+                {
+                    sb.Append(str[i]);
+                    capturingText = false;
+                    gotEnd = true;
+                    break;  // break out of loop
+                }
+                else
+                {
+                    if (capturingText)
+                    {
+                        // not a start or end character so add it
+                        sb.Append(str[i]);
+                    }
+                }
+            }
+            // if we ever get here, we did not find an end delimiter so just return what we have
+            return sb.ToString();
+        }
 	}
 }

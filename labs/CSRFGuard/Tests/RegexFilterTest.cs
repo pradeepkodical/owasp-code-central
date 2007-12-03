@@ -47,7 +47,7 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
 
         // Rewrite HREF <a href="">blah</a>
 		[Test]
-        public void RewriteHREF()
+        public void RewriteNiceHREF()
 		{
             String testString = "<a href=\"/something/blah.aspx\">Link Name</a>" + "      </html>";
 
@@ -67,6 +67,24 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
 
         // Rewrite HREF with inconsistent spaces
         // <a href   =  blah>
+        [Test]
+        public void RewriteHREFWithInconsistentSpaces()
+        {
+            String testString = "<a  href    =   \"/something/blah.aspx\">Link Name</a>" + "      </html>";
+
+            Byte[] bytes = UTF8Encoding.UTF8.GetBytes(testString);
+            MemoryStream stream = new MemoryStream();
+            stream.Write(bytes, 0, bytes.Length);
+
+            RegExFilter testFilter = new RegExFilter(stream, tokenName, tokenValue);
+            testFilter.Write(bytes, 0, bytes.Length);
+
+            String responseHtml = testFilter.getResponseHTML.ToString();
+
+            Assert.IsFalse(testString == responseHtml,
+               "responseHtml was not modified by the filter.  It is still:  {0}",
+               responseHtml);
+        }
 
         // Rewrite HREF with additional attributes
 
