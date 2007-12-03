@@ -80,11 +80,19 @@ namespace org.owasp.csrfguard.ResponseFilters
                         String value;
                         if ((value = tagObj.getAttributeValue("src")) != null)
                         {
-                            tagObj.setAttributeValue("src", injectURLToken(value, _CSRFTokenName, _CSRFSesssionToken));
+                            // SECURITY NOTE:  enforce the same-origin policy for rewrites.  Only links for this site get rewritten!
+                            if (Util.urlIsSameOriginAsServer(value) && !Regex.Match(value, App.Configuration.extensionWhitelistPattern).Success)
+                            {
+                                tagObj.setAttributeValue("src", injectURLToken(value, _CSRFTokenName, _CSRFSesssionToken));
+                            }
                         }
                         else if ((value = tagObj.getAttributeValue("href")) != null)
                         {
-                            tagObj.setAttributeValue("href", injectURLToken(value, _CSRFTokenName, _CSRFSesssionToken));
+                            // SECURITY NOTE:  enforce the same-origin policy for rewrites.  Only links for this site get rewritten!
+                            if (Util.urlIsSameOriginAsServer(value) && !Regex.Match(value, App.Configuration.extensionWhitelistPattern).Success)
+                            {
+                                tagObj.setAttributeValue("href", injectURLToken(value, _CSRFTokenName, _CSRFSesssionToken));
+                            }
                         }
 
                         newHtmlText.Append(tagObj.TagString);
@@ -93,6 +101,7 @@ namespace org.owasp.csrfguard.ResponseFilters
                         // should never get here since the end tag gets gobbled up by the captureFromStartToStopChar() method
                         break;
                     default:
+                        // anything else passes through without modification
                         newHtmlText.Append(htmlText[i]);
                         break;
                 }

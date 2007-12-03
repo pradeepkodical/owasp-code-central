@@ -12,16 +12,17 @@ namespace org.owasp.csrfguard.Tests
 	{
 
 		[Test]
-		public void GetOlbExReturnsTop()
+        public void urlIsSameOriginAsServerRelativeURLSlash()
 		{
-
-			
+            String testUrl = "/some/path/index.html";
+            Assert.IsTrue(Util.urlIsSameOriginAsServer(testUrl), "Url {0} should be relative but the code said otherwise");
 		}
 
 		[Test]
-		public void GetOlbExReturnsInner()
+        public void urlIsSameOriginAsServerFullUrl()
 		{
-		
+            String testUrl = "https://localhost/some/path/index.html";
+            Assert.IsTrue(Util.urlIsSameOriginAsServer(testUrl), "Url {0} should be local but the code said otherwise");		
 		}
 
 

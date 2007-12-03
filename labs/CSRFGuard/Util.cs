@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace org.owasp.csrfguard
 {
@@ -146,5 +148,38 @@ namespace org.owasp.csrfguard
             // if we ever get here, we did not find an end delimiter so just return what we have
             return sb.ToString();
         }
-	}
+
+        // if the URL is a relative URL or the server name matches this one serving the request, then return true
+        public static bool urlIsSameOriginAsServer(String url)
+        {
+            bool isSameOrigin = false;
+
+            Regex urlRegex = new Regex("^(\"?)[a-zA-Z]+://([^/:]+)/", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+            // "/some/dir/index.html" 
+            // slash within the first 2 characters (allows for starting ")
+            if (url.IndexOf('/') <= 2)
+            {
+                isSameOrigin = true;
+            } else if (urlRegex.IsMatch(url)) {
+                // check for a full URL reference
+                Match m = urlRegex.Match(url);
+                String urlServer = m.Groups[2].Value.ToLower();
+                System.Net.IPHostEntry serverHostEntry = System.Net.Dns.GetHostEntry(HttpContext.Current.Server.MachineName);
+
+                if (urlServer == "localhost" ||
+                    urlServer == "127.0.0.1" ||
+                    urlServer == HttpContext.Current.Server.MachineName ||
+                    HttpContext.Current.Server.MachineName.StartsWith(urlServer) ||
+                    urlServer == serverHostEntry.AddressList[0].ToString())
+                {
+                    isSameOrigin = true;
+                }
+            } else {
+                // relative reference not starting with slash
+                isSameOrigin = true;
+            }
+            return isSameOrigin;
+        }
+    }
 }

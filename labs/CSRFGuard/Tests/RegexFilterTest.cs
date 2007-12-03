@@ -100,11 +100,7 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
 
         // Test with full URL matching this server
 
-        // Test iframe src
-
-        // Test frame src
-
-        // Test other src cases
+        // Test with url matching .(gif|jpg|png|css|js|ico|swf|axd|pdf)$ and not
 
         /********************************************************************************
          * Negative tests
