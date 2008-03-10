@@ -1,0 +1,8 @@
+C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.HttpModule\osg_httpHandler\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.HttpModule\osg_httpHandler\obj\Release\osgHttpHandler.dll
+C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.HttpModule\osg_httpHandler\obj\Release\osgHttpHandler.pdb
+C:\Inetpub\wwwroot\OSG\bin\osgHttpHandler.dll
+C:\Inetpub\wwwroot\OSG\bin\osgHttpHandler.pdb
+C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.HttpHandler\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.HttpHandler\obj\Release\osgHttpHandler.dll
+C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.HttpHandler\obj\Release\osgHttpHandler.pdb
