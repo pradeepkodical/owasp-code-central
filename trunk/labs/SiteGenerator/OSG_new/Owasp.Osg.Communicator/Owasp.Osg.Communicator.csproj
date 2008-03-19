@@ -35,6 +35,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -45,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="osgCommBuffer.cs" />
+    <Compile Include="osgCommBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="osgRequest.cs" />
     <Compile Include="osgResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

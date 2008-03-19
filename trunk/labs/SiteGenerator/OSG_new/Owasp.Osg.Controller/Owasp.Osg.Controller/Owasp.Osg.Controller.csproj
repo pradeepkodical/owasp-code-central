@@ -12,6 +12,21 @@
     <AssemblyName>Owasp.Osg.Controller</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>http://localhost/Owasp.Osg.Controller/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,15 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="osgCommunicator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Owasp.Osg.Communicator\bin\Release\osgCommunicator.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -62,13 +74,14 @@
     <Compile Include="Controls\WindowHeaderControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Resources\Document\DocumentManager.cs" />
-    <Compile Include="Resources\Document\DocumentPart.cs" />
-    <Compile Include="Resources\Document\DocumentPartModificationType.cs" />
-    <Compile Include="Resources\Document\File.cs" />
-    <Compile Include="Resources\Document\Folder.cs" />
-    <Compile Include="Resources\Document\Project.cs" />
-    <Compile Include="Resources\Document\Site.cs" />
+    <Compile Include="Document\DocumentManager.cs" />
+    <Compile Include="Document\DocumentPart.cs" />
+    <Compile Include="Document\DocumentPartModificationType.cs" />
+    <Compile Include="Document\File.cs" />
+    <Compile Include="Document\Folder.cs" />
+    <Compile Include="Document\Project.cs" />
+    <Compile Include="Document\Site.cs" />
+    <Compile Include="Listener\Listener.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,7 +146,34 @@
     <None Include="Resources\FormRunHS.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Listener\Listener.config" />
     <None Include="Resources\StopHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Owasp.Osg.Communicator\Owasp.Osg.Communicator.csproj">
+      <Project>{406CE61F-5752-406C-B966-30A476B13F9C}</Project>
+      <Name>Owasp.Osg.Communicator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
