@@ -25,7 +25,7 @@ namespace Owasp.Osg.HttpHandler
       HttpChannel channel = new HttpChannel(9003);
       ChannelServices.RegisterChannel(channel, false);
       // get a copy of the buffer
-      object obj = Activator.GetObject(typeof(osgCommBuffer), "http://abbylaptop:9000/commBuffer");
+      object obj = Activator.GetObject(typeof(osgCommBuffer), "http://localhost:9000/commBuffer");
 			//cast to local type
       commBuffer_ = (osgCommBuffer)obj;				  
 		}
