@@ -24,8 +24,10 @@ namespace Owasp.Osg.HttpHandler
       // register a http channel
       HttpChannel channel = new HttpChannel(9003);
       ChannelServices.RegisterChannel(channel, false);
+			// TODO: Change this. It only works for channels commuinicating on local machine
+			string url = "http://" + System.Environment.MachineName.ToString() + ":9000/commBuffer";
       // get a copy of the buffer
-      object obj = Activator.GetObject(typeof(osgCommBuffer), "http://localhost:9000/commBuffer");
+      object obj = Activator.GetObject(typeof(osgCommBuffer), url);
 			//cast to local type
       commBuffer_ = (osgCommBuffer)obj;				  
 		}
