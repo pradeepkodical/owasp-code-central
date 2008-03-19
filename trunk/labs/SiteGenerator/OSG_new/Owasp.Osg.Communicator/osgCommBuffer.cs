@@ -4,13 +4,13 @@ using System.Runtime.Remoting.Lifetime;
 
 namespace Owasp.Osg.Communicator
 {
-	// delegate for the control to set functionality
+	// delegate for the control to set response functionality
 	public delegate osgResponse delResponse(osgRequest request);
 
   public class osgCommBuffer: MarshalByRefObject
   {
     private bool b_request_; 
-    private bool b_response_;
+    private static bool b_response_;
 		private static delResponse delRespond_;
 
     public osgCommBuffer() {
@@ -24,27 +24,19 @@ namespace Owasp.Osg.Communicator
 		}
 
 		public osgResponse controlResponse(osgRequest request) {
-			request.RequestURI.ToString();
-			requestIn = true;
-			return delRespond_(request);
+			if( request != null )
+		    return delRespond_(request);
+			return null;
 		}
 
     public bool requestIn {
-      get {
-        return b_request_;
-      }
-      set {
-        b_request_ = value;
-      }
+      get { return b_request_; }
+      set { b_request_ = value; }
     }
 
-    public bool responseReady {
-      get {
-        return b_response_;
-      }
-      set {
-        b_response_ = value;
-      }
+    public static bool responseReady {
+      get { return b_response_; }
+      set { b_response_ = value; }
     }
 
 		public override object InitializeLifetimeService() {

@@ -26,19 +26,13 @@ namespace Owasp.Osg.Communicator
     }
     /* This holds the value from HttpRequest.Method, letting us know if it is a post, get, etc..*/
     public string RequestMethod {
-      get {
-        return method_;
-      }
-      set {
-        method_ = value;
-      }
+      get { return method_; }
+      set { method_ = value; }
     }
     /* This will hold a unique transaction ID, a GUID , the HTTPModule needs
         to keep track of valid transaction IDs so it can handle multiple requests*/
     public string transactionId {
-      get {
-        return guid_.ToString();
-      }      
+      get { return guid_.ToString(); }
     }
 }
 
