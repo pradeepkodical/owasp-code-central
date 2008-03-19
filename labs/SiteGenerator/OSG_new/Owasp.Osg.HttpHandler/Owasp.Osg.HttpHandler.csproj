@@ -36,12 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="osgCommunicator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Owasp.Osg.Communicator\bin\Release\osgCommunicator.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -49,6 +46,16 @@
     <Compile Include="files.cs" />
     <Compile Include="osgHttpHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="httpHandler.config">
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Owasp.Osg.Communicator\Owasp.Osg.Communicator.csproj">
+      <Project>{406CE61F-5752-406C-B966-30A476B13F9C}</Project>
+      <Name>Owasp.Osg.Communicator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

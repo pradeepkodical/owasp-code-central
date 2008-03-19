@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Owasp.Osg.Communicator
-{
+{   [Serializable]
     public class osgResponse
     {
       private Guid guid_;

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Owasp.Osg.Communicator
 {
+	[Serializable]
   // The httpmodule sends this
   public class osgRequest {
 
@@ -20,12 +21,8 @@ namespace Owasp.Osg.Communicator
 
     /* This will hold the URI that was requested */
     public string RequestURI {
-      get {
-        return URI_;
-      }
-      set {
-        URI_ = value;
-      }
+      get { return URI_; }
+      set { URI_ = value; }
     }
     /* This holds the value from HttpRequest.Method, letting us know if it is a post, get, etc..*/
     public string RequestMethod {

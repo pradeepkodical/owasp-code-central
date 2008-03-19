@@ -6,16 +6,22 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Owasp.Osg.Controller.Controls;
+using Owasp.Osg.Controller.Communicator;
 
 namespace Owasp.Osg.Controller
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+			  public Listener listener;
+
+			  public MainForm()
         {
-            InitializeComponent();
-            //begin remote object listening here. 
+            InitializeComponent(); 
+					  listener = new Listener();
+					  listener.Begin("asd", this);
         }
+
+			  public void showMsg(string s) { MessageBox.Show(s); }
 
         private void fileTransformationListControl1_CloseButtonClick(object sender, EventArgs e)
         {
