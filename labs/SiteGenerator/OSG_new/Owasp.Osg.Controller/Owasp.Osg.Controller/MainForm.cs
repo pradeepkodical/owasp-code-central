@@ -18,7 +18,7 @@ namespace Owasp.Osg.Controller
         {
             InitializeComponent(); 
 					  listener = new Listener();
-					  listener.Begin("asd", this);
+					  listener.Begin();
         }
 
 			  public void showMsg(string s) { MessageBox.Show(s); }

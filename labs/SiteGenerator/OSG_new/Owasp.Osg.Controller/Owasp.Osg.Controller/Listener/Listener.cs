@@ -11,9 +11,8 @@ using Owasp.Osg.Communicator;
 namespace Owasp.Osg.Controller.Communicator 
 {
   public class Listener {		
-		private MainForm mainForm_;
-		public void Begin(string configFile, MainForm mainForm) {
-			mainForm_ = mainForm;
+
+		public void Begin() {
 			RegisterChannel();	// comment about obvious functionality    
       // set web response handler in buffer
 			osgCommBuffer.delRespond = new delResponse(controlResponse);
@@ -21,7 +20,7 @@ namespace Owasp.Osg.Controller.Communicator
 
 		private osgResponse controlResponse(osgRequest webRequest) { 
 			osgResponse response = new osgResponse(); 
-			// get response(???) for web request here...
+			// get response(???) for web request here...ParseRequest webParser(webRequest);
 			response.PhysicalFileLocation = "<strong>Hello from Controller.</strong>";
 			return response;
 		}
