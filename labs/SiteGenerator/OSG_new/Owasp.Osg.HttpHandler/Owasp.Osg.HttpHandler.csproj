@@ -48,10 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="httpHandler.config">
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Owasp.Osg.Communicator\Owasp.Osg.Communicator.csproj">
       <Project>{406CE61F-5752-406C-B966-30A476B13F9C}</Project>
       <Name>Owasp.Osg.Communicator</Name>

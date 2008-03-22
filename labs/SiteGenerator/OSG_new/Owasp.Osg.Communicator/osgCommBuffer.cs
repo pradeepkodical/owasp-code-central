@@ -4,13 +4,24 @@ using System.Runtime.Remoting.Lifetime;
 
 namespace Owasp.Osg.Communicator
 {
-	// delegate for the control to set response functionality
+	// delegate type for the control to set response functionality
 	public delegate osgResponse delResponse(osgRequest request);
 
-  public class osgCommBuffer: MarshalByRefObject
-  {
+  public class osgCommBuffer: MarshalByRefObject {
+  /* Purpose: Buffer for back and forth communication
+	 * between web and controller. 
+	 * 
+	 * Precondition: This class object should be hosted 
+	 * to be accessed remotely. 
+	 * 
+	 * Postcondition: None.
+	 * 
+	 * Author: ADL
+	 * Date: March 2008
+	 * Modifications:
+	 */ 
     private bool b_request_; 
-    private static bool b_response_;
+    private bool b_response_;
 		private static delResponse delRespond_;
 
     public osgCommBuffer() {
@@ -18,14 +29,19 @@ namespace Owasp.Osg.Communicator
       b_response_ = false;
     }
 
+		/* access to controller response */
 		public static delResponse delRespond {
 			get { return delRespond_; }
 			set { delRespond_ = value; }
 		}
 
+		/* "gateway" method to controller to handle requests */
 		public osgResponse controlResponse(osgRequest request) {
-			if( request != null )
+			requestIn = true;
+			if( request != null ) {
+				responseReady = true;
 		    return delRespond_(request);
+			}
 			return null;
 		}
 
@@ -34,7 +50,7 @@ namespace Owasp.Osg.Communicator
       set { b_request_ = value; }
     }
 
-    public static bool responseReady {
+    public bool responseReady {
       get { return b_response_; }
       set { b_response_ = value; }
     }

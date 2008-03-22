@@ -17,6 +17,7 @@ namespace Owasp.Osg.Controller
 			  public MainForm()
         {
             InitializeComponent(); 
+					  // begin listening for web requests. 
 					  listener = new Listener();
 					  listener.Begin();
         }

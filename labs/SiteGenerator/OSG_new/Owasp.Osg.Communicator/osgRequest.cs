@@ -5,15 +5,29 @@ using System.Text;
 namespace Owasp.Osg.Communicator
 {
 	[Serializable]
-  // The httpmodule sends this
   public class osgRequest {
+  /* Purpose: Encapsulates a request from
+	 * the web to the controller. 
+	 *
+	 * Preconditions: The user had made a request.
+	 * The controller is running to take this 
+	 * request. 
+	 * 
+	 * Postconditions: Contians all neccessary data that
+	 * the contorller needs to get requested content
+	 * for user.
+	 * 
+	 * Author: ADL
+	 * Date: March 2008
+	 * Modifications:
+	 */
 
     private string URI_;         //URI request
     private string method_;      //method type
     private Guid guid_;          //transaction id
 
     public osgRequest() {
-      //initialize class variables
+      //initialize transaction ID
       guid_ = Guid.NewGuid(); 
       URI_ = String.Empty;
       method_ = String.Empty;
@@ -29,12 +43,10 @@ namespace Owasp.Osg.Communicator
       get { return method_; }
       set { method_ = value; }
     }
-    /* This will hold a unique transaction ID, a GUID , the HTTPModule needs
-        to keep track of valid transaction IDs so it can handle multiple requests*/
+    /*unique transaction ID */
     public string transactionId {
       get { return guid_.ToString(); }
     }
-}
-
+  }
 }
 
