@@ -1,5 +1,0 @@
-C:\Inetpub\wwwroot\OSG\bin\osg_httpHandler.dll
-C:\Inetpub\wwwroot\OSG\bin\osg_httpHandler.pdb
-C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\OSG\osg_httpHandler\osg_httpHandler\obj\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\OSG\osg_httpHandler\osg_httpHandler\obj\Release\osg_httpHandler.dll
-C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\OSG\osg_httpHandler\osg_httpHandler\obj\Release\osg_httpHandler.pdb

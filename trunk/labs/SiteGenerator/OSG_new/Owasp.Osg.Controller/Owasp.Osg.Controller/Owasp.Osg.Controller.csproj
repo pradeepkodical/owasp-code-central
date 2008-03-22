@@ -146,7 +146,6 @@
     <None Include="Resources\FormRunHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Listener\Listener.config" />
     <None Include="Resources\StopHS.png" />
   </ItemGroup>
   <ItemGroup>

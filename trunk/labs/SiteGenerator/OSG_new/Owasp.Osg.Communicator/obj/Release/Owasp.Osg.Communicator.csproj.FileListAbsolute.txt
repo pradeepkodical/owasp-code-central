@@ -1,5 +1,0 @@
-C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.Communicator\obj\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.Communicator\bin\Release\osgCommunicator.dll
-C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.Communicator\bin\Release\osgCommunicator.pdb
-C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.Communicator\obj\Release\osgCommunicator.dll
-C:\Documents and Settings\Abby.TRANSGRO-B2DE20\Desktop\owasp.osg\OSG_new\Owasp.Osg.Communicator\obj\Release\osgCommunicator.pdb

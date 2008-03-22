@@ -12,10 +12,28 @@ using Owasp.Osg.Communicator;
 namespace Owasp.Osg.HttpHandler
 {
   public class osgHttpHandler : IHttpHandler {
+  /* Purpose: This class sends a single request from the 
+	 * browser to the controller via a remote buffer 
+	 * object. It then posts back the controller's
+	 * response to the browser. Minimal parsing is done. 
+	 * 
+	 * Precondition: The controller is running so comm-
+	 * unication with it can occur and a response can 
+	 * be received. 
+	 * 
+	 * Postcondition: The correct content is sent to the
+	 * broswer for display to the user. 
+	 * 
+	 * Author: ADL 
+	 * Original Date: March 2008
+	 * Modifications:
+	 */ 
 
 		private osgCommBuffer commBuffer_ = null;
 
     protected osgHttpHandler() : base() {
+			// class is re-instantiated for every request so
+			// each time needs to grab a new buffer object
 			initBuffer();
     }
 
@@ -26,7 +44,7 @@ namespace Owasp.Osg.HttpHandler
 		  }			
 		  // send to buffer
 			osgRequest request = loadRequest(context.Request);
-			// notify controller of request
+			// notify controller of request. Get response.
 			osgResponse response  = commBuffer_.controlResponse(request);									
 			// verify response from controller
 			if( response != null ) {
@@ -53,9 +71,7 @@ namespace Owasp.Osg.HttpHandler
     }
     
     public bool IsReusable {
-      get {
-        return true;
-      }
+      get { return true; }
     }
 
 		private void initBuffer() {		
