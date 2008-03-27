@@ -29,21 +29,21 @@ namespace Owasp.Osg.Communicator
       b_response_ = false;
     }
 
-		/* access to controller response */
-		public static delResponse delRespond {
-			get { return delRespond_; }
-			set { delRespond_ = value; }
-		}
+	/* access to controller response */
+	public static delResponse delRespond {
+		get { return delRespond_; }
+		set { delRespond_ = value; }
+	}
 
-		/* "gateway" method to controller to handle requests */
-		public osgResponse controlResponse(osgRequest request) {
-			requestIn = true;
-			if( request != null ) {
-				responseReady = true;
-		    return delRespond_(request);
-			}
-			return null;
+	/* "gateway" method to controller to handle requests */
+	public osgResponse controlResponse(osgRequest request) {
+		requestIn = true;
+		if( request != null ) {
+			responseReady = true;
+	    return delRespond_(request);
 		}
+		return null;
+	}
 
     public bool requestIn {
       get { return b_request_; }
