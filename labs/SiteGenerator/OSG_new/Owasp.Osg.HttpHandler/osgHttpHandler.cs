@@ -29,7 +29,7 @@ namespace Owasp.Osg.HttpHandler
 	 * Modifications:
 	 */ 
 
-		private osgCommBuffer commBuffer_ = null;
+	private osgCommBuffer commBuffer_ = null;
 
     protected osgHttpHandler() : base() {
 			// class is re-instantiated for every request so
@@ -41,55 +41,59 @@ namespace Owasp.Osg.HttpHandler
 	    if (commBuffer_ == null) {
 			  context.Response.Write("Remote object not instantiated<br>");
 			  context.Response.End();
-		  }			
-		  // send to buffer
-			osgRequest request = loadRequest(context.Request);
-			// notify controller of request. Get response.
-			osgResponse response  = commBuffer_.controlResponse(request);									
-			// verify response from controller
-			if( response != null ) {
-		    // post response (????) to broswer
-		    context.Response.Write(response.PhysicalFileLocation);
-			  context.Response.End();
-			}
+		}
+			
+		// send to buffer
+		osgRequest request = loadRequest(context.Request);
+		// notify controller of request. Get response.
+		osgResponse response  = commBuffer_.controlResponse(request);									
+		// verify response from controller
+		if( response != null ) {
+	    // post response (????) to broswer
+	    context.Response.Write(response.PhysicalFileLocation);
+		  context.Response.End();
+		}
     }
 
     private osgRequest loadRequest(HttpRequest request) {
-			// This will all change so no comments currently
-      osgRequest osgRequest = new osgRequest();
-      osgRequest.RequestURI = "default.html";
-      osgRequest.RequestMethod = request.HttpMethod.ToString();
-      switch(osgRequest.RequestMethod) {
+		// This will all change so no comments currently
+        osgRequest osgRequest = new osgRequest();
+        osgRequest.RequestURI = "default.html";
+        osgRequest.RequestMethod = request.HttpMethod.ToString();
+        switch(osgRequest.RequestMethod) {
         case "POST":
           osgRequest.RequestURI = request.Url.ToString();
           break;
         case "GET":
           osgRequest.RequestURI = request.Url.ToString();
           break;
-       }
-      return osgRequest; 
+        }
+        return osgRequest; 
     }
     
     public bool IsReusable {
       get { return true; }
     }
 
-		private void initBuffer() {		
-			commBuffer_ = null;
-      // register a http channel
-      HttpChannel channel = new HttpChannel(9003);
-      ChannelServices.RegisterChannel(channel, false);
-			// TODO: Change this. It only works for channels commuinicating on local machine
-			string url = "http://" + System.Environment.MachineName.ToString() + ":9000/commBuffer";
-      // get a copy of the buffer
-      object obj = Activator.GetObject(typeof(osgCommBuffer), url);
-			//cast to local type
-      commBuffer_ = (osgCommBuffer)obj;				  
-		}
+	private void initBuffer() {		
+		commBuffer_ = null;
+        // register a http channel
+        HttpChannel channel = new HttpChannel(9003);
+        ChannelServices.RegisterChannel(channel, false);
 
-		protected void testMe(string msg) {
-			HttpContext.Current.Response.Write(msg);
-			HttpContext.Current.Response.End();
-		}
+		// TODO: Change this. It only works for channels commuinicating on local machine
+		string url = "http://" + System.Environment.MachineName.ToString() + ":9000/commBuffer";
+
+        // get a copy of the buffer
+        object obj = Activator.GetObject(typeof(osgCommBuffer), url);
+
+		//cast to local type
+        commBuffer_ = (osgCommBuffer)obj;				  
+	}
+
+	protected void testMe(string msg) {
+		HttpContext.Current.Response.Write(msg);
+		HttpContext.Current.Response.End();
+	}
   }
 }
