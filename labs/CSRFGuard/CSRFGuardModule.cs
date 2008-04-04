@@ -2,14 +2,15 @@ using System;
 using System.Web;
 using System.Web.SessionState;
 using org.owasp.csrfguard.ResponseFilters;
+using org.owasp.csrfguard.Actions;
+using System.Diagnostics;
 
 namespace org.owasp.csrfguard
 {
 	public class CSRFGuardModule : IHttpModule, IRequiresSessionState
 	{
 		private CSRFGuard _guard;
-		private String _CSRFSessionTokenValue; // this is not accessible in later stages so is saved for access later
-		private String _CSRFSessionTokenName;
+        private Token _session;
 		
 		public String ModuleName
 		{
@@ -26,9 +27,7 @@ namespace org.owasp.csrfguard
 		void handleRequest(object sender, EventArgs args)
 		{
 			_guard = new CSRFGuard(sender);
-			
-			_CSRFSessionTokenValue = _guard.CsrfSessionTokenValue;
-			_CSRFSessionTokenName = _guard.CsrfSessionTokenName;
+            _session = new Token(_guard.CsrfSessionTokenName, _guard.CsrfSessionTokenValue);  // this is not accessible in later stages so is saved for access later
 			
 			// this should ignore requests by extension so it won't flag image or CSS requests -- basically, anything that could not be used for CSRF
 			// The object does this checking when instantiated so we just need to ask the object what to do...
@@ -36,7 +35,7 @@ namespace org.owasp.csrfguard
 			{
 				if (_guard.AttackDetected)
 				{
-					handleCSRFAttempt(_guard.Response);
+					handleCSRFAttempt(sender);
 				}
 			}
 		}
@@ -53,7 +52,7 @@ namespace org.owasp.csrfguard
 			{
 				if(response.ContentType.StartsWith("text/html"))
 				{
-					response.Filter = new RegExFilter(response.Filter, _CSRFSessionTokenName, _CSRFSessionTokenValue);
+					response.Filter = new RegExFilter(response.Filter, _session.Name, _session.Value);
 				}
 			}
 			catch (Exception e)
@@ -65,17 +64,39 @@ namespace org.owasp.csrfguard
 		/**
 		 * Handle a detected CSRF attepmpt.  This will use the configuration for what to do next (e.g. redirect, kill session, log, etc.)
 		 **/
-		void handleCSRFAttempt(HttpResponse response)
+
+        // TODO:  move this cruft into the CSRFguard.  It should be doing the protection there.
+		void handleCSRFAttempt(object sender)
 		{
-			// TODO
-			// redirect to an error URL
-			// kill session
-			// write an error to the screen and kill the request.  Probably not a good strategy but useful for testing
-			response.Write("Missing token:  CSRF detected!");
-			response.End();
+            HttpApplication _httpApp;
+            HttpContext _context;
+            HttpResponse _response;
+
+            _httpApp = (HttpApplication)sender;
+            _context = _httpApp.Context;
+            _response = _httpApp.Context.Response;
+            // instantiate the dynamic classes specified in the config file, or the default.  Then tell it to take action.
+            foreach (string hclass in App.Configuration.CSRFHandlers)
+            {
+                EventLog log = new EventLog();
+                log.Source = "Application";
+                log.WriteEntry("Executing Action " + hclass, EventLogEntryType.Error);
+                try
+                {
+                    Type type = Type.GetType(hclass, true);
+                    ICSRFHandler handler = Activator.CreateInstance(type) as ICSRFHandler;
+                    handler.Initialize(sender);
+                    handler.TakeAction();
+                }
+                catch (TypeLoadException e)
+                {
+                    log.WriteEntry("Got exception " + e.Message, EventLogEntryType.Error);
+                }
+            }
+            _response.End();
 		}
 
 		public void Dispose()
 		{}
-		}		
+	}		
 }

@@ -104,6 +104,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\ICSRFHandler.cs" />
+    <Compile Include="Actions\KillSession.cs" />
+    <Compile Include="Actions\LogEvent.cs" />
+    <Compile Include="Actions\PrintError.cs" />
+    <Compile Include="Actions\RedirectToUrl.cs" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -135,6 +140,7 @@
     <Compile Include="ResponseFilters\ResponseFilterBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Token.cs" />
     <Compile Include="Tests\HtmlTagTest.cs" />
     <Compile Include="Tests\RegexFilterTest.cs" />
     <Compile Include="Tests\UtilityTest.cs" />
@@ -145,9 +151,6 @@
     <Content Include="csrf.js" />
     <Content Include="TODO.txt" />
     <None Include="CSRFGuard.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Actions\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -9,7 +9,7 @@ namespace org.owasp.csrfguard.ResponseFilters
 	/// </summary>
 	public abstract class ResponseFilterBase : Stream
 	{
-		protected String _CSRFTokenName;
+protected String _CSRFTokenName;
 		protected String _CSRFSesssionToken;
 		protected Stream _responseStream;
 		protected long _position;

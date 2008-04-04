@@ -1,9 +1,12 @@
+* Make the actions chainable and atomic and configuration-driven so you can execute them one after another to make complex interactions
+* Write IResponseFilter interface
+** Change line 54 in CSRFGuardModule to dynamically instantiate response filter based on config.
+** Refactor ResponseFilters to implement the interface.
+* Implement the other response filters (Javascript, HtmlParser).
 * Write nunit test cases for everything
-* Implement parameter substitution in HTML in the filter
-* Implement logging options
-* Implement configurable retaliation options
-* Investigate techniques/designs to allow overriding of the logging method, etc. to hook in the platform log4net logger, for example
-* Implement URL whitelisting
+* Implement logging interface and options
+* Implement all configurable retaliation options (actions)
+* Implement URL whitelisting (skipDetectForTheseURLs) in RegExFilter and elsewhere.
 * Shitload of error handling to be production-ready.
 * Data input validation on everything
 * Data input canonicalization
@@ -15,4 +18,3 @@
 
 * Document the design and configurable options on the wiki
     * Discuss how using viewstate actually prevents CSRF
-* Get the code into source control
