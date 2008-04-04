@@ -50,7 +50,14 @@ namespace org.owasp.csrfguard
 		#endregion
 		
 		#region Helper methods
-
+        // TODO: Write this to inject the script ref.
+        private String injectJavascriptReference(String htmlText)
+        {
+            Regex formFieldRegex = new Regex("</form>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            // Replace by default replaces all occurrences
+            htmlText = formFieldRegex.Replace(htmlText, "<input type=\"hidden\" name=\"" + _CSRFTokenName + "\" value=\"" + _CSRFSesssionToken + "\">\n</form>");
+            return htmlText;
+        }
 		#endregion
 	}
 }

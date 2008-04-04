@@ -7,7 +7,7 @@ using org.owasp.csrfguard.ResponseFilters;
 namespace org.owasp.csrfguard.ResponseFilters
 {
 	/// <summary>
-	/// Summary description for CSRFHtmlFilter.
+	/// Summary description for RegexFilter.
 	/// 
 	/// Code adapted from a similar model at http://aspnetresources.com/articles/HttpFilters.aspx
 	/// </summary>

@@ -40,6 +40,7 @@ namespace org.owasp.csrfguard
 				String finalHtml = _responseHtml.ToString();
 
 				// TODO:  Implement HTML parsing tag injection
+                // Only .Net doesn't seem to provide a nice HTML parser library built-in...
 				
 				byte[] data = UTF8Encoding.UTF8.GetBytes (finalHtml);
         

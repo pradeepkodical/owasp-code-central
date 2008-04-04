@@ -1,6 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.SessionState;
 
 namespace org.owasp.csrfguard
 {
@@ -13,6 +14,7 @@ namespace org.owasp.csrfguard
 		private HttpApplication _httpApp;
 		private HttpContext _context;
 		private HttpResponse _response;
+        private HttpSessionState _session;
 		private bool _skipDetect = false;
 		private bool _attackDetected;
 		#endregion
@@ -20,6 +22,7 @@ namespace org.owasp.csrfguard
 		public CSRFGuard(object sender)
 		{
 			_httpApp = (HttpApplication)sender;
+            _session = _httpApp.Session;
 			_context = _httpApp.Context;
 			_response = _httpApp.Context.Response;
 			
@@ -64,7 +67,7 @@ namespace org.owasp.csrfguard
 			// TODO:  Allow specifying a list of relative URLs to bypass detection on								
 			// ArrayList test = App.Configuration.skipDetectForTheseURLs;
 			
-			// Check for CSRF and store the results for later retrieval
+			// Check for CSRF and store the results in object properties for later retrieval
 			detectCSRFAttempt();
 		}
 		
@@ -118,6 +121,14 @@ namespace org.owasp.csrfguard
 				return _response;
 			}
 		}
+
+        public HttpSessionState ClientSession
+        {
+            get
+            {
+                return _session;
+            }
+        }
 		#endregion
 		
 		#region Methods
