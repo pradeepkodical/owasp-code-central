@@ -1,0 +1,108 @@
+<project name="CSRFGuard" default="build-all">
+  <!--
+    Compiles all class files (*.cs) from the project
+    and produces ../bin/MigrateSecretStoreData.exe
+    
+    Build depends on the latest Secret Store 2.0 DLLs in ../SecretStore
+    They get copied locally by the .csproj config and then deployed to the bin
+    directory by the deploy target.
+-->
+
+
+
+  <!-- solution/csproj for what to build -->
+
+  <property name="base-dir" value="." />
+  <property name="build-configuration" value="Debug" />
+  <property name="this.fx11.outdir" value="bin\FX_11\${build-configuration}" />
+  <property name="this.solutionfile" value="CSRFGuard.csproj" />
+  <property name="this.deploy.bin.dir" value="c:\temp\CSRFGuard" />
+  <property name="nant.settings.currentframework" value="net-2.0" />
+  <property name="dotnet20-dir" value="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v2.0.50727" readonly="true" unless="${property::exists('dotnet20-dir')}"/>
+  <!-- where MSBee .Net framework 1.1 binaries are placed by the build -->
+  <property name="msbee.dir" value="${base-dir}\MSBuild\MSBee" readonly="true" unless="${property::exists('msbee.dir')}" />
+  <property name="msbee.csharp.targets" value="${msbee.dir}\MSBuildExtras.Fx1_1.CSharp.targets" readonly="true" unless="${property::exists('msbee.csharp.targets')}" /> 
+
+  <!-- Build everything -->
+
+  <target name="build-all" depends="clean, compile, dist" />
+
+  <target name="compile">
+
+    <echo message="Using deploy bin dir: ${this.deploy.bin.dir}" />
+    <echo message="Using Solution file: ${this.solutionfile}" />
+    <echo message="Using .net framework in: ${dotnet20-dir}" />
+    <echo message="Using MSBee files in: ${msbee.dir}" />
+
+    <!-- Create the bin directory first -->
+
+    <mkdir dir="${this.deploy.bin.dir}" />
+
+    <!-- Build everything using MSBuild; .Net 2.0 target assembly -->
+    <!--    <exec basedir="${dotnet20-dir}" program="MSBuild.exe">
+
+      <arg value="${this.solutionfile}"/>
+      <arg value="/target:Rebuild"/>
+      <arg value="/property:Configuration=${build-configuration}"/>
+      <arg value="/property:OutputPath=${this.fx11.outdir}/${build-configuration}/" />
+      <arg value="/property:Platform=x86" />
+  </exec> -->
+
+    <!-- verify MSBee exists -->
+
+    <if test="${not file::exists(msbee.csharp.targets)}">
+	<echo message="MSBee not installed or does not exist at: ${msbee.csharp.targets}" />
+    </if>
+
+    <!-- Build everything using MSBuild; .Net 1.1 target assembly 
+    Depends on MSBee MSBuild extensions being installed -->
+
+     <msbuild project="${this.solutionfile}" target="Rebuild" >
+       <property name="TargetFX1_1" value="true" /> 
+       <property name="CustomAfterMicrosoftCommonTargets" value="${msbee.csharp.targets}" /> 
+       <property name="Configuration" value="${build-configuration}" /> 
+       <property name="OutputPath" value="${this.fx11.outdir}/${build-configuration}/" /> <!-- Must end in slash -->
+       <property name="Platform" value="x86" />       
+     </msbuild>
+
+  </target>
+
+  <!-- Remove the local bin directory and its contents; clean solution build -->
+
+  <target name="clean">
+
+    <delete>
+      <fileset basedir="bin">
+        <include name="**\*.dll" />
+        <include name="**\*.exe" />
+        <include name="**\*.pdb" />
+      </fileset>
+    </delete>
+
+    <delete>
+      <fileset basedir="obj">
+        <include name="**\*.dll" />
+        <include name="**\*.exe" />
+        <include name="**\*.pdb" />
+      </fileset>
+    </delete>
+
+    <delete dir="bin" />
+    <delete dir="obj" />
+
+  </target>
+
+  <!-- Deploy the code and required artifacts to the tools/SecretStoreUtils/bin directory -->
+
+  <target name="dist" depends="compile">
+
+    <copy todir="${this.deploy.bin.dir}" overwrite="true" failonerror="true">
+      <fileset basedir="${this.fx11.outdir}/${build-configuration}">
+        <include name="CSRFGuard.*" />
+        <include name="../../../../CSRFGuard.config" />
+      </fileset>
+    </copy>
+
+  </target>
+
+</project>

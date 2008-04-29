@@ -23,6 +23,7 @@ namespace org.owasp.csrfguard
         public string ResponseFilterClass = "org.owasp.csrfguard.ResponseFilters.RegExFilter";    // default class
         public string CSRFHandlers_RedirectToUrl_Url = null;
         public string CSRFHandlers_PrintError_ErrorText = null;
+        public string CSRFHandler_pluginFolder = "plugins/";
 		
 		// constructor
 		public CSRFGuardConfiguration(string configFile) : base(configFile)

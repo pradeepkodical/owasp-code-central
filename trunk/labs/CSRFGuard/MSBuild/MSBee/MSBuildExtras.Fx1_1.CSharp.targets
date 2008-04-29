@@ -1,0 +1,120 @@
+﻿<!--
+***********************************************************************************************
+MSBuildExtras.FX1_1.CSharp.targets
+
+WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and have
+          created a backup copy of this file.  Incorrect changes to this file will make 
+          it impossible to load or build your projects using MSBee.
+
+This file defines the steps in the standard build process specific for C# .NET projects
+being targeted for .NET Framework 1.1. For example, it contains the target that calls 
+the C# compiler.
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="MSBuildExtras.FX1_1.Common.targets" />
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects)</MSBuildAllProjects>
+    <DefaultLanguageSourceExtension>.cs</DefaultLanguageSourceExtension>
+    <Language>C#</Language>
+  </PropertyGroup>
+
+  <!-- 
+  _DisabledWarnings - Microsoft.CSharp.targets adds warnings 1701 and 1702 to the nowarn switch for csc v2.0.
+    These warnings, however, don't apply to csc v1.1 and 1702 isn't a valid warning for it anyway.
+    The added warnings are filtered out by reseting _DisabledWarnings back to $(NoWarn), which is how
+    it starts out in the Microsoft.CSharp.targets file as well. Other than adding 1701 and 1702, 
+    there isn't any other instance where _DisabledWarnings is changed so this approach seems safe.
+  DefineConstants - define a constant that allows conditional compilation when targeting .NET 1.1.
+  -->
+  <PropertyGroup>
+    <_DisabledWarnings>$(NoWarn)</_DisabledWarnings>
+    <DefineConstants>$(DefineConstants);FX1_1</DefineConstants>
+    <CoreCompileDependsOn>_ComputeNonExistentFileProperty</CoreCompileDependsOn>
+  </PropertyGroup>
+  
+  <Target
+        Name="CoreCompile"
+        Inputs="$(MSBuildAllProjects);
+                @(Compile);
+                @(ManifestResourceWithNoCulture);
+                $(ApplicationIcon);
+                $(AssemblyOriginatorKeyFile);
+                @(ManifestNonResxWithNoCultureOnDisk);
+                @(ReferencePath);
+                @(CompiledLicenseFile);
+                @(EmbeddedDocumentation);                
+                @(CustomAdditionalCompileInputs)"
+        Outputs="@(DocFileItem);
+                 @(IntermediateAssembly);
+                 $(NonExistentFile);
+                 @(CustomAdditionalCompileOutputs)"
+        DependsOnTargets="$(CoreCompileDependsOn)"
+  >
+      
+        <Csc
+              AdditionalLibPaths="$(AdditionalLibPaths)"
+              AddModules="@(AddModules)"
+              AllowUnsafeBlocks="$(AllowUnsafeBlocks)"
+              BaseAddress="$(BaseAddress)"
+              CheckForOverflowUnderflow="$(CheckForOverflowUnderflow)"
+              CodePage="$(CodePage)"
+              DebugType="$(DebugType)"
+              DefineConstants="$(DefineConstants)"
+              DisabledWarnings="$(_DisabledWarnings)"
+              DocumentationFile="@(DocFileItem)"
+              EmitDebugInformation="$(DebugSymbols)"
+              FileAlignment="$(FileAlignment)"
+              GenerateFullPaths="$(GenerateFullPaths)"
+              MainEntryPoint="$(StartupObject)"
+              ModuleAssemblyName="$(ModuleAssemblyName)"
+              NoConfig="true"
+              NoLogo="$(NoLogo)"
+              NoStandardLib="$(NoStdLib)"
+              Optimize="$(Optimize)"
+              OutputAssembly="@(IntermediateAssembly)"
+              References="@(ReferencePath)"
+              Resources="@(ManifestResourceWithNoCulture);@(ManifestNonResxWithNoCultureOnDisk);@(CompiledLicenseFile)"
+              ResponseFiles="$(CompilerResponseFile)"
+              Sources="@(Compile)"
+              TargetType="$(OutputType)"
+              ToolPath="$(TargetFrameworkDirectory)"
+              TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+              UseHostCompilerIfAvailable="$(UseHostCompilerIfAvailable)"
+              Utf8Output="$(Utf8Output)"
+              WarningLevel="$(WarningLevel)"
+              Win32Icon="$(ApplicationIcon)"
+              Win32Resource="$(Win32Resource)"
+        />
+
+              <!-- 
+                These properties only apply to csc 2.0 and are filtered for the csc task above. 
+                Thus, if you set these flags, they will be ignored when targeting .NET 1.1. 
+                You can uncomment these properties and add them to the csc task if you wish.
+                You will then receive a warning or error if you set these properties because 
+                csc 1.1 won't recognize the corresponding switches. 
+              -->
+              <!--
+              DelaySign="$(DelaySign)"
+              KeyContainer="$(KeyContainer)"
+              KeyFile="$(KeyFile)"
+              LangVersion="$(LangVersion)"
+              PdbFile="$(PdbFile)"
+              Platform="$(PlatformTarget)"
+              WarningsAsErrors="$(WarningsAsErrors)"
+              WarningsNotAsErrors="$(WarningsNotAsErrors)"
+              -->
+
+              <!-- This property should remain commented out. The default behavior is to set ErrorReport
+                to 'Prompt' which causes the /errorreport switch to appear on the csc 1.1 command line
+                and produces an unrecognized switch error. 
+              -->
+              <!-- "ErrorReport="$(ErrorReport)" -->
+  </Target>
+
+</Project>
