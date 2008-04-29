@@ -1,0 +1,321 @@
+﻿<!--
+***********************************************************************************************
+MSBuildExtras.FX1_1.Common.targets
+
+WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and have
+          created a backup copy of this file.  Incorrect changes to this file will make 
+          it impossible to load or build your projects using MSBee.
+
+This file defines the steps in the standard build process specific for projects
+being targeted for .NET Framework 1.1. The remainder of the build process is defined 
+in Microsoft.Common.targets.
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--
+  By not providing an absolute path in the AssemblyFile attribute, 
+  MSBuild will search for MSBee.dll in the same location as this file.
+  -->
+  <UsingTask TaskName="GenerateResource" AssemblyFile="MSBee.dll"/>
+  <UsingTask TaskName="GetFrameworkPath" AssemblyFile="MSBee.dll"/>
+  <UsingTask TaskName="GetFrameworkSDKPath" AssemblyFile="MSBee.dll"/>
+  <UsingTask TaskName="GetRegistryValue" AssemblyFile="MSBee.dll"/>
+  <UsingTask TaskName="ResolveComReference" AssemblyFile="MSBee.dll"/>
+
+  
+  <!--
+  TargetFrameworkVersion - identifies that we're targeting v1.1
+  UseHostCompilerIfAvailable - set to false so the stand alone compilers are invoked
+  -->
+  <PropertyGroup>
+    <TargetFrameworkVersion>v1.1</TargetFrameworkVersion>
+    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+  </PropertyGroup>
+
+  <!-- 
+  OutputPath needs to be overriden with the BaseFX1_1OutputPath property, if provided by the user,
+  or with the default bin\FX1_1\ value. Changing $(OutputPath) controls where references
+  are found in the AssemblySearchPaths list. Additionally, $(OutputPath) is assigned directly
+  to $(OutDir). Overriding OutDir lets us redirect the .NET 1.1 binaries to a separate directory
+  from the .NET 2.0 binaries.
+  
+  We also want to override IntermediateOutputPath (IOP) and BaseIntermediateOutputPath (BIOP).
+  The IOP is used during some build procedures (like resource generation and compiling).
+  The BIOP is used for other tasks, like IncrementalClean and CoreClean.
+  -->
+
+  <Choose>
+    <When Condition=" '$(BaseFX1_1OutputPath)' == '' ">
+      <PropertyGroup>
+        <OutputPath>bin\FX1_1\</OutputPath>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <OutputPath>$(BaseFX1_1OutputPath)</OutputPath>
+        <OutputPath Condition=" !HasTrailingSlash('$(OutputPath)') ">$(OutputPath)\</OutputPath>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+  
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>obj\FX1_1\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath Condition=" '$(PlatformName)' == 'AnyCPU' ">$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <IntermediateOutputPath Condition=" '$(PlatformName)' != 'AnyCPU' ">$(BaseIntermediateOutputPath)$(PlatformName)\$(Configuration)\</IntermediateOutputPath>
+
+    <OutputPath Condition=" '$(PlatformName)' == 'AnyCPU' ">$(OutputPath)$(Configuration)\</OutputPath>
+    <OutputPath Condition=" '$(PlatformName)' != 'AnyCPU' ">$(OutputPath)$(PlatformName)\$(Configuration)\</OutputPath>
+    
+    <!-- Once OutputPath is determined, set OutDir to its value. -->
+    <OutDir>$(OutputPath)</OutDir>
+  </PropertyGroup>
+
+  
+  <!-- 
+    CONTROL ASSEMBLY RESOLUTION LOGIC
+  
+    For targeting v1.1, we need to get a particular registry values
+    that contain paths to additional assembly references. To accomplish this,
+    we use the GetRegistryValue task, providing it the appropriate registry
+    keys. The task returns the value of a key, which is used in the 
+    AssemblySearchPaths property group below. 
+  
+    Note that the first key is installed only with Visual Studio 2003. 
+    The second registry key is under the .NET 2.0 sub-hive and points 
+    to the directory of Primary Interop Assemblies. These assemblies are shared 
+    by .NET 1.1 and .NET 2.0 and thus should be safe for MSBee. 
+  
+    The SearchDepth property of the GetRegistryValue task is set to 1, 
+    which allow us to obtain values from subkeys exactly 1 level beneath the specified key. 
+    These subkeys contain the paths to groups of assembly references.
+  
+    The ContinueOnMissingKey property allows the build attempt to continue if a
+    registry key is missing.
+  -->
+
+  <PropertyGroup>
+    <VisualStudioRegistryBase>Software\Microsoft\VisualStudio</VisualStudioRegistryBase>
+    <TargetVisualStudioVersion>7.1</TargetVisualStudioVersion>
+    <AssemblyFoldersSuffix>AssemblyFolders</AssemblyFoldersSuffix>
+
+    <Framework20RegistryBase>Software\Microsoft\.NetFramework</Framework20RegistryBase>
+    <TargetFramework20Version>v2.0.50727</TargetFramework20Version>
+    <AssemblyFolders20Suffix>AssemblyFoldersEx\Primary Interop Assemblies</AssemblyFolders20Suffix>
+  </PropertyGroup>
+
+  <Target
+    Name="GetVisualStudioSearchPaths">
+    <GetRegistryValue 
+      RegistryKey="$(VisualStudioRegistryBase)\$(TargetVisualStudioVersion)\$(AssemblyFoldersSuffix)"
+      BaseRegistryKey="HKEY_LOCAL_MACHINE"
+      SearchDepth="1"
+      ContinueOnMissingKey="true">
+
+      <Output TaskParameter="RegistryValues" ItemName="VisualStudioSearchPaths" />
+    </GetRegistryValue>
+
+    <GetRegistryValue 
+      RegistryKey="$(Framework20RegistryBase)\$(TargetFramework20Version)\$(AssemblyFolders20Suffix)"
+      BaseRegistryKey="HKEY_LOCAL_MACHINE"
+      ContinueOnMissingKey="true">
+
+      <Output TaskParameter="RegistryValues" ItemName="VisualStudioPIASearchPaths" />
+    </GetRegistryValue>
+  </Target>
+
+  <PropertyGroup>
+    <!--
+    This AssemblySearchPaths property is overriden so the search paths and the order
+    they're searched matches the behavior of the VS 2003 reference manager.
+    One key difference between this and MSBuild behavior is that VS 2003 never searches
+    the GAC. Secondly, the RawFileItem concept doesn't have a VS 2003 equivalent. 
+    However, it's intentionally left here in case a user adds a reference 
+    where the include attribute contains the full path to that reference.
+    
+    Assemblies are searched for in the following order:
+
+    (1) Files from current project - indicated by {CandidateAssemblyFiles}
+    (2) Look in the application's output folder (like bin\FX1_1\debug).
+    (3) $(ReferencePath) - the reference path property, which comes from the .USER file.
+    (4) The directory of MSBuild's "target" runtime from GetFrameworkPath. The "target" runtime folder is the folder of the runtime that MSBuild is a part of.
+    (5) Registered VisualStudio assembly folders.
+    (6) VS 8.0 Primary Interop Assemblies path (shares the directory with VS 7.1 PIA's)
+    (7) The hintpath from the referenced item itself, indicated by {HintPathFromItem}.
+    (8) Treat the reference's Include as if it were a real file name.
+    -->        
+    <AssemblySearchPaths>
+      {CandidateAssemblyFiles};
+      $(OutputPath);
+      $(ReferencePath);
+      {TargetFrameworkDirectory};
+      @(VisualStudioSearchPaths);
+      @(VisualStudioPIASearchPaths);
+      {HintPathFromItem};
+      {RawFileName}
+    </AssemblySearchPaths>                    
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ResolveAssemblyReferencesDependsOn>
+      GetFrameworkPaths;
+      GetVisualStudioSearchPaths;
+      GetRedistLists;
+      PrepareForBuild
+    </ResolveAssemblyReferencesDependsOn>
+  </PropertyGroup>
+
+  
+  <!-- 
+    OVERRIDE CoreResGen 
+  
+    Override the CoreResGen target from Microsoft.Common.Targets to invoke GenerateResource for .NET 1.1.
+  
+    Things to note about the GenerateResource task:
+    1. It's invoked twice, first for resx files with no culture and then for resx files with cultures.
+    2. The OutputResources parameter accepts input as well as produces output. This is intentional and allows
+    us to specify the names of the .resources files to be produced.
+  -->
+
+  <Target 
+    Name="CoreResGen" 
+    DependsOnTargets="$(CoreResGenDependsOn)">
+
+    <GenerateResource
+      Sources="@(ResxWithNoCulture)"
+      References="@(ReferencePath)"
+      OutputResources="@(ManifestResourceWithNoCultureName->'$(IntermediateOutputPath)%(Identity).resources')"
+      Condition=" '@(ResxWithNoCulture)' != '' ">
+
+      <Output TaskParameter="OutputResources" ItemName="ManifestResourceWithNoCulture"/>
+      <Output TaskParameter="OutputResources" ItemName="FileWrites"/>
+    </GenerateResource>
+
+    <GenerateResource
+      Sources="@(ResxWithCulture)"
+      References="@(ReferencePath)"
+      OutputResources="@(ManifestResourceWithCultureName->'$(IntermediateOutputPath)%(Identity).resources')"
+      Condition=" '@(ResxWithCulture)' != '' ">
+
+      <Output TaskParameter="OutputResources" ItemName="ManifestResourceWithCulture"/>
+      <Output TaskParameter="OutputResources" ItemName="FileWrites"/>
+    </GenerateResource> 
+  </Target>
+
+  
+  <!-- 
+    OVERRIDE CreateSatelliteAssemblies
+
+    Override the CreateSatelliteAssemblies target from Microsoft.Common.Targets to invoke 
+    the AL task for .NET 1.1.
+  -->
+
+  <PropertyGroup>
+    <CreateSatelliteAssembliesDependsOn>
+      ComputeIntermediateSatelliteAssemblies
+    </CreateSatelliteAssembliesDependsOn>
+  </PropertyGroup>
+  <Target
+      Name="CreateSatelliteAssemblies"
+      Condition="'@(ManifestResourceWithCulture)'!='' or '@(ManifestNonResxWithCultureOnDisk)'!=''"
+      DependsOnTargets="$(CreateSatelliteAssembliesDependsOn)"
+      Inputs="$(MSBuildAllProjects);@(ManifestResourceWithCulture);@(ManifestNonResxWithCultureOnDisk);$(IntermediateOutputPath)$(TargetName)$(TargetExt)"
+      Outputs="$(IntermediateOutputPath)%(Culture)\$(TargetName).resources.dll">
+
+    <MakeDir
+        Directories="$(IntermediateOutputPath)%(ManifestResourceWithCulture.Culture)"
+        Condition=" '@(ManifestResourceWithCulture)' != '' "/>
+
+    <MakeDir
+        Directories="$(IntermediateOutputPath)%(ManifestNonResxWithCultureOnDisk.Culture)"
+        Condition=" '@(ManifestNonResxWithCultureOnDisk)' != '' "/>
+
+    <!-- 
+      This target still uses the AL task that comes with MSBuild. The AL element below has been modified
+      from the standard version to exclude the Platform attribute and to set ToolPath to
+      $(TargetFrameworkDirectory). If you want to use the AL task in another target, and want to target
+      .NET 1.1, copy/paste the AL element below into your target.
+    -->
+    <AL
+        AlgorithmId="$(Satellite_AlgorithmId)"
+        BaseAddress="$(Satellite_BaseAddress)"
+        CompanyName="$(Satellite_CompanyName)"
+        Configuration="$(Satellite_Configuration)"
+        Copyright="$(Satellite_Copyright)"
+        Culture="%(Culture)"
+        DelaySign="$(DelaySign)"
+        Description="$(Satellite_Description)"
+        EmbedResources="@(ManifestResourceWithCulture);@(ManifestNonResxWithCultureOnDisk)"
+        EvidenceFile="$(Satellite_EvidenceFile)"
+        FileVersion="$(Satellite_FileVersion)"
+        Flags="$(Satellite_Flags)"
+        GenerateFullPaths="$(Satellite_GenerateFullPaths)"
+        KeyContainer="$(KeyContainerName)"
+        KeyFile="$(KeyOriginatorFile)"
+        LinkResources="@(Satellite_LinkResource)"
+        MainEntryPoint="$(Satellite_MainEntryPoint)"
+        OutputAssembly="$(IntermediateOutputPath)%(Culture)\$(TargetName).resources.dll"
+        ProductName="$(Satellite_ProductName)"
+        ProductVersion="$(Satellite_ProductVersion)"
+        ResponseFiles="@(AlResponseFile)"
+        SourceModules="@(Satellite_SourceModule)"
+        TargetType="$(Satellite_TargetType)"
+        TemplateFile="$(IntermediateOutputPath)$(TargetName)$(TargetExt)"
+        Title="$(Satellite_Title)"
+        ToolPath="$(TargetFrameworkDirectory)"
+        Trademark="$(Satellite_Trademark)"
+        Version="$(Satellite_Version)"
+        Win32Icon="$(Satellite_Win32Icon)"
+        Win32Resource="$(Satellite_Win32Resource)">
+
+        <!-- 
+          The Platform property only applies to al.exe 2.0 and is filtered for the al task above. 
+          Thus, if you set this flag, it will be ignored when targeting .NET 1.1. 
+          You can uncomment this property and add it to the al task if you wish.
+          You will then receive a warning or error if you set this property because al.exe 1.1 
+          won't recognize the corresponding switch. 
+        -->
+        <!--
+          Platform="$(PlatformTarget)"
+        -->
+
+      <Output TaskParameter="OutputAssembly" ItemName="FileWrites"/>
+    </AL>
+  </Target>
+
+
+  <!-- 
+    OVERRIDE CompileLicxFiles
+
+    Override the CompileLicxFiles target from Microsoft.Common.Targets to invoke 
+    the LC task for .NET 1.1.
+  -->
+
+  <PropertyGroup>
+    <CompileLicxFilesDependsOn></CompileLicxFilesDependsOn>
+  </PropertyGroup>
+  <Target
+      Name="CompileLicxFiles"
+      Condition="'@(_LicxFile)'!=''"
+      DependsOnTargets="$(CompileLicxFilesDependsOn)"
+      Inputs="$(MSBuildAllProjects);@(_LicxFile);@(ReferencePath);@(ReferenceDependencyPaths)"
+      Outputs="$(IntermediateOutputPath)$(TargetFileName).licenses">
+
+    <LC
+        Sources="@(_LicxFile)"
+        LicenseTarget="$(TargetFileName)"
+        OutputDirectory="$(IntermediateOutputPath)"
+        OutputLicense="$(IntermediateOutputPath)$(TargetFileName).licenses"
+        ReferencedAssemblies="@(ReferencePath);@(ReferenceDependencyPaths)"
+        ToolPath="$(TargetFrameworkSDKDirectory)bin\">
+
+      <Output TaskParameter="OutputLicense" ItemName="CompiledLicenseFile"/>
+      <Output TaskParameter="OutputLicense" ItemName="FileWrites"/>
+
+    </LC>
+  </Target>
+
+</Project>

@@ -1,0 +1,116 @@
+﻿<!--
+***********************************************************************************************
+MSBuildExtras.FX1_1.VisualBasic.targets
+
+WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and have
+          created a backup copy of this file.  Incorrect changes to this file will make 
+          it impossible to load or build your projects using MSBee.
+
+This file defines the steps in the standard build process specific for VB .NET projects
+being targeted for .NET Framework 1.1. For example, it contains the target that calls 
+the VB compiler.
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+***********************************************************************************************
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="MSBuildExtras.FX1_1.Common.targets" />
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects)</MSBuildAllProjects>
+    <DefaultLanguageSourceExtension>.vb</DefaultLanguageSourceExtension>
+    <Language>VB</Language>
+  </PropertyGroup>
+
+  <!-- 
+  FinalDefineConstants - define a constant that allows conditional compilation when targeting .NET 1.1.
+  -->
+  <PropertyGroup>
+    <FinalDefineConstants>$(FinalDefineConstants),FX1_1=-1</FinalDefineConstants>
+    <CoreCompileDependsOn>_ComputeNonExistentFileProperty</CoreCompileDependsOn>
+  </PropertyGroup>
+  
+  <Target
+        Name="CoreCompile"
+        Inputs="$(MSBuildAllProjects);
+                @(Compile);
+                @(ManifestResourceWithNoCulture);
+                $(ApplicationIcon);
+                $(AssemblyOriginatorKeyFile);
+                @(ManifestNonResxWithNoCultureOnDisk);
+                @(ReferencePath);
+                @(CompiledLicenseFile);
+                @(EmbeddedDocumentation);
+                @(CustomAdditionalCompileInputs)"
+        Outputs="@(DocFileItem);
+                 @(IntermediateAssembly);
+                 $(NonExistentFile);
+                 @(CustomAdditionalCompileOutputs)"
+        DependsOnTargets="$(CoreCompileDependsOn)"
+  >
+
+        <Vbc
+              AdditionalLibPaths="$(AdditionalLibPaths)"
+              AddModules="@(AddModules)"
+              BaseAddress="$(BaseAddress)"          
+              DebugType="$(DebugType)"
+              DefineConstants="$(FinalDefineConstants)"
+              DelaySign="$(DelaySign)"
+              EmitDebugInformation="$(DebugSymbols)"
+              Imports="@(Import)"
+              KeyContainer="$(KeyContainerName)"
+              KeyFile="$(KeyOriginatorFile)"
+              MainEntryPoint="$(StartupObject)"
+              NoStandardLib="$(NoStdLib)"
+              NoWarnings="$(_NoWarnings)"
+              Optimize="$(Optimize)"
+              OptionCompare="$(OptionCompare)"
+              OptionExplicit="$(OptionExplicit)"
+              OptionStrict="$(OptionStrict)"
+              OptionStrictType="$(OptionStrictType)" 
+              OutputAssembly="@(IntermediateAssembly)"
+              References="@(ReferencePath)"
+              RemoveIntegerChecks="$(RemoveIntegerChecks)"
+              Resources="@(ManifestResourceWithNoCulture);@(ManifestNonResxWithNoCultureOnDisk);@(CompiledLicenseFile)"
+              ResponseFiles="$(CompilerResponseFile)"
+              RootNamespace="$(RootNamespace)"
+              SdkPath="$(FrameworkPathOverride)"
+              Sources="@(Compile)"
+              TargetCompactFramework="$(TargetCompactFramework)"
+              TargetType="$(OutputType)"
+              ToolPath="$(TargetFrameworkDirectory)"
+              TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+              UseHostCompilerIfAvailable="$(UseHostCompilerIfAvailable)"
+              Utf8Output="$(Utf8Output)"
+              Verbosity="$(VbcVerbosity)"
+              Win32Icon="$(ApplicationIcon)"
+              Win32Resource="$(Win32Resource)"
+             
+        />
+
+              <!-- 
+                These properties only apply to vbc 2.0 and are filtered for the vbc task above. 
+                Thus, if you set these flags, they will be ignored when targeting .NET 1.1. 
+                You can uncomment these properties and add them to the vbc task if you wish.
+                You will then receive a warning or error if you set these properties because
+                vbc 1.1 won't recognize the corresponding switches. 
+              -->
+              <!--
+              CodePage="$(CodePage)"
+              DocumentationFile="@(DocFileItem)"
+              ErrorReport="$(ErrorReport)"
+              FileAlignment="$(FileAlignment)"
+              GenerateDocumentation="$(GenerateDocumentation)"
+              NoConfig="true"
+              Platform="$(PlatformTarget)"
+              WarningsAsErrors="$(WarningsAsErrors)"
+              WarningsNotAsErrors="$(WarningsNotAsErrors)"
+              -->
+    
+              <!-- This property should remain commented out; vbc 1.1 can't disable specific warnings. -->
+              <!-- DisabledWarnings="$(NoWarn)" -->
+        </Target>
+
+</Project>
