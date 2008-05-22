@@ -56,3 +56,6 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
+
+// log4net config
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "CSRFGuardLoggerConfig.log4net", Watch = true)]

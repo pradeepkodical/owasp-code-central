@@ -67,9 +67,11 @@ namespace org.owasp.csrfguard.ResponseFilters
 		private String injectURLParameters(String htmlText)
 		{
             StringBuilder newHtmlText = new StringBuilder();
+_log.Debug(App.Configuration.extensionWhitelistPattern);
+            Regex extensionWhitelistRegex = new Regex(App.Configuration.extensionWhitelistPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            Regex skipJavascriptRegex = new Regex("^javascript:", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
             for (int i=0; i < htmlText.Length; i++) {
-                Console.WriteLine(htmlText[i]);
 
                 switch (htmlText[i]) {
                     case '<':
@@ -81,16 +83,21 @@ namespace org.owasp.csrfguard.ResponseFilters
                         if ((value = tagObj.getAttributeValue("src")) != null)
                         {
                             // SECURITY NOTE:  enforce the same-origin policy for rewrites.  Only links for this site get rewritten!
-                            if (Util.urlIsSameOriginAsServer(value) && !Regex.Match(value, App.Configuration.extensionWhitelistPattern).Success)
+                            if (Util.urlIsSameOriginAsServer(Util.StripQuotes(value)) 
+                                && !extensionWhitelistRegex.IsMatch(Util.StripQuotes(value)))
                             {
+                                _log.Debug("Injecting token for src url '" + value + "'");
                                 tagObj.setAttributeValue("src", injectURLToken(value, _CSRFTokenName, _CSRFSesssionToken));
                             }
                         }
                         else if ((value = tagObj.getAttributeValue("href")) != null)
                         {
                             // SECURITY NOTE:  enforce the same-origin policy for rewrites.  Only links for this site get rewritten!
-                            if (Util.urlIsSameOriginAsServer(value) && !Regex.Match(value, App.Configuration.extensionWhitelistPattern).Success)
+                            if (Util.urlIsSameOriginAsServer(Util.StripQuotes(value))
+                                && !extensionWhitelistRegex.IsMatch(Util.StripQuotes(value))
+                                && !skipJavascriptRegex.IsMatch(Util.StripQuotes(value)))  // don't break javascript hrefs
                             {
+_log.Debug("Injecting token for href url " + value);
                                 tagObj.setAttributeValue("href", injectURLToken(value, _CSRFTokenName, _CSRFSesssionToken));
                             }
                         }
@@ -99,6 +106,7 @@ namespace org.owasp.csrfguard.ResponseFilters
                         break;
                     case '>':
                         // should never get here since the end tag gets gobbled up by the captureFromStartToStopChar() method
+                        _log.Warn("Supposedly unreachable parse error encountered in RegExFilter at char #" + i);
                         break;
                     default:
                         // anything else passes through without modification

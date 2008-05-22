@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using log4net;
 
 namespace org.owasp.csrfguard
 {
@@ -13,7 +14,9 @@ namespace org.owasp.csrfguard
 	/// </summary>
 	public class Util
 	{
+        private static readonly ILog _log = LogManager.GetLogger("CSRFGuard");
 
+[Obsolete("I don't think this is necessary with the LogEvent handler")]
 		public static void LogSecurityViolation(String message)
 		{
 			// TODO:  Implement logging.  Ultimately, this should be overrideable by your own logging method
@@ -153,33 +156,60 @@ namespace org.owasp.csrfguard
         public static bool urlIsSameOriginAsServer(String url)
         {
             bool isSameOrigin = false;
+            string machineName;
+            if (HttpContext.Current == null) {
+                machineName = System.Net.Dns.GetHostName();
+            } else {
+                machineName = HttpContext.Current.Server.MachineName;
+            }
 
             Regex urlRegex = new Regex("^(\"?)[a-zA-Z]+://([^/:]+)/", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            Regex isJavascriptUrlRegex = new Regex("^javascript:", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
             // "/some/dir/index.html" 
-            // slash within the first 2 characters (allows for starting ")
-            if (url.IndexOf('/') <= 2)
+            // starts with /
+            if (StripQuotes(url).IndexOf('/') >= 0)
             {
+_log.Debug(String.Format("IsSameOrigin due to slash within first 2 characters of string {0}", url));
                 isSameOrigin = true;
             } else if (urlRegex.IsMatch(url)) {
                 // check for a full URL reference
                 Match m = urlRegex.Match(url);
                 String urlServer = m.Groups[2].Value.ToLower();
-                System.Net.IPHostEntry serverHostEntry = System.Net.Dns.GetHostEntry(HttpContext.Current.Server.MachineName);
+                System.Net.IPHostEntry serverHostEntry = System.Net.Dns.Resolve(machineName);
 
                 if (urlServer == "localhost" ||
                     urlServer == "127.0.0.1" ||
-                    urlServer == HttpContext.Current.Server.MachineName ||
-                    HttpContext.Current.Server.MachineName.StartsWith(urlServer) ||
+                    urlServer == machineName ||
+                    machineName.StartsWith(urlServer) ||
                     urlServer == serverHostEntry.AddressList[0].ToString())
                 {
+_log.Debug(String.Format("IsSameOrigin due to machineName match {0}, {1}, {2}", machineName, urlServer, url));
                     isSameOrigin = true;
                 }
+            } else if (isJavascriptUrlRegex.IsMatch(StripQuotes(url))) {
+                _log.Debug("IsNOTSameOrigin due to javascript match");
+                isSameOrigin = false;  // don't touch javascript URLs!  You will probably break them
             } else {
                 // relative reference not starting with slash
+                _log.Debug(String.Format("IsSameOrigin due to relative reference without starting slash {0}", url));
                 isSameOrigin = true;
             }
             return isSameOrigin;
+        }
+
+        public static string StripQuotes(string str)
+        {
+            if (str[0] == '"')
+            {
+                str = str.Substring(1);
+            }
+            if (str[str.Length - 1] == '"')
+            {
+                str = str.Substring(0, str.Length - 1);
+            }
+_log.Debug("StripQuotes is returning:  '" + str + "'");
+            return str;
         }
     }
 }
