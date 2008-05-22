@@ -17,8 +17,10 @@
   <property name="build-configuration" value="Debug" />
   <property name="this.fx11.outdir" value="bin\FX_11" />
   <property name="this.solutionfile" value="CSRFGuard.csproj" />
+  <property name="test.solutionfile" value="Tests\CSRFGuard.Tests.csproj" />
   <property name="this.deploy.bin.dir" value="c:\temp\CSRFGuard" />
   <property name="nant.settings.currentframework" value="net-2.0" />
+  <property name="skip-nunit" value="false" />
   <property name="dotnet20-dir" value="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v2.0.50727" readonly="true" unless="${property::exists('dotnet20-dir')}"/>
   <!-- where MSBee .Net framework 1.1 binaries are placed by the build -->
   <property name="msbee.dir" value="${base-dir}\MSBuild\MSBee" readonly="true" unless="${property::exists('msbee.dir')}" />
@@ -66,6 +68,15 @@
        <property name="Platform" value="x86" />       
      </msbuild>
 
+     <!-- build the test assembly -->
+     <msbuild project="${test.solutionfile}" target="Rebuild" >
+       <property name="TargetFX1_1" value="true" /> 
+       <property name="CustomAfterMicrosoftCommonTargets" value="${msbee.csharp.targets}" /> 
+       <property name="Configuration" value="${build-configuration}" /> 
+       <property name="OutputPath" value="${this.fx11.outdir}/${build-configuration}/" /> <!-- Must end in slash -->
+       <property name="Platform" value="x86" />       
+     </msbuild>
+
   </target>
 
   <!-- Remove the local bin directory and its contents; clean solution build -->
@@ -91,6 +102,44 @@
     <delete dir="bin" />
     <delete dir="obj" />
 
+	<!-- clean out test build -->
+    <delete>
+      <fileset basedir="Tests\bin">
+        <include name="**\*.dll" />
+        <include name="**\*.exe" />
+        <include name="**\*.pdb" />
+      </fileset>
+    </delete>
+
+    <delete>
+      <fileset basedir="Tests\obj">
+        <include name="**\*.dll" />
+        <include name="**\*.exe" />
+        <include name="**\*.pdb" />
+      </fileset>
+    </delete>
+
+    <delete dir="Tests\bin" />
+    <delete dir="Tests\obj" />
+
+  </target>
+
+  <!-- run unit tests -->
+  <target name="nunit" unless="${skip-nunit}">
+	  <mkdir dir="nunit-output" failonerror="false"/>
+
+	  <!-- need to make sure a config file is loadable -->
+	  <copy todir="Tests\${this.fx11.outdir}\${build-configuration}" overwrite="true" failonerror="true">
+		  <fileset basedir="${base-dir}">
+			  <include name="CSRFGuard.config" />
+		  </fileset>
+	  </copy>
+
+	  <nunit2 haltonfailure="false" failonerror="false">
+		  <formatter type="Xml" usefile="true" extension=".xml" outputdir="nunit-output\"/>
+		  <formatter type="Plain" />
+		  <test haltonfailure="false" appconfig="nunit.config" assemblyname="Tests\${this.fx11.outdir}\${build-configuration}\CSRFGuard.Tests.dll" />
+	  </nunit2>
   </target>
 
   <!-- Deploy the code and required artifacts to the tools/SecretStoreUtils/bin directory -->
@@ -100,9 +149,9 @@
     <copy todir="${this.deploy.bin.dir}" overwrite="true" failonerror="true">
       <fileset basedir="${this.fx11.outdir}/${build-configuration}">
         <include name="CSRFGuard.*" />
-		<include name="log4net.dll" />
-        <include name="../../../../CSRFGuard.config" />
-		<include name="../../../../log4net.xml" />
+	<include name="log4net.dll" />
+	<include name="../../../CSRFGuard.config" />
+	<include name="../../../CSRFGuardLoggerConfig.log4net" />
       </fileset>
     </copy>
 

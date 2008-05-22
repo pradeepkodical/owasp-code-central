@@ -20,10 +20,10 @@ namespace org.owasp.csrfguard
 		public bool skipDetectOnParameterlessURLRequests = true;
 		public ArrayList skipDetectForTheseURLs = new ArrayList();
         public ArrayList CSRFHandlers = new ArrayList();   
-        public string ResponseFilterClass = "org.owasp.csrfguard.ResponseFilters.RegExFilter";    // default class
         public string CSRFHandlers_RedirectToUrl_Url = null;
         public string CSRFHandlers_PrintError_ErrorText = null;
         public string CSRFHandler_pluginFolder = "plugins/";
+        public string ResponseFilter = "org.owasp.csrfguard.ResponseFilters.RegExFilter";
 		
 		// constructor
 		public CSRFGuardConfiguration(string configFile) : base(configFile)

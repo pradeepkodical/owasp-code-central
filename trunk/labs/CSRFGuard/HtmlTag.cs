@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace org.owasp.csrfguard
 {
-    class HtmlTag
+    public class HtmlTag
     {
         // collection holding all attributes
         private ListDictionary _attrList = new ListDictionary();
