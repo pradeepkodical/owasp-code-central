@@ -148,7 +148,7 @@ namespace org.owasp.csrfguard
         /// </summary>
         private void setupSkipDetect()
         {
-            // ignore requests to URLs when no parameters are passed as this would not represent a CSRF attack in most cases (TODO:  make this a configurable option)
+            // ignore requests to URLs when no parameters are passed as this would not represent a CSRF attack in most cases
             if (!formOrQueryStringParamsPassed() && App.Configuration.skipDetectOnParameterlessURLRequests)
             {
                 _skipDetect = true;
@@ -206,7 +206,7 @@ namespace org.owasp.csrfguard
                 }
             }
 
-            // TODO:  support plugins by looking for anything that implements ICSRFHandler interface in a given plugin directory
+            // Support plugins by looking for anything that implements ICSRFHandler interface in a given plugin directory
             try
             {
                 string[] pluginFiles = Directory.GetFiles(GetExecutablePath() + "/" + App.Configuration.CSRFHandler_pluginFolder);

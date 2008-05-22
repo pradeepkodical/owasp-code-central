@@ -19,7 +19,7 @@ namespace org.owasp.csrfguard
 [Obsolete("I don't think this is necessary with the LogEvent handler")]
 		public static void LogSecurityViolation(String message)
 		{
-			// TODO:  Implement logging.  Ultimately, this should be overrideable by your own logging method
+			// Ultimately, this should be overrideable by your own logging method
 			EventLog log = new EventLog();
 			log.Source = "Intercepting Filter Pattern";
 			log.WriteEntry(message, EventLogEntryType.Information);

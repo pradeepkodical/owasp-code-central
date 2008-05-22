@@ -11,7 +11,7 @@ namespace org.owasp.csrfguard.ResponseFilters
 	/// 
 	/// Code adapted from a similar model at http://aspnetresources.com/articles/HttpFilters.aspx
 	/// </summary>
-	internal class RegExFilter : ResponseFilterBase
+	public class RegExFilter : ResponseFilterBase
 	{
 		
 		public RegExFilter(Stream inputStream, String tokenName, String token) : base(inputStream, tokenName, token)
@@ -60,7 +60,7 @@ namespace org.owasp.csrfguard.ResponseFilters
 		{
 			Regex formFieldRegex = new Regex("</form>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 			// Replace by default replaces all occurrences
-			htmlText = formFieldRegex.Replace(htmlText, "<input type=\"hidden\" name=\"" + _CSRFTokenName + "\" value=\"" + _CSRFSesssionToken + "\">\n</form>");
+			htmlText = formFieldRegex.Replace(htmlText, "\n<input type=\"hidden\" name=\"" + _CSRFTokenName + "\" value=\"" + _CSRFSesssionToken + "\">\n</form>");
 			return htmlText;
 		}
 		

@@ -4,6 +4,7 @@ using System.Web.SessionState;
 using org.owasp.csrfguard.ResponseFilters;
 using org.owasp.csrfguard.Actions;
 using System.Diagnostics;
+using log4net;
 
 namespace org.owasp.csrfguard
 {
@@ -11,6 +12,7 @@ namespace org.owasp.csrfguard
 	{
 		private CSRFGuard _guard;
         private Token _session;
+        private static readonly ILog _log = LogManager.GetLogger("CSRFGuard");
 		
 		public String ModuleName
 		{
@@ -32,7 +34,7 @@ namespace org.owasp.csrfguard
 		}
 		
 		// move this to a utility function
-		void filterHTMLResponse(object sender, EventArgs args)		
+		void filterHTMLResponse(object sender, EventArgs objArgs)		
 		{
 			HttpResponse response = HttpContext.Current.Response;
 			
@@ -43,14 +45,19 @@ namespace org.owasp.csrfguard
 			{
 				if(response.ContentType.StartsWith("text/html"))
 				{
-                    // TODO:  this needs to load the filter from the config
-					response.Filter = new RegExFilter(response.Filter, _session.Name, _session.Value);
+                    // TODO:  create ConfigurationException to deal with bad configs
+                    Type type = Type.GetType(App.Configuration.ResponseFilter, true);
+                    ResponseFilterBase respFilter = Activator.CreateInstance(type, new object[3] {response.Filter, _session.Name, _session.Value}) as ResponseFilterBase;
+                    _log.Debug("Loading ResponseFilter " + App.Configuration.ResponseFilter);
+                    response.Filter = respFilter;
+					//response.Filter = new RegExFilter(response.Filter, _session.Name, _session.Value);
 				}
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
 				// do something
-                throw;
+                _log.Debug("Exception loading ResponseFilter " + e.StackTrace); 
+                throw e;
 			}
 		}
 
