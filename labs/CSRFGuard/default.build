@@ -12,9 +12,10 @@
 
   <!-- solution/csproj for what to build -->
 
+<!-- <property name="nant.settings.currentframework" value="net-1.1" /> -->
   <property name="base-dir" value="." />
   <property name="build-configuration" value="Debug" />
-  <property name="this.fx11.outdir" value="bin\FX_11\${build-configuration}" />
+  <property name="this.fx11.outdir" value="bin\FX_11" />
   <property name="this.solutionfile" value="CSRFGuard.csproj" />
   <property name="this.deploy.bin.dir" value="c:\temp\CSRFGuard" />
   <property name="nant.settings.currentframework" value="net-2.0" />
@@ -99,7 +100,9 @@
     <copy todir="${this.deploy.bin.dir}" overwrite="true" failonerror="true">
       <fileset basedir="${this.fx11.outdir}/${build-configuration}">
         <include name="CSRFGuard.*" />
+		<include name="log4net.dll" />
         <include name="../../../../CSRFGuard.config" />
+		<include name="../../../../log4net.xml" />
       </fileset>
     </copy>
 

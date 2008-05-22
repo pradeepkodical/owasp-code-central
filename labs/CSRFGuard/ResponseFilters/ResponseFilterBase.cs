@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using log4net;
 
 namespace org.owasp.csrfguard.ResponseFilters
 {
@@ -14,6 +15,7 @@ protected String _CSRFTokenName;
 		protected Stream _responseStream;
 		protected long _position;
 		protected StringBuilder _responseHtml;
+  protected static readonly ILog _log = LogManager.GetLogger("CSRFGuard");
 
 		public ResponseFilterBase(Stream inputStream, String tokenName, String token)
 		{

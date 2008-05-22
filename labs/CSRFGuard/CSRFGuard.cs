@@ -6,6 +6,7 @@ using System.Web.SessionState;
 using System.Diagnostics;
 using org.owasp.csrfguard.Actions;
 using System.Reflection;
+using log4net;
 
 namespace org.owasp.csrfguard
 {
@@ -21,11 +22,12 @@ namespace org.owasp.csrfguard
         private HttpSessionState _session;
 		private bool _skipDetect = false;
 		private bool _attackDetected;
+        private static readonly ILog _log = LogManager.GetLogger("CSRFGuard");
 		#endregion
 		
 		public CSRFGuard(object sender)
 		{
-			_httpApp = (HttpApplication)sender;
+      _httpApp = (HttpApplication)sender;
             _session = _httpApp.Session;
 			_context = _httpApp.Context;
 			_response = _httpApp.Context.Response;
@@ -188,10 +190,8 @@ namespace org.owasp.csrfguard
             // instantiate the dynamic classes specified in the config file, or the default.  Then tell it to take action.
             foreach (string hclass in App.Configuration.CSRFHandlers)
             {
-                EventLog log = new EventLog();
                 #region debug logging
-                log.Source = "Application";
-                log.WriteEntry("DEBUG:  Executing Action " + hclass, EventLogEntryType.Error);
+                _log.Debug("Executing Action " + hclass);
                 #endregion
                 try
                 {
@@ -202,14 +202,15 @@ namespace org.owasp.csrfguard
                 }
                 catch (TypeLoadException e)
                 {
-                    log.WriteEntry("Got exception " + e.Message, EventLogEntryType.Error);
+                    _log.Error(String.Format("Got exception loading CSRFHandler {0}, {1}", hclass, e.Message));
                 }
             }
 
             // TODO:  support plugins by looking for anything that implements ICSRFHandler interface in a given plugin directory
             try
             {
-                string[] pluginFiles = Directory.GetFiles(App.Configuration.CSRFHandler_pluginFolder);
+                string[] pluginFiles = Directory.GetFiles(GetExecutablePath() + "/" + App.Configuration.CSRFHandler_pluginFolder);
+
                 foreach (string file in pluginFiles)
                 {
                     Type objType = null;
@@ -222,10 +223,11 @@ namespace org.owasp.csrfguard
                             objType = plugin.GetType(file, true);
                         }
                     }
-                    catch (Exception)
+                    catch (FileLoadException e)
                     {
-                        throw;
+                        _log.Error(String.Format("FileLoadException loading file '{0}'; {1}", file, e.StackTrace));
                     }
+
                     try
                     {
                         // now, instantiate the object and do stuff.
@@ -242,9 +244,9 @@ namespace org.owasp.csrfguard
                     }
                 }
             }
-            catch (DirectoryNotFoundException)
+            catch (DirectoryNotFoundException e)
             {
-                throw;
+                _log.Warn("Directory not found '" + GetExecutablePath() + "/" + App.Configuration.CSRFHandler_pluginFolder + "'", e);
             }
 
             _response.End();
@@ -273,5 +275,11 @@ namespace org.owasp.csrfguard
 			}
 			return true;
 		}
+
+        private static string GetExecutablePath()
+        {
+            string executableDirectory = Assembly.GetExecutingAssembly().GetName().CodeBase;
+            return Path.GetDirectoryName(executableDirectory.Replace("file:///", ""));
+        }
 	}
 }

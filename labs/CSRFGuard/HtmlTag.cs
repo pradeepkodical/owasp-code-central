@@ -19,18 +19,22 @@ namespace org.owasp.csrfguard
         public HtmlTag(String tagString)
         {
             _tagString = tagString;
-            normalizeHtml();
-            Regex tagNameRegex = new Regex("<([^ ]+)");
-            Match m = tagNameRegex.Match(_tagString);
-            if (m.Success)
+            if (!IsEntityTag())
             {
-                _tagName = m.Groups[1].Captures[0].Value.ToLower();
+                normalizeHtml();
+                Regex tagNameRegex = new Regex("<([^ ]+)");
+                Match m = tagNameRegex.Match(_tagString);
+                if (m.Success)
+                {
+                    _tagName = m.Groups[1].Captures[0].Value.ToLower();
+                }
+
+                if (tagHasAttributes())
+                {
+                    populateAttributes();
+                    updateTagString();
+                }
             }
-            if (tagHasAttributes())
-            {
-                populateAttributes();
-            }
-            updateTagString();
         }
 
         // tokenizes the Html tag string and populates the attributes Hash table
@@ -44,6 +48,7 @@ namespace org.owasp.csrfguard
                 if (token.IndexOf('=') > 0)
                 {
                     String[] attr = Split(token.ToString(), "=", "\"", true);
+
                     _attrList.Add(attr[0].ToLower(), attr[1]);
                 }
             }
@@ -70,8 +75,19 @@ namespace org.owasp.csrfguard
             }
             else
             {
+                // not self-closing
                 Regex endTagRegex2 = new Regex("([^/])>", RegexOptions.Compiled);
-                _tagString = endTagRegex2.Replace(_tagString, "$1 >");
+                
+                if (_tagString.IndexOf(' ') > -1)
+                {
+                    // tag contains whitespace so it cannot be a tag like <html>.  Separate the end bracket from the rest of the tak for the tokenizing process later.
+                    _tagString = endTagRegex2.Replace(_tagString, "$1 >");
+                }
+                else
+                {
+                    // avoid injecting whitespace in a nice simple tag like <html> or <head>
+                    _tagString = endTagRegex2.Replace(_tagString, "$1>");
+                }
             }
 
             // replace consecutive spaces with a single space and remove spaces around equals while ignoring them in quoted strings
@@ -96,7 +112,7 @@ namespace org.owasp.csrfguard
             // add the closing tag and double-quote
             if (isSelfClosing)
             {
-                newTag.Append("/>");
+                newTag.Append(" />");
             }
             else
             {
@@ -204,6 +220,19 @@ namespace org.owasp.csrfguard
             return isAttrFound;
         }
 
+        /// <summary>
+        /// Tags beginning with &lt;! are special and probably don't have attributes, but we don't want to lose their innards.
+        /// </summary>
+        protected bool IsEntityTag()
+        {
+            // look for a ! as the second char of the entity, as in <!DOCTYPE
+            if (_tagString[1] == '!')
+            {
+                return true;
+            }
+            return false;
+        }
+
         // String split that supports text qualifiers so we can split text on a delimiter but ignore delimiters inside quotes
         // http://www.codeproject.com/useritems/TextQualifyingSplit.asp?df=100&forumid=336054&exp=0&select=1798414
         public string[] Split(string str, string delimiter, string qualifier, bool ignoreCase)
@@ -235,12 +264,16 @@ namespace org.owasp.csrfguard
             return _returnValues;
         }
 
-        // replace two or more consecutive spaces with a single space, but only outside of quoted strings!
+        /// <summary>
+        /// Replaces two or more consecutive spaces with a single space, but only outside of quoted strings!  And, it will not leave whitespace around = signs outside of a quoted string
+        /// </summary>
+        /// <param name="str">String to compress whitespace</param>
+        /// <param name="qualifier">Quoted string qualifier.  " by default</param>
         public String CompressWhitespace(string str, string qualifier)
         {
             const int MAX_CONSEC_SPACES = 2;
-            bool gotQuotedString = false;
-            bool gotEquals = false;
+            bool insideQuotedString = false;
+            bool gotEqualsOutsideQuotedString = false;
             int consecWsCount = 0;  // how many consecutive spaces we've found.
             StringBuilder sb = new StringBuilder();
             StringBuilder space = new StringBuilder();
@@ -249,11 +282,13 @@ namespace org.owasp.csrfguard
             {
                 if (str[i] == qualifier[0])
                 {
-                    // state = inside quoted string.  Append the qualifier and continue on.
-                    gotQuotedString = !(gotQuotedString);
+                    // state = inside quoted string or transitioning out of one.  Append the qualifier and continue on.
+                    insideQuotedString = !(insideQuotedString);
+                    // if inside a quoted string, then we don't care about the equals state anymore so reset it
+                    gotEqualsOutsideQuotedString = false;
                     sb.Append(str[i]);
                 }
-                else if (str[i] == ' ' && !gotQuotedString)
+                else if (str[i] == ' ' && !insideQuotedString)
                 {
                     // outside of quoted string and we found a space.  
                     // Compress whitespace by only keeping whitespace < MAX_CONSEC_SPACES chars.
@@ -263,9 +298,9 @@ namespace org.owasp.csrfguard
                         space.Append(str[i]);  // append to whitespace buffer.  This may/may not be appended later depending on if the space is around an equals
                     }
                 }
-                else if (str[i] == '=' && !gotQuotedString)
+                else if (str[i] == '=' && !insideQuotedString)
                 {
-                    gotEquals = true;
+                    gotEqualsOutsideQuotedString = true;
                     if (space.Length > 0)
                     {
                         space.Remove(0, space.Length);  // discard queued spaces
@@ -274,13 +309,13 @@ namespace org.owasp.csrfguard
                 }
                 else
                 {
-                    // conditionally append queued space.  
-                    if (!gotEquals && space.Length > 0)
+                    // conditionally append queued space.  Does not print any spaces around = signs outside quoted strings!
+                    if (!gotEqualsOutsideQuotedString && space.Length > 0)
                     {
                         sb.Append(space.ToString());
                         space.Remove(0, space.Length);  // empty the buffer
                     }
-                    gotEquals = false;
+                    gotEqualsOutsideQuotedString = false;
 
                     // not a whitespace so just append.
                     // reset whitespace count when you hit a non-whitespace char.
