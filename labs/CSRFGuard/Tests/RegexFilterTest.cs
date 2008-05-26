@@ -34,7 +34,7 @@ namespace Org.Owasp.CsrfGuard.ResponseFilters.Tests
             String responseHtml = testFilter.GetResponseHtml.ToString();
 
             // strings must not be the same, else that means no filtering happened
-            Assert.AreEqual(testString, responseHtml,
+            Assert.AreNotEqual(testString, responseHtml,
                            "responseHtml was not modified by the filter.  It is still:  {0}",
                            responseHtml);
         }
@@ -54,7 +54,7 @@ namespace Org.Owasp.CsrfGuard.ResponseFilters.Tests
 
             String responseHtml = testFilter.GetResponseHtml.ToString();
 
-            Assert.AreEqual(testString, responseHtml,
+            Assert.AreNotEqual(testString, responseHtml,
                            "responseHtml was not modified by the filter.  It is still:  {0}",
                            responseHtml);
         }
@@ -75,7 +75,7 @@ namespace Org.Owasp.CsrfGuard.ResponseFilters.Tests
 
             String responseHtml = testFilter.GetResponseHtml.ToString();
 
-            Assert.AreEqual(testString, responseHtml,
+            Assert.AreNotEqual(testString, responseHtml,
                            "responseHtml was not modified by the filter.  It is still:  {0}",
                            responseHtml);
         }
