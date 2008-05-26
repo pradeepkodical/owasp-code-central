@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
+using System.Net;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -7,108 +9,114 @@ using System.Text.RegularExpressions;
 using System.Web;
 using log4net;
 
-namespace org.owasp.csrfguard
+namespace Org.Owasp.CsrfGuard
 {
-	/// <summary>
-	/// Summary description for Util.
-	/// </summary>
-	public class Util
-	{
+    /// <summary>
+    /// Summary description for Util.
+    /// </summary>
+    public class Util
+    {
         private static readonly ILog _log = LogManager.GetLogger("CSRFGuard");
 
-[Obsolete("I don't think this is necessary with the LogEvent handler")]
-		public static void LogSecurityViolation(String message)
-		{
-			// Ultimately, this should be overrideable by your own logging method
-			EventLog log = new EventLog();
-			log.Source = "Intercepting Filter Pattern";
-			log.WriteEntry(message, EventLogEntryType.Information);
-		}
+        /// <summary>
+        /// Securely generates a random value and returns the bytes encoded as hexadecimal
+        /// </summary>
+        /// <param name="numBytes">How many random bytes to generate</param>
+        public static String GenerateToken(int numBytes)
+        {
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            byte[] randBytes = new byte[numBytes];
 
-		public static String generateToken(int numBytes)
-		{
-			RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-			byte[] randBytes = new byte[numBytes];
+            rng.GetBytes(randBytes);
+            return BytesToHexString(randBytes);
+        }
 
-			rng.GetBytes(randBytes);
-			return bytesToHexString(randBytes);
-		}
+        /// <summary>
+        /// Convert a byte array into a hexadecimal string representation
+        /// </summary>
+        /// <param name="binary">byte array to convert</param>
+        public static String BytesToHexString(byte[] binary)
+        {
+            StringBuilder hex = new StringBuilder((binary.Length/8)*2);
 
-		public static String bytesToHexString(byte[] bytes)
-		{
-			StringBuilder hex = new StringBuilder((bytes.Length/8)*2);
+            for (int i = 0; i < binary.Length; i++)
+            {
+                hex.Append(String.Format(CultureInfo.InvariantCulture, "{0:X2}", binary[i]));
+            }
+            return hex.ToString();
+        }
 
-			for (int i = 0; i < bytes.Length; i++)
-			{
-				hex.Append(String.Format("{0:X2}", bytes[i]));
-			}
-			return hex.ToString();
-		}
+        /// <summary>
+        /// Adapted from http://www.west-wind.com/presentations/configurationclass/configurationclass.asp
+        /// 
+        /// Sets the value of a field or property via Reflection. This method alws 
+        /// for using '.' syntax to specify objects multiple levels down.
+        /// 
+        /// Util.SetPropertyEx(this,"Invoice.LineItemsCount",10)
+        /// 
+        /// which would be equivalent of:
+        /// 
+        /// this.Invoice.LineItemsCount = 10;
+        /// </summary>
+        /// <param name="Object parent">
+        /// Object to set the property on.
+        /// </param>
+        /// <param name="String property">
+        /// property to set. Can be an object hierarchy with . syntax.
+        /// </param>
+        /// <param name="Object value">
+        /// value to set the property to
+        /// </param>
+        public static object SetPropertyEx(object parent, string property, object value)
+        {
+            Type Type = parent.GetType();
+            MemberInfo Member = null;
 
-		/// <summary>
-		/// 
-		/// Adapted from http://www.west-wind.com/presentations/configurationclass/configurationclass.asp
-		/// 
-		/// Sets the value of a field or property via Reflection. This method alws 
-		/// for using '.' syntax to specify objects multiple levels down.
-		/// 
-		/// Util.SetPropertyEx(this,"Invoice.LineItemsCount",10)
-		/// 
-		/// which would be equivalent of:
-		/// 
-		/// this.Invoice.LineItemsCount = 10;
-		/// </summary>
-		/// <param name="Object Parent">
-		/// Object to set the property on.
-		/// </param>
-		/// <param name="String Property">
-		/// Property to set. Can be an object hierarchy with . syntax.
-		/// </param>
-		/// <param name="Object Value">
-		/// Value to set the property to
-		/// </param>
-		public static object SetPropertyEx(object Parent, string Property, object Value)
-		{
-			Type Type = Parent.GetType();
-			MemberInfo Member = null;
+            // *** no more .s - we got our final object
+            int lnAt = property.IndexOf(".");
+            if (lnAt < 0)
+            {
+                Member = Type.GetMember(property, BindingFlags.Public | BindingFlags.NonPublic |
+                                                  BindingFlags.Static | BindingFlags.Instance | BindingFlags.IgnoreCase)
+                    [0];
+                if (Member.MemberType == MemberTypes.Property)
+                {
+                    ((PropertyInfo) Member).SetValue(parent, value, null);
+                    return null;
+                }
+                else
+                {
+                    ((FieldInfo) Member).SetValue(parent, value);
+                    return null;
+                }
+            }
 
-			// *** no more .s - we got our final object
-			int lnAt = Property.IndexOf(".");
-			if (lnAt < 0)
-			{
-				Member = Type.GetMember(Property, BindingFlags.Public | BindingFlags.NonPublic | 
-					BindingFlags.Static | BindingFlags.Instance | BindingFlags.IgnoreCase)[0];
-				if (Member.MemberType == MemberTypes.Property)
-				{
-					((PropertyInfo) Member).SetValue(Parent, Value, null);
-					return null;
-				}
-				else
-				{
-					((FieldInfo) Member).SetValue(Parent, Value);
-					return null;
-				}
-			}
+            // *** Walk the . syntax
+            string Main = property.Substring(0, lnAt);
+            string Subs = property.Substring(lnAt + 1);
+            Member = Type.GetMember(Main, BindingFlags.Public | BindingFlags.NonPublic |
+                                          BindingFlags.Static | BindingFlags.Instance | BindingFlags.IgnoreCase)[0];
 
-			// *** Walk the . syntax
-			string Main = Property.Substring(0, lnAt);
-			string Subs = Property.Substring(lnAt + 1);
-			Member = Type.GetMember(Main, BindingFlags.Public | BindingFlags.NonPublic | 
-				BindingFlags.Static | BindingFlags.Instance | BindingFlags.IgnoreCase)[0];
+            object Sub;
+            if (Member.MemberType == MemberTypes.Property)
+                Sub = ((PropertyInfo) Member).GetValue(parent, null);
+            else
+                Sub = ((FieldInfo) Member).GetValue(parent);
 
-			object Sub;
-			if (Member.MemberType == MemberTypes.Property)
-				Sub = ((PropertyInfo) Member).GetValue(Parent, null);
-			else
-				Sub = ((FieldInfo) Member).GetValue(Parent);
+            // *** Recurse until we get the lowest ref
+            SetPropertyEx(Sub, Subs, value);
+            return null;
+        }
 
-			// *** Recurse until we get the lowest ref
-			SetPropertyEx(Sub, Subs, Value);
-			return null;
-		}
-
-
-        public static String captureFromStartToStopChar(String str, int start, char startchar, char endchar)
+        /// <summary>
+        /// Extract a substring from the parameter <code>str</code> that starts with the character <code>startchar</code> and ends with the character <code>endchar</code>.
+        /// Returns all captured text until end of string or the <code>endchar</code> is found.
+        /// </summary>
+        /// <param name="str">string to search for the substring</param>
+        /// <param name="start">where to start reading from in the string</param>
+        /// <param name="startchar">character beginning the substring to capture</param>
+        /// <param name="endchar">character terminating the substring to capture</param>
+        public static String CaptureFromStartToStopChar(String str, int start, char startchar, char endchar)
         {
             bool capturingText = false;
             bool gotEnd = false;
@@ -117,7 +125,6 @@ namespace org.owasp.csrfguard
 
             for (int i = start; i < str.Length; i++)
             {
-
                 // it's stupid that c# switch statements require CONSTANTS.  Blame MS for how ugly this is.
                 if (str[i] == startchar)
                 {
@@ -137,7 +144,7 @@ namespace org.owasp.csrfguard
                     sb.Append(str[i]);
                     capturingText = false;
                     gotEnd = true;
-                    break;  // break out of loop
+                    break; // break out of loop
                 }
                 else
                 {
@@ -151,15 +158,22 @@ namespace org.owasp.csrfguard
             // if we ever get here, we did not find an end delimiter so just return what we have
             return sb.ToString();
         }
-
-        // if the URL is a relative URL or the server name matches this one serving the request, then return true
-        public static bool urlIsSameOriginAsServer(String url)
+        
+        /// <summary>
+        /// if the URL is a relative URL, or the server name matches this one serving the request, then return true
+        /// Note: it also returns false if the URL is a javascript URL.
+        /// </summary>
+        /// <param name="url">url to evaluate</param>
+        public static bool IsUrlSameOriginAsServer(String url)
         {
             bool isSameOrigin = false;
             string machineName;
-            if (HttpContext.Current == null) {
-                machineName = System.Net.Dns.GetHostName();
-            } else {
+            if (HttpContext.Current == null)
+            {
+                machineName = Dns.GetHostName();
+            }
+            else
+            {
                 machineName = HttpContext.Current.Server.MachineName;
             }
 
@@ -170,13 +184,15 @@ namespace org.owasp.csrfguard
             // starts with /
             if (StripQuotes(url).IndexOf('/') >= 0)
             {
-_log.Debug(String.Format("IsSameOrigin due to slash within first 2 characters of string {0}", url));
+                _log.Debug(String.Format(CultureInfo.InvariantCulture, "IsSameOrigin due to slash within first 2 characters of string {0}", url));
                 isSameOrigin = true;
-            } else if (urlRegex.IsMatch(url)) {
+            }
+            else if (urlRegex.IsMatch(url))
+            {
                 // check for a full URL reference
                 Match m = urlRegex.Match(url);
-                String urlServer = m.Groups[2].Value.ToLower();
-                System.Net.IPHostEntry serverHostEntry = System.Net.Dns.Resolve(machineName);
+                String urlServer = m.Groups[2].Value.ToLower(CultureInfo.InvariantCulture);
+                IPHostEntry serverHostEntry = Dns.Resolve(machineName);
 
                 if (urlServer == "localhost" ||
                     urlServer == "127.0.0.1" ||
@@ -184,20 +200,29 @@ _log.Debug(String.Format("IsSameOrigin due to slash within first 2 characters of
                     machineName.StartsWith(urlServer) ||
                     urlServer == serverHostEntry.AddressList[0].ToString())
                 {
-_log.Debug(String.Format("IsSameOrigin due to machineName match {0}, {1}, {2}", machineName, urlServer, url));
+                    _log.Debug(
+                        String.Format(CultureInfo.InvariantCulture, "IsSameOrigin due to machineName match {0}, {1}, {2}", machineName, urlServer, url));
                     isSameOrigin = true;
                 }
-            } else if (isJavascriptUrlRegex.IsMatch(StripQuotes(url))) {
+            }
+            else if (isJavascriptUrlRegex.IsMatch(StripQuotes(url)))
+            {
                 _log.Debug("IsNOTSameOrigin due to javascript match");
-                isSameOrigin = false;  // don't touch javascript URLs!  You will probably break them
-            } else {
+                isSameOrigin = false; // don't touch javascript URLs!  You will probably break them
+            }
+            else
+            {
                 // relative reference not starting with slash
-                _log.Debug(String.Format("IsSameOrigin due to relative reference without starting slash {0}", url));
+                _log.Debug(String.Format(CultureInfo.InvariantCulture, "IsSameOrigin due to relative reference without starting slash {0}", url));
                 isSameOrigin = true;
             }
             return isSameOrigin;
         }
 
+        /// <summary>
+        /// Remove double quotes from the first and last position of a string
+        /// </summary>
+        /// <param name="str">string to remove quotes from</param>
         public static string StripQuotes(string str)
         {
             if (str[0] == '"')
@@ -208,7 +233,6 @@ _log.Debug(String.Format("IsSameOrigin due to machineName match {0}, {1}, {2}", 
             {
                 str = str.Substring(0, str.Length - 1);
             }
-_log.Debug("StripQuotes is returning:  '" + str + "'");
             return str;
         }
     }

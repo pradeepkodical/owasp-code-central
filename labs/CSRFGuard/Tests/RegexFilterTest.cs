@@ -1,24 +1,18 @@
 using System;
 using System.IO;
+using System.Text;
 using NUnit.Framework;
-using System.Text;  
 
-namespace org.owasp.csrfguard.ResponseFilters.Tests
+namespace Org.Owasp.CsrfGuard.ResponseFilters.Tests
 {
-	/// <summary>
-	/// Summary description for CSRFGuardTests.
-	/// </summary>
-	[TestFixture]
-	public class CSRFGuardTests
-	{
-
+    /// <summary>
+    /// Summary description for RegexFilterTests.
+    /// </summary>
+    [TestFixture]
+    public class RegexFilterTests
+    {
         private const String tokenName = "OWASP_CSRFTOKEN";
         private const String tokenValue = "64967d8f594a99dd531c2785226327b9";
-
-		public CSRFGuardTests()
-		{
-			// No-op
-		}
 
         /********************************************************************************
          * Positive tests
@@ -26,7 +20,7 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
 
         // Rewrite </form> end tag
         [Test]
-        public void RewriteFORMTag()
+        public void RewriteFormEndTagIsValid()
         {
             String testString = "</form>" + "      </html>";
 
@@ -34,41 +28,41 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
             MemoryStream stream = new MemoryStream();
             stream.Write(bytes, 0, bytes.Length);
 
-            RegExFilter testFilter = new RegExFilter(stream, tokenName, tokenValue);
+            RegexFilter testFilter = new RegexFilter(stream, tokenName, tokenValue);
             testFilter.Write(bytes, 0, bytes.Length);
 
-            String responseHtml = testFilter.getResponseHTML.ToString();
-            
+            String responseHtml = testFilter.GetResponseHtml.ToString();
+
             // strings must not be the same, else that means no filtering happened
-            Assert.IsFalse( testString == responseHtml,
-               "responseHtml was not modified by the filter.  It is still:  {0}",
-               responseHtml );
+            Assert.AreEqual(testString, responseHtml,
+                           "responseHtml was not modified by the filter.  It is still:  {0}",
+                           responseHtml);
         }
 
         // Rewrite HREF <a href="">blah</a>
-		[Test]
-        public void RewriteNiceHREF()
-		{
+        [Test]
+        public void RewriteNiceHrefHtmlIsValid()
+        {
             String testString = "<a href=\"/something/blah.aspx\">Link Name</a>" + "      </html>";
 
             Byte[] bytes = UTF8Encoding.UTF8.GetBytes(testString);
             MemoryStream stream = new MemoryStream();
             stream.Write(bytes, 0, bytes.Length);
 
-            RegExFilter testFilter = new RegExFilter(stream, tokenName, tokenValue);
+            RegexFilter testFilter = new RegexFilter(stream, tokenName, tokenValue);
             testFilter.Write(bytes, 0, bytes.Length);
 
-            String responseHtml = testFilter.getResponseHTML.ToString();
+            String responseHtml = testFilter.GetResponseHtml.ToString();
 
-            Assert.IsFalse(testString == responseHtml,
-               "responseHtml was not modified by the filter.  It is still:  {0}",
-               responseHtml);
-		}
+            Assert.AreEqual(testString, responseHtml,
+                           "responseHtml was not modified by the filter.  It is still:  {0}",
+                           responseHtml);
+        }
 
         // Rewrite HREF with inconsistent spaces
         // <a href   =  blah>
         [Test]
-        public void RewriteHREFWithInconsistentSpaces()
+        public void RewriteHrefHtmlWithInconsistentSpaces()
         {
             String testString = "<a  href    =   \"/something/blah.aspx\">Link Name</a>" + "      </html>";
 
@@ -76,14 +70,14 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
             MemoryStream stream = new MemoryStream();
             stream.Write(bytes, 0, bytes.Length);
 
-            RegExFilter testFilter = new RegExFilter(stream, tokenName, tokenValue);
+            RegexFilter testFilter = new RegexFilter(stream, tokenName, tokenValue);
             testFilter.Write(bytes, 0, bytes.Length);
 
-            String responseHtml = testFilter.getResponseHTML.ToString();
+            String responseHtml = testFilter.GetResponseHtml.ToString();
 
-            Assert.IsFalse(testString == responseHtml,
-               "responseHtml was not modified by the filter.  It is still:  {0}",
-               responseHtml);
+            Assert.AreEqual(testString, responseHtml,
+                           "responseHtml was not modified by the filter.  It is still:  {0}",
+                           responseHtml);
         }
 
         // Rewrite HREF with additional attributes
@@ -108,6 +102,6 @@ namespace org.owasp.csrfguard.ResponseFilters.Tests
 
         // Ignore javascript URLs
 
-		// Leave non-HREF tag alone <a hat="wintery">
-	}
+        // Leave non-HREF tag alone <a hat="wintery">
+    }
 }

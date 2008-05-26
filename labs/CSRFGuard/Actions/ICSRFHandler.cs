@@ -1,18 +1,14 @@
-using System;
-using System.Text;
-using System.Web;
-
-namespace org.owasp.csrfguard.Actions
+namespace Org.Owasp.CsrfGuard.Actions
 {
     /// <summary>
     /// Very simple interface for dynamic CSRF handler plugins specified in configuration and loaded at runtime
     /// </summary>
-    interface ICSRFHandler
+    internal interface ICSRFHandler
     {
         /// <summary>
         /// Init the object.
         /// </summary>
-        /// <param name="response">The HttpResponse object required to override the ASP.Net application from responding.</param>
+        /// <param name="sender">The HttpResponse object required to override the ASP.Net application from responding.</param>
         void Initialize(object sender);
 
         /// <summary>

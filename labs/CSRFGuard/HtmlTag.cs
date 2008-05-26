@@ -1,47 +1,51 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace org.owasp.csrfguard
+namespace Org.Owasp.CsrfGuard
 {
     public class HtmlTag
     {
         // collection holding all attributes
         private ListDictionary _attrList = new ListDictionary();
-        private String _tagString;
-        private String _tagName;    // e.g. <img has a tag name of "img"
-        private bool _selfClosing = false;   // whether this is a self-closing tag or not
-        private bool _isStartTag = false;   // is this a start or an end tag?
+        private String _fullTagText;
+        private String _tagName; // e.g. <img has a tag name of "img"
+        private bool _selfClosing; // whether this is a self-closing tag or not
+        private bool _isStartTag; // is this a start or an end tag?
 
         // constructor
-        public HtmlTag(String tagString)
+        public HtmlTag(String fullTagText)
         {
-            _tagString = tagString;
+            _fullTagText = fullTagText;
             if (!IsEntityTag())
             {
-                normalizeHtml();
+                NormalizeHtmlSpacingForParsing();
                 Regex tagNameRegex = new Regex("<([^ ]+)");
-                Match m = tagNameRegex.Match(_tagString);
+                Match m = tagNameRegex.Match(_fullTagText);
                 if (m.Success)
                 {
-                    _tagName = m.Groups[1].Captures[0].Value.ToLower();
+                    _tagName = m.Groups[1].Captures[0].Value.ToLower(CultureInfo.CurrentCulture);
                 }
 
-                if (tagHasAttributes())
+                if (TagHasAttributes())
                 {
-                    populateAttributes();
-                    updateTagString();
+                    PopulateTagAttributes();
+                    UpdateTagString();
                 }
             }
         }
 
         // tokenizes the Html tag string and populates the attributes Hash table
+
         #region methods
-        protected void populateAttributes() {
+
+        protected void PopulateTagAttributes()
+        {
             // 
-            String[] tokens = Split(_tagString, " ", "\"", true);
+            String[] tokens = Split(_fullTagText, " ", "\"", true);
 
             foreach (String token in tokens)
             {
@@ -49,53 +53,53 @@ namespace org.owasp.csrfguard
                 {
                     String[] attr = Split(token.ToString(), "=", "\"", true);
 
-                    _attrList.Add(attr[0].ToLower(), attr[1]);
+                    _attrList.Add(attr[0].ToLower(CultureInfo.CurrentCulture), attr[1]);
                 }
             }
         }
 
         // normalizes whitespace in the Html
-        protected void normalizeHtml()
+        protected void NormalizeHtmlSpacingForParsing()
         {
             // <a    href = "/my/url/that has spaces.aspx" id = 1>
             // normalize any closing tag endings to be offset by a space to make splitting the attributes easier
             // also, set tag information based on the matches
             Regex startTagRegex = new Regex("</", RegexOptions.Compiled);
-            if (!startTagRegex.Match(_tagString).Success)
+            if (!startTagRegex.Match(_fullTagText).Success)
             {
                 _isStartTag = true;
             }
 
             Regex endTagRegex = new Regex("/>", RegexOptions.Compiled);
-            if (endTagRegex.Match(_tagString).Success)
+            if (endTagRegex.Match(_fullTagText).Success)
             {
                 // capture whether this tag is self-closing or not
                 _selfClosing = true;
-                _tagString = endTagRegex.Replace(_tagString, " />");
+                _fullTagText = endTagRegex.Replace(_fullTagText, " />");
             }
             else
             {
                 // not self-closing
                 Regex endTagRegex2 = new Regex("([^/])>", RegexOptions.Compiled);
-                
-                if (_tagString.IndexOf(' ') > -1)
+
+                if (_fullTagText.IndexOf(' ') > -1)
                 {
                     // tag contains whitespace so it cannot be a tag like <html>.  Separate the end bracket from the rest of the tak for the tokenizing process later.
-                    _tagString = endTagRegex2.Replace(_tagString, "$1 >");
+                    _fullTagText = endTagRegex2.Replace(_fullTagText, "$1 >");
                 }
                 else
                 {
                     // avoid injecting whitespace in a nice simple tag like <html> or <head>
-                    _tagString = endTagRegex2.Replace(_tagString, "$1>");
+                    _fullTagText = endTagRegex2.Replace(_fullTagText, "$1>");
                 }
             }
 
             // replace consecutive spaces with a single space and remove spaces around equals while ignoring them in quoted strings
-            _tagString = CompressWhitespace(_tagString, "\"");
+            _fullTagText = CompressWhitespace(_fullTagText, "\"");
         }
 
         // rewrite the tag string with the latest attributes
-        protected void updateTagString()
+        protected void UpdateTagString()
         {
             StringBuilder newTag = new StringBuilder();
 
@@ -104,13 +108,14 @@ namespace org.owasp.csrfguard
             newTag.Append(Name);
 
             // add all of the attributes in the original order
-            foreach (DictionaryEntry item in _attrList) {
+            foreach (DictionaryEntry item in _attrList)
+            {
                 newTag.Append(" ");
                 newTag.Append(item.Key + "=" + item.Value);
             }
 
             // add the closing tag and double-quote
-            if (isSelfClosing)
+            if (IsSelfClosing)
             {
                 newTag.Append(" />");
             }
@@ -118,56 +123,43 @@ namespace org.owasp.csrfguard
             {
                 newTag.Append(">");
             }
-            _tagString = newTag.ToString();
+            _fullTagText = newTag.ToString();
         }
 
         #endregion
 
-        // need getter/setter methods for the attributes
-        #region getters and setters
+        //-------
+        // getters and setters
+        //-------
+
         public int AttrCount
         {
-            get
-            {
-                return _attrList.Count;
-            }
+            get { return _attrList.Count; }
         }
 
         public String TagString
         {
-            get
-            {
-                return _tagString;
-            }
+            get { return _fullTagText; }
         }
 
-        public bool isSelfClosing
+        public bool IsSelfClosing
         {
-            get
-            {
-                return _selfClosing;
-            }
+            get { return _selfClosing; }
         }
 
-        public bool isStartTag
+        public bool IsStartTag
         {
-            get
-            {
-                return _isStartTag;
-            }
+            get { return _isStartTag; }
         }
 
         public String Name
         {
-            get
-            {
-                return _tagName;
-            }
+            get { return _tagName; }
         }
 
         // Oh why make properties not easily able to deal with data structures in a safe way.  No way am I returning the whole
         // hashtable to the caller to screw up.
-        public String getAttributeValue(String attrName)
+        public String GetAttributeValue(String attrName)
         {
             // avoid null reference exception with ToString()
             if (_attrList.Contains(attrName))
@@ -180,7 +172,7 @@ namespace org.owasp.csrfguard
             }
         }
 
-        public void setAttributeValue(String attrName, String value)
+        public void SetAttributeValue(String attrName, String value)
         {
             if (_attrList.Contains(attrName))
             {
@@ -191,29 +183,34 @@ namespace org.owasp.csrfguard
                 _attrList.Add(attrName, value);
             }
             // update the tag string since we changed the attribute value
-            updateTagString();
+            UpdateTagString();
         }
-        #endregion
 
-        #region helper methods
+        //-------
+        // helper methods
+        //-------
 
         // determines whether a given html tag string set on the object contains html attributes (e.g. href="/some/where.html")
-        protected bool tagHasAttributes()
+        protected bool TagHasAttributes()
         {
             bool isAttrFound = false;
             int eqIdx;
-            int quoteIdx, quoteIdx2;
             // first, look for an equals sign as possible evidence of an html attribute
-            if (((eqIdx = _tagString.IndexOf('=')) > 0)) {
+            if (((eqIdx = _fullTagText.IndexOf('=')) > 0))
+            {
                 // now, rule out an equals inside some other quoted string so we know it's part of the attribute definition markup
-                quoteIdx = _tagString.IndexOf('"');
-                quoteIdx2 = _tagString.IndexOf('\'');
+                int quoteIdx;
+                quoteIdx = _fullTagText.IndexOf('"');
+                int quoteIdx2;
+                quoteIdx2 = _fullTagText.IndexOf('\'');
                 // if we found a double quote and it is to the right of the equals, OK
-                if ((quoteIdx > 0) && (eqIdx < quoteIdx)) {
+                if ((quoteIdx > 0) && (eqIdx < quoteIdx))
+                {
                     isAttrFound = true;
                 }
                 // and if we found a single quote and it is to the right of the equals, OK
-                if ((quoteIdx2 > 0) && (eqIdx < quoteIdx2)) {
+                if ((quoteIdx2 > 0) && (eqIdx < quoteIdx2))
+                {
                     isAttrFound = true;
                 }
             }
@@ -226,7 +223,7 @@ namespace org.owasp.csrfguard
         protected bool IsEntityTag()
         {
             // look for a ! as the second char of the entity, as in <!DOCTYPE
-            if (_tagString[1] == '!')
+            if (_fullTagText[1] == '!')
             {
                 return true;
             }
@@ -239,17 +236,17 @@ namespace org.owasp.csrfguard
         {
             bool _QualifierState = false;
             int _StartIndex = 0;
-            System.Collections.ArrayList _Values = new System.Collections.ArrayList();
+            ArrayList _Values = new ArrayList();
 
             for (int _CharIndex = 0; _CharIndex < str.Length - 1; _CharIndex++)
             {
                 if ((qualifier != null)
-                 & (string.Compare(str.Substring(_CharIndex, qualifier.Length), qualifier, ignoreCase) == 0))
+                    & (string.Compare(str.Substring(_CharIndex, qualifier.Length), qualifier, ignoreCase, CultureInfo.CurrentCulture) == 0))
                 {
                     _QualifierState = !(_QualifierState);
                 }
                 else if (!(_QualifierState) & (delimiter != null)
-                      & (string.Compare(str.Substring(_CharIndex, delimiter.Length), delimiter, ignoreCase) == 0))
+                         & (string.Compare(str.Substring(_CharIndex, delimiter.Length), delimiter, ignoreCase, CultureInfo.CurrentCulture) == 0))
                 {
                     _Values.Add(str.Substring(_StartIndex, _CharIndex - _StartIndex));
                     _StartIndex = _CharIndex + 1;
@@ -274,7 +271,7 @@ namespace org.owasp.csrfguard
             const int MAX_CONSEC_SPACES = 2;
             bool insideQuotedString = false;
             bool gotEqualsOutsideQuotedString = false;
-            int consecWsCount = 0;  // how many consecutive spaces we've found.
+            int consecWsCount = 0; // how many consecutive spaces we've found.
             StringBuilder sb = new StringBuilder();
             StringBuilder space = new StringBuilder();
 
@@ -295,7 +292,8 @@ namespace org.owasp.csrfguard
                     // save it to a buffer that will be possibly appended later.
                     if (++consecWsCount < MAX_CONSEC_SPACES)
                     {
-                        space.Append(str[i]);  // append to whitespace buffer.  This may/may not be appended later depending on if the space is around an equals
+                        space.Append(str[i]);
+                            // append to whitespace buffer.  This may/may not be appended later depending on if the space is around an equals
                     }
                 }
                 else if (str[i] == '=' && !insideQuotedString)
@@ -303,7 +301,7 @@ namespace org.owasp.csrfguard
                     gotEqualsOutsideQuotedString = true;
                     if (space.Length > 0)
                     {
-                        space.Remove(0, space.Length);  // discard queued spaces
+                        space.Remove(0, space.Length); // discard queued spaces
                     }
                     sb.Append(str[i]);
                 }
@@ -313,7 +311,7 @@ namespace org.owasp.csrfguard
                     if (!gotEqualsOutsideQuotedString && space.Length > 0)
                     {
                         sb.Append(space.ToString());
-                        space.Remove(0, space.Length);  // empty the buffer
+                        space.Remove(0, space.Length); // empty the buffer
                     }
                     gotEqualsOutsideQuotedString = false;
 
@@ -328,6 +326,5 @@ namespace org.owasp.csrfguard
             }
             return sb.ToString();
         }
-        #endregion
     }
 }
