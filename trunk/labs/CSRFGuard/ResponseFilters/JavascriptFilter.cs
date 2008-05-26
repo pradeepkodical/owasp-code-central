@@ -2,63 +2,69 @@ using System;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using org.owasp.csrfguard.ResponseFilters;
+using Org.Owasp.CsrfGuard.ResponseFilters;
 
-namespace org.owasp.csrfguard
+namespace Org.Owasp.CsrfGuard.ResponseFilters
 {
-	/// <summary>
-	/// Summary description for CSRFHtmlFilter.
-	/// 
-	/// Code adapted from a similar model at http://aspnetresources.com/articles/HttpFilters.aspx
-	/// </summary>
-	internal class JavascriptFilter : ResponseFilterBase
-	{
-		
-		public JavascriptFilter(Stream inputStream, String tokenName, String token) : base(inputStream, tokenName, token)
-		{
-			// nothing extra
-		}
+    /// <summary>
+    /// Summary description for CSRFHtmlFilter.
+    /// 
+    /// Code adapted from a similar model at http://aspnetresources.com/articles/HttpFilters.aspx
+    /// </summary>
+    internal class JavascriptFilter : ResponseFilterBase
+    {
+        public JavascriptFilter(Stream inputStream, String tokenName, String token)
+            : base(inputStream, tokenName, token)
+        {
+            // nothing extra
+        }
 
-		#region Do the rewriting
-		// This is the opportunity to rewrite the HTML before sending back to the browser
-		public override void Write(byte[] buffer, int offset, int count)
-		{
-			string strBuffer = UTF8Encoding.UTF8.GetString (buffer, offset, count);
+        #region Do the rewriting
 
-			// ---------------------------------
-			// Wait for the closing </html> tag
-			// ---------------------------------
-			Regex eof = new Regex ("</html>", RegexOptions.IgnoreCase);
+        // This is the opportunity to rewrite the HTML before sending back to the browser
+        public override void Write(byte[] buffer, int offset, int count)
+        {
+            string strBuffer = UTF8Encoding.UTF8.GetString(buffer, offset, count);
 
-			if (!eof.IsMatch (strBuffer))
-			{
-				_responseHtml.Append (strBuffer);
-			}
-			else
-			{
-				_responseHtml.Append (strBuffer); // append the last piece of the html
-				String finalHtml = _responseHtml.ToString();
+            // ---------------------------------
+            // Wait for the closing </html> tag
+            // ---------------------------------
+            Regex eof = new Regex("</html>", RegexOptions.IgnoreCase);
 
-				// Do the transformations
-				// TODO
+            if (!eof.IsMatch(strBuffer))
+            {
+                _responseHtml.Append(strBuffer);
+            }
+            else
+            {
+                _responseHtml.Append(strBuffer); // append the last piece of the html
+                String finalHtml = _responseHtml.ToString();
 
-				byte[] data = UTF8Encoding.UTF8.GetBytes (finalHtml);
-        
-				_responseStream.Write (data, 0, data.Length);
-			}
-		}
-		#endregion
-		
-		#region Helper methods
+                // Do the transformations
+                // TODO
+
+                byte[] data = UTF8Encoding.UTF8.GetBytes(finalHtml);
+
+                _responseStream.Write(data, 0, data.Length);
+            }
+        }
+
+        #endregion
+
+        #region Helper methods
+
         // TODO: Write this to inject the script ref.
         private String injectJavascriptReference(String htmlText)
         {
             Regex formFieldRegex = new Regex("</form>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
             // Replace by default replaces all occurrences
-            htmlText = formFieldRegex.Replace(htmlText, "<input type=\"hidden\" name=\"" + _CSRFTokenName + "\" value=\"" + _CSRFSesssionToken + "\">\n</form>");
+            htmlText =
+                formFieldRegex.Replace(htmlText,
+                                       "<input type=\"hidden\" name=\"" + _CSRFTokenName + "\" value=\"" +
+                                       _CSRFSesssionToken + "\">\n</form>");
             return htmlText;
         }
-		#endregion
-	}
-}
 
+        #endregion
+    }
+}

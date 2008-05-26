@@ -1,18 +1,12 @@
-using System;
-using System.Text;
-
-namespace org.owasp.csrfguard
+namespace Org.Owasp.CsrfGuard
 {
     /// <summary>
     /// The token class encapsulates session token data for accessing later in a thread-safe manner
     /// </summary>
-    class Token
+    internal class Token
     {
-
-        string _csrfTokenName;
-        string _csrfTokenValue;
-
-        private Token() { }
+        private string _csrfTokenName;
+        private string _csrfTokenValue;
 
         public Token(string tokenName, string tokenValue)
         {
@@ -20,8 +14,14 @@ namespace org.owasp.csrfguard
             _csrfTokenValue = tokenValue;
         }
 
-        public string Name { get { return _csrfTokenName; } }
+        public string Name
+        {
+            get { return _csrfTokenName; }
+        }
 
-        public string Value { get { return _csrfTokenValue; } }
+        public string Value
+        {
+            get { return _csrfTokenValue; }
+        }
     }
 }

@@ -1,9 +1,6 @@
-using System;
-using System.Text;
-
-namespace org.owasp.csrfguard
+namespace Org.Owasp.CsrfGuard
 {
-    class Validator
+    internal class Validator
     {
     }
 }

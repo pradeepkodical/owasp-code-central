@@ -122,7 +122,7 @@
     <Compile Include="ResponseFilters\JavascriptFilter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ResponseFilters\RegExFilter.cs">
+    <Compile Include="ResponseFilters\RegexFilter.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ResponseFilters\ResponseFilterBase.cs">

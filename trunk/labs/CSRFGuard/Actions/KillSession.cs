@@ -1,22 +1,20 @@
-using System;
-using System.Text;
+using System.Diagnostics;
 using System.Web;
 using System.Web.SessionState;
-using System.Diagnostics;
 
-namespace org.owasp.csrfguard.Actions
+namespace Org.Owasp.CsrfGuard.Actions
 {
-    class KillSession : ICSRFHandler
+    internal class KillSession : ICSRFHandler
     {
         private HttpApplication _httpApp;
         private HttpContext _context;
         private HttpResponse _response;
         private HttpSessionState _session;
-        private bool _initialized = false;
+        private bool _initialized;
 
         public void Initialize(object sender)
         {
-            _httpApp = (HttpApplication)sender;
+            _httpApp = (HttpApplication) sender;
             _session = _httpApp.Session;
             _context = _httpApp.Context;
             _response = _httpApp.Context.Response;
@@ -29,7 +27,6 @@ namespace org.owasp.csrfguard.Actions
             {
                 Debug.WriteLine("abandoning session");
                 _session.Abandon();
-                
             }
         }
     }

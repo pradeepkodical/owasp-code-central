@@ -1,24 +1,21 @@
-using System;
-using System.Text;
 using System.Web;
-using System.Diagnostics;
 using System.Web.SessionState;
 using log4net;
 
-namespace org.owasp.csrfguard.Actions
+namespace Org.Owasp.CsrfGuard.Actions
 {
-    class LogEvent : ICSRFHandler
+    internal class LogEvent : ICSRFHandler
     {
         private HttpApplication _httpApp;
         private HttpContext _context;
         private HttpResponse _response;
         private HttpSessionState _session;
-        private bool _initialized = false;
+        private bool _initialized;
         private static readonly ILog _log = LogManager.GetLogger("CSRFGuard");
 
-        public void Initialize(object sender) 
+        public void Initialize(object sender)
         {
-            _httpApp = (HttpApplication)sender;
+            _httpApp = (HttpApplication) sender;
             _session = _httpApp.Session;
             _context = _httpApp.Context;
             _response = _httpApp.Context.Response;
@@ -29,7 +26,7 @@ namespace org.owasp.csrfguard.Actions
         {
             if (_initialized)
             {
-// TODO:  log more interesting information.  Maybe the IP address
+                // TODO:  log more interesting information.  Maybe the IP address
                 _log.Warn("CSRFGuard attack detected!  Action taken.");
             }
         }
