@@ -18,7 +18,7 @@
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>org.owasp.csrfguard</RootNamespace>
+    <RootNamespace>Org.Owasp.CsrfGuard</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
@@ -133,7 +133,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Validator.cs" />
-    <Content Include="csrf.js" />
+    <EmbeddedResource Include="csrf.js" />
     <Content Include="TODO.txt" />
     <None Include="CSRFGuard.config" />
     <None Include="CSRFGuardLoggerConfig.log4net" />

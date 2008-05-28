@@ -3,7 +3,7 @@
 	<system.web>
 		<!-- test of CSRFGuard http Module -->
 		<httpModules>
-			<add type="org.owasp.csrfguard.CSRFGuardModule, CSRFGuard" name="CSRFGuardModule"/>
+			<add type="Org.Owasp.CsrfGuard.CSRFGuardModule, CSRFGuard" name="CSRFGuardModule"/>
 		</httpModules>
 		<!--  DYNAMIC DEBUG COMPILATION
           Set compilation debug="true" to enable ASPX debugging.  Otherwise, setting this value to

@@ -1,5 +1,5 @@
 * Write IResponseFilter interface and refactor
-* Implement the other response filters (Javascript, HtmlParser).
+* Implement the other response filters (HtmlParser).
 * Write nunit test cases for everything
 * Implement URL whitelisting (skipDetectForTheseURLs) in RegExFilter and elsewhere.
 * Shitload of error handling to be production-ready.
