@@ -7,7 +7,7 @@
     <ProjectGuid>{1F2E969F-1386-458A-B62A-F0FC10E3657B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>org.owasp.csrfguard.Tests</RootNamespace>
+    <RootNamespace>Org.Owasp.CsrfGuard.Tests</RootNamespace>
     <AssemblyName>CSRFGuard.Tests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,6 +40,7 @@
     <Compile Include="HtmlTagTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexFilterTest.cs" />
+    <Compile Include="TokenTests.cs" />
     <Compile Include="UtilityTest.cs" />
   </ItemGroup>
   <ItemGroup>

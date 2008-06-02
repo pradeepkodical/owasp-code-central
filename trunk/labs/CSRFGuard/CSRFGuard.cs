@@ -50,14 +50,21 @@ namespace Org.Owasp.CsrfGuard
         }
 
         // properties 
-        public String CsrfSessionTokenValue
+
+        /// <summary>
+        /// Gets and sets the CSRF token value in the HTTP session
+        /// </summary>
+        public String CsrfTokenValue
         {
             get { return (String) HttpContext.Current.Session[App.Configuration.tokenValueSessionIdx]; }
 
             set { HttpContext.Current.Session[App.Configuration.tokenValueSessionIdx] = value; }
         }
 
-        public String CsrfSessionTokenName
+        /// <summary>
+        /// Gets and sets the CSRF token name in the HTTP session
+        /// </summary>
+        public String CsrfTokenName
         {
             get { return (String) HttpContext.Current.Session[App.Configuration.tokenNameSessionIdx]; }
 
@@ -91,28 +98,26 @@ namespace Org.Owasp.CsrfGuard
         /// </summary>
         private void SetupCSRFTokenNameAndValue()
         {
+            Token newToken = new RandomToken();
             // If no token yet, this is the first request so set one to be used on the response and then set the flag to indicate checking is not required
-            if (CsrfSessionTokenValue == null)
+            if (CsrfTokenValue == null)
             {
-                CsrfSessionTokenValue = Util.GenerateToken(16); // 128 random bytes
+                CsrfTokenValue = newToken.Value;
                 _skipDetect = true;
             }
 
-            if (CsrfSessionTokenName == null)
+            if (CsrfTokenName == null)
             {
                 if (App.Configuration.useRandomCSRFTokenName)
                 {
-                    CsrfSessionTokenName = Util.GenerateToken(8); // 64 random bytes
+                    CsrfTokenName = newToken.Name;
                 }
                 else
                 {
                     if (App.Configuration.staticCSRFTokenName != null)
                     {
-                        CsrfSessionTokenName = App.Configuration.staticCSRFTokenName;
-                    }
-                    else
-                    {
-                        CsrfSessionTokenName = App.Configuration.defaultCSRFTokenName;
+                        newToken.Name = App.Configuration.staticCSRFTokenName;
+                        CsrfTokenName = newToken.Name;
                     }
                 }
             }
@@ -131,13 +136,17 @@ namespace Org.Owasp.CsrfGuard
 
             // ignore URLs that don't represent CSRF risk (e.g. a request for a GIF)
             // SECURITY NOTE:  DO NOT USE THE FULL URL, only FilePath, else attackers could pad arbitrary chars to the URL parameters to fool the regex.
-            if (URLHasWhitelistedExtension(_context.Request.FilePath))
+            if (Util.URLPathHasWhitelistedFileExtension(_context.Request.FilePath))
             {
                 _skipDetect = true;
             }
 
-            // TODO:  Allow specifying a list of relative URLs to bypass detection on								
-            // ArrayList test = App.Configuration.skipDetectForTheseURLs;
+            // TODO:  Don't add token values if URL is on the list							
+            // SECURITY NOTE:  DO NOT USE THE FULL URL, only FilePath, else attackers could pad arbitrary chars to the URL parameters to fool the regex.
+            if (Util.URLPathIsOnWhitelist(_context.Request.FilePath))
+            {
+                _skipDetect = true;
+            }
         }
 
         // analyzes the session to detect a CSRF attack.
@@ -145,11 +154,13 @@ namespace Org.Owasp.CsrfGuard
         {
             _attackDetected = true; // fail safe
 
-            // TODO:  data input validation on Request value
+            Token requestToken = new Token(CsrfTokenName, _context.Request[CsrfTokenName]);
+            Token thisToken = new Token(CsrfTokenName, CsrfTokenValue);
+            
             // Does the request have a CSRF token embedded?  Does it match the one in session?  If not, we caught an attack.
-            if (_context.Request[CsrfSessionTokenName] != null)
+            if (_context.Request[CsrfTokenName] != null)
             {
-                if (CsrfSessionTokenValue == _context.Request[CsrfSessionTokenName])
+                if (requestToken == thisToken)
                 {
                     _attackDetected = false;
                 }
@@ -248,19 +259,6 @@ namespace Org.Owasp.CsrfGuard
         }
 
         // Utility methods
-
-        // checks the request URL path (without parameters!!!) for whether it matches a whitelist of file extensions to ignore
-        private bool URLHasWhitelistedExtension(String filePath)
-        {
-            Regex whitelistRegex =
-                new Regex(App.Configuration.extensionWhitelistPattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
-            if (whitelistRegex.IsMatch(filePath))
-            {
-                return true;
-            }
-            return false;
-        }
 
         // determines whether a URL was accessed directly without any extra query or POST parameters
         private bool formOrQueryStringParamsPassed()

@@ -28,7 +28,7 @@ namespace Org.Owasp.CsrfGuard
         {
             _guard = new CSRFGuard(sender);
             // save session for later use when filtering the response
-            _session = new Token(_guard.CsrfSessionTokenName, _guard.CsrfSessionTokenValue);
+            _session = new Token(_guard.CsrfTokenName, _guard.CsrfTokenValue);
         }
 
         // move this to a utility function
@@ -50,13 +50,12 @@ namespace Org.Owasp.CsrfGuard
                         as ResponseFilterBase;
                     _log.Debug("Loading ResponseFilter " + App.Configuration.ResponseFilter);
                     response.Filter = respFilter;
-                    //response.Filter = new RegexFilter(response.Filter, _session.Name, _session.Value);
                 }
             }
             catch (Exception e)
             {
                 // do something
-                _log.Debug("Exception loading ResponseFilter " + e.StackTrace);
+                _log.Error("Exception loading ResponseFilter " + e.StackTrace);
                 throw;
             }
         }
