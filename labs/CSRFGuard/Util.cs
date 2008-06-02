@@ -18,32 +18,27 @@ namespace Org.Owasp.CsrfGuard
     {
         private static readonly ILog _log = LogManager.GetLogger("CSRFGuard");
 
-        /// <summary>
-        /// Securely generates a random value and returns the bytes encoded as hexadecimal
-        /// </summary>
-        /// <param name="numBytes">How many random bytes to generate</param>
-        public static String GenerateToken(int numBytes)
+        // checks the request URL path (without parameters!!!) for whether it matches a whitelist of file extensions to ignore
+        public static bool URLPathHasWhitelistedFileExtension(String filePath)
         {
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            byte[] randBytes = new byte[numBytes];
+            Regex whitelistRegex =
+                new Regex(App.Configuration.extensionWhitelistPattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
-            rng.GetBytes(randBytes);
-            return BytesToHexString(randBytes);
+            if (whitelistRegex.IsMatch(filePath))
+            {
+                return true;
+            }
+            return false;
         }
 
-        /// <summary>
-        /// Convert a byte array into a hexadecimal string representation
-        /// </summary>
-        /// <param name="binary">byte array to convert</param>
-        public static String BytesToHexString(byte[] binary)
+        // checks the request URL path (without parameters!!!) for whether it matches a whitelist of file URL paths to ignore
+        public static bool URLPathIsOnWhitelist(String filePath)
         {
-            StringBuilder hex = new StringBuilder((binary.Length/8)*2);
-
-            for (int i = 0; i < binary.Length; i++)
+            if (App.Configuration.skipDetectForTheseURLs.Contains(filePath))
             {
-                hex.Append(String.Format(CultureInfo.InvariantCulture, "{0:X2}", binary[i]));
+                return true;
             }
-            return hex.ToString();
+            return false;
         }
 
         /// <summary>

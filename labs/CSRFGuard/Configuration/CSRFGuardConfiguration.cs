@@ -8,13 +8,14 @@ namespace Org.Owasp.CsrfGuard
     public class CSRFGuardConfiguration : AppConfiguration
     {
         public string extensionWhitelistPattern = "\\.(gif|jpg|png|css|js|ico|swf|axd|pdf)$";
-        public string defaultCSRFTokenName = "OWASP_CSRFTOKEN";
+        public int CSRFTokenLengthInBytes = 16; // 128 bits
+        public int CSRFRandomTokenNameLengthInBytes = 8; // 64 bits
         // indexes for the values stored in session
         public string tokenNameSessionIdx = "TOKEN_NAME";
         public string tokenValueSessionIdx = "TOKEN_VALUE";
         // whether to use a static CSRFToken name or not
         public bool useRandomCSRFTokenName = true;
-        public string staticCSRFTokenName = null;
+        public string staticCSRFTokenName = "OWASP_CSRFTOKEN";
         // Simplifies CSRF detection by allowing access to URLs if no GET or POST parameters were sent on the request (assumption is that it takes parameters to actually perform a CSRF which may or may not be the case in your application)
         public bool skipDetectOnParameterlessURLRequests = true;
         public ArrayList skipDetectForTheseURLs = new ArrayList();
