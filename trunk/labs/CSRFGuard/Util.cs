@@ -22,7 +22,7 @@ namespace Org.Owasp.CsrfGuard
         public static bool URLPathHasWhitelistedFileExtension(String filePath)
         {
             Regex whitelistRegex =
-                new Regex(App.Configuration.extensionWhitelistPattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                new Regex(App.Configuration.ExtensionWhitelistPattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
             if (whitelistRegex.IsMatch(filePath))
             {
@@ -34,7 +34,7 @@ namespace Org.Owasp.CsrfGuard
         // checks the request URL path (without parameters!!!) for whether it matches a whitelist of file URL paths to ignore
         public static bool URLPathIsOnWhitelist(String filePath)
         {
-            if (App.Configuration.skipDetectForTheseURLs.Contains(filePath))
+            if (App.Configuration.SkipDetectForTheseURLs.Contains(filePath))
             {
                 return true;
             }

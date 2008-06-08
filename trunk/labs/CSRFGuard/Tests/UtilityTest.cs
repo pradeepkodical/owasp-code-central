@@ -38,7 +38,7 @@ namespace Org.Owasp.CsrfGuard.Tests
             Assert.IsTrue(skipJavascriptRegex.IsMatch(testUrl));
 
             Regex extensionWhitelistRegex =
-                new Regex(App.Configuration.extensionWhitelistPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                new Regex(App.Configuration.ExtensionWhitelistPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
             Assert.IsFalse(extensionWhitelistRegex.IsMatch(testUrl));
 
             Assert.IsFalse(Util.IsUrlSameOriginAsServer(testUrl)

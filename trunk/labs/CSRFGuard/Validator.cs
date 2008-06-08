@@ -39,7 +39,7 @@ namespace Org.Owasp.CsrfGuard
                 return false;
             }
 
-            if (!App.Configuration.useRandomCSRFTokenName)
+            if (!App.Configuration.UseRandomCSRFTokenName)
             {
                 if (name == App.Configuration.staticCSRFTokenName)
                 {
