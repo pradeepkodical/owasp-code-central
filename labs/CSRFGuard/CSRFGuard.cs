@@ -56,9 +56,9 @@ namespace Org.Owasp.CsrfGuard
         /// </summary>
         public String CsrfTokenValue
         {
-            get { return (String) HttpContext.Current.Session[App.Configuration.tokenValueSessionIdx]; }
+            get { return (String) HttpContext.Current.Session[App.Configuration.TokenValueSessionIdx]; }
 
-            set { HttpContext.Current.Session[App.Configuration.tokenValueSessionIdx] = value; }
+            set { HttpContext.Current.Session[App.Configuration.TokenValueSessionIdx] = value; }
         }
 
         /// <summary>
@@ -66,9 +66,9 @@ namespace Org.Owasp.CsrfGuard
         /// </summary>
         public String CsrfTokenName
         {
-            get { return (String) HttpContext.Current.Session[App.Configuration.tokenNameSessionIdx]; }
+            get { return (String) HttpContext.Current.Session[App.Configuration.TokenNameSessionIdx]; }
 
-            set { HttpContext.Current.Session[App.Configuration.tokenNameSessionIdx] = value; }
+            set { HttpContext.Current.Session[App.Configuration.TokenNameSessionIdx] = value; }
         }
 
         public bool SkipDetect
@@ -108,7 +108,7 @@ namespace Org.Owasp.CsrfGuard
 
             if (CsrfTokenName == null)
             {
-                if (App.Configuration.useRandomCSRFTokenName)
+                if (App.Configuration.UseRandomCSRFTokenName)
                 {
                     CsrfTokenName = newToken.Name;
                 }
@@ -129,7 +129,7 @@ namespace Org.Owasp.CsrfGuard
         private void SetupSkipDetect()
         {
             // ignore requests to URLs when no parameters are passed as this would not represent a CSRF attack in most cases
-            if (!formOrQueryStringParamsPassed() && App.Configuration.skipDetectOnParameterlessURLRequests)
+            if (!formOrQueryStringParamsPassed() && App.Configuration.SkipDetectOnParameterlessURLRequests)
             {
                 _skipDetect = true;
             }

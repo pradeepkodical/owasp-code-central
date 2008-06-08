@@ -19,12 +19,12 @@ namespace Org.Owasp.CsrfGuard
 
         public void Init(HttpApplication context)
         {
-            context.AcquireRequestState += new EventHandler(handleRequest);
-            context.ReleaseRequestState += new EventHandler(filterHTMLResponse);
+            context.AcquireRequestState += new EventHandler(HandleRequest);
+            context.ReleaseRequestState += new EventHandler(FilterHTMLResponse);
         }
 
         // when the request comes in, decide whether it needs to be handled and then how.  The Guard does it all.
-        private void handleRequest(object sender, EventArgs args)
+        private void HandleRequest(object sender, EventArgs args)
         {
             _guard = new CSRFGuard(sender);
             // save session for later use when filtering the response
@@ -32,7 +32,7 @@ namespace Org.Owasp.CsrfGuard
         }
 
         // move this to a utility function
-        private void filterHTMLResponse(object sender, EventArgs objArgs)
+        private void FilterHTMLResponse(object sender, EventArgs objArgs)
         {
             HttpResponse response = HttpContext.Current.Response;
 

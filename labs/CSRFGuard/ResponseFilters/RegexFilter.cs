@@ -74,9 +74,9 @@ namespace Org.Owasp.CsrfGuard.ResponseFilters
         private String InjectURLParameters(String htmlText)
         {
             StringBuilder newHtmlText = new StringBuilder();
-            _log.Debug(App.Configuration.extensionWhitelistPattern);
+            _log.Debug(App.Configuration.ExtensionWhitelistPattern);
             Regex extensionWhitelistRegex =
-                new Regex(App.Configuration.extensionWhitelistPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                new Regex(App.Configuration.ExtensionWhitelistPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
             Regex skipJavascriptRegex = new Regex("^javascript:", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
             for (int i = 0; i < htmlText.Length; i++)
